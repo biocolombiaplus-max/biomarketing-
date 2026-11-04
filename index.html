@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- ePayco checkout (carga estática, igual que juridicosweb) -->
-<script src="https://checkout.epayco.co/checkout.js"></script>
+<link rel="preconnect" href="https://checkout.epayco.co">
 <!-- ===== META PIXEL =====
      Pega aquí el ID de tu píxel (solo números). Si está vacío, el píxel no se carga. -->
 <script>
@@ -1430,21 +1430,42 @@ footer a:hover{color:var(--fuchsia)}
   }
   var payBtn = null;
   function busy(on){ if(!payBtn) return; payBtn.disabled = on; payBtn.style.opacity = on ? '.7' : ''; payBtn.querySelector('span').textContent = on ? 'Cargando pago seguro…' : 'Pagar con tarjeta o PSE'; }
+  // Carga un script una sola vez
+  var loaded = {};
+  function loadScript(src){
+    if(loaded[src]) return loaded[src];
+    return (loaded[src] = new Promise(function(res, rej){
+      var sc = document.createElement('script'); sc.src = src; sc.async = true;
+      sc.onload = res; sc.onerror = function(){ delete loaded[src]; rej(new Error('No cargó ' + src)); };
+      document.head.appendChild(sc);
+    }));
+  }
+  // 1) Checkout v2 con sesión creada en el servidor (claves pública + privada), igual que juridicosweb
+  function payV2(s){
+    var c = contact() || {};
+    return fetch('/api/public/epayco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: s.plan, full: s.full, dom: s.dom, name: c.name || '', phone: c.phone || '' }) })
+      .then(function(r){ return r.json().then(function(d){ if(!r.ok || !d.sessionId) throw new Error(d.error || 'Sin sesión de ePayco'); return d; }); })
+      .then(function(d){
+        return loadScript('https://checkout.epayco.co/checkout-v2.js').then(function(){
+          var ch = ePayco.checkout.configure({ sessionId: d.sessionId, type: 'onepage', test: !!d.test });
+          if(ch.onErrors) ch.onErrors(function(err){ console.error('ePayco v2', err); });
+          ch.open();
+        });
+      });
+  }
+  // 2) Respaldo: checkout clásico con la llave pública
+  function payLegacy(s, desc){
+    return loadScript('https://checkout.epayco.co/checkout.js').then(function(){ lanzarEpayco(s, desc); });
+  }
   function pay(s){
     bmTrack('InitiateCheckout', { content_name: 'Plan ' + s.plan, content_category: s.full ? 'Pago total' : 'Anticipo 50%', value: s.amount, currency: 'COP', num_items: 1 });
     var desc = 'Tienda virtual Plan ' + s.plan + ' - ' + (s.full ? 'Pago total' : 'Anticipo 50%') + (s.dom ? ' + Dominio 1 año' : '');
     try{ localStorage.setItem('bm_pago', JSON.stringify({ plan: s.plan, amount: s.amount, full: s.full, dom: s.dom })); }catch(e){}
-    if(window.ePayco){
-      try{ lanzarEpayco(s, desc); }catch(e){ console.error('ePayco', e); fallback(s); }
-      return;
-    }
-    // Respaldo: el script no cargó (bloqueador o red lenta) → se carga de nuevo
     busy(true);
-    var sc = document.createElement('script');
-    sc.src = 'https://checkout.epayco.co/checkout.js';
-    sc.onload = function(){ busy(false); try{ lanzarEpayco(s, desc); }catch(e){ console.error('ePayco', e); fallback(s); } };
-    sc.onerror = function(){ busy(false); fallback(s); };
-    document.head.appendChild(sc);
+    payV2(s)
+      .catch(function(e){ console.warn('ePayco v2 no disponible, uso el checkout clásico:', e.message); return payLegacy(s, desc); })
+      .catch(function(e){ console.error('ePayco', e); fallback(s); })
+      .then(function(){ busy(false); });
   }
   var fb = document.getElementById('payfb');
   function fallback(s){
