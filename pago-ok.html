@@ -34,6 +34,19 @@ p{color:#56466A;margin-bottom:22px}
   <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">Avisar por WhatsApp</a>
   <a class="btn gh" href="./">Volver a la página</a>
 </div>
+<!-- ===== META PIXEL =====
+     Pega aquí el ID de tu píxel (solo números). Si está vacío, el píxel no se carga. -->
+<script>
+window.META_PIXEL_ID = '';
+(function(id){
+  window.track = function(){};
+  if(!id) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', id);
+  fbq('track', 'PageView');
+  window.track = function(ev, data, custom){ try{ fbq(custom ? 'trackCustom' : 'track', ev, data || {}); }catch(e){} };
+})(window.META_PIXEL_ID);
+</script>
 <script>
 (function(){
   var q = new URLSearchParams(location.search);
@@ -50,6 +63,9 @@ p{color:#56466A;margin-bottom:22px}
   function render(){
     var msg;
     if(status === 'ok'){
+      var key = 'px_' + (ref || amount);
+      try{ if(!localStorage.getItem(key)){ track('Purchase', { value: parseFloat(amount) || 0, currency: 'COP', content_name: plan || desc || 'Tienda virtual' }, false); localStorage.setItem(key, '1'); } }
+      catch(e){ track('Purchase', { value: parseFloat(amount) || 0, currency: 'COP', content_name: plan || desc || 'Tienda virtual' }); }
       card.className = 'card ok'; ic.textContent = '🎉'; tt.textContent = '¡Pago aprobado!';
       sub.textContent = 'Gracias por confiar en Bio Marketing. Escríbenos por WhatsApp para enviarnos tu logo, colores y productos y empezar ya con tu tienda.';
       msg = '✅ Hola Bio Marketing, acabo de pagar mi tienda virtual.';

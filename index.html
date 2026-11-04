@@ -16,6 +16,19 @@
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://checkout.epayco.co/checkout.js" defer></script>
+<!-- ===== META PIXEL =====
+     Pega aquí el ID de tu píxel (solo números). Si está vacío, el píxel no se carga. -->
+<script>
+window.META_PIXEL_ID = '';
+(function(id){
+  window.track = function(){};
+  if(!id) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', id);
+  fbq('track', 'PageView');
+  window.track = function(ev, data, custom){ try{ fbq(custom ? 'trackCustom' : 'track', ev, data || {}); }catch(e){} };
+})(window.META_PIXEL_ID);
+</script>
 <style>
 :root{
   --bg:#FFF7FB;--paper:#FFFFFF;--cream:#FFF9EE;
@@ -1148,6 +1161,8 @@ footer a:hover{color:var(--fuchsia)}
     a.href = waLink(MSG[key] || MSG.general);
     a.addEventListener('click', function(e){
       var card = a.closest('.plan');
+      if(card) track('Lead', { content_name: 'Plan ' + key, value: +card.dataset.price, currency: 'COP' });
+      else track('Contact', { content_name: 'WhatsApp general' });
       if(card && card.querySelector('.dom-chk').checked){
         e.preventDefault();
         window.open(waLink(MSG[key] + ' También quiero *dominio personalizado* ($85.000/año).'), '_blank', 'noopener');
@@ -1209,6 +1224,11 @@ footer a:hover{color:var(--fuchsia)}
   function lc(){ var n = Math.max(0, parseInt(np.value, 10) || 0); document.getElementById('nprod-t').textContent = fmt(n * 5000); }
   np.addEventListener('input', lc); lc();
 
+  /* ===== Pixel: vio los planes ===== */
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ track('ViewContent', { content_name: 'Planes tiendas virtuales', content_type: 'product', currency: 'COP', value: 198000 }); o.disconnect(); } }); }, {threshold:.2}).observe(document.querySelector('.plans'));
+  }
+
   /* ===== Plans: payment amount ===== */
   function planState(card){
     var price = +card.dataset.price, full = card.querySelector('.paymode .on').dataset.mode === 'full', dom = card.querySelector('.dom-chk').checked;
@@ -1219,7 +1239,7 @@ footer a:hover{color:var(--fuchsia)}
     card.querySelectorAll('.paymode button').forEach(function(b){
       b.addEventListener('click', function(){ card.querySelectorAll('.paymode button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); refresh(card); });
     });
-    card.querySelector('.dom-chk').addEventListener('change', function(){ refresh(card); });
+    card.querySelector('.dom-chk').addEventListener('change', function(){ refresh(card); if(this.checked) track('AgregoDominio', { plan: card.dataset.plan, value: DOMINIO, currency: 'COP' }, true); });
     card.querySelector('.pay').addEventListener('click', function(){ pay(planState(card)); });
     refresh(card);
   });
@@ -1228,6 +1248,7 @@ footer a:hover{color:var(--fuchsia)}
   var toastEl = document.getElementById('toast'), loader = document.getElementById('loader');
   function toast(t){ toastEl.textContent = t; toastEl.classList.add('show'); setTimeout(function(){ toastEl.classList.remove('show'); }, 3800); }
   function pay(s){
+    track('InitiateCheckout', { content_name: 'Plan ' + s.plan, content_category: s.full ? 'Pago total' : 'Anticipo 50%', value: s.amount, currency: 'COP', num_items: 1 });
     var desc = 'Tienda virtual Plan ' + s.plan + ' - ' + (s.full ? 'Pago total' : 'Anticipo 50%') + (s.dom ? ' + Dominio 1 año' : '');
     var back = new URL('pago-ok.html', location.href).href;
     loader.classList.add('show');
