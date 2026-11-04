@@ -707,7 +707,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     api('GET', '/api/admin/stats' + (fresh ? '?fresh=1' : '')).then(function(d){
       stats = { visits: (d.visits || []).map(function(v){ v.st = +v.st || 1; return v; }), leads: d.leads || [] };
       renderStats(); renderLeads();
-    }).catch(onErr).then(function(){ $('refresh').classList.remove('spinning'); });
+    }).catch(function(e){ onErr(e); renderStats(); renderLeads(); }).then(function(){ $('refresh').classList.remove('spinning'); });
   }
   $('refresh').onclick = function(){ loadStats(true); };
   $('range').onclick = function(e){ var b = e.target.closest('button'); if(!b) return; range = +b.dataset.r; [].forEach.call(this.children, function(x){ x.classList.toggle('on', x === b); }); renderStats(); };
