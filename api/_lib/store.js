@@ -6,9 +6,16 @@ const crypto = require('crypto');
 const K = { data: 'bm:data', visits: 'bm:visits', leads: 'bm:leads', img: 'bm:img:' };
 
 // Vercel crea KV_REST_API_URL / KV_REST_API_TOKEN al conectar Upstash; también se aceptan las de Upstash.
+// Si al conectar se usó otro prefijo (por ejemplo STORAGE_), se busca cualquier par *_REST_API_URL / *_REST_API_TOKEN.
 function creds() {
-  const url = (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || '').trim().replace(/\/$/, '');
-  const token = (process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '').trim();
+  const env = process.env;
+  let url = env.KV_REST_API_URL || env.UPSTASH_REDIS_REST_URL || '';
+  let token = env.KV_REST_API_TOKEN || env.UPSTASH_REDIS_REST_TOKEN || '';
+  if (!url || !token) {
+    const key = Object.keys(env).find((k) => /_REST_API_URL$/.test(k) && env[k.replace(/_URL$/, '_TOKEN')]);
+    if (key) { url = env[key]; token = env[key.replace(/_URL$/, '_TOKEN')]; }
+  }
+  url = String(url).trim().replace(/\/$/, ''); token = String(token).trim();
   return url && token ? { url, token } : null;
 }
 
