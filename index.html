@@ -1281,7 +1281,7 @@ footer a:hover{color:var(--fuchsia)}
     <p class="lm-legal">🔒 Usamos tus datos solo para contactarte sobre tu tienda virtual, según la Ley 1581 de 2012 de protección de datos.</p>
   </form>
 </div>
-<div class="payfb" id="payfb" role="dialog" aria-modal="true"><div><h4>No se pudo abrir el pago</h4><p>Puede que tu navegador o un bloqueador de anuncios esté impidiendo cargar la pasarela de ePayco. Reintenta o te enviamos el link de pago por WhatsApp.</p><button type="button" class="btn btn-pay" id="payfb-retry"><span>Reintentar</span></button><a class="btn btn-wa" id="payfb-wa" href="#" target="_blank" rel="noopener"><span>Recibir link por WhatsApp</span></a><button type="button" class="x">Cerrar</button></div></div>
+<div class="payfb" id="payfb" role="dialog" aria-modal="true"><div><h4>No se pudo abrir el pago</h4><p>Puede que tu navegador o un bloqueador de anuncios esté impidiendo cargar la pasarela de ePayco. Reintenta o te enviamos el link de pago por WhatsApp.</p><button type="button" class="btn btn-pay" id="payfb-retry"><span>Reintentar</span></button><a class="btn btn-wa" id="payfb-wa" href="#" target="_blank" rel="noopener"><span>Recibir link por WhatsApp</span></a><button type="button" class="x">Cerrar</button><small id="payfb-err" style="display:block;margin-top:10px;font-size:.72rem;color:var(--ink3);word-break:break-word"></small></div></div>
 <div class="loader" id="loader"><div><div class="sp"></div><b>Abriendo pago seguro…</b><p style="color:var(--ink3);font-size:.85rem">ePayco · SSL 256 bits</p></div></div>
 
 <!-- SVG icon sprite -->
@@ -1431,48 +1431,65 @@ footer a:hover{color:var(--fuchsia)}
   var payBtn = null;
   function busy(on){ if(!payBtn) return; payBtn.disabled = on; payBtn.style.opacity = on ? '.7' : ''; payBtn.querySelector('span').textContent = on ? 'Cargando pago seguro…' : 'Pagar con tarjeta o PSE'; }
   // Carga un script una sola vez
-  var loaded = {};
+  var loaded = {}, payErr = [];
   function loadScript(src){
     if(loaded[src]) return loaded[src];
     return (loaded[src] = new Promise(function(res, rej){
-      var sc = document.createElement('script'); sc.src = src; sc.async = true;
-      sc.onload = res; sc.onerror = function(){ delete loaded[src]; rej(new Error('No cargó ' + src)); };
+      var sc = document.createElement('script'); sc.src = src;
+      sc.onload = res; sc.onerror = function(){ delete loaded[src]; rej(new Error('no cargó ' + src.split('/').pop() + ' (¿bloqueador de anuncios?)')); };
       document.head.appendChild(sc);
     }));
   }
-  // 1) Checkout v2 con sesión creada en el servidor (claves pública + privada), igual que juridicosweb
+  // Espera a que el script de ePayco termine de crear su objeto (puede tardar después de cargar)
+  function waitEpayco(ms){
+    return new Promise(function(res, rej){
+      var t0 = Date.now();
+      (function chk(){
+        if(window.ePayco && ePayco.checkout && typeof ePayco.checkout.configure === 'function') return res(ePayco);
+        if(Date.now() - t0 > ms) return rej(new Error('ePayco cargó pero no se inicializó'));
+        setTimeout(chk, 120);
+      })();
+    });
+  }
+  // 1) Checkout v2 con sesión creada en el servidor (llaves pública + privada), igual que juridicosweb
   function payV2(s){
     var c = contact() || {};
-    return fetch('/api/public/epayco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: s.plan, full: s.full, dom: s.dom, name: c.name || '', phone: c.phone || '' }) })
-      .then(function(r){ return r.json().then(function(d){ if(!r.ok || !d.sessionId) throw new Error(d.error || 'Sin sesión de ePayco'); return d; }); })
-      .then(function(d){
-        return loadScript('https://checkout.epayco.co/checkout-v2.js').then(function(){
-          var ch = ePayco.checkout.configure({ sessionId: d.sessionId, type: 'onepage', test: !!d.test });
-          if(ch.onErrors) ch.onErrors(function(err){ console.error('ePayco v2', err); });
-          ch.open();
-        });
+    var session = fetch('/api/public/epayco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: s.plan, full: s.full, dom: s.dom, name: c.name || '', phone: c.phone || '' }) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ if(!r.ok || !d.sessionId) throw new Error('servidor: ' + (d.error || 'HTTP ' + r.status)); return d; }); });
+    return Promise.all([session, loadScript('https://checkout.epayco.co/checkout-v2.js').then(function(){ return waitEpayco(6000); })])
+      .then(function(r){
+        var d = r[0];
+        var ch = ePayco.checkout.configure({ sessionId: d.sessionId, type: 'onepage', test: !!d.test });
+        if(ch && ch.onErrors) ch.onErrors(function(err){ console.error('ePayco v2', err); });
+        if(!ch || typeof ch.open !== 'function') throw new Error('checkout v2 sin método open');
+        ch.open();
       });
   }
-  // 2) Respaldo: checkout clásico con la llave pública
+  // 2) Respaldo: checkout clásico con la llave pública (el mismo de juridicosweb)
   function payLegacy(s, desc){
-    return loadScript('https://checkout.epayco.co/checkout.js').then(function(){ lanzarEpayco(s, desc); });
+    if(window.ePayco && window.ePayco.checkout && !loaded['https://checkout.epayco.co/checkout.js']){ try{ delete window.ePayco; }catch(e){ window.ePayco = undefined; } }
+    return loadScript('https://checkout.epayco.co/checkout.js').then(function(){ return waitEpayco(6000); }).then(function(){ lanzarEpayco(s, desc); });
   }
+  var lastPay = null;
   function pay(s){
+    lastPay = s;
     bmTrack('InitiateCheckout', { content_name: 'Plan ' + s.plan, content_category: s.full ? 'Pago total' : 'Anticipo 50%', value: s.amount, currency: 'COP', num_items: 1 });
     var desc = 'Tienda virtual Plan ' + s.plan + ' - ' + (s.full ? 'Pago total' : 'Anticipo 50%') + (s.dom ? ' + Dominio 1 año' : '');
     try{ localStorage.setItem('bm_pago', JSON.stringify({ plan: s.plan, amount: s.amount, full: s.full, dom: s.dom })); }catch(e){}
+    payErr = [];
     busy(true);
     payV2(s)
-      .catch(function(e){ console.warn('ePayco v2 no disponible, uso el checkout clásico:', e.message); return payLegacy(s, desc); })
-      .catch(function(e){ console.error('ePayco', e); fallback(s); })
+      .catch(function(e){ payErr.push('v2: ' + (e && e.message || e)); console.warn('ePayco v2:', e); return payLegacy(s, desc); })
+      .catch(function(e){ payErr.push('clásico: ' + (e && e.message || e)); console.error('ePayco clásico:', e); fallback(s); })
       .then(function(){ busy(false); });
   }
   var fb = document.getElementById('payfb');
   function fallback(s){
+    document.getElementById('payfb-err').textContent = payErr.length ? 'Detalle técnico: ' + payErr.join(' · ') : '';
     document.getElementById('payfb-wa').href = waLink('Hola Bio Marketing, quiero pagar el Plan ' + s.plan + ' (' + fmt(s.amount) + ') con tarjeta o PSE. ¿Me envían el link de pago?');
     fb.classList.add('show');
   }
-  document.getElementById('payfb-retry').addEventListener('click', function(){ fb.classList.remove('show'); location.reload(); });
+  document.getElementById('payfb-retry').addEventListener('click', function(){ fb.classList.remove('show'); if(lastPay) pay(lastPay); });
   fb.addEventListener('click', function(e){ if(e.target === fb || e.target.classList.contains('x')) fb.classList.remove('show'); });
 
   /* ===== Domain typing ===== */

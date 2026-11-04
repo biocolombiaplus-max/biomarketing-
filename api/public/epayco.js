@@ -22,7 +22,7 @@ async function login(k) {
     body: '{}',
   });
   const d = await r.json().catch(() => ({}));
-  if (!d.token) { console.error('[epayco] login', r.status, JSON.stringify(d).slice(0, 200)); throw new HttpError(502, 'ePayco no aceptó las claves. Revisa EPAYCO_PUBLIC_KEY y EPAYCO_PRIVATE_KEY en Vercel.'); }
+  if (!d.token) { console.error('[epayco] login', r.status, JSON.stringify(d).slice(0, 200)); throw new HttpError(502, 'ePayco no aceptó las llaves (' + String(d.textResponse || d.message || d.error || ('HTTP ' + r.status)).slice(0, 100) + '). Revisa EPAYCO_PUBLIC_KEY y EPAYCO_PRIVATE_KEY en Vercel.'); }
   tokenCache = { at: Date.now(), token: d.token };
   return d.token;
 }
