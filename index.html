@@ -15,18 +15,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://checkout.epayco.co/checkout.js" defer></script>
+<!-- ePayco checkout (carga estática, igual que juridicosweb) -->
+<script src="https://checkout.epayco.co/checkout.js"></script>
 <!-- ===== META PIXEL =====
      Pega aquí el ID de tu píxel (solo números). Si está vacío, el píxel no se carga. -->
 <script>
 window.META_PIXEL_ID = '1465788748818366';
 (function(id){
-  window.track = function(){};
+  window.bmTrack = function(){};
   if(!id) return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', id);
   fbq('track', 'PageView');
-  window.track = function(ev, data, custom){ try{ fbq(custom ? 'trackCustom' : 'track', ev, data || {}); }catch(e){} };
+  window.bmTrack = function(ev, data, custom){ try{ fbq(custom ? 'trackCustom' : 'track', ev, data || {}); }catch(e){} };
 })(window.META_PIXEL_ID);
 </script>
 <style>
@@ -580,6 +581,15 @@ footer a:hover{color:var(--fuchsia)}
   .fab{bottom:88px;width:56px;height:56px}
 }
 
+/* ePayco siempre encima */
+[id*="epayco"],[class*="epayco"],#ep-modal,.epayco-modal,#lightbox,#lightbox-epayco{z-index:99999!important}
+.payfb{position:fixed;inset:0;z-index:300;background:rgba(27,11,43,.55);display:none;place-items:center;padding:20px}
+.payfb.show{display:grid}
+.payfb>div{background:#fff;border-radius:24px;padding:28px 24px;max-width:420px;width:100%;text-align:center;box-shadow:var(--sh-lg)}
+.payfb h4{font-size:1.4rem;margin-bottom:8px}
+.payfb p{color:var(--ink2);font-size:.95rem;margin-bottom:18px}
+.payfb .btn{width:100%;margin-bottom:10px}
+.payfb .x{font-weight:700;color:var(--ink3);padding:8px}
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -1123,6 +1133,7 @@ footer a:hover{color:var(--fuchsia)}
   <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
 </div>
 <div class="toast" id="toast"></div>
+<div class="payfb" id="payfb" role="dialog" aria-modal="true"><div><h4>No se pudo abrir el pago</h4><p>Puede que tu navegador o un bloqueador de anuncios esté impidiendo cargar la pasarela de ePayco. Reintenta o te enviamos el link de pago por WhatsApp.</p><button type="button" class="btn btn-pay" id="payfb-retry"><span>Reintentar</span></button><a class="btn btn-wa" id="payfb-wa" href="#" target="_blank" rel="noopener"><span>Recibir link por WhatsApp</span></a><button type="button" class="x">Cerrar</button></div></div>
 <div class="loader" id="loader"><div><div class="sp"></div><b>Abriendo pago seguro…</b><p style="color:var(--ink3);font-size:.85rem">ePayco · SSL 256 bits</p></div></div>
 
 <!-- SVG icon sprite -->
@@ -1161,8 +1172,8 @@ footer a:hover{color:var(--fuchsia)}
     a.href = waLink(MSG[key] || MSG.general);
     a.addEventListener('click', function(e){
       var card = a.closest('.plan');
-      if(card) track('Lead', { content_name: 'Plan ' + key, value: +card.dataset.price, currency: 'COP' });
-      else track('Contact', { content_name: 'WhatsApp general' });
+      if(card) bmTrack('Lead', { content_name: 'Plan ' + key, value: +card.dataset.price, currency: 'COP' });
+      else bmTrack('Contact', { content_name: 'WhatsApp general' });
       if(card && card.querySelector('.dom-chk').checked){
         e.preventDefault();
         window.open(waLink(MSG[key] + ' También quiero *dominio personalizado* ($85.000/año).'), '_blank', 'noopener');
@@ -1226,7 +1237,7 @@ footer a:hover{color:var(--fuchsia)}
 
   /* ===== Pixel: vio los planes ===== */
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ track('ViewContent', { content_name: 'Planes tiendas virtuales', content_type: 'product', currency: 'COP', value: 198000 }); o.disconnect(); } }); }, {threshold:.2}).observe(document.querySelector('.plans'));
+    new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ bmTrack('ViewContent', { content_name: 'Planes tiendas virtuales', content_type: 'product', currency: 'COP', value: 198000 }); o.disconnect(); } }); }, {threshold:.2}).observe(document.querySelector('.plans'));
   }
 
   /* ===== Plans: payment amount ===== */
@@ -1239,50 +1250,63 @@ footer a:hover{color:var(--fuchsia)}
     card.querySelectorAll('.paymode button').forEach(function(b){
       b.addEventListener('click', function(){ card.querySelectorAll('.paymode button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); refresh(card); });
     });
-    card.querySelector('.dom-chk').addEventListener('change', function(){ refresh(card); if(this.checked) track('AgregoDominio', { plan: card.dataset.plan, value: DOMINIO, currency: 'COP' }, true); });
-    card.querySelector('.pay').addEventListener('click', function(){ pay(planState(card)); });
+    card.querySelector('.dom-chk').addEventListener('change', function(){ refresh(card); if(this.checked) bmTrack('AgregoDominio', { plan: card.dataset.plan, value: DOMINIO, currency: 'COP' }, true); });
+    card.querySelector('.pay').addEventListener('click', function(){ payBtn = this; pay(planState(card)); });
     refresh(card);
   });
 
   /* ===== ePayco ===== */
   var toastEl = document.getElementById('toast'), loader = document.getElementById('loader');
   function toast(t){ toastEl.textContent = t; toastEl.classList.add('show'); setTimeout(function(){ toastEl.classList.remove('show'); }, 3800); }
+  function lanzarEpayco(s, desc){
+    var handler = ePayco.checkout.configure({
+      key:               EPAYCO.key,
+      test:              EPAYCO.test,
+      p_cust_id_cliente: EPAYCO.customer
+    });
+    handler.open({
+      name:          'Bio Marketing',
+      description:   desc,
+      invoice:       'BM-' + Date.now(),
+      currency:      'cop',
+      amount:        String(s.amount),
+      tax_base:      '0',
+      tax:           '0',
+      country:       'co',
+      lang:          'es',
+      external:      'false',
+      extra1:        s.plan,
+      extra2:        s.full ? 'total' : 'anticipo',
+      extra3:        s.dom ? 'dominio' : 'sin-dominio',
+      response:      new URL('pago-ok.html', location.href).href.split('#')[0],
+      confirmation:  new URL('pago-ok.html', location.href).href.split('#')[0]
+    });
+  }
+  var payBtn = null;
+  function busy(on){ if(!payBtn) return; payBtn.disabled = on; payBtn.style.opacity = on ? '.7' : ''; payBtn.querySelector('span').textContent = on ? 'Cargando pago seguro…' : 'Pagar con tarjeta o PSE'; }
   function pay(s){
-    track('InitiateCheckout', { content_name: 'Plan ' + s.plan, content_category: s.full ? 'Pago total' : 'Anticipo 50%', value: s.amount, currency: 'COP', num_items: 1 });
+    bmTrack('InitiateCheckout', { content_name: 'Plan ' + s.plan, content_category: s.full ? 'Pago total' : 'Anticipo 50%', value: s.amount, currency: 'COP', num_items: 1 });
     var desc = 'Tienda virtual Plan ' + s.plan + ' - ' + (s.full ? 'Pago total' : 'Anticipo 50%') + (s.dom ? ' + Dominio 1 año' : '');
-    var back = new URL('pago-ok.html', location.href).href;
-    loader.classList.add('show');
-    var tries = 0, injected = false;
-    (function wait(){
-      if(window.ePayco && ePayco.checkout){
-        loader.classList.remove('show');
-        try{
-          var handler = ePayco.checkout.configure({ key: EPAYCO.key, test: EPAYCO.test, p_cust_id_cliente: EPAYCO.customer });
-          handler.open({
-            name: 'Bio Marketing', description: desc, invoice: 'BMT-' + Date.now(),
-            currency: 'cop', amount: String(s.amount), tax_base: '0', tax: '0',
-            country: 'co', lang: 'es', external: 'false',
-            extra1: s.plan, extra2: s.full ? 'total' : 'anticipo', extra3: s.dom ? 'dominio' : 'sin-dominio',
-            response: back, confirmation: back
-          });
-        }catch(e){ fallback(s); }
-        return;
-      }
-      if(++tries > 40 && !injected){
-        injected = true;
-        var sc = document.createElement('script'); sc.src = 'https://checkout.epayco.co/checkout.js?v=' + Date.now();
-        sc.onload = wait; sc.onerror = function(){ loader.classList.remove('show'); fallback(s); };
-        document.head.appendChild(sc);
-        return;
-      }
-      if(!injected) setTimeout(wait, 200);
-    })();
+    try{ localStorage.setItem('bm_pago', JSON.stringify({ plan: s.plan, amount: s.amount, full: s.full, dom: s.dom })); }catch(e){}
+    if(window.ePayco){
+      try{ lanzarEpayco(s, desc); }catch(e){ console.error('ePayco', e); fallback(s); }
+      return;
+    }
+    // Respaldo: el script no cargó (bloqueador o red lenta) → se carga de nuevo
+    busy(true);
+    var sc = document.createElement('script');
+    sc.src = 'https://checkout.epayco.co/checkout.js';
+    sc.onload = function(){ busy(false); try{ lanzarEpayco(s, desc); }catch(e){ console.error('ePayco', e); fallback(s); } };
+    sc.onerror = function(){ busy(false); fallback(s); };
+    document.head.appendChild(sc);
   }
+  var fb = document.getElementById('payfb');
   function fallback(s){
-    loader.classList.remove('show');
-    toast('No pudimos abrir el pago en línea. Te llevamos a WhatsApp para enviarte el link de pago.');
-    setTimeout(function(){ window.open(waLink('Hola Bio Marketing, quiero pagar el Plan ' + s.plan + ' (' + fmt(s.amount) + ') con tarjeta o PSE. ¿Me envían el link de pago?'), '_blank', 'noopener'); }, 1200);
+    document.getElementById('payfb-wa').href = waLink('Hola Bio Marketing, quiero pagar el Plan ' + s.plan + ' (' + fmt(s.amount) + ') con tarjeta o PSE. ¿Me envían el link de pago?');
+    fb.classList.add('show');
   }
+  document.getElementById('payfb-retry').addEventListener('click', function(){ fb.classList.remove('show'); location.reload(); });
+  fb.addEventListener('click', function(e){ if(e.target === fb || e.target.classList.contains('x')) fb.classList.remove('show'); });
 
   /* ===== Domain typing ===== */
   var doms = [['calzadohamsa','.com'],['biomarketing','.com'],['tutienda','.co'],['drogueriasanjose','.com.co']], di = 0, typed = document.getElementById('typed');
