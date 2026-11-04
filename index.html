@@ -386,43 +386,102 @@ h2 + .lead{margin-top:16px}
 .dom-price small{color:var(--ink2);font-weight:600;line-height:1.4}
 
 /* ===== ADMIN ===== */
-.admin{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
-@media(max-width:960px){.admin{grid-template-columns:1fr}}
-.dash{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--sh-lg);display:grid;grid-template-columns:52px 1fr;gap:16px}
-.dside{background:var(--ink);border-radius:18px;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:14px}
-.dside i{width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.1);display:block}
-.dside i.on{background:var(--fuchsia)}
-.dside i:first-child{background:var(--yellow);border-radius:50%}
-.dmain{min-width:0}
-.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.dash-top b{font-family:var(--display);font-size:1.15rem;letter-spacing:-.02em}
-.dash-top span{font-size:.74rem;color:var(--ink3);background:var(--bg);padding:5px 10px;border-radius:99px;font-weight:700}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.kpi{border-radius:16px;padding:12px}
-.kpi small{font-size:.72rem;display:block;font-weight:600;opacity:.85}
-.kpi b{font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em}
-.kpi i{font-style:normal;font-size:.7rem;font-weight:800}
-.k1{background:var(--pink);color:var(--magenta)}.k2{background:var(--yellow2);color:#8A5A00}.k3{background:var(--blue2);color:var(--blue)}
-.chart{height:96px;display:flex;align-items:flex-end;gap:7px;padding:12px;background:var(--bg);border-radius:16px;margin-bottom:12px}
-.chart span{flex:1;border-radius:7px 7px 3px 3px;background:var(--pink2);transform-origin:bottom;animation:grow 1.2s cubic-bezier(.2,.8,.2,1) both}
-.chart span:nth-last-child(-n+2){background:var(--fuchsia)}
-@keyframes grow{from{transform:scaleY(0)}}
-.otable{display:grid;gap:6px}
-.orow{display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:9px 12px;font-size:.82rem;font-weight:600}
-.orow .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.72rem;color:#fff}
-.orow small{display:block;color:var(--ink3);font-size:.72rem;font-weight:500}
-.orow .gd{font-size:.72rem;color:var(--blue);font-weight:700}
-@media(max-width:520px){.dash{grid-template-columns:1fr}.dside{display:none}.orow{grid-template-columns:auto 1fr auto}.orow .gd{display:none}.kpi b{font-size:1.05rem}}
-.adm-list{display:grid;gap:18px;margin-top:28px}
-.adm-list li{display:flex;gap:14px}
-.adm-list .i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;background:var(--pink);color:var(--magenta)}
-.adm-list .i svg{width:22px;height:22px}
-.adm-list b{display:block;font-size:1.06rem;font-family:var(--display);letter-spacing:-.02em}
-.adm-list p{color:var(--ink2);font-size:.94rem}
-.load-box{margin-top:28px;background:var(--yellow2);border:1.5px dashed #E8B400;border-radius:20px;padding:18px 20px;font-size:.96rem}
-.load-calc{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;font-weight:600;color:var(--ink2)}
+.adm-stage{position:relative;max-width:1120px;margin:0 auto}
+.aw{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 2px 4px rgba(27,11,43,.04),0 50px 100px -30px rgba(200,0,122,.35),0 0 0 1px var(--line);font-size:14px}
+.aw-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#F7F1F5;border-bottom:1px solid var(--line)}
+.aw-bar>i{width:11px;height:11px;border-radius:50%;background:#ff5f57;flex-shrink:0}
+.aw-bar>i:nth-child(2){background:#febc2e}.aw-bar>i:nth-child(3){background:#28c840}
+.aw-url{margin:0 auto;background:#fff;border-radius:99px;padding:6px 18px;font-size:.8rem;font-weight:600;color:var(--ink2);display:flex;align-items:center;gap:6px;box-shadow:inset 0 0 0 1px var(--line);min-width:0;white-space:nowrap;overflow:hidden}
+.aw-url svg{width:12px;height:12px;color:var(--green);flex-shrink:0}
+.aw-body{display:grid;grid-template-columns:220px 1fr;min-height:560px}
+.aw-side{border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:4px;background:#FFFCFD}
+.aw-brand{display:flex;gap:10px;align-items:center;padding:0 6px 18px}
+.aw-brand .lg{width:38px;height:38px;border-radius:12px;background:var(--fuchsia);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.2rem;flex-shrink:0}
+.aw-brand b{display:block;font-family:var(--display);font-size:1rem;letter-spacing:-.02em;line-height:1.1}
+.aw-brand small{color:var(--ink3);font-size:.72rem}
+.aw-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-weight:700;font-size:.88rem;color:var(--ink2)}
+.aw-nav a svg{width:18px;height:18px;flex-shrink:0}
+.aw-nav a.on{background:var(--fuchsia);color:#fff;box-shadow:0 8px 18px -8px rgba(255,31,143,.7)}
+.aw-nav a em{margin-left:auto;font-style:normal;font-size:.7rem;font-weight:800;background:var(--yellow);color:var(--ink);padding:2px 8px;border-radius:99px}
+.aw-push{margin-top:auto;display:flex;align-items:center;gap:8px;background:var(--pink);color:var(--magenta);font-weight:800;font-size:.78rem;padding:10px 12px;border-radius:12px}
+.aw-push i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(18,184,91,.6);animation:live 1.8s infinite;flex-shrink:0}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(18,184,91,.6)}80%,100%{box-shadow:0 0 0 8px rgba(18,184,91,0)}}
+.aw-main{padding:22px 24px 24px;background:var(--bg);min-width:0}
+.aw-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.aw-head h4{font-size:1.6rem;letter-spacing:-.035em}
+.aw-live{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;color:var(--ink2);font-weight:600;margin-top:4px}
+.aw-live i{width:9px;height:9px;border-radius:50%;background:var(--green);animation:live 1.8s infinite}
+.aw-live b{color:var(--ink)}
+.seg{display:flex;background:#fff;border-radius:99px;padding:4px;box-shadow:inset 0 0 0 1px var(--line)}
+.seg span{padding:7px 14px;border-radius:99px;font-size:.78rem;font-weight:700;color:var(--ink2);white-space:nowrap}
+.seg span.on{background:var(--ink);color:#fff}
+.aw-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.ak{background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 0 0 1px var(--line);position:relative;overflow:hidden}
+.ak small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.ak b{display:block;font-family:var(--display);font-size:1.9rem;letter-spacing:-.04em;line-height:1.15;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.ak .up{font-size:.74rem;font-weight:800;color:var(--green);background:#DCFCE7;padding:2px 8px;border-radius:99px}
+.ak.hl{background:var(--fuchsia);box-shadow:none;color:#fff}
+.ak.hl small{color:rgba(255,255,255,.8)}.ak.hl .up{background:rgba(255,255,255,.2);color:#fff}
+.ak svg.spark{position:absolute;right:10px;bottom:12px;width:70px;height:28px}
+.aw-row{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;margin-bottom:12px}
+.aw-row:last-child{margin-bottom:0}
+.ac{background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 0 0 1px var(--line);min-width:0}
+.ac-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:10px}
+.ac-h b{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.ac-h span{font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:-.03em;color:var(--magenta)}
+.chart-wrap{position:relative}
+.chart-wrap svg{width:100%;height:170px;display:block;overflow:visible}
+.chart-wrap .days{display:flex;justify-content:space-between;font-size:.7rem;font-weight:700;color:var(--ink3);margin-top:6px}
+.ln{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 2s cubic-bezier(.3,.7,.2,1)}
+.area{opacity:0;transition:opacity 1.2s .6s}
+.on-view .ln{stroke-dashoffset:0}.on-view .area{opacity:1}
+.tip{position:absolute;transform:translate(-50%,-120%);background:var(--ink);color:#fff;font-size:.72rem;font-weight:700;padding:5px 10px;border-radius:9px;white-space:nowrap;opacity:0;transition:opacity .5s 1.8s}
+.tip b{color:var(--yellow)}
+.on-view .tip{opacity:1}
+.fn{display:grid;gap:10px}
+.fn div{font-size:.8rem;font-weight:700}
+.fn div p{display:flex;justify-content:space-between;margin-bottom:4px}
+.fn div p span{color:var(--ink3);font-weight:600}
+.fn div p span b{color:var(--ink)}
+.bar{height:9px;border-radius:99px;background:#F4E8EF;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--pink2);width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.fn div:last-child .bar i{background:var(--fuchsia)}
+.on-view .bar i{width:var(--w)}
+.ord{display:grid;gap:8px}
+.or{display:grid;grid-template-columns:38px 1fr auto auto;gap:12px;align-items:center;font-size:.8rem}
+.or .im{width:38px;height:38px;border-radius:10px;overflow:hidden;background:var(--pink)}
+.or .im img{width:100%;height:100%;object-fit:cover}
+.or b{display:block;font-size:.84rem}
+.or small{color:var(--ink3);font-size:.72rem}
+.or .amt{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em}
+.src{display:grid;gap:11px}
+.sr{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;font-size:.8rem}
+.sr .lo{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.72rem}
+.sr .nm{font-weight:700}
+.sr .nm .bar{height:6px;margin-top:4px}
+.sr .vt{text-align:right;color:var(--ink3);font-size:.72rem;line-height:1.3}
+.sr .vt b{color:var(--green);font-size:.82rem}
+.aw-toast{position:absolute;z-index:6;background:#fff;border-radius:16px;padding:11px 14px 11px 11px;display:flex;align-items:center;gap:11px;box-shadow:0 24px 50px -16px rgba(27,11,43,.45);animation:floaty 5s ease-in-out infinite}
+.aw-toast .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.aw-toast .ic svg{width:20px;height:20px}
+.aw-toast b{display:block;font-size:.88rem;line-height:1.2}
+.aw-toast small{color:var(--ink3);font-size:.74rem}
+.aw-toast.t1{right:-28px;top:-28px}.aw-toast.t1 .ic{background:var(--green)}
+.aw-toast.t2{left:-34px;bottom:70px;animation-delay:-2.5s}.aw-toast.t2 .ic{background:var(--blue)}
+.aw-toast.t3{right:40px;bottom:-26px;animation-delay:-1.2s;background:var(--ink);color:#fff}.aw-toast.t3 small{color:rgba(255,255,255,.7)}.aw-toast.t3 .ic{background:var(--yellow);color:var(--ink)}
+.adm-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
+.adm-feats li{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--sh)}
+.adm-feats .i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;background:var(--pink);color:var(--magenta)}
+.adm-feats .i svg{width:22px;height:22px}
+.adm-feats b{display:block;font-size:1.06rem;font-family:var(--display);letter-spacing:-.02em}
+.adm-feats p{color:var(--ink2);font-size:.92rem}
+.load-box{margin:18px auto 0;background:var(--yellow2);border:1.5px dashed #E8B400;border-radius:20px;padding:18px 22px;font-size:.98rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.load-calc{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:600;color:var(--ink2)}
 .load-calc input{width:90px;background:#fff;border:1.5px solid #E8C870;color:var(--ink);border-radius:12px;padding:8px 12px;font-weight:800;font-size:1rem;font-family:inherit}
 .load-calc output{font-family:var(--display);font-weight:800;color:var(--ink);font-size:1.35rem;letter-spacing:-.03em}
+@media(max-width:1180px){.aw-toast.t1{right:-8px}.aw-toast.t2{left:-8px}}
+@media(max-width:960px){.aw-body{grid-template-columns:1fr}.aw-side{display:none}.aw-row{grid-template-columns:1fr}.adm-feats{grid-template-columns:1fr}}
+@media(max-width:640px){.aw{font-size:13px}.aw-main{padding:16px 12px}.aw-kpis{grid-template-columns:1fr 1fr;gap:8px}.ak{padding:12px}.ak b{font-size:1.45rem}.ak svg.spark{display:none}.seg span{padding:6px 10px}.aw-head h4{font-size:1.3rem}.or{grid-template-columns:34px 1fr auto}.or .st{display:none}.aw-toast{transform:scale(.85)}.aw-toast.t1{top:-34px;right:-6px}.aw-toast.t2{display:none}.aw-toast.t3{right:10px;bottom:-30px}.aw-url{font-size:.72rem;padding:5px 12px}}
 
 /* ===== GALLERY ===== */
 .gal{display:grid;grid-template-columns:1.1fr .9fr 1fr;grid-template-rows:280px 280px;gap:18px}
@@ -833,37 +892,107 @@ footer a:hover{color:var(--fuchsia)}
 
 <!-- ================= ADMIN ================= -->
 <section id="admin">
-  <div class="wrap admin">
-    <div class="dash rv" aria-hidden="true">
-      <div class="dside"><i></i><i class="on"></i><i></i><i></i><i></i></div>
-      <div class="dmain">
-        <div class="dash-top"><b>Hola, Hamsa 👋</b><span>Hoy</span></div>
-        <div class="kpis">
-          <div class="kpi k1"><small>Ventas hoy</small><b>$1.2M</b> <i>▲ 24%</i></div>
-          <div class="kpi k2"><small>Pedidos</small><b>18</b> <i>▲ 6</i></div>
-          <div class="kpi k3"><small>Por enviar</small><b>5</b></div>
-        </div>
-        <div class="chart"><span style="height:35%"></span><span style="height:48%;animation-delay:.1s"></span><span style="height:42%;animation-delay:.2s"></span><span style="height:60%;animation-delay:.3s"></span><span style="height:55%;animation-delay:.4s"></span><span style="height:72%;animation-delay:.5s"></span><span style="height:68%;animation-delay:.6s"></span><span style="height:88%;animation-delay:.7s"></span><span style="height:100%;animation-delay:.8s"></span></div>
-        <div class="otable">
-          <div class="orow"><span class="av" style="background:var(--fuchsia)">LM</span><div>Laura Martínez<small>Contra entrega · $189.900</small></div><span class="gd">Guía #4821</span><span class="st nw">Nuevo</span></div>
-          <div class="orow"><span class="av" style="background:var(--blue)">AP</span><div>Andrés Pérez<small>Tarjeta · $249.000</small></div><span class="gd">Guía #4820</span><span class="st go">En camino</span></div>
-          <div class="orow"><span class="av" style="background:var(--orange)">CR</span><div>Camila Rojas<small>PSE · $159.900</small></div><span class="gd">Guía #4819</span><span class="st ok">Entregado</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="rv">
+  <div class="wrap">
+    <div class="sec-head center rv">
       <div class="eyebrow">Módulo administrativo</div>
       <h2>Sistematiza tu negocio <span class="it fx">sin complicarte</span></h2>
-      <p class="lead">Te entregamos un panel sencillo para que controles todo desde tu celular o computador.</p>
-      <ul class="adm-list">
-        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bag"/></svg></span><div><b>Gestión de pedidos</b><p>Ve cada pedido, su estado y los datos del cliente en tiempo real.</p></div></li>
-        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-truck"/></svg></span><div><b>Guías y seguimiento</b><p>Registra las guías de envío y mantén informado a tu cliente.</p></div></li>
-        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-up"/></svg></span><div><b>Sube productos en minutos</b><p>Te explicamos paso a paso: foto, nombre, precio y listo. Es muy sencillo y rápido.</p></div></li>
-      </ul>
-      <div class="load-box">
-        <div><b>¿No tienes tiempo?</b> Nosotros cargamos tus productos por solo <b>$5.000 por producto</b> (opcional).</div>
-        <div class="load-calc"><label for="nprod">Productos:</label><input type="number" id="nprod" min="1" max="999" value="30" inputmode="numeric"><span>=</span><output id="nprod-t">$150.000</output></div>
+      <p class="lead">Con tu tienda recibes un panel profesional: ventas, visitantes en vivo, embudo de compra, origen de tus clientes y pedidos, todo desde tu celular o computador.</p>
+    </div>
+
+    <div class="adm-stage rv" aria-hidden="true">
+      <div class="aw" id="aw">
+        <div class="aw-bar"><i></i><i></i><i></i><div class="aw-url"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z"/></svg>tutienda.com/admin/panel</div></div>
+        <div class="aw-body">
+          <aside class="aw-side">
+            <div class="aw-brand"><span class="lg">h</span><div><b>Hamsa Admin</b><small>admin@tutienda.com</small></div></div>
+            <nav class="aw-nav">
+              <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke-linecap="round"/></svg>Panel</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Visitantes</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bag"/></svg>Productos</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8" stroke-linejoin="round"/></svg>Pedidos<em>12</em></a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" stroke-linejoin="round"/></svg>CRM</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-truck"/></svg>Envíos y guías</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Configuración</a>
+            </nav>
+            <div class="aw-push"><i></i>Notificaciones activas</div>
+          </aside>
+
+          <div class="aw-main">
+            <div class="aw-head">
+              <div><h4>Panel de ventas</h4><span class="aw-live"><i></i><b class="cnt" data-to="38">38</b> personas en la tienda ahora</span></div>
+              <div class="seg"><span>Hoy</span><span class="on">Últimos 7 días</span><span>Mes</span></div>
+            </div>
+
+            <div class="aw-kpis">
+              <div class="ak hl"><small>Ventas</small><b>$<span class="cnt" data-to="48.6" data-dec="1">48,6</span>M</b><span class="up">▲ 38%</span><svg class="spark" viewBox="0 0 70 28" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L12 18 L22 20 L32 13 L42 10 L54 3 L68 7"/></svg></div>
+              <div class="ak"><small>Pedidos</small><b class="cnt" data-to="312">312</b><span class="up">▲ 24%</span><svg class="spark" viewBox="0 0 70 28" fill="none" stroke="#FF1F8F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20 L12 21 L22 16 L32 17 L42 10 L54 8 L68 4"/></svg></div>
+              <div class="ak"><small>Carritos</small><b class="cnt" data-to="1284">1.284</b><span class="up">▲ 41%</span><svg class="spark" viewBox="0 0 70 28" fill="none" stroke="#3451FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 24 L12 19 L22 21 L32 12 L42 14 L54 6 L68 3"/></svg></div>
+              <div class="ak"><small>Conversión</small><b><span class="cnt" data-to="7.4" data-dec="1">7,4</span>%</b><span class="up">▲ 2,1 pts</span><svg class="spark" viewBox="0 0 70 28" fill="none" stroke="#E8B400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21 L12 20 L22 17 L32 18 L42 12 L54 9 L68 6"/></svg></div>
+            </div>
+
+            <div class="aw-row">
+              <div class="ac">
+                <div class="ac-h"><b>Ventas de la semana</b><span>$48.600.000</span></div>
+                <div class="chart-wrap" id="chartWrap">
+                  <svg viewBox="0 0 600 170" preserveAspectRatio="none" id="salesChart">
+                    <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF1F8F" stop-opacity=".35"/><stop offset="1" stop-color="#FF1F8F" stop-opacity="0"/></linearGradient></defs>
+                    <g stroke="#F2DDEA" stroke-width="1"><line x1="0" y1="42" x2="600" y2="42"/><line x1="0" y1="84" x2="600" y2="84"/><line x1="0" y1="126" x2="600" y2="126"/></g>
+                    <path class="area" fill="url(#ag)" d=""/>
+                    <path class="ln" fill="none" stroke="#FF1F8F" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke" d=""/>
+                  </svg>
+                  <div class="tip" id="tip">Sábado · <b>$9.8M</b></div>
+                  <div class="days"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+                </div>
+              </div>
+              <div class="ac">
+                <div class="ac-h"><b>Embudo de compra</b><span>7,4%</span></div>
+                <div class="fn">
+                  <div><p>1. Visitantes <span><b>4.218</b> · 100%</span></p><div class="bar"><i style="--w:100%"></i></div></div>
+                  <div><p>2. Vieron un producto <span><b>3.402</b> · 81%</span></p><div class="bar"><i style="--w:81%"></i></div></div>
+                  <div><p>3. Agregaron al carrito <span><b>1.284</b> · 30%</span></p><div class="bar"><i style="--w:30%"></i></div></div>
+                  <div><p>4. Iniciaron el pago <span><b>506</b> · 12%</span></p><div class="bar"><i style="--w:12%"></i></div></div>
+                  <div><p>5. Compraron <span><b>312</b> · 7,4%</span></p><div class="bar"><i style="--w:7.4%"></i></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="aw-row">
+              <div class="ac">
+                <div class="ac-h"><b>Últimos pedidos</b><span>+12 hoy</span></div>
+                <div class="ord">
+                  <div class="or"><div class="im"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&q=60&auto=format&fit=crop" alt=""></div><div><b>Laura Martínez</b><small>Tenis Runner · Contra entrega</small></div><span class="st nw">Nuevo</span><span class="amt">$189.900</span></div>
+                  <div class="or"><div class="im"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&q=60&auto=format&fit=crop" alt=""></div><div><b>Andrés Pérez</b><small>Reloj Classic · Tarjeta</small></div><span class="st go">En camino</span><span class="amt">$249.000</span></div>
+                  <div class="or"><div class="im"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&q=60&auto=format&fit=crop" alt=""></div><div><b>Camila Rojas</b><small>Audífonos Pro · PSE</small></div><span class="st ok">Entregado</span><span class="amt">$159.900</span></div>
+                  <div class="or"><div class="im"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=100&q=60&auto=format&fit=crop" alt=""></div><div><b>Valentina Gómez</b><small>Gafas Sun x2 · Nequi</small></div><span class="st ok">Pagado</span><span class="amt">$179.800</span></div>
+                </div>
+              </div>
+              <div class="ac">
+                <div class="ac-h"><b>¿De dónde llegan?</b><span>5 canales</span></div>
+                <div class="src">
+                  <div class="sr"><span class="lo" style="background:#3451FF">G</span><div class="nm">Google<div class="bar"><i style="--w:100%;background:#3451FF"></i></div></div><div class="vt">1.640 visitas<br><b>118 ventas</b></div></div>
+                  <div class="sr"><span class="lo" style="background:#FF1F8F">M</span><div class="nm">Meta Ads<div class="bar"><i style="--w:79%;background:#FF1F8F"></i></div></div><div class="vt">1.302 visitas<br><b>104 ventas</b></div></div>
+                  <div class="sr"><span class="lo" style="background:#FF7A1A">IG</span><div class="nm">Instagram<div class="bar"><i style="--w:45%;background:#FF7A1A"></i></div></div><div class="vt">744 visitas<br><b>52 ventas</b></div></div>
+                  <div class="sr"><span class="lo" style="background:#12B85B">W</span><div class="nm">WhatsApp<div class="bar"><i style="--w:21%;background:#12B85B"></i></div></div><div class="vt">352 visitas<br><b>31 ventas</b></div></div>
+                  <div class="sr"><span class="lo" style="background:#1B0B2B">TT</span><div class="nm">TikTok<div class="bar"><i style="--w:11%;background:#1B0B2B"></i></div></div><div class="vt">180 visitas<br><b>7 ventas</b></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="aw-toast t1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-bag"/></svg></div><div><b>¡Nuevo pedido! $189.900</b><small>Tenis Runner · hace 2 s</small></div></div>
+      <div class="aw-toast t2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-cart"/></svg></div><div><b>Carrito recuperado</b><small>Por WhatsApp · $249.000</small></div></div>
+      <div class="aw-toast t3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-truck"/></svg></div><div><b>Guía #4821 generada</b><small>Envío a Medellín</small></div></div>
+    </div>
+
+    <ul class="adm-feats">
+      <li class="rv"><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bag"/></svg></span><div><b>Gestión de pedidos</b><p>Cada pedido con su estado y los datos del cliente en tiempo real.</p></div></li>
+      <li class="rv"><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-truck"/></svg></span><div><b>Guías y seguimiento</b><p>Registra las guías de envío y mantén informado a tu cliente.</p></div></li>
+      <li class="rv"><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-up"/></svg></span><div><b>Sube productos en minutos</b><p>Foto, nombre, precio y listo. Te enseñamos paso a paso.</p></div></li>
+    </ul>
+    <div class="load-box rv">
+      <div><b>¿No tienes tiempo?</b> Nosotros cargamos tus productos por solo <b>$5.000 por producto</b> (opcional).</div>
+      <div class="load-calc"><label for="nprod">Productos:</label><input type="number" id="nprod" min="1" max="999" value="30" inputmode="numeric"><span>=</span><output id="nprod-t">$150.000</output></div>
     </div>
   </div>
 </section>
@@ -1148,6 +1277,37 @@ footer a:hover{color:var(--fuchsia)}
     })();
   }
   typeDom();
+
+  /* ===== Admin dashboard: chart + counters ===== */
+  (function(){
+    var data = [4.9,5.6,5.2,6.8,7.9,9.8,8.4], W = 600, H = 170, max = 10.5;
+    var pts = data.map(function(v,i){ return [i * W / (data.length - 1), H - 8 - (v / max) * (H - 20)]; });
+    var d = 'M' + pts[0][0] + ' ' + pts[0][1];
+    for(var i = 0; i < pts.length - 1; i++){
+      var p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+      d += ' C' + (p1[0] + (p2[0]-p0[0])/6) + ' ' + (p1[1] + (p2[1]-p0[1])/6) + ',' + (p2[0] - (p3[0]-p1[0])/6) + ' ' + (p2[1] - (p3[1]-p1[1])/6) + ',' + p2[0] + ' ' + p2[1];
+    }
+    var svg = document.getElementById('salesChart');
+    svg.querySelector('.ln').setAttribute('d', d);
+    svg.querySelector('.area').setAttribute('d', d + ' L' + W + ' ' + H + ' L0 ' + H + 'Z');
+    var tip = document.getElementById('tip'); tip.style.left = (pts[5][0] / W * 100) + '%'; tip.style.top = (pts[5][1] / H * 170) + 'px';
+    var aw = document.getElementById('aw'), done = false;
+    function countUp(){
+      if(done) return; done = true; aw.classList.add('on-view');
+      aw.querySelectorAll('.cnt').forEach(function(el){
+        var to = parseFloat(el.dataset.to), dec = +(el.dataset.dec || 0), t0 = null;
+        function f(ts){ t0 = t0 || ts; var k = Math.min(1, (ts - t0) / 1600), e = 1 - Math.pow(1 - k, 3);
+          el.textContent = (to * e).toLocaleString('es-CO', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+          if(k < 1) requestAnimationFrame(f); }
+        requestAnimationFrame(f);
+      });
+      var live = aw.querySelector('.aw-live .cnt');
+      setInterval(function(){ var n = 31 + Math.floor(Math.random() * 15); live.textContent = n; }, 4000);
+    }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ countUp(); o.disconnect(); } }); }, {threshold:.25}).observe(aw);
+    } else countUp();
+  })();
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
