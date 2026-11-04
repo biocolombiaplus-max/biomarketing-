@@ -31,7 +31,7 @@ module.exports = handler({
       cmp: cleanText(b.cmp, 60),
       sid: String(b.sid || '').replace(/[^a-z0-9]/g, '').slice(0, 24),
       ref: cleanText(b.ref, 40),
-      city: prev.city || cleanText(h('x-vercel-ip-city'), 40),
+      city: cleanText(b.city, 40) || prev.city || cleanText(h('x-vercel-ip-city'), 40),
       created: prev.created || new Date(created).toISOString(),
       updated: new Date().toISOString(),
       contacted: prev.contacted || '',

@@ -703,6 +703,13 @@ footer a:hover{color:var(--fuchsia)}
 .lm-card .btn{width:100%}
 .lm-skip{display:block;margin:12px auto 0;font-size:.82rem;font-weight:700;color:var(--ink3);text-decoration:underline;text-underline-offset:3px}
 .lm-legal{font-size:.74rem;color:var(--ink3);text-align:center;margin-top:12px;line-height:1.45}
+.lm-prev{margin:2px 0 14px;background:#E9F7EE url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='4' cy='4' r='1.2' fill='%23cfe9d7'/%3E%3C/svg%3E");border-radius:16px;padding:10px 12px 12px}
+.lm-prev small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#4E7A5C;margin-bottom:6px}
+.lm-bub{position:relative;margin-left:auto;max-width:92%;background:#D9FDD3;border-radius:12px 2px 12px 12px;padding:9px 11px;font-size:.8rem;line-height:1.45;color:#111B21;white-space:pre-wrap;box-shadow:0 1px 1px rgba(0,0,0,.08);max-height:150px;overflow:auto}
+.lm-bub b{font-weight:800}
+@media(max-height:760px){.lm-prev{display:none}}
+.lm-act{position:sticky;bottom:-22px;margin:0 -26px;padding:8px 26px 14px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 18px);z-index:2}
+@media(max-width:560px){.lm-card{padding:24px 18px 16px;border-radius:26px}.lm-card h3{font-size:1.45rem}.lm-card>p{font-size:.88rem;margin-bottom:14px}.lm-perks{display:none!important}.lm-f{margin-bottom:10px}.lm-in{padding:12px 14px}.lm-bub{max-height:104px;font-size:.76rem}.lm-act{margin:0 -18px;padding:8px 18px 10px;bottom:-16px}.lm-legal{font-size:.68rem;margin-top:8px}}
 .lm-perks{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 18px}
 .lm-perks span{font-size:.74rem;font-weight:700;background:var(--bg);border:1px solid var(--line);padding:5px 10px;border-radius:99px;color:var(--ink2)}
 
@@ -1301,9 +1308,12 @@ footer a:hover{color:var(--fuchsia)}
     <div class="lm-perks"><span>⚡ Respuesta rápida</span><span>🎁 Asesoría gratis</span><span>🔒 Sin spam</span></div>
     <label class="lm-f"><span>Tu nombre</span><input class="lm-in" id="lmName" autocomplete="name" placeholder="Ej: Diana Amaya" maxlength="60"></label>
     <label class="lm-f"><span>Tu WhatsApp</span><div class="lm-tel"><span>🇨🇴 +57</span><input class="lm-in" id="lmPhone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="300 123 4567" maxlength="16"></div></label>
+    <label class="lm-f"><span>Tu ciudad</span><input class="lm-in" id="lmCity" list="lmCities" autocomplete="address-level2" placeholder="Ej: Cúcuta" maxlength="40"></label>
+    <datalist id="lmCities"><option>Bogotá</option><option>Medellín</option><option>Cali</option><option>Barranquilla</option><option>Cartagena</option><option>Cúcuta</option><option>Bucaramanga</option><option>Pereira</option><option>Manizales</option><option>Ibagué</option><option>Santa Marta</option><option>Villavicencio</option><option>Pasto</option><option>Montería</option><option>Neiva</option><option>Armenia</option><option>Valledupar</option><option>Sincelejo</option><option>Popayán</option><option>Tunja</option><option>Riohacha</option><option>Yopal</option><option>Florencia</option><option>Quibdó</option></datalist>
+    <div class="lm-prev" id="lmPrevBox"><small>Así llegará tu mensaje</small><div class="lm-bub" id="lmPrev"></div></div>
     <input class="hp" id="lmHp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <div class="lm-err" id="lmErr"></div>
-    <button class="btn btn-wa" id="lmGo" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span id="lmGoT">Continuar a WhatsApp</span></button>
+    <div class="lm-act"><div class="lm-err" id="lmErr"></div>
+    <button class="btn btn-wa" id="lmGo" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span id="lmGoT">Continuar a WhatsApp</span></button></div>
     <button type="button" class="lm-skip" id="lmSkip">Prefiero escribir directo sin dejar mis datos</button>
     <p class="lm-legal">🔒 Usamos tus datos solo para contactarte sobre tu tienda virtual, según la Ley 1581 de 2012 de protección de datos.</p>
   </form>
@@ -1349,7 +1359,7 @@ footer a:hover{color:var(--fuchsia)}
       e.preventDefault();
       var card = a.closest('.plan'), msg = MSG[key] || MSG.general;
       if(card && card.querySelector('.dom-chk').checked) msg += ' También quiero *dominio personalizado* ($85.000/año).';
-      openLead({ mode: 'wa', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, msg: msg });
+      openLead({ mode: 'wa', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, dom: !!(card && card.querySelector('.dom-chk').checked), msg: msg });
     });
   });
 
@@ -1619,27 +1629,57 @@ footer a:hover{color:var(--fuchsia)}
   function contact(){ try{ return JSON.parse(localStorage.getItem('bm_contact') || 'null'); }catch(e){ return null; } }
   function cleanPhone(p){ var d = String(p || '').replace(/\D/g, ''); if(d.length === 12 && d.slice(0, 2) === '57') d = d.slice(2); return d; }
   function sendLead(c, o){
-    var s = VS.get(), lead = { id: rid(), name: c.name, phone: '57' + c.phone, plan: o.plan || '', amount: o.amount || 0, kind: o.mode === 'pay' ? 'pago' : 'whatsapp', status: o.mode === 'pay' ? 'pago_iniciado' : 'whatsapp', src: s.src, cmp: s.cmp, sid: s.sid, created: Date.now(), website: document.getElementById('lmHp').value };
+    var s = VS.get(), lead = { id: rid(), name: c.name, phone: '57' + c.phone, city: c.city || '', plan: o.plan || '', amount: o.amount || 0, kind: o.mode === 'pay' ? 'pago' : 'whatsapp', status: o.mode === 'pay' ? 'pago_iniciado' : 'whatsapp', src: s.src, cmp: s.cmp, sid: s.sid, created: Date.now(), website: document.getElementById('lmHp').value };
     post('/api/public/lead', lead);
     if(o.mode === 'pay'){ try{ localStorage.setItem('bm_lead_pago', JSON.stringify(lead)); }catch(e){} }
     VS.step(o.mode === 'pay' ? 5 : 4, o.plan);
     bmTrack(o.mode === 'pay' ? 'Lead' : (o.plan ? 'Lead' : 'Contact'), { content_name: o.plan ? 'Plan ' + o.plan : 'WhatsApp general', value: o.amount || 0, currency: 'COP' });
   }
+  function prettyTel(p){ p = String(p || '').replace(/\D/g, ''); return p.length === 10 ? p.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3') : p; }
+  // Mensaje de WhatsApp con los datos del cliente
+  function buildMsg(c, o){
+    var L = [];
+    L.push(o.plan ? '¡Hola Bio Marketing! 👋 Quiero crear mi *tienda online* con ustedes 🚀' : '¡Hola Bio Marketing! 👋 Quiero información para crear mi *tienda online / página web* 🚀');
+    L.push('');
+    L.push('📋 *Mis datos*');
+    L.push('👤 Nombre: ' + (c.name || '—'));
+    L.push('📱 WhatsApp: ' + (c.phone ? prettyTel(c.phone) : '—'));
+    L.push('📍 Ciudad: ' + (c.city || '—'));
+    if(o.plan){
+      L.push('');
+      L.push('🛍️ *Plan que me interesa:* ' + o.plan + ' (' + fmt(o.amount) + ')');
+      if(o.dom) L.push('🌐 *Dominio propio:* Sí, también lo quiero ($85.000/año)');
+      L.push('');
+      L.push('Quiero *separar mi cupo de esta semana* y empezar ya con el 50%. ¿Me cuentan qué necesitan de mi negocio para arrancar? 🙌');
+    } else {
+      L.push('');
+      L.push('¿Me asesoran sobre el plan ideal para mi negocio? Quiero empezar a vender online lo antes posible 🙌');
+    }
+    return L.join('\n');
+  }
   function go(c, o){
     sendLead(c, o);
     if(o.mode === 'pay') o.onGo();
-    else window.open(waLink(o.msg.replace('Hola Bio Marketing', 'Hola Bio Marketing, soy ' + c.name)), '_blank', 'noopener');
+    else window.open(waLink(buildMsg(c, o)), '_blank', 'noopener');
   }
+  function formData(){ return { name: document.getElementById('lmName').value.trim(), phone: cleanPhone(document.getElementById('lmPhone').value), city: document.getElementById('lmCity').value.trim() }; }
+  function updPrev(){ if(!lmCur || lmCur.mode === 'pay') return; var h = buildMsg(formData(), lmCur).replace(/[&<>]/g, function(ch){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]; }).replace(/\*([^*\n]+)\*/g, '<b>$1</b>'); document.getElementById('lmPrev').innerHTML = h; }
+  ['lmName', 'lmPhone', 'lmCity'].forEach(function(id){ document.getElementById(id).addEventListener('input', updPrev); });
   function openLead(o){
     VS.step(3, o.plan);
-    var c = contact();
-    if(c && c.name && c.phone){ go(c, o); return; } // ya nos dejó sus datos antes
+    var c = contact() || {};
+    if(o.mode === 'pay' && c.name && c.phone && c.city){ go(c, o); return; } // ya nos dejó sus datos antes
     lmCur = o;
+    document.getElementById('lmName').value = c.name || '';
+    document.getElementById('lmPhone').value = c.phone ? prettyTel(c.phone) : '';
+    document.getElementById('lmCity').value = c.city || '';
+    document.getElementById('lmPrevBox').hidden = o.mode === 'pay';
+    updPrev();
     var b = document.getElementById('lmBadge');
     b.hidden = !o.plan; b.textContent = o.plan ? 'Plan ' + o.plan + (o.amount ? ' · ' + fmt(o.amount) + (o.mode === 'pay' ? ' hoy' : '') : '') : '';
     document.getElementById('lmT').textContent = o.mode === 'pay' ? 'Un paso antes de pagar' : (o.plan ? '¡Excelente elección! 🎉' : 'Hablemos por WhatsApp');
-    document.getElementById('lmP').textContent = o.mode === 'pay' ? 'Déjanos tu nombre y WhatsApp para enviarte la confirmación del pago y empezar tu tienda de inmediato.' : (o.plan ? 'Déjanos tu nombre y WhatsApp para atenderte de inmediato y separar tu cupo de esta semana.' : 'Déjanos tu nombre y tu WhatsApp para atenderte de inmediato.');
-    document.getElementById('lmGoT').textContent = o.mode === 'pay' ? 'Continuar al pago seguro' : 'Continuar a WhatsApp';
+    document.getElementById('lmP').textContent = o.mode === 'pay' ? 'Déjanos tus datos para enviarte la confirmación del pago y empezar tu tienda de inmediato.' : (o.plan ? 'Completa tus datos y te llevamos a WhatsApp con tu mensaje listo para separar tu cupo de esta semana.' : 'Completa tus datos y te llevamos a WhatsApp con tu mensaje listo.');
+    document.getElementById('lmGoT').textContent = o.mode === 'pay' ? 'Continuar al pago seguro' : 'Enviar mi mensaje por WhatsApp';
     document.getElementById('lmGo').className = 'btn ' + (o.mode === 'pay' ? 'btn-pay' : 'btn-wa');
     document.getElementById('lmSkip').hidden = o.mode === 'pay' || !!o.plan;
     document.getElementById('lmErr').textContent = '';
@@ -1653,10 +1693,10 @@ footer a:hover{color:var(--fuchsia)}
   document.getElementById('lmPhone').addEventListener('input', function(){ var d = this.value.replace(/\D/g, '').slice(0, 10); this.value = d.replace(/^(\d{3})(\d{0,3})(\d{0,4}).*/, function(m, a, b2, c2){ return [a, b2, c2].filter(Boolean).join(' '); }); });
   document.getElementById('lmForm').addEventListener('submit', function(e){
     e.preventDefault(); if(!lmCur) return;
-    var name = document.getElementById('lmName').value.trim(), phone = cleanPhone(document.getElementById('lmPhone').value), err = document.getElementById('lmErr');
-    if(name.length < 2){ err.textContent = 'Escribe tu nombre.'; return; }
-    if(!/^3\d{9}$/.test(phone)){ err.textContent = 'Escribe tu número de celular de 10 dígitos (ej: 300 123 4567).'; return; }
-    var c = { name: name, phone: phone };
+    var c = formData(), err = document.getElementById('lmErr');
+    if(c.name.length < 2){ err.textContent = 'Escribe tu nombre.'; return; }
+    if(!/^3\d{9}$/.test(c.phone)){ err.textContent = 'Escribe tu número de celular de 10 dígitos (ej: 300 123 4567).'; return; }
+    if(c.city.length < 3){ err.textContent = 'Escribe tu ciudad.'; return; }
     try{ localStorage.setItem('bm_contact', JSON.stringify(c)); }catch(e){}
     var o = lmCur; closeLead(); go(c, o);
   });
