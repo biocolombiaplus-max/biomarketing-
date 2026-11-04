@@ -347,13 +347,12 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   <main class="main">
     <div class="banner" id="noStorage" hidden>
       <span style="font-size:1.4rem">⚠️</span>
-      <div><b>Falta conectar el almacenamiento.</b> Los cambios no se pueden guardar hasta que agregues Cloudinary en Vercel:
+      <div><b>Falta conectar la base de datos (gratis).</b> Los cambios no se pueden guardar hasta que la conectes en Vercel:
         <ol>
-          <li>En <b>cloudinary.com</b> → Settings → API Keys, copia la <b>API environment variable</b> (empieza por <code>cloudinary://</code>).</li>
-          <li>En <b>Vercel</b> → tu proyecto → Settings → Environment Variables → crea <code>CLOUDINARY_URL</code> con ese valor.</li>
-          <li>Ve a Deployments → ⋯ → <b>Redeploy</b>. Listo.</li>
-        </ol>
-      </div>
+          <li>En <b>Vercel</b> → tu proyecto → pestaña <b>Storage</b> → <b>Create Database</b>.</li>
+          <li>Elige <b>Upstash for Redis</b> (plan <b>Free</b>), región cercana (por ejemplo Washington o São Paulo) y dale <b>Create</b>.</li>
+          <li>Conéctala a este proyecto (marca Production y Preview) y luego ve a Deployments → ⋯ → <b>Redeploy</b>. Listo.</li>
+        </ol></div>
     </div>
 
     <!-- ESTADÍSTICAS -->
@@ -541,23 +540,38 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   };
 
   /* ---------- UPLOAD ---------- */
+  // Reduce la imagen en el navegador (máx. 640 px, WEBP) para que pese poco en la base gratuita.
+  function shrink(file){
+    return new Promise(function(res, rej){
+      var rd = new FileReader();
+      rd.onerror = function(){ rej(new Error('No se pudo leer la imagen.')); };
+      rd.onload = function(){
+        if(file.type === 'image/svg+xml'){ return rd.result.length < 400000 ? res(rd.result) : rej(new Error('El SVG es muy pesado.')); }
+        var img = new Image();
+        img.onerror = function(){ rej(new Error('Ese archivo no es una imagen válida.')); };
+        img.onload = function(){
+          var max = 640, k = Math.min(1, max / Math.max(img.width, img.height)), cv = document.createElement('canvas');
+          cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+          cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+          var out = cv.toDataURL('image/webp', .88);
+          if(!/^data:image\/webp/.test(out)) out = cv.toDataURL('image/png');
+          if(out.length > 1.3e6) out = cv.toDataURL('image/jpeg', .8);
+          res(out);
+        };
+        img.src = rd.result;
+      };
+      rd.readAsDataURL(file);
+    });
+  }
   function upload(file, dropEl, done){
     if(!file) return;
     if(!/^image\//.test(file.type)) return toast('El archivo debe ser una imagen (PNG, JPG, SVG o WEBP).', 'bad');
-    if(file.size > 5 * 1024 * 1024) return toast('La imagen pesa más de 5 MB. Usa una más liviana.', 'bad');
+    if(file.size > 10 * 1024 * 1024) return toast('La imagen pesa más de 10 MB. Usa una más liviana.', 'bad');
     var prog = dropEl.querySelector('.prog'), bar = prog.firstElementChild;
-    prog.hidden = false; bar.style.width = '8%';
-    api('POST', '/api/admin/upload-signature').then(function(s){
-      return new Promise(function(res, rej){
-        var fd = new FormData();
-        fd.append('file', file); fd.append('api_key', s.apiKey); fd.append('timestamp', s.timestamp); fd.append('folder', s.folder); fd.append('signature', s.signature);
-        var x = new XMLHttpRequest(); x.open('POST', s.uploadUrl);
-        x.upload.onprogress = function(ev){ if(ev.lengthComputable) bar.style.width = Math.max(8, ev.loaded / ev.total * 100) + '%'; };
-        x.onload = function(){ try{ var d = JSON.parse(x.responseText); d.secure_url ? res(d.secure_url) : rej(new Error((d.error && d.error.message) || 'No se pudo subir la imagen.')); }catch(e){ rej(e); } };
-        x.onerror = function(){ rej(new Error('No se pudo subir la imagen. Revisa tu conexión.')); };
-        x.send(fd);
-      });
-    }).then(function(url){ done(url); toast('Imagen subida ✓', 'ok'); }).catch(onErr).then(function(){ prog.hidden = true; bar.style.width = 0; });
+    prog.hidden = false; bar.style.width = '30%';
+    shrink(file).then(function(data){ bar.style.width = '70%'; return api('POST', '/api/admin/upload', { data: data }); })
+      .then(function(d){ bar.style.width = '100%'; done(d.url); toast('Imagen subida ✓', 'ok'); })
+      .catch(onErr).then(function(){ setTimeout(function(){ prog.hidden = true; bar.style.width = 0; }, 300); });
   }
   function dropzone(dropEl, input, done){
     input.onchange = function(){ upload(input.files[0], dropEl, done); input.value = ''; };
@@ -572,14 +586,14 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   var clEdit = null, clBg = 'white';
   function setClLogo(url){ $('clLogo').value = url; $('clPh').innerHTML = url ? '<img src="' + esc(url) + '" alt="">' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M7 9l5-5 5 5M4 20h16" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Arrastra el logo aquí</b><br>o haz clic para elegirlo'; $('clDrop').className = 'drop' + (url ? ' bg-' + clBg : ''); }
   dropzone($('clDrop'), $('clFile'), setClLogo);
-  $('clLogo').oninput = function(){ var v = this.value.trim(); if(/^https:\/\//.test(v)) setClLogo(v); };
+  $('clLogo').oninput = function(){ var v = this.value.trim(); if(/^(https:\/\/|\/api\/public\/img)/.test(v)) setClLogo(v); };
   $('clBg').onclick = function(e){ var c = e.target.closest('.chip'); if(!c) return; clBg = c.dataset.bg; [].forEach.call(this.children, function(x){ x.classList.toggle('on', x === c); }); setClLogo($('clLogo').value.trim()); };
   function resetCl(){ clEdit = null; $('clForm').reset(); clBg = 'white'; [].forEach.call($('clBg').children, function(x){ x.classList.toggle('on', x.dataset.bg === 'white'); }); setClLogo(''); $('clFormTitle').textContent = 'Agregar cliente'; $('clSubmit').textContent = 'Agregar cliente'; $('clCancel').hidden = true; renderCl(); }
   $('clCancel').onclick = resetCl;
   $('clForm').onsubmit = function(e){
     e.preventDefault();
     var logo = $('clLogo').value.trim().replace(/\s/g, '%20');
-    if(!/^https:\/\/[^\s"'<>]+$/.test(logo)) return toast('Sube el logo o pega un enlace válido que empiece por https://', 'bad');
+    if(!/^(https:\/\/[^\s"'<>]+|\/api\/public\/img\?id=[a-z0-9]+)$/.test(logo)) return toast('Sube el logo o pega un enlace válido que empiece por https://', 'bad');
     var item = { id: clEdit || uid('cl'), name: $('clName').value.trim(), logo: logo, url: $('clUrl').value.trim(), category: $('clCat').value.trim(), bg: clBg, active: true };
     if(clEdit){ var i = state.clients.findIndex(function(c){ return c.id === clEdit; }); item.active = state.clients[i].active; state.clients[i] = item; toast('Cliente actualizado. Recuerda guardar.'); }
     else { state.clients.push(item); toast('Cliente agregado. Recuerda guardar.'); }

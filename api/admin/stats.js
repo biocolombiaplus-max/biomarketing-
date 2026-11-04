@@ -1,15 +1,14 @@
 // GET /api/admin/stats · visitas y clientes potenciales para el panel de estadísticas.
-const { requireAdmin, VISITS_PREFIX, LEADS_PREFIX, listContext, send, handler } = require('../_lib/store');
+// De paso borra las visitas de hace más de 180 días para que la base no crezca sin límite.
+const { K, requireAdmin, readRecords, redis, send, handler } = require('../_lib/store');
 
-let cache = null;
+const KEEP_MS = 180 * 864e5;
 module.exports = handler({
   async GET(req, res) {
     requireAdmin(req);
-    const fresh = /fresh=1/.test(req.url || '');
-    if (!fresh && cache && Date.now() - cache.at < 20000) return send(res, 200, cache.data);
-    const [visits, leads] = await Promise.all([listContext(VISITS_PREFIX), listContext(LEADS_PREFIX)]);
-    const data = { visits, leads, at: new Date().toISOString() };
-    cache = { at: Date.now(), data };
-    send(res, 200, data);
+    const [visits, leads] = await Promise.all([readRecords(K.visits), readRecords(K.leads)]);
+    const old = visits.filter((v) => Date.now() - new Date(v.t) > KEEP_MS).map((v) => v.sid);
+    if (old.length) redis('HDEL', K.visits, ...old.slice(0, 1000)).catch(() => {});
+    send(res, 200, { visits: visits.filter((v) => !old.includes(v.sid)), leads, at: new Date().toISOString() });
   },
 });
