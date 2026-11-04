@@ -1451,12 +1451,24 @@ footer a:hover{color:var(--fuchsia)}
       })();
     });
   }
+  // Carga el script de ePayco: primero directo; si el navegador lo bloquea, desde este mismo dominio (función de Vercel)
+  function loadEpayco(name){
+    var direct = 'https://checkout.epayco.co/' + name + '.js', proxy = '/api/public/epayco-js?f=' + name;
+    return loadScript(direct).then(function(){ return waitEpayco(6000); }).catch(function(e1){
+      console.warn('ePayco directo falló, uso respaldo:', e1.message);
+      return loadScript(proxy).then(function(){ return waitEpayco(6000); }).catch(function(e2){
+        return fetch(proxy).then(function(r){ return r.ok ? '' : r.json().then(function(d){ return d.error || ('HTTP ' + r.status); }).catch(function(){ return 'HTTP ' + r.status; }); })
+          .catch(function(){ return ''; })
+          .then(function(why){ throw new Error(e1.message + ' / respaldo: ' + (why || e2.message)); });
+      });
+    });
+  }
   // 1) Checkout v2 con sesión creada en el servidor (llaves pública + privada), igual que juridicosweb
   function payV2(s){
     var c = contact() || {};
     var session = fetch('/api/public/epayco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: s.plan, full: s.full, dom: s.dom, name: c.name || '', phone: c.phone || '' }) })
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ if(!r.ok || !d.sessionId) throw new Error('servidor: ' + (d.error || 'HTTP ' + r.status)); return d; }); });
-    return Promise.all([session, loadScript('https://checkout.epayco.co/checkout-v2.js').then(function(){ return waitEpayco(6000); })])
+    return Promise.all([session, loadEpayco('checkout-v2')])
       .then(function(r){
         var d = r[0];
         var ch = ePayco.checkout.configure({ sessionId: d.sessionId, type: 'onepage', test: !!d.test });
@@ -1467,8 +1479,8 @@ footer a:hover{color:var(--fuchsia)}
   }
   // 2) Respaldo: checkout clásico con la llave pública (el mismo de juridicosweb)
   function payLegacy(s, desc){
-    if(window.ePayco && window.ePayco.checkout && !loaded['https://checkout.epayco.co/checkout.js']){ try{ delete window.ePayco; }catch(e){ window.ePayco = undefined; } }
-    return loadScript('https://checkout.epayco.co/checkout.js').then(function(){ return waitEpayco(6000); }).then(function(){ lanzarEpayco(s, desc); });
+    if(window.ePayco && window.ePayco.checkout && !loaded['https://checkout.epayco.co/checkout.js'] && !loaded['/api/public/epayco-js?f=checkout']){ try{ delete window.ePayco; }catch(e){ window.ePayco = undefined; } }
+    return loadEpayco('checkout').then(function(){ lanzarEpayco(s, desc); });
   }
   var lastPay = null;
   function pay(s){
