@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tiendas Virtuales Profesionales | Bio Marketing</title>
+<meta name="description" content="Creamos tu tienda virtual o página web profesional, 100% personalizada, con carrito de compras, pago contra entrega, pasarelas de pago y panel administrativo. Lista en 2 a 5 días desde $198.000. Sin mensualidades en dólares.">
+<meta name="theme-color" content="#FF1F8F">
+<meta property="og:title" content="Tu tienda online profesional desde $198.000 | Bio Marketing">
+<meta property="og:description" content="Tienda estilo Shopify, 100% personalizada, sin mensualidades en dólares. Carrito, pago contra entrega, tarjetas, PSE y panel administrativo. Entrega en 2 a 5 días.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/compra-movil.webp">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://checkout.epayco.co/checkout.js" defer></script>
+<style>
+:root{
+  --bg:#FFF7FB;--paper:#FFFFFF;--cream:#FFF9EE;
+  --ink:#1B0B2B;--ink2:#56466A;--ink3:#9887A9;
+  --line:#F2DDEA;--line2:#E8C8DB;
+  --fuchsia:#FF1F8F;--magenta:#C8007A;--pink:#FFE1F0;--pink2:#FFC2E1;
+  --yellow:#FFD233;--yellow2:#FFF3C4;--orange:#FF7A1A;
+  --blue:#3451FF;--blue2:#E4E8FF;
+  --green:#12B85B;--wa:#25D366;
+  --r:24px;--maxw:1200px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sh:0 1px 2px rgba(27,11,43,.04),0 12px 32px -12px rgba(27,11,43,.14);
+  --sh-lg:0 2px 4px rgba(27,11,43,.04),0 30px 70px -24px rgba(200,0,122,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:110px 0;position:relative}
+@media(max-width:760px){section{padding:76px 0}}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.02;letter-spacing:-.035em;font-weight:800}
+h2{font-size:clamp(2.1rem,4.8vw,3.6rem)}
+.it{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.fx{color:var(--fuchsia)}
+.mark{position:relative;white-space:nowrap;z-index:0}
+.mark::before{content:'';position:absolute;left:-.12em;right:-.12em;bottom:.04em;height:.42em;background:var(--yellow);z-index:-1;border-radius:4px;transform:skewX(-8deg) rotate(-1deg)}
+.lead{color:var(--ink2);font-size:1.13rem;max-width:620px}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:16px}
+.eyebrow::before{content:'';width:22px;height:2px;background:currentColor;border-radius:2px}
+.center .eyebrow::after{content:'';width:22px;height:2px;background:currentColor;border-radius:2px}
+.sec-head{margin-bottom:56px}
+.sec-head h2{margin-bottom:16px}
+h2 + .lead{margin-top:16px}
+
+/* ===== BUTTONS ===== */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1rem;padding:17px 28px;border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;overflow:hidden;isolation:isolate;white-space:nowrap;line-height:1.2;letter-spacing:-.01em}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn svg{width:20px;height:20px;flex-shrink:0}
+.btn::after{content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:shine 3.4s ease-in-out infinite;z-index:1;pointer-events:none}
+@keyframes shine{0%,55%{left:-120%}100%{left:160%}}
+.btn > *{position:relative;z-index:2}
+.btn-main{background:linear-gradient(135deg,#FF3D9E,#FF1F8F 45%,#C8007A);color:#fff;animation:glowP 2.6s ease-in-out infinite}
+@keyframes glowP{0%,100%{box-shadow:0 12px 30px -8px rgba(255,31,143,.6),0 0 0 0 rgba(255,31,143,.35),inset 0 1px 0 rgba(255,255,255,.35)}50%{box-shadow:0 16px 40px -8px rgba(255,31,143,.8),0 0 0 9px rgba(255,31,143,0),inset 0 1px 0 rgba(255,255,255,.35)}}
+.btn-wa{background:linear-gradient(135deg,#2BE070,#12B85B);color:#fff;animation:waPulse 2.4s infinite}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5),0 12px 30px -10px rgba(18,184,91,.7)}70%{box-shadow:0 0 0 13px rgba(37,211,102,0),0 12px 30px -10px rgba(18,184,91,.7)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 12px 30px -10px rgba(18,184,91,.7)}}
+.btn-pay{background:var(--yellow);color:var(--ink);box-shadow:0 5px 0 #D9A800,0 14px 26px -10px rgba(217,168,0,.8)}
+.btn-pay:hover{box-shadow:0 7px 0 #D9A800,0 18px 30px -10px rgba(217,168,0,.9)}
+.btn-block{width:100%}
+.btn-sm{padding:12px 20px;font-size:.92rem}
+.arrow{transition:transform .25s}.btn:hover .arrow{transform:translateX(4px)}
+
+/* ===== TOP BAR ===== */
+.topbar{background:var(--ink);color:#fff;font-size:.85rem;font-weight:600;text-align:center;padding:10px 16px}
+.topbar b{color:var(--ink);background:var(--yellow);padding:2px 9px;border-radius:6px;margin-left:6px;font-variant-numeric:tabular-nums;font-weight:800;white-space:nowrap}
+.topbar .fxs{color:var(--pink2)}
+
+/* ===== NAV ===== */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,247,251,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.nav.scrolled{border-color:var(--line);box-shadow:0 8px 30px -20px rgba(27,11,43,.25)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.22rem;letter-spacing:-.03em}
+.brand img{width:40px;height:40px;border-radius:50%}
+.brand small{display:block;font-family:'Plus Jakarta Sans';font-size:.64rem;font-weight:700;color:var(--ink3);letter-spacing:.14em;text-transform:uppercase;line-height:1}
+.nav-links{display:flex;gap:30px;font-weight:600;font-size:.94rem;color:var(--ink2)}
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--fuchsia);transition:right .3s}
+.nav-links a:hover{color:var(--ink)}.nav-links a:hover::after{right:0}
+@media(max-width:960px){.nav-links{display:none}}
+@media(max-width:520px){.nav .hide-sm{display:none}}
+
+/* ===== HERO ===== */
+.hero{padding:56px 0 100px;overflow:hidden}
+.hero::before{content:'';position:absolute;width:780px;height:780px;right:-260px;top:-220px;border-radius:50%;background:radial-gradient(circle,#FFD1E8 0%,rgba(255,209,232,0) 65%);z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+@media(max-width:1000px){.hero-grid{grid-template-columns:1fr;gap:56px}}
+.badge-row{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:6px 16px 6px 6px;font-size:.86rem;font-weight:600;color:var(--ink2);box-shadow:var(--sh);margin-bottom:24px}
+.badge-row b{background:var(--fuchsia);color:#fff;font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:99px;letter-spacing:.04em}
+.hero h1{font-size:clamp(2.7rem,6vw,5rem);margin-bottom:24px}
+.hero h1 .it{font-size:1.08em}
+.hero .lead{font-size:1.17rem;margin-bottom:30px}
+.hero .lead strong{color:var(--ink)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
+.trust{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.trust .from{display:flex;align-items:baseline;gap:8px}
+.trust .from small{color:var(--ink3);font-weight:600;font-size:.85rem}
+.trust .from strong{font-family:var(--display);font-size:2rem;letter-spacing:-.04em}
+.trust .sep{width:1px;height:36px;background:var(--line2)}
+.trust ul{display:grid;grid-template-columns:auto auto;gap:6px 18px;font-size:.88rem;font-weight:600;color:var(--ink2)}
+.trust li{display:flex;align-items:center;gap:7px}
+.trust li svg{width:17px;height:17px;color:var(--green)}
+@media(max-width:520px){.trust .sep{display:none}}
+
+/* hero visual */
+.visual{position:relative;max-width:540px;margin:0 auto;width:100%;aspect-ratio:1/1.08}
+.blob-y{position:absolute;width:74%;aspect-ratio:1;border-radius:50%;background:var(--yellow);right:2%;top:6%}
+.blob-p{position:absolute;width:26%;aspect-ratio:1;border-radius:50%;background:var(--fuchsia);left:6%;top:4%}
+.blob-b{position:absolute;width:12%;aspect-ratio:1;border-radius:50%;background:var(--blue);right:0;bottom:12%}
+.squig{position:absolute;left:0;bottom:3%;width:28%;color:var(--fuchsia)}
+.arch{position:absolute;right:8%;top:0;width:58%;height:88%;border-radius:999px 999px 34px 34px;overflow:hidden;box-shadow:var(--sh-lg);border:6px solid #fff;background:var(--pink)}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.visual .iphone{position:absolute;left:4%;bottom:0;width:41%;transform:rotate(-6deg);animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -12px}}
+.sticker{position:absolute;z-index:5;background:#fff;border-radius:18px;padding:10px 14px 10px 10px;display:flex;align-items:center;gap:10px;box-shadow:0 18px 40px -14px rgba(27,11,43,.35);font-size:.8rem;animation:floaty 5s ease-in-out infinite}
+.sticker .ic{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;color:#fff}
+.sticker .ic svg{width:19px;height:19px}
+.sticker b{display:block;font-size:.88rem;line-height:1.2}
+.sticker small{color:var(--ink3);font-size:.74rem}
+.s1{right:-2%;top:18%;animation-delay:-1s}.s1 .ic{background:var(--green)}
+.s2{right:4%;bottom:12%;animation-delay:-2.5s}.s2 .ic{background:var(--blue)}
+.tagline{position:absolute;z-index:5;left:30%;top:4%;background:var(--ink);color:#fff;font-family:var(--display);font-weight:800;font-size:.9rem;padding:9px 16px;border-radius:99px;transform:rotate(-8deg);box-shadow:0 10px 24px -8px rgba(27,11,43,.5)}
+.tagline span{color:var(--yellow)}
+@media(max-width:560px){.sticker{padding:7px 10px 7px 7px}.sticker .ic{width:28px;height:28px;border-radius:9px}.sticker b{font-size:.74rem}.sticker small{font-size:.66rem}.s1{right:-3%}.tagline{font-size:.74rem;left:24%}}
+
+/* ===== iPHONE MOCKUP ===== */
+.iphone{position:relative;aspect-ratio:9/19.3;border-radius:16% / 7.6%;background:linear-gradient(145deg,#3a3a40,#121214 40%,#2b2b30);padding:3.6%;box-shadow:inset 0 0 0 1.5px #66666d,inset 0 0 0 4px #0c0c0e,0 40px 70px -24px rgba(27,11,43,.55),0 14px 24px -10px rgba(27,11,43,.35);z-index:4}
+.iphone::before{content:'';position:absolute;right:-1.4%;top:22%;width:1.6%;height:12%;background:#2b2b30;border-radius:0 3px 3px 0}
+.iphone::after{content:'';position:absolute;left:-1.4%;top:18%;width:1.6%;height:7%;background:#2b2b30;border-radius:3px 0 0 3px;box-shadow:0 260% 0 #2b2b30}
+.iscreen{position:relative;width:100%;height:100%;border-radius:13% / 6.2%;overflow:hidden;background:#fff;color:var(--ink);font-size:clamp(6.5px,1.55vw,9.5px)}
+.island{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:32%;height:3.3%;background:#000;border-radius:99px;z-index:3}
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:4.4% 9% 0;font-weight:700;font-size:1em;height:7.5%}
+.sbar i{display:block;width:13px;height:7px;border-radius:2px;border:1px solid var(--ink);position:relative}
+.sbar i::after{content:'';position:absolute;inset:1px 3px 1px 1px;background:var(--ink);border-radius:1px}
+.app{padding:0 6%}
+.app-h{display:flex;justify-content:space-between;align-items:center;margin:3% 0 4%}
+.app-logo{font-family:var(--display);font-weight:800;font-size:1.6em;letter-spacing:-.04em}
+.app-logo span{color:var(--fuchsia)}
+.app-cart{position:relative;width:2.7em;height:2.7em;border-radius:50%;background:var(--pink);display:grid;place-items:center;color:var(--magenta)}
+.app-cart svg{width:1.4em;height:1.4em}
+.app-cart b{position:absolute;top:-.3em;right:-.3em;background:var(--fuchsia);color:#fff;font-size:.8em;width:1.7em;height:1.7em;border-radius:50%;display:grid;place-items:center;animation:bump 3s infinite}
+@keyframes bump{0%,80%,100%{transform:scale(1)}86%{transform:scale(1.35)}}
+.app-search{background:#F6F1F5;border-radius:99px;padding:.8em 1.1em;color:var(--ink3);margin-bottom:4%;display:flex;gap:.5em;align-items:center}
+.app-search svg{width:1.2em;height:1.2em}
+.app-ban{position:relative;border-radius:1.2em;background:linear-gradient(115deg,#FF1F8F,#FF7A1A);color:#fff;padding:1.1em;overflow:hidden;margin-bottom:4%}
+.app-ban small{font-weight:700;opacity:.9;font-size:.82em;letter-spacing:.06em}
+.app-ban h4{font-size:2.1em;line-height:.95;margin:.15em 0 .45em;letter-spacing:-.04em;position:relative}
+.app-ban em{font-style:normal;background:#fff;color:var(--magenta);font-weight:800;padding:.35em .9em;border-radius:99px;font-size:.85em;position:relative}
+.app-ban .ph{position:absolute;right:-8%;bottom:-18%;width:48%;aspect-ratio:1;border-radius:50%;background:var(--yellow)}
+.app-cats{display:flex;justify-content:space-between;margin-bottom:4%}
+.app-cats div{text-align:center;font-weight:600;font-size:.88em;color:var(--ink2)}
+.app-cats i{display:block;width:3.6em;height:3.6em;border-radius:50%;margin:0 auto .3em;overflow:hidden;background:var(--pink)}
+.app-cats i:nth-of-type(1){background:var(--pink)}
+.app-cats div:nth-child(2) i{background:var(--yellow2)}.app-cats div:nth-child(3) i{background:var(--blue2)}.app-cats div:nth-child(4) i{background:#DCFCE7}
+.app-cats i img{width:100%;height:100%;object-fit:cover}
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8em}
+.app-p .ph{aspect-ratio:1/1.05;border-radius:1em;overflow:hidden;background:#F6F1F5;position:relative}
+.app-p .ph img{width:100%;height:100%;object-fit:cover}
+.app-p .ph .hrt{position:absolute;top:.5em;right:.5em;width:1.9em;height:1.9em;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--fuchsia);font-size:.9em}
+.app-p .n{font-weight:700;margin-top:.4em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-p .pr{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--magenta)}
+.app-p .pr b{background:var(--ink);color:#fff;width:1.8em;height:1.8em;border-radius:50%;display:grid;place-items:center;font-size:.95em}
+.app-nav{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #F1E6EE;display:flex;justify-content:space-around;padding:3% 0 7%;color:var(--ink3)}
+.app-nav svg{width:1.8em;height:1.8em}
+.app-nav .on{color:var(--fuchsia)}
+.home-ind{position:absolute;bottom:1.4%;left:50%;transform:translateX(-50%);width:34%;height:3px;background:var(--ink);border-radius:9px;z-index:3}
+/* checkout screen */
+.co{padding:2% 7%}
+.co h4{font-size:1.9em;margin:3% 0 5%}
+.co-it{display:flex;gap:.8em;align-items:center;padding:.7em;border-radius:1em;background:#F9F5F8;margin-bottom:.6em}
+.co-it .ph{width:4em;height:4em;border-radius:.8em;overflow:hidden;background:var(--pink);flex-shrink:0}
+.co-it .ph img{width:100%;height:100%;object-fit:cover}
+.co-it b{display:block;font-size:1.05em}
+.co-it span{color:var(--magenta);font-weight:800}
+.co-lb{font-weight:800;margin:6% 0 3%;font-size:1.05em}
+.co-op{display:flex;align-items:center;gap:.7em;border:1.5px solid #EEE3EB;border-radius:1em;padding:.85em;margin-bottom:.55em;font-weight:700}
+.co-op i{width:1.3em;height:1.3em;border-radius:50%;border:2px solid #CDBFCB;flex-shrink:0}
+.co-op.on{border-color:var(--fuchsia);background:#FFF0F7}
+.co-op.on i{border:4px solid var(--fuchsia)}
+.co-op small{margin-left:auto;font-size:.85em;color:var(--ink3);font-weight:600}
+.co-tot{display:flex;justify-content:space-between;align-items:center;margin:6% 0 4%;font-weight:700}
+.co-tot b{font-family:var(--display);font-size:1.5em}
+.co-btn{background:var(--fuchsia);color:#fff;text-align:center;font-weight:800;border-radius:99px;padding:1.05em;font-size:1.1em;box-shadow:0 8px 16px -6px rgba(255,31,143,.6)}
+.ok-ic{width:5em;height:5em;border-radius:50%;background:#DCFCE7;color:var(--green);display:grid;place-items:center;margin:0 auto 1em}
+.ok-ic svg{width:2.6em;height:2.6em}
+.img-fb img{display:none}
+
+/* ===== BANDS ===== */
+.brandkit{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:12px;margin-top:22px}
+.brandkit .aa{grid-row:span 2;width:96px;height:96px;border-radius:20px;background:#fff;color:var(--blue);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:3.2rem}
+.brandkit .sw{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.14);border-radius:16px;padding:10px 12px}
+.brandkit .sw i{width:30px;height:30px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+.brandkit .lg{background:var(--yellow);color:var(--ink);border-radius:16px;padding:8px 14px;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.04em;display:flex;align-items:center}
+.brandkit .lg span{color:var(--fuchsia)}
+.bands{position:relative;height:170px;overflow:hidden}
+.band{position:absolute;left:-5%;right:-5%;padding:16px 0;overflow:hidden;white-space:nowrap}
+.band.b1{background:var(--fuchsia);color:#fff;top:28px;transform:rotate(-2.2deg);z-index:2;box-shadow:0 10px 30px -10px rgba(255,31,143,.6)}
+.band.b2{background:var(--yellow);color:var(--ink);top:76px;transform:rotate(1.8deg)}
+.track{display:inline-flex;gap:34px;animation:scrollX 38s linear infinite;font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
+.b2 .track{animation-direction:reverse;animation-duration:46s}
+.track span{display:inline-flex;align-items:center;gap:34px}
+.track span::after{content:'✦';font-size:.9em}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ===== PAIN ===== */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.pain-grid{grid-template-columns:1fr}}
+.pain{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.pain .num{font-family:var(--display);font-weight:800;font-size:4.2rem;line-height:.8;color:var(--pink);position:absolute;right:20px;top:20px;letter-spacing:-.05em}
+.pain .ic{width:48px;height:48px;border-radius:14px;background:#FFE9EC;color:#E5334B;display:grid;place-items:center;margin-bottom:18px}
+.pain .ic svg{width:24px;height:24px}
+.pain h3{font-size:1.32rem;margin-bottom:8px}
+.pain p{color:var(--ink2);font-size:.97rem}
+.turn{margin-top:46px;text-align:center;font-family:var(--display);font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+
+/* ===== BENTO ===== */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.bx{position:relative;border-radius:28px;padding:32px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.bx:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.bx h3{font-size:1.5rem;margin-bottom:10px}
+.bx p{font-size:.98rem;opacity:.88}
+.bx .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:20px}
+.bx .ic svg{width:26px;height:26px}
+.c-f{background:var(--fuchsia);color:#fff}.c-f .ic{background:rgba(255,255,255,.2);color:#fff}
+.c-y{background:var(--yellow);color:var(--ink)}.c-y .ic{background:var(--ink);color:var(--yellow)}
+.c-b{background:var(--blue);color:#fff}.c-b .ic{background:rgba(255,255,255,.18);color:#fff}
+.c-w{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:var(--sh)}.c-w .ic{background:var(--pink);color:var(--magenta)}
+.c-k{background:var(--ink);color:#fff}.c-k .ic{background:var(--fuchsia);color:#fff}
+.c-p{background:var(--pink);color:var(--ink)}.c-p .ic{background:#fff;color:var(--green)}
+.sp4{grid-column:span 4}.sp5{grid-column:span 5}.sp6{grid-column:span 6}.sp7{grid-column:span 7}
+.bx.phone-card{display:grid;grid-template-columns:1fr .78fr;gap:22px;padding-bottom:0}
+.bx.phone-card > div:first-child{padding-bottom:32px}
+.bx.phone-card .iphone{width:100%;max-width:230px;margin:0 auto -42%;align-self:end;transform:rotate(4deg)}
+@media(max-width:960px){.bento{grid-template-columns:1fr 1fr}.sp4,.sp5,.sp6,.sp7{grid-column:span 1}.bx.wide{grid-column:span 2}}
+@media(max-width:620px){.bento{grid-template-columns:1fr}.bx.wide{grid-column:span 1}.bx.phone-card{grid-template-columns:1fr}.bx.phone-card > div:first-child{padding-bottom:0}.bx.phone-card .iphone{max-width:210px;margin-bottom:-55%}}
+.gw{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.gw span{font-size:.8rem;font-weight:800;padding:8px 13px;border-radius:10px;background:#fff}
+.mini{margin-top:20px;display:grid;gap:8px}
+.mo{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:11px 14px;font-size:.86rem}
+.st{font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.st.ok{background:#DCFCE7;color:#15803D}.st.go{background:var(--yellow2);color:#A16207}.st.nw{background:var(--pink);color:var(--magenta)}
+
+/* ===== COMPARE ===== */
+#comparar{background:var(--cream)}
+.cmp{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+@media(max-width:960px){.cmp{grid-template-columns:1fr}}
+.table{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);border:1px solid var(--line)}
+.tr{display:grid;grid-template-columns:1.35fr 1fr 1.1fr;align-items:stretch;border-bottom:1px solid var(--line)}
+.tr:last-child{border-bottom:0}
+.tr>div{padding:16px 18px;font-size:.94rem;display:flex;align-items:center}
+.tr>div:nth-child(2){color:var(--ink3)}
+.tr>div:nth-child(3){background:#FFF2F8;font-weight:700;color:var(--magenta);gap:8px}
+.tr>div:nth-child(3) svg{width:17px;height:17px;flex-shrink:0;color:var(--green)}
+.tr.h>div{font-family:var(--display);font-weight:800;font-size:1.02rem;color:var(--ink)}
+.tr.h>div:nth-child(3){background:var(--fuchsia);color:#fff}
+@media(max-width:560px){.tr>div{padding:12px 10px;font-size:.8rem}.tr>div:nth-child(3) svg{display:none}}
+.calc{background:var(--yellow);border-radius:var(--r);padding:32px;position:relative;overflow:hidden}
+.calc::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.35);right:-70px;top:-70px;pointer-events:none}
+.calc h3{font-size:1.7rem;margin-bottom:6px}
+.calc p{color:#4A3A1A;font-size:.95rem}
+.calc label{display:block;font-weight:800;margin:22px 0 10px;font-size:.94rem}
+.calc input[type=range]{width:100%;accent-color:var(--fuchsia)}
+.calc .yrs{display:flex;justify-content:space-between;color:#6B5A2A;font-size:.78rem;margin-top:2px}
+.calc .row{display:flex;justify-content:space-between;font-size:.94rem;padding:13px 16px;border-radius:14px;background:rgba(255,255,255,.55);margin-top:10px}
+.calc .row b{font-variant-numeric:tabular-nums}
+.calc .row s{color:#A0522D}
+.calc .save{margin-top:16px;background:var(--ink);color:#fff;border-radius:18px;padding:18px;text-align:center;font-weight:700}
+.calc .save strong{display:block;font-family:var(--display);font-size:2.3rem;line-height:1.05;color:var(--yellow);letter-spacing:-.03em}
+.fine{font-size:.74rem;color:#6B5A2A;margin-top:12px;line-height:1.45}
+
+/* ===== PRICING ===== */
+.urgency{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;background:#fff;border:1.5px solid var(--pink2);border-radius:99px;padding:8px 10px 8px 20px;font-weight:700;font-size:.92rem;margin-top:24px;box-shadow:var(--sh)}
+@media(max-width:520px){.urgency{border-radius:20px;padding:12px}}
+.cd{display:inline-flex;gap:5px}
+.cd span{background:var(--ink);color:#fff;border-radius:99px;padding:4px 10px;font-variant-numeric:tabular-nums;font-weight:800;font-size:.86rem}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+@media(max-width:1060px){.plans{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+.plan{position:relative;background:#fff;border:1px solid var(--line);border-radius:30px;padding:36px 28px 28px;display:flex;flex-direction:column;box-shadow:var(--sh)}
+.plan.pop{background:var(--fuchsia);color:#fff;border-color:var(--fuchsia);box-shadow:0 40px 80px -30px rgba(255,31,143,.75)}
+@media(min-width:1061px){.plan.pop{transform:translateY(-16px)}}
+.ribbon{position:absolute;top:-16px;right:24px;font-family:var(--display);font-weight:800;font-size:.86rem;padding:8px 16px;border-radius:99px;white-space:nowrap;transform:rotate(4deg);box-shadow:0 8px 18px -8px rgba(27,11,43,.4)}
+.r-y{background:var(--yellow);color:var(--ink)}.r-b{background:var(--blue);color:#fff}
+.plan .lvl{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+.pop .lvl{color:var(--yellow)}
+.plan h3{font-size:2rem;margin:6px 0}
+.plan .for{color:var(--ink2);font-size:.93rem;min-height:46px}
+.pop .for{color:rgba(255,255,255,.88)}
+.price{margin:22px 0 8px;display:flex;align-items:flex-start;gap:4px}
+.price .cur{font-family:var(--display);font-weight:800;font-size:1.5rem;margin-top:6px}
+.price .amt{font-family:var(--display);font-weight:800;font-size:3.6rem;line-height:1;letter-spacing:-.05em}
+.price .per{color:var(--ink3);font-size:.82rem;line-height:1.25;margin:10px 0 0 8px;font-weight:600}
+.pop .price .per{color:rgba(255,255,255,.8)}
+.split{font-size:.86rem;font-weight:600;color:var(--ink2);margin-bottom:20px}
+.split b{color:var(--green)}
+.pop .split{color:rgba(255,255,255,.9)}.pop .split b{color:var(--yellow)}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.meta div{background:var(--bg);border-radius:14px;padding:11px 13px;font-size:.78rem;color:var(--ink3);line-height:1.3}
+.meta b{display:block;color:var(--ink);font-size:1.05rem;font-family:var(--display);letter-spacing:-.02em}
+.pop .meta div{background:rgba(255,255,255,.14);color:rgba(255,255,255,.8)}.pop .meta b{color:#fff}
+.feat{display:grid;gap:11px;margin-bottom:24px}
+.feat li{position:relative;padding-left:30px;font-size:.93rem;color:var(--ink2);line-height:1.45}
+.feat li svg{position:absolute;left:0;top:0;width:20px;height:20px;padding:3px;border-radius:50%;background:#DCFCE7;color:var(--green)}
+.feat li.off{opacity:.45}.feat li.off svg{background:#F1EAF0;color:var(--ink3)}
+.feat li strong{color:var(--ink)}
+.feat li.grp{padding-left:0;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.pop .feat li{color:rgba(255,255,255,.92)}.pop .feat li strong{color:#fff}
+.pop .feat li svg{background:var(--yellow);color:var(--ink)}
+.pop .feat li.grp{color:var(--yellow)}
+.box{background:var(--bg);border-radius:20px;padding:14px;margin-top:auto}
+.pop .box{background:rgba(255,255,255,.14)}
+.addon{display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:.86rem;line-height:1.4;color:var(--ink2);margin-bottom:12px}
+.pop .addon{color:rgba(255,255,255,.9)}
+.addon input{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--blue);background:#fff;flex-shrink:0;display:grid;place-items:center;margin-top:1px;cursor:pointer}
+.addon input:checked{background:var(--blue)}
+.addon input:checked::after{content:'✓';color:#fff;font-weight:900;font-size:14px}
+.pop .addon input{border-color:#fff;background:transparent}.pop .addon input:checked{background:var(--yellow);border-color:var(--yellow)}.pop .addon input:checked::after{color:var(--ink)}
+.addon b{color:var(--ink)}.pop .addon b{color:#fff}
+.paymode{display:grid;grid-template-columns:1fr 1fr;background:#fff;border-radius:99px;padding:4px;margin-bottom:12px;border:1px solid var(--line)}
+.pop .paymode{background:rgba(0,0,0,.15);border-color:transparent}
+.paymode button{padding:9px 6px;border-radius:99px;font-size:.8rem;font-weight:700;color:var(--ink2);transition:.2s}
+.pop .paymode button{color:rgba(255,255,255,.85)}
+.paymode button.on{background:var(--ink);color:#fff}
+.pop .paymode button.on{background:#fff;color:var(--magenta)}
+.paysum{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;font-weight:600;color:var(--ink2);padding:0 6px}
+.pop .paysum{color:rgba(255,255,255,.85)}
+.paysum b{font-family:var(--display);font-size:1.4rem;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.pop .paysum b{color:#fff}
+.btns{display:grid;gap:12px;margin-top:16px}
+.paylogos{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin-top:14px;font-size:.72rem;font-weight:700;color:var(--ink3)}
+.paylogos span{padding:4px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--ink2);font-weight:800;letter-spacing:.03em}
+.pop .paylogos{color:rgba(255,255,255,.8)}.pop .paylogos span{background:rgba(255,255,255,.15);border-color:transparent;color:#fff}
+.after-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:900px){.after-plans{grid-template-columns:1fr}}
+.ap{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--sh)}
+.ap .i{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;flex-shrink:0}
+.ap .i svg{width:22px;height:22px}
+.ap b{display:block;margin-bottom:2px;font-family:var(--display);font-size:1.08rem;letter-spacing:-.02em}
+.ap p{color:var(--ink2);font-size:.88rem}
+
+/* ===== DOMAIN ===== */
+#dominio{background:var(--blue);color:#fff;overflow:hidden}
+#dominio::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:#4A64FF;left:-180px;bottom:-240px}
+#dominio .eyebrow{color:var(--yellow)}
+#dominio .lead{color:rgba(255,255,255,.88)}
+.dom{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative}
+@media(max-width:960px){.dom{grid-template-columns:1fr}}
+.browser{background:#fff;border-radius:22px;overflow:hidden;color:var(--ink);box-shadow:0 50px 90px -30px rgba(0,0,30,.6);transform:rotate(1.5deg)}
+.browser .top{background:#F2EFF5;padding:13px 14px;display:flex;align-items:center;gap:8px}
+.browser .top i{width:11px;height:11px;border-radius:50%;background:#ff5f57;flex-shrink:0}
+.browser .top i:nth-child(2){background:#febc2e}.browser .top i:nth-child(3){background:#28c840}
+.addr{flex:1;min-width:0;margin-left:10px;background:#fff;border-radius:99px;padding:10px 16px;font-size:1.02rem;font-weight:600;display:flex;align-items:center;gap:8px;min-height:44px;box-shadow:inset 0 0 0 1px #E6E0EB;white-space:nowrap;overflow:hidden}
+.addr svg{width:15px;height:15px;color:var(--green);flex-shrink:0}
+.addr em{font-style:normal;color:var(--fuchsia);font-weight:800}
+.caret{width:2px;height:20px;background:var(--fuchsia);animation:blink 1s steps(1) infinite;flex-shrink:0}
+@keyframes blink{50%{opacity:0}}
+.browser .body{padding:24px;display:grid;gap:12px}
+.dline{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:16px;border:1.5px solid #ECE6F0;font-weight:600;font-size:.98rem}
+.dline .b{margin-left:auto;font-size:.72rem;font-weight:800;padding:5px 11px;border-radius:99px;white-space:nowrap}
+.dline.gen{color:var(--ink3)}.dline.gen .b{background:#F2EFF5;color:var(--ink3)}
+.dline.pro{border-color:var(--pink2);background:#FFF5FA}.dline.pro .b{background:var(--fuchsia);color:#fff}
+.dline code{font-family:inherit;font-weight:800;word-break:break-all}
+.dline .d{width:10px;height:10px;border-radius:50%;background:var(--ink3);flex-shrink:0}
+.dline.pro .d{background:var(--fuchsia)}
+@media(max-width:520px){.dline{font-size:.84rem;padding:12px;gap:8px}.browser .body{padding:16px}}
+.dom-list{display:grid;gap:16px;margin:28px 0}
+.dom-list li{display:flex;gap:14px;color:rgba(255,255,255,.88)}
+.dom-list li b{color:#fff}
+.dom-list .n{width:32px;height:32px;border-radius:50%;background:var(--yellow);color:var(--ink);display:grid;place-items:center;font-weight:800;flex-shrink:0;font-size:.9rem}
+.dom-price{display:inline-flex;align-items:center;gap:18px;background:#fff;color:var(--ink);border-radius:22px;padding:16px 24px 16px 18px}
+.dom-price .big{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1;color:var(--blue);letter-spacing:-.04em}
+.dom-price small{color:var(--ink2);font-weight:600;line-height:1.4}
+
+/* ===== ADMIN ===== */
+.admin{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+@media(max-width:960px){.admin{grid-template-columns:1fr}}
+.dash{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--sh-lg);display:grid;grid-template-columns:52px 1fr;gap:16px}
+.dside{background:var(--ink);border-radius:18px;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.dside i{width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.1);display:block}
+.dside i.on{background:var(--fuchsia)}
+.dside i:first-child{background:var(--yellow);border-radius:50%}
+.dmain{min-width:0}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.dash-top b{font-family:var(--display);font-size:1.15rem;letter-spacing:-.02em}
+.dash-top span{font-size:.74rem;color:var(--ink3);background:var(--bg);padding:5px 10px;border-radius:99px;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.kpi{border-radius:16px;padding:12px}
+.kpi small{font-size:.72rem;display:block;font-weight:600;opacity:.85}
+.kpi b{font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em}
+.kpi i{font-style:normal;font-size:.7rem;font-weight:800}
+.k1{background:var(--pink);color:var(--magenta)}.k2{background:var(--yellow2);color:#8A5A00}.k3{background:var(--blue2);color:var(--blue)}
+.chart{height:96px;display:flex;align-items:flex-end;gap:7px;padding:12px;background:var(--bg);border-radius:16px;margin-bottom:12px}
+.chart span{flex:1;border-radius:7px 7px 3px 3px;background:var(--pink2);transform-origin:bottom;animation:grow 1.2s cubic-bezier(.2,.8,.2,1) both}
+.chart span:nth-last-child(-n+2){background:var(--fuchsia)}
+@keyframes grow{from{transform:scaleY(0)}}
+.otable{display:grid;gap:6px}
+.orow{display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:9px 12px;font-size:.82rem;font-weight:600}
+.orow .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.72rem;color:#fff}
+.orow small{display:block;color:var(--ink3);font-size:.72rem;font-weight:500}
+.orow .gd{font-size:.72rem;color:var(--blue);font-weight:700}
+@media(max-width:520px){.dash{grid-template-columns:1fr}.dside{display:none}.orow{grid-template-columns:auto 1fr auto}.orow .gd{display:none}.kpi b{font-size:1.05rem}}
+.adm-list{display:grid;gap:18px;margin-top:28px}
+.adm-list li{display:flex;gap:14px}
+.adm-list .i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;background:var(--pink);color:var(--magenta)}
+.adm-list .i svg{width:22px;height:22px}
+.adm-list b{display:block;font-size:1.06rem;font-family:var(--display);letter-spacing:-.02em}
+.adm-list p{color:var(--ink2);font-size:.94rem}
+.load-box{margin-top:28px;background:var(--yellow2);border:1.5px dashed #E8B400;border-radius:20px;padding:18px 20px;font-size:.96rem}
+.load-calc{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;font-weight:600;color:var(--ink2)}
+.load-calc input{width:90px;background:#fff;border:1.5px solid #E8C870;color:var(--ink);border-radius:12px;padding:8px 12px;font-weight:800;font-size:1rem;font-family:inherit}
+.load-calc output{font-family:var(--display);font-weight:800;color:var(--ink);font-size:1.35rem;letter-spacing:-.03em}
+
+/* ===== GALLERY ===== */
+.gal{display:grid;grid-template-columns:1.1fr .9fr 1fr;grid-template-rows:280px 280px;gap:18px}
+.gal > *{position:relative;border-radius:28px;overflow:hidden}
+.gal figure{background:var(--pink)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.gal figure:hover img{transform:scale(1.05)}
+.gal .tall{grid-row:span 2}
+.gal figcaption{position:absolute;left:16px;bottom:16px;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:var(--sh)}
+.gal figcaption b{font-family:var(--display);display:block;font-size:1.05rem;letter-spacing:-.02em;line-height:1.2}
+.gal figcaption small{color:var(--ink3);font-size:.8rem}
+.gal .quote{background:var(--fuchsia);color:#fff;padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+.gal .quote p{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,2.3vw,1.95rem);line-height:1.08;letter-spacing:-.035em}
+.gal .quote p .it{color:var(--yellow)}
+.gal .quote small{font-weight:700;opacity:.85}
+.gal .yel{background:var(--yellow);padding:28px;display:flex;flex-direction:column;justify-content:flex-end}
+.gal .yel b{font-family:var(--display);font-size:3.6rem;line-height:.9;letter-spacing:-.05em}
+.gal .yel span{font-weight:700;color:#5A4500;margin-top:10px}
+@media(max-width:900px){.gal{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:260px}.gal .tall{grid-row:span 2}}
+@media(max-width:560px){.gal{grid-template-columns:1fr;grid-auto-rows:auto}.gal > *{min-height:240px}.gal .tall{grid-row:span 1;min-height:460px}}
+
+/* ===== PROCESS ===== */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:960px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;position:relative;box-shadow:var(--sh)}
+.step .num{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.3rem;margin-bottom:18px}
+.step:nth-child(1) .num{background:var(--fuchsia);color:#fff}.step:nth-child(2) .num{background:var(--yellow)}.step:nth-child(3) .num{background:var(--blue);color:#fff}.step:nth-child(4) .num{background:var(--ink);color:#fff}
+.step h3{font-size:1.3rem;margin-bottom:6px}
+.step p{color:var(--ink2);font-size:.94rem}
+.step .pill{display:inline-block;margin-top:14px;font-size:.75rem;font-weight:800;padding:5px 12px;border-radius:99px;background:var(--bg);color:var(--magenta);border:1px solid var(--line)}
+
+/* ===== GUARANTEE ===== */
+.guar{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;background:var(--yellow);border-radius:34px;padding:48px;position:relative;overflow:hidden}
+.guar::after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.35);right:-80px;bottom:-120px}
+.guar > *{position:relative;z-index:1}
+@media(max-width:760px){.guar{grid-template-columns:1fr;text-align:center;padding:40px 22px;gap:36px}.guar .seal{margin:0 auto}}
+.seal{width:160px;height:160px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:700;line-height:1.1;position:relative;font-size:.92rem}
+.seal svg{position:absolute;inset:-18px;width:calc(100% + 36px);height:calc(100% + 36px);animation:rot 24s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.seal span{font-size:2.8rem;display:block;font-weight:800;color:var(--yellow);letter-spacing:-.04em}
+.guar h2{font-size:clamp(1.8rem,3.4vw,2.7rem);margin-bottom:12px}
+.guar p{color:#4A3A1A;font-size:1.04rem}
+
+/* ===== FAQ ===== */
+.faq{max-width:860px;margin:0 auto;display:grid;gap:12px}
+.qa{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.qa[open]{border-color:var(--pink2);box-shadow:var(--sh)}
+.qa summary{list-style:none;cursor:pointer;padding:21px 24px;font-weight:700;font-size:1.04rem;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:'+';flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--pink);color:var(--magenta);display:grid;place-items:center;font-size:1.3rem;font-weight:600;transition:transform .3s,background .3s}
+.qa[open] summary::after{transform:rotate(45deg);background:var(--fuchsia);color:#fff}
+.qa div{padding:0 24px 22px;color:var(--ink2)}
+
+/* ===== FINAL CTA ===== */
+.final{border-radius:40px;padding:64px 56px;position:relative;overflow:hidden;background:var(--fuchsia);color:#fff;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.final::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:var(--magenta);right:-80px;top:-120px}
+.final::after{content:'';position:absolute;width:160px;height:160px;border-radius:50%;background:var(--yellow);right:36%;bottom:-80px}
+.final > *{position:relative;z-index:1}
+.final h2{font-size:clamp(2.2rem,4.4vw,3.6rem);margin-bottom:18px}
+.final h2 .it{color:var(--yellow)}
+.final p{color:rgba(255,255,255,.92);font-size:1.12rem;margin-bottom:30px;max-width:520px}
+.final .hero-ctas{margin-bottom:0}
+.final .btn-main{background:#fff;color:var(--magenta);animation:none;box-shadow:0 14px 30px -10px rgba(0,0,0,.35)}
+.final .iphone{width:230px;margin:0 auto -150px;transform:rotate(5deg)}
+@media(max-width:860px){.final{grid-template-columns:1fr;padding:46px 24px 0;text-align:center;border-radius:30px}.final p{margin-left:auto;margin-right:auto}.final .hero-ctas{justify-content:center}.final .iphone{width:200px;margin-bottom:-110px}}
+
+/* ===== FOOTER ===== */
+footer{padding:0 0 120px;color:var(--ink2);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:36px}
+footer a:hover{color:var(--fuchsia)}
+
+/* ===== FLOATING ===== */
+.fab{position:fixed;right:20px;bottom:22px;z-index:80;width:62px;height:62px;border-radius:50%;background:var(--wa);display:grid;place-items:center;animation:waPulse 2.2s infinite}
+.fab svg{width:32px;height:32px;color:#fff}
+.fab .bub{position:absolute;right:74px;background:var(--ink);color:#fff;font-weight:700;font-size:.84rem;padding:9px 14px;border-radius:14px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.2);opacity:0;transform:translateX(10px);transition:.4s;pointer-events:none}
+.fab .bub.show{opacity:1;transform:none}
+.mbar{display:none}
+@media(max-width:760px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .35s}
+  .mbar.show{transform:none}
+  .mbar .btn{padding:13px 10px;font-size:.9rem}
+  .fab{bottom:88px;width:56px;height:56px}
+}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-weight:600;font-size:.9rem;opacity:0;transition:.35s;z-index:200;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.loader{position:fixed;inset:0;background:rgba(255,247,251,.94);z-index:150;display:none;place-items:center;text-align:center}
+.loader.show{display:grid}
+.loader .sp{width:52px;height:52px;border-radius:50%;border:4px solid var(--pink);border-top-color:var(--fuchsia);animation:rot .9s linear infinite;margin:0 auto 16px}
+</style>
+</head>
+<body>
+
+<div class="topbar">Precio de lanzamiento <span class="fxs">desde $198.000</span> · Cupos limitados esta semana <b id="tb-cd">--:--:--</b></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="brand"><img src="assets/logo.png" alt="Bio Marketing" width="40" height="40"><div>Bio Marketing<small>Tiendas virtuales</small></div></a>
+    <nav class="nav-links">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#comparar">vs Shopify</a>
+      <a href="#planes">Planes</a>
+      <a href="#dominio">Dominio</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="btn btn-wa btn-sm wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Hablar<span class="hide-sm"> con un asesor</span></span></a>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge-row"><b>NUEVO</b> Tiendas estilo Shopify, hechas en Colombia</div>
+      <h1>Tu tienda online <span class="fx">vendiendo 24/7</span> en <span class="mark it">2 a 5 días</span></h1>
+      <p class="lead">Diseñamos tu <strong>tienda virtual o página web profesional, 100% personalizada</strong>, con carrito, pago contra entrega, tarjetas, PSE y panel de pedidos. <strong>Sin mensualidades en dólares</strong> ni comisiones por venta.</p>
+      <div class="hero-ctas">
+        <a href="#planes" class="btn btn-main"><span>Quiero mi tienda online</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Resolver dudas</span></a>
+      </div>
+      <div class="trust">
+        <div class="from"><small>Desde</small><strong>$198.000</strong></div>
+        <div class="sep"></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Pago único</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>50% al iniciar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Panel administrativo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Capacitación</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="visual" aria-hidden="true">
+      <div class="blob-y"></div><div class="blob-p"></div><div class="blob-b"></div>
+      <svg class="squig" viewBox="0 0 160 60" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"><path d="M5 40 Q 25 5 45 35 T 85 35 T 125 35 T 155 25"/></svg>
+      <div class="arch"><img src="assets/compra-movil.webp" alt="" width="576" height="1024" fetchpriority="high"></div>
+      <div class="tagline">Compra en <span>1 clic</span> ✦</div>
+
+      <div class="iphone">
+        <div class="iscreen">
+          <div class="island"></div>
+          <div class="sbar"><span>9:41</span><i></i></div>
+          <div class="app">
+            <div class="app-h"><div class="app-logo">hamsa<span>.</span></div><div class="app-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bag"/></svg><b>3</b></div></div>
+            <div class="app-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Buscar productos</div>
+            <div class="app-ban"><span class="ph"></span><small>NUEVA COLECCIÓN</small><h4>SALE<br>40% OFF</h4><em>Comprar</em></div>
+            <div class="app-cats">
+              <div><i><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=60&auto=format&fit=crop" alt=""></i>Tenis</div>
+              <div><i><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=120&q=60&auto=format&fit=crop" alt=""></i>Relojes</div>
+              <div><i><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=120&q=60&auto=format&fit=crop" alt=""></i>Gafas</div>
+              <div><i><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=120&q=60&auto=format&fit=crop" alt=""></i>Audio</div>
+            </div>
+            <div class="app-grid">
+              <div class="app-p"><div class="ph"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=65&auto=format&fit=crop" alt=""><span class="hrt">♥</span></div><div class="n">Tenis Runner</div><div class="pr">$189.900<b>+</b></div></div>
+              <div class="app-p"><div class="ph"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&q=65&auto=format&fit=crop" alt=""><span class="hrt">♥</span></div><div class="n">Reloj Classic</div><div class="pr">$249.000<b>+</b></div></div>
+            </div>
+          </div>
+          <div class="app-nav"><svg class="on" viewBox="0 0 24 24" fill="currentColor"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
+          <div class="home-ind"></div>
+        </div>
+      </div>
+
+      <div class="sticker s1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-bag"/></svg></div><div><b>¡Nuevo pedido!</b><small id="f1t">Tenis Runner · $189.900</small></div></div>
+      <div class="sticker s2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-truck"/></svg></div><div><b>Guía generada</b><small>Enviado a Medellín</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANDS ================= -->
+<div class="bands" aria-label="Tipos de negocio">
+  <div class="band b1"><div class="track" id="t1"><span>Ropa y moda</span><span>Calzado</span><span>Cosméticos</span><span>Droguerías</span><span>Laboratorios</span><span>Restaurantes</span><span>Mascotas</span><span>Tecnología</span><span>Ferreterías</span><span>Joyería</span><span>Hogar</span><span>Profesionales de salud</span></div></div>
+  <div class="band b2"><div class="track" id="t2"><span>Pago contra entrega</span><span>Tarjetas y PSE</span><span>Panel de pedidos</span><span>Guías de envío</span><span>Sin mensualidades</span><span>100% personalizada</span><span>Lista en 2 a 5 días</span></div></div>
+</div>
+
+<!-- ================= PAIN ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">¿Te suena familiar?</div>
+      <h2>Cada día sin tienda online es<br>dinero que se va a <span class="it fx">tu competencia</span></h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain rv"><span class="num">01</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" stroke-linejoin="round"/></svg></div><h3>Vendes solo por WhatsApp</h3><p>Repites precios 50 veces al día, se te pierden pedidos entre chats y el cliente se aburre esperando el catálogo.</p></div>
+      <div class="pain rv"><span class="num">02</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round"/></svg></div><h3>Te cobran en dólares</h3><p>Mensualidad en USD, apps de pago extra y comisiones por cada venta. Mes a mes tu ganancia se reduce.</p></div>
+      <div class="pain rv"><span class="num">03</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" stroke-linejoin="round"/><path d="M9 9l6 6M15 9l-6 6" stroke-linecap="round"/></svg></div><h3>No proyectas confianza</h3><p>Sin página web propia, muchos clientes no se atreven a comprar. Hoy, si no estás en internet, no existes.</p></div>
+    </div>
+    <p class="turn rv">Por eso creamos tiendas <span class="mark">profesionales, propias</span><br>y <span class="it fx">sin mensualidades.</span></p>
+  </div>
+</section>
+
+<!-- ================= BENEFITS ================= -->
+<section id="beneficios" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Todo lo que incluye</div>
+      <h2>Una tienda completa,<br><span class="it fx">lista para vender</span></h2>
+      <p class="lead">Técnicas modernas de e-commerce para que vendas más y sistematices tu negocio desde el primer día.</p>
+    </div>
+    <div class="bento">
+      <div class="bx c-f sp7 wide phone-card rv">
+        <div><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-cart"/></svg></div><h3>Carrito de compras y pago contra entrega</h3><p>Tus clientes eligen talla o color, agregan al carrito y compran solos, a cualquier hora. Con el método favorito en Colombia: pagar al recibir.</p></div>
+        <div class="iphone" aria-hidden="true">
+          <div class="iscreen"><div class="island"></div><div class="sbar"><span>9:41</span><i></i></div>
+            <div class="co"><h4>Tu carrito</h4>
+              <div class="co-it"><div class="ph"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=60&auto=format&fit=crop" alt=""></div><div><b>Tenis Runner</b><span>$189.900</span></div></div>
+              <div class="co-lb">Método de pago</div>
+              <div class="co-op on"><i></i>Contra entrega</div>
+              <div class="co-op"><i></i>Tarjeta<small>Visa · MC</small></div>
+              <div class="co-op"><i></i>PSE / Nequi</div>
+              <div class="co-tot"><span>Total</span><b>$189.900</b></div>
+              <div class="co-btn">Finalizar compra</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bx c-y sp5 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-card"/></svg></div><h3>Pasarelas de pago</h3><p>Tarjetas de crédito y débito colombianas e internacionales, PSE y billeteras digitales.</p>
+        <div class="gw"><span>Wompi</span><span>ePayco</span><span>Mercado Pago</span><span>PayU</span><span>Bold</span><span>PSE</span><span>Nequi</span></div></div>
+      <div class="bx c-k sp6 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-grid"/></svg></div><h3>Panel administrativo</h3><p>Pedidos, guías de envío y seguimiento a tus clientes en un solo lugar.</p>
+        <div class="mini"><div class="mo"><span>#1048 · Laura M.</span><span class="st nw">Nuevo</span></div><div class="mo"><span>#1047 · Andrés P.</span><span class="st go">En camino</span></div><div class="mo"><span>#1046 · Camila R.</span><span class="st ok">Entregado</span></div></div></div>
+      <div class="bx c-b sp6 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-wand"/></svg></div><h3>100% personalizada</h3><p>Tu logo, tus colores y tu estilo. Nada de plantillas genéricas: tu tienda se ve como la de una marca grande.</p><div class="brandkit"><div class="aa">Aa</div><div class="sw"><i style="background:#FF1F8F"></i><i style="background:#FFD233"></i><i style="background:#1B0B2B"></i><i style="background:#fff"></i></div><div class="lg">tu<span>marca</span></div></div></div>
+      <div class="bx c-w sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-phone"/></svg></div><h3>Perfecta en celular</h3><p>Se ve espectacular en celular, tablet y computador.</p></div>
+      <div class="bx c-p sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></div><h3>Conectada a WhatsApp</h3><p>Botón de compra y atención directa en cada producto.</p></div>
+      <div class="bx c-w sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bolt"/></svg></div><h3>Rápida y segura</h3><p>Certificado SSL, carga veloz y lista para Google.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section id="comparar">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Haz la cuenta</div>
+      <h2>La experiencia de Shopify,<br><span class="mark it">sin los cobros elevados</span></h2>
+      <p class="lead">Pagas una sola vez por la creación. Tu tienda es tuya, en pesos colombianos y sin sorpresas cada mes.</p>
+    </div>
+    <div class="cmp">
+      <div class="table rv">
+        <div class="tr h"><div>Característica</div><div>Shopify</div><div>Bio Marketing</div></div>
+        <div class="tr"><div>Mensualidad de la plataforma</div><div>USD 29 – 39+/mes*</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>$0 mensual</div></div>
+        <div class="tr"><div>Comisión por cada venta</div><div>Sí, según plan</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>0% de nuestra parte</div></div>
+        <div class="tr"><div>Moneda de cobro</div><div>Dólares</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Pesos colombianos</div></div>
+        <div class="tr"><div>Diseño y montaje</div><div>Lo haces tú</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Lo hacemos por ti</div></div>
+        <div class="tr"><div>Pago contra entrega</div><div>Con apps extra</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Incluido</div></div>
+        <div class="tr"><div>Soporte por WhatsApp</div><div>Limitado</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Directo con tu asesor</div></div>
+        <div class="tr"><div>Capacitación personalizada</div><div>No</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg>Incluida</div></div>
+      </div>
+      <div class="calc rv">
+        <h3>Calcula tu ahorro</h3>
+        <p>Mensualidades frente a nuestro pago único.</p>
+        <label for="yrs">Tiempo con tu tienda: <span id="yrs-l">2 años</span></label>
+        <input type="range" id="yrs" min="1" max="5" value="2">
+        <div class="yrs"><span>1 año</span><span>5 años</span></div>
+        <div class="row"><span>Shopify Basic + 2 apps</span><b><s id="c-shop">$0</s></b></div>
+        <div class="row"><span>Bio Marketing · Emprende</span><b id="c-bio">$198.000</b></div>
+        <div class="save">Te ahorras aproximadamente<strong id="c-save">$0</strong></div>
+        <p class="fine">*Referencia: plan Basic de Shopify (USD 39/mes) más dos apps de USD 10/mes, a una TRM aproximada de $4.000. Excluye comisiones y dominio. Los precios de Shopify pueden variar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section id="planes">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Planes de lanzamiento</div>
+      <h2>Elige el plan perfecto<br>para <span class="it fx">tu negocio</span></h2>
+      <p class="lead">Según el número de productos o servicios y el nivel de personalización. Pago único, sin mensualidades.</p>
+      <div class="urgency">Precios de lanzamiento terminan en <span class="cd" id="cd"><span>0d</span><span>00h</span><span>00m</span><span>00s</span></span></div>
+    </div>
+
+    <div class="plans">
+      <!-- PLAN 1 -->
+      <article class="plan rv" data-plan="Emprende" data-price="198000">
+        <div class="ribbon r-y">Ideal para empezar</div>
+        <span class="lvl">Plan 01</span>
+        <h3>Emprende</h3>
+        <p class="for">Pequeños comerciantes y emprendedores que quieren vender online ya.</p>
+        <div class="price"><span class="cur">$</span><span class="amt">198.000</span><span class="per">COP<br>pago único</span></div>
+        <p class="split">Inicias con <b>$99.000</b> · el resto al entregar</p>
+        <div class="meta"><div><b>Hasta 30</b>productos o servicios</div><div><b>2 días</b>tiempo de entrega</div></div>
+        <ul class="feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tienda funcional con <strong>carrito de compras</strong></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Pago contra entrega</strong> + pedidos a WhatsApp</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Personalizada con tu logo y colores</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Módulo administrativo</strong>: pedidos, guías y seguimiento</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño adaptable a celular + certificado SSL</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Dominio genérico incluido (ej: <em>tutienda.vercel.app</em>)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Capacitación para subir tus productos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>1 ronda de ajustes</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-x"/></svg>Pasarela de pagos con tarjeta / PSE</li>
+        </ul>
+        <div class="box">
+          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> (ej: calzadohamsa.com) por $85.000/año</span></label>
+          <div class="paymode"><button type="button" class="on" data-mode="half">Anticipo 50%</button><button type="button" data-mode="full">Pago total</button></div>
+          <div class="paysum"><span>Pagas hoy</span><b class="pay-now">$99.000</b></div>
+        </div>
+        <div class="btns">
+          <button type="button" class="btn btn-pay btn-block pay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><use href="#i-card"/></svg><span>Pagar con tarjeta o PSE</span></button>
+          <a class="btn btn-wa btn-block wa" data-msg="Emprende" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Adquirir por WhatsApp</span></a>
+        </div>
+        <div class="paylogos">Pago seguro <span>VISA</span><span>MC</span><span>PSE</span><span>ePayco</span></div>
+      </article>
+
+      <!-- PLAN 2 -->
+      <article class="plan pop rv" data-plan="Crece" data-price="490000">
+        <div class="ribbon r-y">★ El más elegido</div>
+        <span class="lvl">Plan 02</span>
+        <h3>Crece</h3>
+        <p class="for">Negocios que quieren recibir pagos con tarjeta y vender a todo el país.</p>
+        <div class="price"><span class="cur">$</span><span class="amt">490.000</span><span class="per">COP<br>pago único</span></div>
+        <p class="split">Inicias con <b>$245.000</b> · el resto al entregar</p>
+        <div class="meta"><div><b>Hasta 150</b>productos o servicios</div><div><b>3 a 4 días</b>tiempo de entrega</div></div>
+        <ul class="feat">
+          <li class="grp">Todo lo del plan Emprende, más:</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Pasarela de pagos</strong>: Wompi, ePayco, Mercado Pago o la que elijas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tarjetas <strong>nacionales e internacionales</strong>, PSE y Nequi</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño personalizado premium con banners</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Categorías, filtros y variantes (talla, color)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Cupones de descuento y productos en oferta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>SEO básico + Google Analytics + Píxel de Meta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Notificaciones de pedido por correo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>2 rondas de ajustes + 15 días de soporte</li>
+        </ul>
+        <div class="box">
+          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> (ej: tunegocio.com) por $85.000/año</span></label>
+          <div class="paymode"><button type="button" class="on" data-mode="half">Anticipo 50%</button><button type="button" data-mode="full">Pago total</button></div>
+          <div class="paysum"><span>Pagas hoy</span><b class="pay-now">$245.000</b></div>
+        </div>
+        <div class="btns">
+          <button type="button" class="btn btn-pay btn-block pay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><use href="#i-card"/></svg><span>Pagar con tarjeta o PSE</span></button>
+          <a class="btn btn-wa btn-block wa" data-msg="Crece" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Adquirir por WhatsApp</span></a>
+        </div>
+        <div class="paylogos">Pago seguro <span>VISA</span><span>MC</span><span>PSE</span><span>ePayco</span></div>
+      </article>
+
+      <!-- PLAN 3 -->
+      <article class="plan rv" data-plan="Pro Empresarial" data-price="890000">
+        <div class="ribbon r-b">Máxima personalización</div>
+        <span class="lvl">Plan 03</span>
+        <h3>Pro Empresarial</h3>
+        <p class="for">Empresas y marcas que buscan una tienda a la medida, automatizada y escalable.</p>
+        <div class="price"><span class="cur">$</span><span class="amt">890.000</span><span class="per">COP<br>pago único</span></div>
+        <p class="split">Inicias con <b>$445.000</b> · el resto al entregar</p>
+        <div class="meta"><div><b>Ilimitados</b>productos o servicios</div><div><b>4 a 5 días</b>tiempo de entrega</div></div>
+        <ul class="feat">
+          <li class="grp">Todo lo del plan Crece, más:</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Diseño 100% a la medida</strong> de tu marca</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Varias pasarelas</strong> de pago al mismo tiempo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Automatización de guías y seguimiento con transportadoras</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Mensajes automáticos de estado del pedido</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Reportes de ventas e inventario</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Varios usuarios en el panel + blog</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>SEO avanzado y velocidad optimizada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>3 rondas de ajustes + 30 días de soporte prioritario</li>
+        </ul>
+        <div class="box">
+          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> (ej: tumarca.com) por $85.000/año</span></label>
+          <div class="paymode"><button type="button" class="on" data-mode="half">Anticipo 50%</button><button type="button" data-mode="full">Pago total</button></div>
+          <div class="paysum"><span>Pagas hoy</span><b class="pay-now">$445.000</b></div>
+        </div>
+        <div class="btns">
+          <button type="button" class="btn btn-pay btn-block pay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><use href="#i-card"/></svg><span>Pagar con tarjeta o PSE</span></button>
+          <a class="btn btn-wa btn-block wa" data-msg="Pro Empresarial" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Adquirir por WhatsApp</span></a>
+        </div>
+        <div class="paylogos">Pago seguro <span>VISA</span><span>MC</span><span>PSE</span><span>ePayco</span></div>
+      </article>
+    </div>
+
+    <div class="after-plans">
+      <div class="ap rv"><span class="i" style="background:var(--pink);color:var(--magenta)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" stroke-linecap="round"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span><div><b>50% para iniciar, 50% al entregar</b><p>Pagas la segunda mitad solo cuando recibes tu tienda funcionando.</p></div></div>
+      <div class="ap rv"><span class="i" style="background:var(--yellow2);color:#A16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bolt"/></svg></span><div><b>Entrega de 2 a 5 días</b><p>Según el plan y las características de cada tienda o página web.</p></div></div>
+      <div class="ap rv"><span class="i" style="background:var(--blue2);color:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></span><div><b>Pago 100% seguro</b><p>Procesado por ePayco con encriptación SSL. Tarjeta, PSE y más.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOMAIN ================= -->
+<section id="dominio">
+  <div class="wrap dom">
+    <div class="rv">
+      <div class="eyebrow">¿Qué es un dominio?</div>
+      <h2>Tu marca con su propia <span class="it" style="color:var(--yellow)">dirección en internet</span></h2>
+      <p class="lead">El dominio es el nombre con el que tus clientes encuentran tu tienda: tu dirección en internet. Un dominio propio genera confianza y hace tu marca fácil de recordar.</p>
+      <ul class="dom-list">
+        <li><span class="n">1</span><div><b>Dominio genérico, incluido gratis.</b> Tu tienda queda funcionando con una dirección como <em>calzadohamsa.vercel.app</em>.</div></li>
+        <li><span class="n">2</span><div><b>Dominio personalizado, opcional.</b> Con el nombre exacto de tu negocio: <em>calzadohamsa.com</em>, <em>biomarketing.com</em>, <em>tutienda.co</em>.</div></li>
+        <li><span class="n">3</span><div><b>Nosotros lo compramos y lo configuramos</b> por ti, con certificado de seguridad incluido.</div></li>
+      </ul>
+      <div class="dom-price"><div class="big">$85.000</div><small>por año · dominio personalizado<br>Se agrega a cualquier plan</small></div>
+    </div>
+    <div class="browser rv" aria-hidden="true">
+      <div class="top"><i></i><i></i><i></i><div class="addr"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z"/></svg><span id="typed"></span><span class="caret"></span></div></div>
+      <div class="body">
+        <div class="dline gen"><span class="d"></span><code>calzadohamsa.vercel.app</code><span class="b">Genérico · Gratis</span></div>
+        <div class="dline pro"><span class="d"></span><code>calzadohamsa.com</code><span class="b">Personalizado</span></div>
+        <div class="dline pro"><span class="d"></span><code>biomarketing.com</code><span class="b">Personalizado</span></div>
+        <div class="dline pro"><span class="d"></span><code>drogueriasanjose.co</code><span class="b">Personalizado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADMIN ================= -->
+<section id="admin">
+  <div class="wrap admin">
+    <div class="dash rv" aria-hidden="true">
+      <div class="dside"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="dmain">
+        <div class="dash-top"><b>Hola, Hamsa 👋</b><span>Hoy</span></div>
+        <div class="kpis">
+          <div class="kpi k1"><small>Ventas hoy</small><b>$1.2M</b> <i>▲ 24%</i></div>
+          <div class="kpi k2"><small>Pedidos</small><b>18</b> <i>▲ 6</i></div>
+          <div class="kpi k3"><small>Por enviar</small><b>5</b></div>
+        </div>
+        <div class="chart"><span style="height:35%"></span><span style="height:48%;animation-delay:.1s"></span><span style="height:42%;animation-delay:.2s"></span><span style="height:60%;animation-delay:.3s"></span><span style="height:55%;animation-delay:.4s"></span><span style="height:72%;animation-delay:.5s"></span><span style="height:68%;animation-delay:.6s"></span><span style="height:88%;animation-delay:.7s"></span><span style="height:100%;animation-delay:.8s"></span></div>
+        <div class="otable">
+          <div class="orow"><span class="av" style="background:var(--fuchsia)">LM</span><div>Laura Martínez<small>Contra entrega · $189.900</small></div><span class="gd">Guía #4821</span><span class="st nw">Nuevo</span></div>
+          <div class="orow"><span class="av" style="background:var(--blue)">AP</span><div>Andrés Pérez<small>Tarjeta · $249.000</small></div><span class="gd">Guía #4820</span><span class="st go">En camino</span></div>
+          <div class="orow"><span class="av" style="background:var(--orange)">CR</span><div>Camila Rojas<small>PSE · $159.900</small></div><span class="gd">Guía #4819</span><span class="st ok">Entregado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="eyebrow">Módulo administrativo</div>
+      <h2>Sistematiza tu negocio <span class="it fx">sin complicarte</span></h2>
+      <p class="lead">Te entregamos un panel sencillo para que controles todo desde tu celular o computador.</p>
+      <ul class="adm-list">
+        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bag"/></svg></span><div><b>Gestión de pedidos</b><p>Ve cada pedido, su estado y los datos del cliente en tiempo real.</p></div></li>
+        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-truck"/></svg></span><div><b>Guías y seguimiento</b><p>Registra las guías de envío y mantén informado a tu cliente.</p></div></li>
+        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-up"/></svg></span><div><b>Sube productos en minutos</b><p>Te explicamos paso a paso: foto, nombre, precio y listo. Es muy sencillo y rápido.</p></div></li>
+      </ul>
+      <div class="load-box">
+        <div><b>¿No tienes tiempo?</b> Nosotros cargamos tus productos por solo <b>$5.000 por producto</b> (opcional).</div>
+        <div class="load-calc"><label for="nprod">Productos:</label><input type="number" id="nprod" min="1" max="999" value="30" inputmode="numeric"><span>=</span><output id="nprod-t">$150.000</output></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Para todo tipo de negocio</div>
+      <h2>Diseños que <span class="it fx">enamoran</span> y venden</h2>
+      <p class="lead">Cada tienda se diseña según tu sector, tu público y tu marca.</p>
+    </div>
+    <div class="gal">
+      <figure class="tall rv"><img src="assets/tienda-laptop.webp" alt="Cliente comprando ropa desde el celular" loading="lazy" width="736" height="1104"><figcaption><b>Moda y boutiques</b><small>Catálogos con tallas y colores</small></figcaption></figure>
+      <div class="quote rv"><p>“Tus clientes ya compran desde el celular. <span class="it">¿Tu negocio está ahí?</span>”</p><small>— Bio Marketing</small></div>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=700&q=70&auto=format&fit=crop" alt="Perfumes" loading="lazy"><figcaption><b>Belleza</b><small>Cosméticos y perfumería</small></figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=70&auto=format&fit=crop" alt="Pago con tarjeta en un comercio" loading="lazy"><figcaption><b>Comercios</b><small>Vende en tu local y en internet</small></figcaption></figure>
+      <div class="yel rv"><b>24/7</b><span>Tu tienda vende mientras duermes, sin horario y sin pausas.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Así de fácil</div>
+      <h2>Tu tienda lista en <span class="mark it">4 pasos</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="num">1</div><h3>Eliges tu plan</h3><p>Escríbenos por WhatsApp o paga en línea. Resolvemos todas tus dudas.</p><span class="pill">Hoy mismo</span></div>
+      <div class="step rv"><div class="num">2</div><h3>Pagas el 50%</h3><p>Con el anticipo iniciamos la sistematización y el diseño de tu tienda.</p><span class="pill">Tarjeta · PSE · Transferencia</span></div>
+      <div class="step rv"><div class="num">3</div><h3>La construimos</h3><p>Diseñamos con tu marca y te mostramos avances para ajustar.</p><span class="pill">2 a 5 días</span></div>
+      <div class="step rv"><div class="num">4</div><h3>¡A vender!</h3><p>Te la entregamos funcionando, te capacitamos y pagas el 50% restante.</p><span class="pill">Incluye capacitación</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUARANTEE ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="guar rv">
+      <div class="seal">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" letter-spacing="4" fill="#1B0B2B"><textPath href="#circ">CERO RIESGO ✦ CERO RIESGO ✦ CERO RIESGO ✦</textPath></text></svg>
+        <div><span>50%</span>al ver tu<br>tienda lista</div>
+      </div>
+      <div>
+        <h2>La ves funcionando <span class="it">antes de terminar de pagar</span></h2>
+        <p>Solo necesitas el 50% para que empecemos. La otra mitad la pagas cuando recibes tu tienda funcionando, con tus ajustes incluidos y la capacitación hecha. Así de seguros estamos de nuestro trabajo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2>Resolvemos <span class="it fx">tus dudas</span></h2>
+    </div>
+    <div class="faq">
+      <details class="qa rv"><summary>¿Tengo que pagar mensualidad?</summary><div>No. La creación de tu tienda es un pago único. A diferencia de Shopify, no cobramos mensualidad en dólares ni comisión por tus ventas. Si eliges dominio personalizado, ese tiene un costo de $85.000 al año.</div></details>
+      <details class="qa rv"><summary>¿Cómo funciona el pago?</summary><div>Pagas el 50% para iniciar la elaboración de tu tienda o página web y el 50% restante cuando te la entregamos funcionando. Puedes pagar con tarjeta de crédito, débito o PSE desde esta página, o coordinar por WhatsApp.</div></details>
+      <details class="qa rv"><summary>¿En cuánto tiempo me entregan la tienda?</summary><div>Entre 2 y 5 días hábiles, según el plan y las características de tu página. El tiempo empieza a contar cuando recibimos el anticipo y la información de tu negocio (logo, colores, productos).</div></details>
+      <details class="qa rv"><summary>¿Puedo recibir pagos con tarjeta en mi tienda?</summary><div>Sí, desde el plan Crece. Integramos pasarelas como Wompi, ePayco, Mercado Pago, PayU o la que prefieras, para recibir tarjetas de crédito y débito colombianas e internacionales, PSE y billeteras digitales. Todos los planes incluyen pago contra entrega.</div></details>
+      <details class="qa rv"><summary>¿Qué es el dominio genérico y el personalizado?</summary><div>El genérico viene incluido y es una dirección como <em>tutienda.vercel.app</em>. El personalizado lleva el nombre exacto de tu negocio, como <em>calzadohamsa.com</em> o <em>biomarketing.com</em>; cuesta $85.000 al año y nosotros lo configuramos.</div></details>
+      <details class="qa rv"><summary>¿Quién sube los productos?</summary><div>Tú mismo: te enseñamos y es muy sencillo y rápido. Si prefieres, nosotros los cargamos por $5.000 por producto (opcional).</div></details>
+      <details class="qa rv"><summary>¿Sirve para servicios y no solo productos?</summary><div>Claro. Creamos páginas web profesionales para consultorios, laboratorios, restaurantes, profesionales independientes y empresas de servicios, con agendamiento o contacto directo por WhatsApp.</div></details>
+      <details class="qa rv"><summary>¿Puedo cambiar de plan más adelante?</summary><div>Sí. Puedes empezar con el plan Emprende y luego mejorar tu tienda pagando solo la diferencia de las nuevas funciones.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section style="padding-top:0;padding-bottom:170px">
+  <div class="wrap">
+    <div class="final rv">
+      <div>
+        <h2>Mientras lo piensas, tu competencia <span class="it">ya vende online</span></h2>
+        <p>Empieza hoy con solo $99.000 de anticipo y en pocos días tendrás tu tienda profesional recibiendo pedidos.</p>
+        <div class="hero-ctas">
+          <a href="#planes" class="btn btn-main"><span>Ver planes y precios</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Escribir por WhatsApp</span></a>
+        </div>
+      </div>
+      <div class="iphone" aria-hidden="true">
+        <div class="iscreen"><div class="island"></div><div class="sbar"><span>9:41</span><i></i></div>
+          <div class="co" style="text-align:center;padding-top:14%">
+            <div class="ok-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><use href="#i-check"/></svg></div>
+            <h4 style="margin:0 0 .4em">¡Pedido confirmado!</h4>
+            <p style="color:var(--ink3);margin-bottom:1.4em;font-size:1em">Pedido #1048 · Laura M.</p>
+            <div class="co-it" style="text-align:left"><div class="ph"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=120&q=60&auto=format&fit=crop" alt=""></div><div><b>Tenis Runner</b><span>$189.900</span></div></div>
+            <div class="co-op on" style="margin-top:1em"><i></i>Contra entrega</div>
+            <div class="co-btn" style="margin-top:1.4em">Seguir mi pedido</div>
+          </div>
+          <div class="home-ind"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#" class="brand"><img src="assets/logo.png" alt="" width="36" height="36"><div>Bio Marketing<small>Tiendas virtuales y páginas web</small></div></a>
+    <div>© <span id="yr"></span> Bio Marketing · Colombia · <a href="mailto:biomarketing.salud@gmail.com">biomarketing.salud@gmail.com</a> · <a class="wa" data-msg="general" href="#" target="_blank" rel="noopener">WhatsApp 350 545 7420</a></div>
+  </div>
+</footer>
+
+<a class="fab wa" data-msg="general" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><span class="bub" id="bub">¿Dudas? Escríbenos</span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
+<div class="mbar" id="mbar">
+  <a href="#planes" class="btn btn-main"><span>Ver planes</span></a>
+  <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+</div>
+<div class="toast" id="toast"></div>
+<div class="loader" id="loader"><div><div class="sp"></div><b>Abriendo pago seguro…</b><p style="color:var(--ink3);font-size:.85rem">ePayco · SSL 256 bits</p></div></div>
+
+<!-- SVG icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.32l-.35-.2-3.57.93.95-3.48-.22-.36a9.42 9.42 0 0 1-1.45-5.03c0-5.2 4.24-9.44 9.46-9.44 2.52 0 4.9.99 6.68 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45zm8.04-17.5A11.3 11.3 0 0 0 12.04.67C5.77.67.67 5.77.67 12.04c0 2 .52 3.96 1.52 5.68L.57 23.33l5.74-1.5a11.33 11.33 0 0 0 5.73 1.46h.01c6.26 0 11.36-5.1 11.37-11.37 0-3.04-1.18-5.89-3.34-8.04z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" stroke-linecap="round"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-linecap="round"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 10h4l4 4v2h-8" stroke-linejoin="round"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4" stroke-linecap="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2" stroke-linecap="round"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+  <symbol id="i-wand" viewBox="0 0 24 24"><path d="M15 4V2M15 10V8M11 6h2M17 6h2M4 20L14 10" stroke-linecap="round"/><path d="M19 13l1 2 2 1-2 1-1 2-1-2-2-1 2-1z" stroke-linejoin="round"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<script>
+(function(){
+  /* ===== CONFIG ===== */
+  var WA = '573505457420';
+  var DOMINIO = 85000;
+  var EPAYCO = { key:'347e56166b7cbd26c7257d8689033fba', customer:'1595409', test:false };
+  var fmt = function(n){ return '$' + Math.round(n).toLocaleString('es-CO'); };
+
+  var MSG = {
+    general: 'Hola Bio Marketing 👋 Quiero información sobre la creación de mi tienda virtual / página web profesional. ¿Me pueden asesorar?',
+    'Emprende': 'Hola Bio Marketing 🚀 Me interesa el *Plan Emprende* ($198.000) para crear mi tienda virtual. Quiero empezar con el 50% de anticipo. ¿Qué datos necesitan?',
+    'Crece': 'Hola Bio Marketing 🔥 Me interesa el *Plan Crece* ($490.000) con pasarela de pagos para recibir tarjetas y PSE. ¿Cómo iniciamos?',
+    'Pro Empresarial': 'Hola Bio Marketing 👑 Me interesa el *Plan Pro Empresarial* ($890.000), tienda 100% a la medida y automatizada. Quiero agendar una asesoría.'
+  };
+  function waLink(text){ return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
+  document.querySelectorAll('a.wa').forEach(function(a){
+    var key = a.getAttribute('data-msg') || 'general';
+    a.href = waLink(MSG[key] || MSG.general);
+    a.addEventListener('click', function(e){
+      var card = a.closest('.plan');
+      if(card && card.querySelector('.dom-chk').checked){
+        e.preventDefault();
+        window.open(waLink(MSG[key] + ' También quiero *dominio personalizado* ($85.000/año).'), '_blank', 'noopener');
+      }
+    });
+  });
+
+  /* ===== Image fallback ===== */
+  document.querySelectorAll('img').forEach(function(img){
+    function fail(){ img.parentElement.classList.add('img-fb'); }
+    if(img.complete && img.naturalWidth === 0 && img.src) fail();
+    img.addEventListener('error', fail);
+  });
+
+  /* ===== Nav / sticky bars ===== */
+  var nav = document.getElementById('nav'), mbar = document.getElementById('mbar');
+  function onScroll(){ var y = window.scrollY; nav.classList.toggle('scrolled', y > 20); mbar.classList.toggle('show', y > 600); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  setTimeout(function(){ var b = document.getElementById('bub'); b.classList.add('show'); setTimeout(function(){ b.classList.remove('show'); }, 6000); }, 4000);
+
+  /* ===== Bands duplicate ===== */
+  ['t1','t2'].forEach(function(id){ var t = document.getElementById(id); t.innerHTML += t.innerHTML; });
+
+  /* ===== Reveal ===== */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el, i){ el.style.transitionDelay = ((i % 3) * 80) + 'ms'; io.observe(el); });
+  } else { document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); }); }
+
+  /* ===== Countdown to Sunday 23:59 ===== */
+  function endOfWeek(){ var d = new Date(); d.setDate(d.getDate() + (7 - d.getDay()) % 7); d.setHours(23,59,59,999); return d; }
+  var cdEl = document.getElementById('cd'), tb = document.getElementById('tb-cd');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var ms = Math.max(0, endOfWeek() - new Date());
+    var d = Math.floor(ms/864e5), h = Math.floor(ms/36e5)%24, m = Math.floor(ms/6e4)%60, s = Math.floor(ms/1e3)%60;
+    cdEl.innerHTML = '<span>'+d+'d</span><span>'+pad(h)+'h</span><span>'+pad(m)+'m</span><span>'+pad(s)+'s</span>';
+    tb.textContent = (d ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ===== Hero notification rotation ===== */
+  var notes = ['Tenis Runner · $189.900','Reloj Classic · $249.000','Audífonos Pro · $159.900','Gafas Sun · $89.900'], ni = 0, f1t = document.getElementById('f1t');
+  setInterval(function(){ ni = (ni + 1) % notes.length; f1t.textContent = notes[ni]; }, 3500);
+
+  /* ===== Savings calculator ===== */
+  var yrs = document.getElementById('yrs');
+  function calc(){
+    var y = +yrs.value, shop = (39 + 20) * 4000 * 12 * y, bio = 198000;
+    document.getElementById('yrs-l').textContent = y + (y > 1 ? ' años' : ' año');
+    document.getElementById('c-shop').textContent = fmt(shop);
+    document.getElementById('c-bio').textContent = fmt(bio);
+    document.getElementById('c-save').textContent = fmt(shop - bio);
+  }
+  yrs.addEventListener('input', calc); calc();
+
+  /* ===== Product load calculator ===== */
+  var np = document.getElementById('nprod');
+  function lc(){ var n = Math.max(0, parseInt(np.value, 10) || 0); document.getElementById('nprod-t').textContent = fmt(n * 5000); }
+  np.addEventListener('input', lc); lc();
+
+  /* ===== Plans: payment amount ===== */
+  function planState(card){
+    var price = +card.dataset.price, full = card.querySelector('.paymode .on').dataset.mode === 'full', dom = card.querySelector('.dom-chk').checked;
+    return { plan: card.dataset.plan, full: full, dom: dom, amount: (full ? price : price / 2) + (dom ? DOMINIO : 0) };
+  }
+  function refresh(card){ card.querySelector('.pay-now').textContent = fmt(planState(card).amount); }
+  document.querySelectorAll('.plan').forEach(function(card){
+    card.querySelectorAll('.paymode button').forEach(function(b){
+      b.addEventListener('click', function(){ card.querySelectorAll('.paymode button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); refresh(card); });
+    });
+    card.querySelector('.dom-chk').addEventListener('change', function(){ refresh(card); });
+    card.querySelector('.pay').addEventListener('click', function(){ pay(planState(card)); });
+    refresh(card);
+  });
+
+  /* ===== ePayco ===== */
+  var toastEl = document.getElementById('toast'), loader = document.getElementById('loader');
+  function toast(t){ toastEl.textContent = t; toastEl.classList.add('show'); setTimeout(function(){ toastEl.classList.remove('show'); }, 3800); }
+  function pay(s){
+    var desc = 'Tienda virtual Plan ' + s.plan + ' - ' + (s.full ? 'Pago total' : 'Anticipo 50%') + (s.dom ? ' + Dominio 1 año' : '');
+    var back = new URL('pago-ok.html', location.href).href;
+    loader.classList.add('show');
+    var tries = 0, injected = false;
+    (function wait(){
+      if(window.ePayco && ePayco.checkout){
+        loader.classList.remove('show');
+        try{
+          var handler = ePayco.checkout.configure({ key: EPAYCO.key, test: EPAYCO.test, p_cust_id_cliente: EPAYCO.customer });
+          handler.open({
+            name: 'Bio Marketing', description: desc, invoice: 'BMT-' + Date.now(),
+            currency: 'cop', amount: String(s.amount), tax_base: '0', tax: '0',
+            country: 'co', lang: 'es', external: 'false',
+            extra1: s.plan, extra2: s.full ? 'total' : 'anticipo', extra3: s.dom ? 'dominio' : 'sin-dominio',
+            response: back, confirmation: back
+          });
+        }catch(e){ fallback(s); }
+        return;
+      }
+      if(++tries > 40 && !injected){
+        injected = true;
+        var sc = document.createElement('script'); sc.src = 'https://checkout.epayco.co/checkout.js?v=' + Date.now();
+        sc.onload = wait; sc.onerror = function(){ loader.classList.remove('show'); fallback(s); };
+        document.head.appendChild(sc);
+        return;
+      }
+      if(!injected) setTimeout(wait, 200);
+    })();
+  }
+  function fallback(s){
+    loader.classList.remove('show');
+    toast('No pudimos abrir el pago en línea. Te llevamos a WhatsApp para enviarte el link de pago.');
+    setTimeout(function(){ window.open(waLink('Hola Bio Marketing, quiero pagar el Plan ' + s.plan + ' (' + fmt(s.amount) + ') con tarjeta o PSE. ¿Me envían el link de pago?'), '_blank', 'noopener'); }, 1200);
+  }
+
+  /* ===== Domain typing ===== */
+  var doms = [['calzadohamsa','.com'],['biomarketing','.com'],['tutienda','.co'],['drogueriasanjose','.com.co']], di = 0, typed = document.getElementById('typed');
+  function typeDom(){
+    var d = doms[di], full = d[0] + d[1], i = 0;
+    (function step(){
+      i++;
+      var shown = full.slice(0, i);
+      typed.textContent = shown.slice(0, d[0].length);
+      if(shown.length > d[0].length){ var em = document.createElement('em'); em.textContent = shown.slice(d[0].length); typed.appendChild(em); }
+      if(i < full.length) setTimeout(step, 85);
+      else setTimeout(function(){ di = (di + 1) % doms.length; typeDom(); }, 2200);
+    })();
+  }
+  typeDom();
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

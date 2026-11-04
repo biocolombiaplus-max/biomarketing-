@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estado del pago | Bio Marketing</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 15% 0%,#FFD1E8,transparent 45%),radial-gradient(circle at 95% 100%,#FFF0B3,transparent 45%),#FFF7FB;color:#1B0B2B;font-family:'Plus Jakarta Sans',system-ui,sans-serif;text-align:center}
+.card{max-width:520px;width:100%;background:#fff;border:1px solid #F2DDEA;border-radius:28px;padding:40px 28px;box-shadow:0 30px 70px -24px rgba(200,0,122,.28)}
+.ic{background:#FFE1F0;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;font-size:2.8rem}
+.ok .ic{background:#12B85B;box-shadow:0 0 0 12px #DCFCE7}
+.pend .ic{background:#FFD233;box-shadow:0 0 0 12px #FFF3C4}
+.bad .ic{background:#FF1F8F;color:#fff;box-shadow:0 0 0 12px #FFE1F0}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-size:2rem;line-height:1.1;margin-bottom:12px}
+p{color:#56466A;margin-bottom:22px}
+.det{background:#FFF7FB;border-radius:16px;padding:14px 18px;text-align:left;font-size:.9rem;margin-bottom:24px;display:grid;gap:6px}
+.det div{display:flex;justify-content:space-between;gap:12px}
+.det span{color:#9887A9}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;border-radius:16px;font-weight:800;text-decoration:none;color:#fff;margin-bottom:10px}
+.wa{background:linear-gradient(135deg,#25D366,#128C7E);box-shadow:0 10px 30px -8px rgba(37,211,102,.7)}
+.gh{background:#fff;border:2px solid #1B0B2B;color:#1B0B2B}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="ic" id="ic">⏳</div>
+  <h1 id="tt">Verificando tu pago…</h1>
+  <p id="sub">Un momento por favor.</p>
+  <div class="det" id="det" hidden></div>
+  <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">Avisar por WhatsApp</a>
+  <a class="btn gh" href="./">Volver a la página</a>
+</div>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  function p(k){ return q.get('x_' + k) || q.get(k) || ''; }
+  var ref = p('ref_payco'), state = (p('transaction_state') || p('respuesta')).toLowerCase(), code = p('cod_response'),
+      amount = p('amount'), desc = p('description'), plan = p('extra1');
+  var card = document.getElementById('card'), ic = document.getElementById('ic'), tt = document.getElementById('tt'), sub = document.getElementById('sub');
+  var status;
+  if(!ref && !state && !code){ status = 'none'; }
+  else if(code === '1' || state.indexOf('acept') === 0) status = 'ok';
+  else if(code === '3' || state.indexOf('pend') === 0) status = 'pend';
+  else status = 'bad';
+
+  function render(){
+    var msg;
+    if(status === 'ok'){
+      card.className = 'card ok'; ic.textContent = '🎉'; tt.textContent = '¡Pago aprobado!';
+      sub.textContent = 'Gracias por confiar en Bio Marketing. Escríbenos por WhatsApp para enviarnos tu logo, colores y productos y empezar ya con tu tienda.';
+      msg = '✅ Hola Bio Marketing, acabo de pagar mi tienda virtual.';
+    } else if(status === 'pend'){
+      card.className = 'card pend'; ic.textContent = '⏳'; tt.textContent = 'Pago pendiente';
+      sub.textContent = 'Tu banco aún está procesando el pago. Te confirmaremos apenas se apruebe.';
+      msg = '⏳ Hola Bio Marketing, hice un pago de mi tienda virtual y aparece pendiente.';
+    } else if(status === 'bad'){
+      card.className = 'card bad'; ic.textContent = '✖'; tt.textContent = 'El pago no se completó';
+      sub.textContent = 'No te preocupes, no se realizó ningún cobro. Puedes intentarlo de nuevo o escribirnos y te ayudamos.';
+      msg = 'Hola Bio Marketing, intenté pagar mi tienda virtual pero el pago no se completó. ¿Me ayudan?';
+    } else {
+      ic.textContent = '💳'; tt.textContent = 'Estado de tu pago';
+      sub.textContent = 'Esta página se activa al completar el pago con ePayco. Si ya pagaste, avísanos por WhatsApp.';
+      msg = 'Hola Bio Marketing, ya realicé el pago de mi tienda virtual.';
+    }
+    var rows = [];
+    if(plan) rows.push(['Plan', plan]);
+    if(desc) rows.push(['Concepto', desc]);
+    if(amount){ var n = parseFloat(amount); rows.push(['Valor', isNaN(n) ? amount : '$' + n.toLocaleString('es-CO')]); }
+    if(ref) rows.push(['Ref. ePayco', ref]);
+    if(rows.length){
+      var det = document.getElementById('det'); det.hidden = false;
+      det.innerHTML = rows.map(function(r){ return '<div><span>' + r[0] + '</span><b></b></div>'; }).join('');
+      det.querySelectorAll('b').forEach(function(b, i){ b.textContent = rows[i][1]; });
+      msg += '\n\n' + rows.map(function(r){ return r[0] + ': ' + r[1]; }).join('\n');
+    }
+    document.getElementById('wa').href = 'https://wa.me/573505457420?text=' + encodeURIComponent(msg);
+  }
+
+  // ePayco a veces solo envía ?ref_payco=… : consultamos el estado de la transacción
+  if(ref && !state && !code){
+    fetch('https://secure.epayco.co/validation/v1/reference/' + encodeURIComponent(ref))
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var d = j && j.data || {};
+        state = String(d.x_transaction_state || '').toLowerCase(); code = String(d.x_cod_response || '');
+        amount = amount || d.x_amount; desc = desc || d.x_description; plan = plan || d.x_extra1;
+        status = (code === '1' || state.indexOf('acept') === 0) ? 'ok' : (code === '3' || state.indexOf('pend') === 0) ? 'pend' : 'bad';
+        render();
+      })
+      .catch(function(){ status = 'pend'; render(); });
+  } else { render(); }
+})();
+</script>
+</body>
+</html>
