@@ -93,7 +93,21 @@ window.META_PIXEL_ID = '1465788748818366';
       det.querySelectorAll('b').forEach(function(b, i){ b.textContent = rows[i][1]; });
       msg += '\n\n' + rows.map(function(r){ return r[0] + ': ' + r[1]; }).join('\n');
     }
-    document.getElementById('wa').href = 'https://wa.me/573505457420?text=' + encodeURIComponent(msg);
+      // Panel: marcar el cliente potencial como pagado (o rechazado) y la visita como "pagó"
+    if(status !== 'none' && /^https?:$/.test(location.protocol)){
+      try{
+        var L = JSON.parse(localStorage.getItem('bm_lead_pago') || 'null');
+        var key2 = 'bm_lead_done_' + (ref || amount);
+        if(L && !localStorage.getItem(key2) && (status === 'ok' || status === 'bad')){
+          L.status = status === 'ok' ? 'pagado' : 'pago_rechazado'; L.ref = ref; if(amount) L.amount = Math.round(parseFloat(amount)) || L.amount;
+          fetch('/api/public/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(L), keepalive: true }).catch(function(){});
+          localStorage.setItem(key2, '1');
+        }
+        var S = JSON.parse(sessionStorage.getItem('bm_s') || 'null');
+        if(S && status === 'ok'){ S.step = 6; sessionStorage.setItem('bm_s', JSON.stringify(S)); fetch('/api/public/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sid: S.sid, start: S.start, step: 6, src: S.src, cmp: S.cmp, dev: S.dev, plan: S.plan }), keepalive: true }).catch(function(){}); }
+      }catch(e){}
+    }
+  document.getElementById('wa').href = 'https://wa.me/573505457420?text=' + encodeURIComponent(msg);
   }
 
   // ePayco a veces solo envía ?ref_payco=… : consultamos el estado de la transacción

@@ -102,11 +102,12 @@ h2 + .lead{margin-top:16px}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.22rem;letter-spacing:-.03em}
 .brand img{width:40px;height:40px;border-radius:50%}
 .brand small{display:block;font-family:'Plus Jakarta Sans';font-size:.64rem;font-weight:700;color:var(--ink3);letter-spacing:.14em;text-transform:uppercase;line-height:1}
-.nav-links{display:flex;gap:30px;font-weight:600;font-size:.94rem;color:var(--ink2)}
+.nav-links{display:flex;gap:24px;font-weight:600;font-size:.94rem;color:var(--ink2)}
 .nav-links a{position:relative}
 .nav-links a::after{content:'';position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--fuchsia);transition:right .3s}
 .nav-links a:hover{color:var(--ink)}.nav-links a:hover::after{right:0}
-@media(max-width:960px){.nav-links{display:none}}
+@media(max-width:1260px){.nav-links{display:none}}
+.nav-links a{white-space:nowrap}.brand{white-space:nowrap}
 @media(max-width:520px){.nav .hide-sm{display:none}}
 
 /* ===== HERO ===== */
@@ -590,6 +591,106 @@ footer a:hover{color:var(--fuchsia)}
 .payfb p{color:var(--ink2);font-size:.95rem;margin-bottom:18px}
 .payfb .btn{width:100%;margin-bottom:10px}
 .payfb .x{font-weight:700;color:var(--ink3);padding:8px}
+[hidden]{display:none!important}
+/* ===== LOGIN BUTTON ===== */
+.nav-r{display:flex;align-items:center;gap:10px}
+.btn-login{position:relative;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px;border-radius:999px;font-weight:800;font-size:.9rem;color:var(--ink);background:#fff;isolation:isolate;transition:transform .25s,color .25s;white-space:nowrap}
+.btn-login::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:conic-gradient(from var(--a,0deg),#FF1F8F,#FFD233,#3451FF,#FF1F8F);z-index:-2;animation:spinA 4s linear infinite}
+.btn-login::after{content:'';position:absolute;inset:0;border-radius:inherit;background:#fff;z-index:-1;transition:background .25s}
+.btn-login:hover{transform:translateY(-2px);color:#fff}
+.btn-login:hover::after{background:var(--ink)}
+.btn-login svg{width:18px;height:18px}
+.btn-login .dot{width:8px;height:8px;border-radius:50%;background:var(--fuchsia);box-shadow:0 0 0 3px var(--pink)}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spinA{to{--a:360deg}}
+@media(max-width:620px){.btn-login{width:46px;padding:0;justify-content:center}.btn-login span,.btn-login .dot{display:none}.nav-r{gap:8px}}
+
+/* ===== NUESTROS CLIENTES ===== */
+.clients{padding:90px 0 100px;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.clients::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--line) 1.2px,transparent 1.2px);background-size:22px 22px;opacity:.7;-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);pointer-events:none}
+.clients .wrap{position:relative}
+.cl-rows{display:grid;gap:22px;position:relative}
+.cl-row{overflow:hidden;padding:14px 0 22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.cl-track{display:flex;gap:20px;width:max-content;animation:scrollX 40s linear infinite}
+.cl-row.rev .cl-track{animation-direction:reverse}
+.cl-row:hover .cl-track{animation-play-state:paused}
+.cl-card{width:236px;flex-shrink:0;border-radius:26px;background:#fff;box-shadow:0 1px 2px rgba(27,11,43,.05),0 18px 40px -22px rgba(27,11,43,.35),0 0 0 1px var(--line);overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;display:block}
+.cl-card:hover{transform:translateY(-8px) rotate(-1.2deg);box-shadow:0 30px 60px -24px rgba(255,31,143,.55),0 0 0 2px var(--fuchsia)}
+.cl-logo{height:120px;display:grid;place-items:center;padding:18px 26px;position:relative;overflow:hidden}
+.cl-logo img{max-height:72px;max-width:100%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cl-card:hover .cl-logo img{transform:scale(1.08)}
+.cl-logo.bg-white{background:linear-gradient(160deg,#fff,#FFF5FA)}.cl-logo.bg-dark{background:var(--ink)}.cl-logo.bg-pink{background:var(--pink)}.cl-logo.bg-yellow{background:var(--yellow)}
+.cl-cap{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-top:1px solid var(--line)}
+.cl-cap b{font-size:.86rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-cap small{display:block;font-size:.7rem;color:var(--ink3);font-weight:600}
+.cl-cap span{flex-shrink:0;font-size:.7rem;font-weight:800;padding:5px 10px;border-radius:99px;background:var(--bg);color:var(--magenta);transition:.3s}
+.cl-card:hover .cl-cap span{background:var(--fuchsia);color:#fff}
+.cl-foot{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px;font-weight:700;color:var(--ink2)}
+.cl-foot .pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);padding:9px 16px;border-radius:99px;font-size:.9rem}
+.cl-foot .pill b{font-family:var(--display);color:var(--fuchsia);font-size:1.15rem}
+.cl-foot a{color:var(--magenta);text-decoration:underline;text-underline-offset:3px}
+
+/* ===== RESEÑAS ===== */
+#resenas{overflow:hidden}
+.rv-sum{display:inline-flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px 22px;box-shadow:var(--sh);margin-top:22px}
+.rv-sum b{font-family:var(--display);font-size:2.6rem;line-height:1;letter-spacing:-.04em}
+.rv-sum .st{color:#FFB800;font-size:1.2rem;letter-spacing:2px}
+.rv-sum small{display:block;color:var(--ink3);font-weight:600;font-size:.84rem}
+.rv-wrap{position:relative}
+.rv-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:10px 4px 30px;scrollbar-width:none}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-card{flex:0 0 min(380px,86vw);scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:16px;position:relative;transition:transform .35s,box-shadow .35s}
+.rv-card:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.rv-card::before{content:'“';position:absolute;right:22px;top:2px;font-family:var(--serif);font-size:6rem;line-height:1;color:var(--pink)}
+.rv-card .st{color:#FFB800;font-size:1.1rem;letter-spacing:2px}
+.rv-card p{font-size:1.02rem;color:var(--ink);line-height:1.6;flex:1;position:relative}
+.rv-who{display:flex;align-items:center;gap:12px}
+.rv-av{width:50px;height:50px;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;flex-shrink:0;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--pink)}
+.rv-av img{width:100%;height:100%;object-fit:cover}
+.rv-who b{display:block;font-size:.98rem}
+.rv-who small{color:var(--ink3);font-size:.82rem;font-weight:600}
+.rv-who a{margin-left:auto;font-size:.74rem;font-weight:800;color:var(--magenta);background:var(--bg);padding:6px 11px;border-radius:99px;white-space:nowrap}
+.rv-card.hot{background:var(--fuchsia);border-color:var(--fuchsia);color:#fff}
+.rv-card.hot::before{color:rgba(255,255,255,.25)}
+.rv-card.hot p{color:#fff}.rv-card.hot .st{color:var(--yellow)}.rv-card.hot small{color:rgba(255,255,255,.8)}
+.rv-card.hot .rv-av{box-shadow:0 0 0 3px var(--fuchsia),0 0 0 5px rgba(255,255,255,.5)}
+.rv-card.hot .rv-who a{background:rgba(255,255,255,.2);color:#fff}
+.rv-card.ink{background:var(--ink);border-color:var(--ink);color:#fff}
+.rv-card.ink::before{color:rgba(255,255,255,.12)}.rv-card.ink p{color:#fff}.rv-card.ink small{color:rgba(255,255,255,.7)}
+.rv-card.ink .rv-av{box-shadow:0 0 0 3px var(--ink),0 0 0 5px var(--fuchsia)}
+.rv-card.ink .rv-who a{background:rgba(255,255,255,.12);color:#fff}
+.rv-nav{display:flex;justify-content:center;gap:10px;margin-top:6px}
+.rv-nav button{width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line2);display:grid;place-items:center;transition:.2s}
+.rv-nav button:hover{background:var(--ink);color:#fff;box-shadow:none}
+.rv-nav svg{width:20px;height:20px}
+
+/* ===== MODAL WHATSAPP ===== */
+.lm{position:fixed;inset:0;z-index:400;background:rgba(27,11,43,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s}
+.lm.show{opacity:1;pointer-events:auto}
+.lm-card{position:relative;width:100%;max-width:440px;background:#fff;border-radius:30px;padding:30px 26px 22px;box-shadow:0 40px 90px -20px rgba(27,11,43,.6);transform:translateY(24px) scale(.97);transition:transform .4s cubic-bezier(.2,.8,.2,1);max-height:calc(100vh - 32px);overflow:auto}
+.lm.show .lm-card{transform:none}
+.lm-card::before{content:'';position:absolute;left:0;right:0;top:0;height:7px;background:linear-gradient(90deg,var(--fuchsia),var(--yellow),var(--blue));border-radius:30px 30px 0 0}
+.lm-x{position:absolute;right:14px;top:16px;width:38px;height:38px;border-radius:50%;background:var(--bg);font-size:1.4rem;line-height:1;color:var(--ink2)}
+.lm-x:hover{background:var(--pink);color:var(--magenta)}
+.lm-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:var(--magenta);font-weight:800;font-size:.8rem;padding:6px 12px;border-radius:99px;margin-bottom:14px}
+.lm-card h3{font-size:1.8rem;margin-bottom:8px;padding-right:30px}
+.lm-card>p{color:var(--ink2);font-size:.95rem;margin-bottom:20px}
+.lm-f{display:block;margin-bottom:14px}
+.lm-f>span{display:block;font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:7px}
+.lm-in{width:100%;border:1.5px solid var(--line2);border-radius:14px;padding:14px 16px;font-size:1.02rem;font-family:inherit;color:var(--ink);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+.lm-in:focus{border-color:var(--fuchsia);box-shadow:0 0 0 4px rgba(255,31,143,.12)}
+.lm-tel{display:flex;border:1.5px solid var(--line2);border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.lm-tel:focus-within{border-color:var(--fuchsia);box-shadow:0 0 0 4px rgba(255,31,143,.12)}
+.lm-tel span{display:flex;align-items:center;gap:6px;padding:0 14px;background:var(--bg);font-weight:800;border-right:1.5px solid var(--line2);white-space:nowrap}
+.lm-tel input{border:0;box-shadow:none!important;border-radius:0}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.lm-err{color:#E5334B;font-weight:700;font-size:.86rem;min-height:20px;margin:-4px 0 8px}
+.lm-card .btn{width:100%}
+.lm-skip{display:block;margin:12px auto 0;font-size:.82rem;font-weight:700;color:var(--ink3);text-decoration:underline;text-underline-offset:3px}
+.lm-legal{font-size:.74rem;color:var(--ink3);text-align:center;margin-top:12px;line-height:1.45}
+.lm-perks{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 18px}
+.lm-perks span{font-size:.74rem;font-weight:700;background:var(--bg);border:1px solid var(--line);padding:5px 10px;border-radius:99px;color:var(--ink2)}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -609,12 +710,15 @@ footer a:hover{color:var(--fuchsia)}
     <a href="#" class="brand"><img src="assets/logo.png" alt="Bio Marketing" width="40" height="40"><div>Bio Marketing<small>Tiendas virtuales</small></div></a>
     <nav class="nav-links">
       <a href="#beneficios">Beneficios</a>
-      <a href="#comparar">vs Shopify</a>
       <a href="#planes">Planes</a>
-      <a href="#dominio">Dominio</a>
+      <a href="#clientes" id="navCl" hidden>Clientes</a>
+      <a href="#resenas" id="navRv" hidden>Reseñas</a>
       <a href="#faq">Preguntas</a>
     </nav>
-    <a class="btn btn-wa btn-sm wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Hablar<span class="hide-sm"> con un asesor</span></span></a>
+    <div class="nav-r">
+      <a href="admin.html" class="btn-login" title="Iniciar sesión"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" stroke-linecap="round"/></svg><span>Iniciar sesión</span><i class="dot"></i></a>
+      <a class="btn btn-wa btn-sm wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Hablar<span class="hide-sm"> con un asesor</span></span></a>
+    </div>
   </div>
 </header>
 
@@ -683,6 +787,19 @@ footer a:hover{color:var(--fuchsia)}
   <div class="band b1"><div class="track" id="t1"><span>Ropa y moda</span><span>Calzado</span><span>Cosméticos</span><span>Droguerías</span><span>Laboratorios</span><span>Restaurantes</span><span>Mascotas</span><span>Tecnología</span><span>Ferreterías</span><span>Joyería</span><span>Hogar</span><span>Profesionales de salud</span></div></div>
   <div class="band b2"><div class="track" id="t2"><span>Pago contra entrega</span><span>Tarjetas y PSE</span><span>Panel de pedidos</span><span>Guías de envío</span><span>Sin mensualidades</span><span>100% personalizada</span><span>Lista en 2 a 5 días</span></div></div>
 </div>
+
+<!-- ================= NUESTROS CLIENTES ================= -->
+<section class="clients" id="clientes" hidden>
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Nuestros clientes</div>
+      <h2>Negocios que ya venden con <span class="it fx">su propia tienda</span></h2>
+      <p class="lead">Toca cualquier logo y visita la página web que le diseñamos a cada cliente.</p>
+    </div>
+  </div>
+  <div class="cl-rows" id="clRows"></div>
+  <div class="wrap"><div class="cl-foot" id="clFoot"></div></div>
+</section>
 
 <!-- ================= PAIN ================= -->
 <section>
@@ -1070,6 +1187,21 @@ footer a:hover{color:var(--fuchsia)}
   </div>
 </section>
 
+<!-- ================= RESEÑAS ================= -->
+<section id="resenas" hidden style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Reseñas</div>
+      <h2>Lo que dicen <span class="it fx">nuestros clientes</span></h2>
+      <div class="rv-sum" id="rvSum"></div>
+    </div>
+    <div class="rv-wrap">
+      <div class="rv-track" id="rvTrack"></div>
+      <div class="rv-nav"><button type="button" id="rvPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="rvNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FAQ ================= -->
 <section id="faq" style="padding-top:20px">
   <div class="wrap">
@@ -1133,6 +1265,22 @@ footer a:hover{color:var(--fuchsia)}
   <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
 </div>
 <div class="toast" id="toast"></div>
+<div class="lm" id="lm" role="dialog" aria-modal="true" aria-labelledby="lmT">
+  <form class="lm-card" id="lmForm" novalidate>
+    <button type="button" class="lm-x" id="lmX" aria-label="Cerrar">×</button>
+    <div class="lm-badge" id="lmBadge" hidden></div>
+    <h3 id="lmT">Hablemos por WhatsApp</h3>
+    <p id="lmP">Déjanos tu nombre y tu WhatsApp para atenderte de inmediato.</p>
+    <div class="lm-perks"><span>⚡ Respuesta rápida</span><span>🎁 Asesoría gratis</span><span>🔒 Sin spam</span></div>
+    <label class="lm-f"><span>Tu nombre</span><input class="lm-in" id="lmName" autocomplete="name" placeholder="Ej: Diana Amaya" maxlength="60"></label>
+    <label class="lm-f"><span>Tu WhatsApp</span><div class="lm-tel"><span>🇨🇴 +57</span><input class="lm-in" id="lmPhone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="300 123 4567" maxlength="16"></div></label>
+    <input class="hp" id="lmHp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="lm-err" id="lmErr"></div>
+    <button class="btn btn-wa" id="lmGo" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span id="lmGoT">Continuar a WhatsApp</span></button>
+    <button type="button" class="lm-skip" id="lmSkip">Prefiero escribir directo sin dejar mis datos</button>
+    <p class="lm-legal">🔒 Usamos tus datos solo para contactarte sobre tu tienda virtual, según la Ley 1581 de 2012 de protección de datos.</p>
+  </form>
+</div>
 <div class="payfb" id="payfb" role="dialog" aria-modal="true"><div><h4>No se pudo abrir el pago</h4><p>Puede que tu navegador o un bloqueador de anuncios esté impidiendo cargar la pasarela de ePayco. Reintenta o te enviamos el link de pago por WhatsApp.</p><button type="button" class="btn btn-pay" id="payfb-retry"><span>Reintentar</span></button><a class="btn btn-wa" id="payfb-wa" href="#" target="_blank" rel="noopener"><span>Recibir link por WhatsApp</span></a><button type="button" class="x">Cerrar</button></div></div>
 <div class="loader" id="loader"><div><div class="sp"></div><b>Abriendo pago seguro…</b><p style="color:var(--ink3);font-size:.85rem">ePayco · SSL 256 bits</p></div></div>
 
@@ -1171,15 +1319,13 @@ footer a:hover{color:var(--fuchsia)}
     var key = a.getAttribute('data-msg') || 'general';
     a.href = waLink(MSG[key] || MSG.general);
     a.addEventListener('click', function(e){
-      var card = a.closest('.plan');
-      if(card) bmTrack('Lead', { content_name: 'Plan ' + key, value: +card.dataset.price, currency: 'COP' });
-      else bmTrack('Contact', { content_name: 'WhatsApp general' });
-      if(card && card.querySelector('.dom-chk').checked){
-        e.preventDefault();
-        window.open(waLink(MSG[key] + ' También quiero *dominio personalizado* ($85.000/año).'), '_blank', 'noopener');
-      }
+      e.preventDefault();
+      var card = a.closest('.plan'), msg = MSG[key] || MSG.general;
+      if(card && card.querySelector('.dom-chk').checked) msg += ' También quiero *dominio personalizado* ($85.000/año).';
+      openLead({ mode: 'wa', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, msg: msg });
     });
   });
+
 
   /* ===== Image fallback ===== */
   document.querySelectorAll('img').forEach(function(img){
@@ -1237,7 +1383,7 @@ footer a:hover{color:var(--fuchsia)}
 
   /* ===== Pixel: vio los planes ===== */
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ bmTrack('ViewContent', { content_name: 'Planes tiendas virtuales', content_type: 'product', currency: 'COP', value: 198000 }); o.disconnect(); } }); }, {threshold:.2}).observe(document.querySelector('.plans'));
+    new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ VS.step(2); bmTrack('ViewContent', { content_name: 'Planes tiendas virtuales', content_type: 'product', currency: 'COP', value: 198000 }); o.disconnect(); } }); }, {threshold:.2}).observe(document.querySelector('.plans'));
   }
 
   /* ===== Plans: payment amount ===== */
@@ -1251,7 +1397,7 @@ footer a:hover{color:var(--fuchsia)}
       b.addEventListener('click', function(){ card.querySelectorAll('.paymode button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); refresh(card); });
     });
     card.querySelector('.dom-chk').addEventListener('change', function(){ refresh(card); if(this.checked) bmTrack('AgregoDominio', { plan: card.dataset.plan, value: DOMINIO, currency: 'COP' }, true); });
-    card.querySelector('.pay').addEventListener('click', function(){ payBtn = this; pay(planState(card)); });
+    card.querySelector('.pay').addEventListener('click', function(){ payBtn = this; var st = planState(card); openLead({ mode: 'pay', plan: st.plan, amount: st.amount, onGo: function(){ pay(st); } }); });
     refresh(card);
   });
 
@@ -1353,6 +1499,135 @@ footer a:hover{color:var(--fuchsia)}
       new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ countUp(); o.disconnect(); } }); }, {threshold:.25}).observe(aw);
     } else countUp();
   })();
+
+  /* ===================== MEDICIÓN DE VISITAS (panel de estadísticas) ===================== */
+  var API_OK = /^https?:$/.test(location.protocol);
+  function rid(){ return (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).slice(0, 18); }
+  function post(url, body){ if(!API_OK) return; try{ fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), keepalive: true }).catch(function(){}); }catch(e){} }
+  var VS = (function(){
+    var s = null;
+    try{ s = JSON.parse(sessionStorage.getItem('bm_s') || 'null'); }catch(e){}
+    if(!s || Date.now() - (s.last || 0) > 30 * 60000){
+      var q = new URLSearchParams(location.search), us = (q.get('utm_source') || '').toLowerCase(), um = (q.get('utm_medium') || '').toLowerCase(), ref = '';
+      try{ ref = document.referrer ? new URL(document.referrer).hostname : ''; }catch(e){}
+      if(ref === location.hostname) ref = '';
+      var paid = /paid|cpc|ads|ppc|cpm/.test(um), src;
+      if(q.get('fbclid') && !/google/.test(us) || (/facebook|^fb$|instagram|^ig$|meta/.test(us) && paid)) src = 'Meta Ads';
+      else if(q.get('gclid') || (/google/.test(us) && paid)) src = 'Google Ads';
+      else if(/tiktok/.test(us + ref)) src = 'TikTok';
+      else if(/instagram/.test(us + ref)) src = 'Instagram';
+      else if(/facebook|^fb$/.test(us) || /facebook|fb\.me/.test(ref)) src = 'Facebook';
+      else if(/whatsapp|^wa$/.test(us) || /whatsapp|wa\.me/.test(ref)) src = 'WhatsApp';
+      else if(/youtube/.test(us + ref)) src = 'YouTube';
+      else if(/google/.test(us + ref)) src = 'Google';
+      else src = ref || us ? 'Otro' : 'Directo';
+      var w = Math.min(screen.width, innerWidth);
+      s = { sid: rid(), start: Date.now(), step: 0, src: src, cmp: q.get('utm_campaign') || '', dev: /iPad|Tablet/i.test(navigator.userAgent) || (w >= 600 && w < 1024 && 'ontouchstart' in window) ? 'tablet' : (w < 600 ? 'mobile' : 'desktop'), plan: '' };
+    }
+    function save(){ s.last = Date.now(); try{ sessionStorage.setItem('bm_s', JSON.stringify(s)); }catch(e){} }
+    function step(n, plan){
+      if(plan) s.plan = plan;
+      if(n <= s.step && !plan) return save();
+      s.step = Math.max(s.step, n); save();
+      post('/api/public/track', { sid: s.sid, start: s.start, step: s.step, src: s.src, cmp: s.cmp, dev: s.dev, plan: s.plan });
+    }
+    save();
+    return { step: step, get: function(){ return s; } };
+  })();
+  VS.step(1);
+
+  /* ===================== VENTANA "DÉJANOS TU WHATSAPP" ===================== */
+  var lm = document.getElementById('lm'), lmCur = null;
+  function contact(){ try{ return JSON.parse(localStorage.getItem('bm_contact') || 'null'); }catch(e){ return null; } }
+  function cleanPhone(p){ var d = String(p || '').replace(/\D/g, ''); if(d.length === 12 && d.slice(0, 2) === '57') d = d.slice(2); return d; }
+  function sendLead(c, o){
+    var s = VS.get(), lead = { id: rid(), name: c.name, phone: '57' + c.phone, plan: o.plan || '', amount: o.amount || 0, kind: o.mode === 'pay' ? 'pago' : 'whatsapp', status: o.mode === 'pay' ? 'pago_iniciado' : 'whatsapp', src: s.src, cmp: s.cmp, sid: s.sid, created: Date.now(), website: document.getElementById('lmHp').value };
+    post('/api/public/lead', lead);
+    if(o.mode === 'pay'){ try{ localStorage.setItem('bm_lead_pago', JSON.stringify(lead)); }catch(e){} }
+    VS.step(o.mode === 'pay' ? 5 : 4, o.plan);
+    bmTrack(o.mode === 'pay' ? 'Lead' : (o.plan ? 'Lead' : 'Contact'), { content_name: o.plan ? 'Plan ' + o.plan : 'WhatsApp general', value: o.amount || 0, currency: 'COP' });
+  }
+  function go(c, o){
+    sendLead(c, o);
+    if(o.mode === 'pay') o.onGo();
+    else window.open(waLink(o.msg.replace('Hola Bio Marketing', 'Hola Bio Marketing, soy ' + c.name)), '_blank', 'noopener');
+  }
+  function openLead(o){
+    VS.step(3, o.plan);
+    var c = contact();
+    if(c && c.name && c.phone){ go(c, o); return; } // ya nos dejó sus datos antes
+    lmCur = o;
+    var b = document.getElementById('lmBadge');
+    b.hidden = !o.plan; b.textContent = o.plan ? 'Plan ' + o.plan + (o.amount ? ' · ' + fmt(o.amount) + (o.mode === 'pay' ? ' hoy' : '') : '') : '';
+    document.getElementById('lmT').textContent = o.mode === 'pay' ? 'Un paso antes de pagar' : (o.plan ? '¡Excelente elección! 🎉' : 'Hablemos por WhatsApp');
+    document.getElementById('lmP').textContent = o.mode === 'pay' ? 'Déjanos tu nombre y WhatsApp para enviarte la confirmación del pago y empezar tu tienda de inmediato.' : (o.plan ? 'Déjanos tu nombre y WhatsApp para atenderte de inmediato y separar tu cupo de esta semana.' : 'Déjanos tu nombre y tu WhatsApp para atenderte de inmediato.');
+    document.getElementById('lmGoT').textContent = o.mode === 'pay' ? 'Continuar al pago seguro' : 'Continuar a WhatsApp';
+    document.getElementById('lmGo').className = 'btn ' + (o.mode === 'pay' ? 'btn-pay' : 'btn-wa');
+    document.getElementById('lmSkip').hidden = o.mode === 'pay' || !!o.plan;
+    document.getElementById('lmErr').textContent = '';
+    lm.classList.add('show');
+    if(!matchMedia('(pointer:coarse)').matches) setTimeout(function(){ document.getElementById('lmName').focus(); }, 80);
+  }
+  function closeLead(){ lm.classList.remove('show'); lmCur = null; }
+  document.getElementById('lmX').onclick = closeLead;
+  lm.addEventListener('click', function(e){ if(e.target === lm) closeLead(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && lm.classList.contains('show')) closeLead(); });
+  document.getElementById('lmPhone').addEventListener('input', function(){ var d = this.value.replace(/\D/g, '').slice(0, 10); this.value = d.replace(/^(\d{3})(\d{0,3})(\d{0,4}).*/, function(m, a, b2, c2){ return [a, b2, c2].filter(Boolean).join(' '); }); });
+  document.getElementById('lmForm').addEventListener('submit', function(e){
+    e.preventDefault(); if(!lmCur) return;
+    var name = document.getElementById('lmName').value.trim(), phone = cleanPhone(document.getElementById('lmPhone').value), err = document.getElementById('lmErr');
+    if(name.length < 2){ err.textContent = 'Escribe tu nombre.'; return; }
+    if(!/^3\d{9}$/.test(phone)){ err.textContent = 'Escribe tu número de celular de 10 dígitos (ej: 300 123 4567).'; return; }
+    var c = { name: name, phone: phone };
+    try{ localStorage.setItem('bm_contact', JSON.stringify(c)); }catch(e){}
+    var o = lmCur; closeLead(); go(c, o);
+  });
+  document.getElementById('lmSkip').onclick = function(){ var o = lmCur; closeLead(); bmTrack('Contact', { content_name: 'WhatsApp sin datos' }); window.open(waLink(o.msg), '_blank', 'noopener'); };
+
+  /* ===================== NUESTROS CLIENTES Y RESEÑAS (desde el panel) ===================== */
+  var escH = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+  var safeU = function(u){ u = String(u || ''); if(u && !/^https?:\/\//i.test(u)) u = 'https://' + u; return /^https?:\/\/[^\s"'<>]+$/i.test(u) ? u : ''; };
+  function renderClients(list, cfg){
+    if(!list.length) return;
+    var sec = document.getElementById('clientes'), rows = document.getElementById('clRows');
+    var card = function(c, hidden){
+      var url = safeU(c.url), host = url ? url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '') : '';
+      var inner = '<div class="cl-logo bg-' + escH(c.bg || 'white') + '"><img src="' + escH(c.logo) + '" alt="' + escH(c.name) + '" loading="lazy" decoding="async" draggable="false"></div><div class="cl-cap"><div style="min-width:0"><b>' + escH(c.name) + '</b><small>' + escH(c.category || host) + '</small></div>' + (url ? '<span>Ver web ↗</span>' : '') + '</div>';
+      return url ? '<a class="cl-card" href="' + escH(url) + '" target="_blank" rel="noopener"' + (hidden ? ' tabindex="-1" aria-hidden="true"' : '') + '>' + inner + '</a>' : '<div class="cl-card"' + (hidden ? ' aria-hidden="true"' : '') + '>' + inner + '</div>';
+    };
+    var secPer = { lento: 9, normal: 6, rapido: 3.6 }[cfg.speed] || 6;
+    var groups = list.length >= 8 ? [list.filter(function(_, i){ return i % 2 === 0; }), list.filter(function(_, i){ return i % 2 === 1; })] : [list];
+    rows.innerHTML = groups.map(function(g, gi){
+      var reps = Math.max(1, Math.ceil(9 / g.length)), half = function(h){ var o = ''; for(var r = 0; r < reps; r++) o += g.map(function(c){ return card(c, h || r > 0); }).join(''); return o; };
+      return '<div class="cl-row' + (gi ? ' rev' : '') + '"><div class="cl-track" style="animation-duration:' + (g.length * reps * secPer) + 's">' + half(false) + half(true) + '</div></div>';
+    }).join('');
+    document.getElementById('clFoot').innerHTML = (list.length >= 3 ? '<span class="pill"><b>+' + list.length + '</b> negocios ya venden con nosotros</span>' : '') + '<span>¿Quieres ver tu marca aquí? <a href="#planes">Elige tu plan</a></span>';
+    sec.hidden = false;
+    var nl = document.getElementById('navCl'); if(nl) nl.hidden = false;
+  }
+  function renderReviews(list){
+    if(!list.length) return;
+    var avg = list.reduce(function(a, r){ return a + (+r.rating || 5); }, 0) / list.length;
+    var COL = ['#FF1F8F','#3451FF','#FF7A1A','#12B85B','#7B2CFF','#1B0B2B'];
+    var ini = function(n){ return String(n || '?').trim().split(/\s+/).slice(0, 2).map(function(w){ return w[0]; }).join('').toUpperCase(); };
+    document.getElementById('rvSum').innerHTML = '<b>' + avg.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '</b><div><span class="st">' + '★★★★★'.slice(0, Math.round(avg)) + '</span><small>Basado en ' + list.length + ' reseña' + (list.length > 1 ? 's' : '') + ' de clientes</small></div>';
+    document.getElementById('rvTrack').innerHTML = list.map(function(r, i){
+      var url = safeU(r.url);
+      return '<article class="rv-card' + (i % 4 === 1 ? ' hot' : i % 4 === 3 ? ' ink' : '') + '"><span class="st" aria-label="' + r.rating + ' de 5 estrellas">' + '★★★★★'.slice(0, r.rating || 5) + '</span><p>' + escH(r.text) + '</p><div class="rv-who"><span class="rv-av" style="background:' + COL[i % COL.length] + '">' + (r.photo ? '<img src="' + escH(r.photo) + '" alt="" loading="lazy">' : escH(ini(r.name))) + '</span><div><b>' + escH(r.name) + '</b><small>' + escH(r.business) + '</small></div>' + (url ? '<a href="' + escH(url) + '" target="_blank" rel="noopener">Ver su web ↗</a>' : '') + '</div></article>';
+    }).join('');
+    document.getElementById('resenas').hidden = false;
+    var nr = document.getElementById('navRv'); if(nr) nr.hidden = false;
+    var tr = document.getElementById('rvTrack'), by = function(d){ var c = tr.querySelector('.rv-card'); tr.scrollBy({ left: d * (c ? c.offsetWidth + 20 : 300), behavior: 'smooth' }); };
+    document.getElementById('rvPrev').onclick = function(){ by(-1); };
+    document.getElementById('rvNext').onclick = function(){ by(1); };
+    var hover = false; tr.addEventListener('mouseenter', function(){ hover = true; }); tr.addEventListener('mouseleave', function(){ hover = false; });
+    setInterval(function(){ if(hover || document.hidden) return; if(tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 10) tr.scrollTo({ left: 0, behavior: 'smooth' }); else by(1); }, 5500);
+  }
+  if(API_OK) fetch('/api/public/data').then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if(!d) return;
+    renderClients(d.clients || [], d.config || {}); renderReviews(d.reviews || []);
+    document.querySelectorAll('#clientes .rv, #resenas .rv').forEach(function(el){ el.classList.add('in'); });
+  }).catch(function(){});
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();

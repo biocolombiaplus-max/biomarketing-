@@ -1,8 +1,16 @@
 {
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/panel", "destination": "/admin.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.(png|jpg|jpeg|webp|svg)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/admin(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
 }

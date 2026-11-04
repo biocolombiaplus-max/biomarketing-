@@ -1,0 +1,7 @@
+{
+  "name": "biomarketing-tiendas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing de tiendas virtuales de Bio Marketing con panel de clientes y reseñas (funciones de Vercel + Cloudinary).",
+  "engines": { "node": ">=20" }
+}
