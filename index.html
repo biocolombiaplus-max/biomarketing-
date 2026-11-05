@@ -713,6 +713,43 @@ footer a:hover{color:var(--fuchsia)}
 .lm-perks{display:flex;gap:8px;flex-wrap:wrap;margin:-6px 0 18px}
 .lm-perks span{font-size:.74rem;font-weight:700;background:var(--bg);border:1px solid var(--line);padding:5px 10px;border-radius:99px;color:var(--ink2)}
 
+/* ===== CTA POR SECCIÓN ===== */
+.sec-cta{margin-top:46px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:26px;padding:16px 16px 16px 20px;box-shadow:0 1px 2px rgba(27,11,43,.04),0 18px 40px -22px rgba(18,184,91,.45);position:relative;overflow:hidden}
+.sec-cta::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#2BE070,#12B85B)}
+.sc-who{display:flex;align-items:center;gap:14px;min-width:0}
+.sc-av{position:relative;flex-shrink:0;width:48px;height:48px;border-radius:50%;box-shadow:0 0 0 3px #DCFCE7}
+.sc-av img{width:100%;height:100%;border-radius:50%}
+.sc-av i{position:absolute;right:0;bottom:0;width:13px;height:13px;border-radius:50%;background:var(--wa);border:2.5px solid #fff;animation:waOn 1.8s infinite}
+@keyframes waOn{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}80%,100%{box-shadow:0 0 0 7px rgba(37,211,102,0)}}
+.sc-who b{display:block;font-family:var(--display);font-size:1.16rem;letter-spacing:-.025em;line-height:1.2}
+.sc-who small{color:var(--ink2);font-size:.86rem;font-weight:500}
+.sc-on{color:#15803D;font-weight:800}
+.sc-act{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.sc-link{font-weight:800;font-size:.9rem;color:var(--magenta);white-space:nowrap}
+.sc-link:hover{text-decoration:underline;text-underline-offset:3px}
+.sec-cta.dark{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);backdrop-filter:blur(6px);color:#fff;box-shadow:0 20px 40px -20px rgba(0,0,40,.5)}
+.sec-cta.dark small{color:rgba(255,255,255,.85)}.sec-cta.dark .sc-on{color:#86EFAC}.sec-cta.dark .sc-link{color:var(--yellow)}
+.sec-cta.dark .sc-av{box-shadow:0 0 0 3px rgba(255,255,255,.3)}
+@media(max-width:700px){.sec-cta{flex-direction:column;align-items:stretch;padding:18px 16px 16px 20px;margin-top:34px}.sc-act{flex-direction:column;align-items:stretch;gap:10px}.sc-act .btn{width:100%}.sc-link{text-align:center}}
+/* botones de WhatsApp más llamativos */
+.btn-wa svg{transform-origin:50% 60%;animation:waWig 4s ease-in-out infinite}
+@keyframes waWig{0%,82%,100%{transform:rotate(0)}85%{transform:rotate(-16deg) scale(1.12)}88%{transform:rotate(14deg) scale(1.12)}91%{transform:rotate(-10deg)}94%{transform:rotate(6deg)}}
+.mb-on{width:8px;height:8px;border-radius:50%;background:#fff;animation:waOn 1.8s infinite;flex-shrink:0}
+/* chat del asesor */
+.fab-badge{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:99px;background:#E5334B;color:#fff;font-size:.74rem;font-weight:800;display:grid;place-items:center;border:2.5px solid #fff;animation:bump 2.4s infinite}
+.chatpop{position:fixed;right:20px;bottom:96px;z-index:85;width:min(330px,calc(100vw - 32px));background:#fff;border-radius:22px;padding:16px;box-shadow:0 30px 70px -20px rgba(27,11,43,.45),0 0 0 1px var(--line);transform-origin:bottom right;animation:cpIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes cpIn{from{opacity:0;transform:translateY(16px) scale(.92)}}
+.cp-x{position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;background:var(--bg);font-size:1.2rem;line-height:1;color:var(--ink2)}
+.cp-h{display:flex;align-items:center;gap:11px;margin-bottom:12px;padding-right:28px}
+.cp-h .sc-av{width:44px;height:44px}
+.cp-h b{display:block;font-size:.95rem}.cp-h small{font-size:.76rem;color:var(--ink3)}
+.cp-body{background:#EFEAE2;border-radius:14px;padding:12px;margin-bottom:12px;min-height:58px}
+.cp-msg{background:#fff;border-radius:2px 12px 12px 12px;padding:9px 11px;font-size:.88rem;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.08);max-width:95%}
+.cp-typing{display:inline-flex;gap:4px;background:#fff;border-radius:2px 12px 12px 12px;padding:12px 14px}
+.cp-typing i{width:7px;height:7px;border-radius:50%;background:#9AA5AD;animation:tp 1.2s infinite}
+.cp-typing i:nth-child(2){animation-delay:.15s}.cp-typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+@media(max-width:760px){.chatpop{right:12px;bottom:156px}}
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -751,7 +788,7 @@ footer a:hover{color:var(--fuchsia)}
     </nav>
     <div class="nav-r">
       <a href="admin.html" class="btn-login" title="Iniciar sesión"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" stroke-linecap="round"/></svg><span>Iniciar sesión</span><i class="dot"></i></a>
-      <a class="btn btn-wa btn-sm wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Hablar<span class="hide-sm"> con un asesor</span></span></a>
+      <a class="btn btn-wa btn-sm wa" data-msg="nav" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Hablar<span class="hide-sm"> con un asesor</span></span></a>
     </div>
   </div>
 </header>
@@ -766,7 +803,7 @@ footer a:hover{color:var(--fuchsia)}
       <p class="lead">Diseñamos tu <strong>tienda virtual o página web profesional, 100% personalizada</strong>, con carrito, pago contra entrega, tarjetas, PSE y panel de pedidos. <strong>Sin mensualidades en dólares</strong> ni comisiones por venta.</p>
       <div class="hero-ctas">
         <a href="#planes" class="btn btn-main"><span>Quiero mi tienda online</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Resolver dudas</span></a>
+        <a class="btn btn-wa wa" data-msg="hero" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Cotizar gratis por WhatsApp</span></a>
       </div>
       <div class="trust">
         <div class="from"><small>Desde</small><strong>$198.000</strong></div>
@@ -849,6 +886,10 @@ footer a:hover{color:var(--fuchsia)}
     </div>
     <p class="turn rv">Por eso creamos tiendas <span class="mark">profesionales, propias</span><br>y <span class="it fx">sin mensualidades.</span></p>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿Vendes por WhatsApp y se te pierden pedidos?</b><small><span class="sc-on">En línea</span> · te mostramos cómo organizarlo con tu tienda</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="dolor" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero organizar mis ventas</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= BENEFITS ================= -->
@@ -886,6 +927,10 @@ footer a:hover{color:var(--fuchsia)}
       <div class="bx c-w sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bolt"/></svg></div><h3>Rápida y segura</h3><p>Certificado SSL, carga veloz y lista para Google.</p></div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿Quieres todo esto en tu negocio?</b><small><span class="sc-on">En línea</span> · te explicamos cada función sin compromiso</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="beneficios" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero estas funciones</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= COMPARE ================= -->
@@ -920,6 +965,10 @@ footer a:hover{color:var(--fuchsia)}
       </div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>Deja de pagar mensualidades en dólares</b><small><span class="sc-on">En línea</span> · calculamos tu ahorro real en 2 minutos</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="shopify" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Calcular mi ahorro</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= PRICING ================= -->
@@ -1062,6 +1111,10 @@ footer a:hover{color:var(--fuchsia)}
       </div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta dark rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿Ya tienes el nombre para tu marca?</b><small><span class="sc-on">En línea</span> · verificamos gratis si tu dominio está disponible</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="dominio" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Verificar mi dominio</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= ADMIN ================= -->
@@ -1169,6 +1222,10 @@ footer a:hover{color:var(--fuchsia)}
       <div class="load-calc"><label for="nprod">Productos:</label><input type="number" id="nprod" min="1" max="999" value="30" inputmode="numeric"><span>=</span><output id="nprod-t">$150.000</output></div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿Te mostramos el panel en vivo?</b><small><span class="sc-on">En línea</span> · te enviamos un video de cómo gestionar pedidos</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="panel" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Ver el panel en acción</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= GALLERY ================= -->
@@ -1187,6 +1244,10 @@ footer a:hover{color:var(--fuchsia)}
       <div class="yel rv"><b>24/7</b><span>Tu tienda vende mientras duermes, sin horario y sin pausas.</span></div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿Quieres un diseño así para tu negocio?</b><small><span class="sc-on">En línea</span> · te enviamos ejemplos de tu mismo sector</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="galeria" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Ver ejemplos de mi sector</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= PROCESS ================= -->
@@ -1203,6 +1264,10 @@ footer a:hover{color:var(--fuchsia)}
       <div class="step rv"><div class="num">4</div><h3>¡A vender!</h3><p>Te la entregamos funcionando, te capacitamos y pagas el 50% restante.</p><span class="pill">Incluye capacitación</span></div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>Empieza hoy y vende en 2 a 5 días</b><small><span class="sc-on">En línea</span> · solo necesitas el 50% para iniciar</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="proceso" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Empezar hoy mismo</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= GUARANTEE ================= -->
@@ -1219,6 +1284,10 @@ footer a:hover{color:var(--fuchsia)}
       </div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>Cero riesgo: pagas el resto al recibirla</b><small><span class="sc-on">En línea</span> · separa tu cupo con el 50%</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="garantia" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Separar mi cupo</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= RESEÑAS ================= -->
@@ -1234,6 +1303,10 @@ footer a:hover{color:var(--fuchsia)}
       <div class="rv-nav"><button type="button" id="rvPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="rvNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿Quieres resultados como estos?</b><small><span class="sc-on">En línea</span> · únete a los negocios que ya venden online</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="resenas" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero mi tienda también</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= FAQ ================= -->
@@ -1254,6 +1327,10 @@ footer a:hover{color:var(--fuchsia)}
       <details class="qa rv"><summary>¿Puedo cambiar de plan más adelante?</summary><div>Sí. Puedes empezar con el plan Emprende y luego mejorar tu tienda pagando solo la diferencia de las nuevas funciones.</div></details>
     </div>
   </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="" width="48" height="48"><i></i></span><div><b>¿No encontraste tu respuesta?</b><small><span class="sc-on">En línea</span> · un asesor real te responde en minutos</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="faq" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Preguntarle a un asesor</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
 </section>
 
 <!-- ================= FINAL CTA ================= -->
@@ -1265,7 +1342,7 @@ footer a:hover{color:var(--fuchsia)}
         <p>Empieza hoy con solo $99.000 de anticipo y en pocos días tendrás tu tienda profesional recibiendo pedidos.</p>
         <div class="hero-ctas">
           <a href="#planes" class="btn btn-main"><span>Ver planes y precios</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Escribir por WhatsApp</span></a>
+          <a class="btn btn-wa wa" data-msg="final" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Separar mi cupo por WhatsApp</span></a>
         </div>
       </div>
       <div class="iphone" aria-hidden="true">
@@ -1289,14 +1366,20 @@ footer a:hover{color:var(--fuchsia)}
 <footer>
   <div class="wrap">
     <a href="#" class="brand"><img src="assets/logo.png" alt="" width="36" height="36"><div>Bio Marketing<small>Tiendas virtuales y páginas web</small></div></a>
-    <div>© <span id="yr"></span> Bio Marketing · Colombia · <a href="mailto:biomarketing.salud@gmail.com">biomarketing.salud@gmail.com</a> · <a class="wa" data-msg="general" href="#" target="_blank" rel="noopener">WhatsApp 350 545 7420</a></div>
+    <div>© <span id="yr"></span> Bio Marketing · Colombia · <a href="mailto:biomarketing.salud@gmail.com">biomarketing.salud@gmail.com</a> · <a class="wa" data-msg="footer" href="#" target="_blank" rel="noopener">WhatsApp 350 545 7420</a></div>
   </div>
 </footer>
 
-<a class="fab wa" data-msg="general" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><span class="bub" id="bub">¿Dudas? Escríbenos</span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
+<a class="fab wa" data-msg="fab" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><span class="fab-badge" id="fabBadge" hidden>1</span><span class="bub" id="bub">¿Dudas? Escríbenos</span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
+<div class="chatpop" id="chatpop" role="dialog" aria-label="Mensaje del asesor" hidden>
+  <button type="button" class="cp-x" id="cpX" aria-label="Cerrar">×</button>
+  <div class="cp-h"><span class="sc-av"><img src="assets/logo.png" alt="" width="44" height="44"><i></i></span><div><b>Asesor Bio Marketing</b><small><span class="sc-on">En línea</span> · responde en minutos</small></div></div>
+  <div class="cp-body"><div class="cp-typing" id="cpTyping"><i></i><i></i><i></i></div><div class="cp-msg" id="cpMsg" hidden>Hola 👋 ¿Te ayudo a elegir el plan ideal para tu negocio? Hoy tenemos <b>precio de lanzamiento</b> y te asesoramos gratis 🔥</div></div>
+  <a class="btn btn-wa btn-block wa" data-msg="chat" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Responder por WhatsApp</span></a>
+</div>
 <div class="mbar" id="mbar">
   <a href="#planes" class="btn btn-main"><span>Ver planes</span></a>
-  <a class="btn btn-wa wa" data-msg="general" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a class="btn btn-wa wa" data-msg="mbar" href="#" target="_blank" rel="noopener"><span class="mb-on"></span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Asesor en línea</span></a>
 </div>
 <div class="toast" id="toast"></div>
 <div class="lm" id="lm" role="dialog" aria-modal="true" aria-labelledby="lmT">
@@ -1351,17 +1434,40 @@ footer a:hover{color:var(--fuchsia)}
     'Crece': 'Hola Bio Marketing 🔥 Me interesa el *Plan Crece* ($490.000) con pasarela de pagos para recibir tarjetas y PSE. ¿Cómo iniciamos?',
     'Pro Empresarial': 'Hola Bio Marketing 👑 Me interesa el *Plan Pro Empresarial* ($890.000), tienda 100% a la medida y automatizada. Quiero agendar una asesoría.'
   };
+  // Qué le interesa al cliente según el botón (sección) donde hizo clic
+  var CTX = {
+    nav: 'Quiero hablar con un asesor sobre mi tienda online',
+    hero: 'Quiero mi tienda online lista en 2 a 5 días',
+    clientes: 'Vi los negocios que ya trabajan con ustedes y quiero una tienda así',
+    dolor: 'Hoy vendo solo por WhatsApp y quiero organizar mis ventas con una tienda online',
+    beneficios: 'Quiero una tienda con carrito, pago contra entrega, PSE y panel de pedidos',
+    shopify: 'Quiero dejar de pagar mensualidades en dólares y saber cuánto me ahorro',
+    dominio: 'Quiero verificar si el dominio .com de mi marca está disponible',
+    panel: 'Quiero ver cómo funciona el panel para gestionar pedidos y envíos',
+    galeria: 'Quiero ver ejemplos de tiendas para mi tipo de negocio',
+    proceso: 'Quiero empezar hoy mismo con el 50% de anticipo',
+    garantia: 'Quiero separar mi cupo pagando solo el 50%',
+    resenas: 'Leí las reseñas y quiero resultados así para mi negocio',
+    faq: 'Tengo una pregunta antes de empezar mi tienda',
+    final: 'Quiero separar mi cupo de esta semana',
+    fab: 'Quiero que me asesoren para elegir el plan ideal',
+    chat: 'Quiero que me asesoren para elegir el plan ideal',
+    mbar: 'Quiero que me asesoren para elegir el plan ideal',
+    footer: 'Quiero información sobre su servicio de tiendas online',
+    salida: 'Quiero aprovechar el precio de lanzamiento y la asesoría gratis'
+  };
+  Object.keys(CTX).forEach(function(k){ MSG[k] = 'Hola Bio Marketing 👋 ' + CTX[k] + '. ¿Me pueden asesorar?'; });
   function waLink(text){ return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
-  document.querySelectorAll('a.wa').forEach(function(a){
-    var key = a.getAttribute('data-msg') || 'general';
-    a.href = waLink(MSG[key] || MSG.general);
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var card = a.closest('.plan'), msg = MSG[key] || MSG.general;
-      if(card && card.querySelector('.dom-chk').checked) msg += ' También quiero *dominio personalizado* ($85.000/año).';
-      openLead({ mode: 'wa', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, dom: !!(card && card.querySelector('.dom-chk').checked), msg: msg });
-    });
+  document.querySelectorAll('a.wa').forEach(function(a){ var key = a.getAttribute('data-msg') || 'general'; a.href = waLink(MSG[key] || MSG.general); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a.wa'); if(!a) return;
+    e.preventDefault();
+    var key = a.getAttribute('data-msg') || 'general', card = a.closest('.plan'), msg = MSG[key] || MSG.general;
+    if(card && card.querySelector('.dom-chk').checked) msg += ' También quiero *dominio personalizado* ($85.000/año).';
+    hideChat();
+    openLead({ mode: 'wa', from: key, ctx: CTX[key] || '', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, dom: !!(card && card.querySelector('.dom-chk').checked), msg: msg });
   });
+
 
 
   /* ===== Image fallback ===== */
@@ -1375,7 +1481,6 @@ footer a:hover{color:var(--fuchsia)}
   var nav = document.getElementById('nav'), mbar = document.getElementById('mbar');
   function onScroll(){ var y = window.scrollY; nav.classList.toggle('scrolled', y > 20); mbar.classList.toggle('show', y > 600); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-  setTimeout(function(){ var b = document.getElementById('bub'); b.classList.add('show'); setTimeout(function(){ b.classList.remove('show'); }, 6000); }, 4000);
 
   /* ===== Bands duplicate ===== */
   ['t1','t2'].forEach(function(id){ var t = document.getElementById(id); t.innerHTML += t.innerHTML; });
@@ -1629,7 +1734,7 @@ footer a:hover{color:var(--fuchsia)}
   function contact(){ try{ return JSON.parse(localStorage.getItem('bm_contact') || 'null'); }catch(e){ return null; } }
   function cleanPhone(p){ var d = String(p || '').replace(/\D/g, ''); if(d.length === 12 && d.slice(0, 2) === '57') d = d.slice(2); return d; }
   function sendLead(c, o){
-    var s = VS.get(), lead = { id: rid(), name: c.name, phone: '57' + c.phone, city: c.city || '', plan: o.plan || '', amount: o.amount || 0, kind: o.mode === 'pay' ? 'pago' : 'whatsapp', status: o.mode === 'pay' ? 'pago_iniciado' : 'whatsapp', src: s.src, cmp: s.cmp, sid: s.sid, created: Date.now(), website: document.getElementById('lmHp').value };
+    var s = VS.get(), lead = { id: rid(), name: c.name, phone: '57' + c.phone, city: c.city || '', from: o.from || (o.mode === 'pay' ? 'pago' : ''), plan: o.plan || '', amount: o.amount || 0, kind: o.mode === 'pay' ? 'pago' : 'whatsapp', status: o.mode === 'pay' ? 'pago_iniciado' : 'whatsapp', src: s.src, cmp: s.cmp, sid: s.sid, created: Date.now(), website: document.getElementById('lmHp').value };
     post('/api/public/lead', lead);
     if(o.mode === 'pay'){ try{ localStorage.setItem('bm_lead_pago', JSON.stringify(lead)); }catch(e){} }
     VS.step(o.mode === 'pay' ? 5 : 4, o.plan);
@@ -1652,8 +1757,9 @@ footer a:hover{color:var(--fuchsia)}
       L.push('');
       L.push('Quiero *separar mi cupo de esta semana* y empezar ya con el 50%. ¿Me cuentan qué necesitan de mi negocio para arrancar? 🙌');
     } else {
+      if(o.ctx){ L.push(''); L.push('🎯 *Me interesa:* ' + o.ctx); }
       L.push('');
-      L.push('¿Me asesoran sobre el plan ideal para mi negocio? Quiero empezar a vender online lo antes posible 🙌');
+      L.push('¿Me asesoran para elegir el plan ideal y empezar esta semana? Quiero vender online lo antes posible 🙌');
     }
     return L.join('\n');
   }
@@ -1677,8 +1783,8 @@ footer a:hover{color:var(--fuchsia)}
     updPrev();
     var b = document.getElementById('lmBadge');
     b.hidden = !o.plan; b.textContent = o.plan ? 'Plan ' + o.plan + (o.amount ? ' · ' + fmt(o.amount) + (o.mode === 'pay' ? ' hoy' : '') : '') : '';
-    document.getElementById('lmT').textContent = o.mode === 'pay' ? 'Un paso antes de pagar' : (o.plan ? '¡Excelente elección! 🎉' : 'Hablemos por WhatsApp');
-    document.getElementById('lmP').textContent = o.mode === 'pay' ? 'Déjanos tus datos para enviarte la confirmación del pago y empezar tu tienda de inmediato.' : (o.plan ? 'Completa tus datos y te llevamos a WhatsApp con tu mensaje listo para separar tu cupo de esta semana.' : 'Completa tus datos y te llevamos a WhatsApp con tu mensaje listo.');
+    document.getElementById('lmT').textContent = o.title ? o.title : o.mode === 'pay' ? 'Un paso antes de pagar' : (o.plan ? '¡Excelente elección! 🎉' : 'Hablemos por WhatsApp');
+    document.getElementById('lmP').textContent = o.sub ? o.sub : o.mode === 'pay' ? 'Déjanos tus datos para enviarte la confirmación del pago y empezar tu tienda de inmediato.' : (o.plan ? 'Completa tus datos y te llevamos a WhatsApp con tu mensaje listo para separar tu cupo de esta semana.' : 'Completa tus datos y te llevamos a WhatsApp con tu mensaje listo.');
     document.getElementById('lmGoT').textContent = o.mode === 'pay' ? 'Continuar al pago seguro' : 'Enviar mi mensaje por WhatsApp';
     document.getElementById('lmGo').className = 'btn ' + (o.mode === 'pay' ? 'btn-pay' : 'btn-wa');
     document.getElementById('lmSkip').hidden = o.mode === 'pay' || !!o.plan;
@@ -1719,7 +1825,7 @@ footer a:hover{color:var(--fuchsia)}
       var reps = Math.max(1, Math.ceil(9 / g.length)), half = function(h){ var o = ''; for(var r = 0; r < reps; r++) o += g.map(function(c){ return card(c, h || r > 0); }).join(''); return o; };
       return '<div class="cl-row' + (gi ? ' rev' : '') + '"><div class="cl-track" style="animation-duration:' + (g.length * reps * secPer) + 's">' + half(false) + half(true) + '</div></div>';
     }).join('');
-    document.getElementById('clFoot').innerHTML = (list.length >= 3 ? '<span class="pill"><b>+' + list.length + '</b> negocios ya venden con nosotros</span>' : '') + '<span>¿Quieres ver tu marca aquí? <a href="#planes">Elige tu plan</a></span>';
+    document.getElementById('clFoot').innerHTML = (list.length >= 3 ? '<span class="pill"><b>+' + list.length + '</b> negocios ya venden con nosotros</span>' : '') + '<a class="btn btn-wa btn-sm wa" data-msg="clientes" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero mi marca aquí</span></a>';
     sec.hidden = false;
     var nl = document.getElementById('navCl'); if(nl) nl.hidden = false;
   }
@@ -1746,6 +1852,28 @@ footer a:hover{color:var(--fuchsia)}
     renderClients(d.clients || [], d.config || {}); renderReviews(d.reviews || []);
     document.querySelectorAll('#clientes .rv, #resenas .rv').forEach(function(el){ el.classList.add('in'); });
   }).catch(function(){});
+
+  /* ===================== CHAT DEL ASESOR Y AVISO DE SALIDA ===================== */
+  var cp = document.getElementById('chatpop'), badge = document.getElementById('fabBadge');
+  function seen(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }
+  function mark(k){ try{ sessionStorage.setItem(k, '1'); }catch(e){} }
+  function hideChat(){ if(!cp.hidden){ cp.hidden = true; } badge.hidden = true; }
+  function showChat(){
+    if(seen('bm_chat') || document.getElementById('lm').classList.contains('show')) return;
+    mark('bm_chat'); cp.hidden = false; badge.hidden = false;
+    setTimeout(function(){ document.getElementById('cpTyping').hidden = true; document.getElementById('cpMsg').hidden = false; }, 1600);
+  }
+  document.getElementById('cpX').onclick = function(){ cp.hidden = true; };
+  setTimeout(showChat, 18000);
+  window.addEventListener('scroll', function onS(){ if(scrollY > document.body.scrollHeight * .45){ window.removeEventListener('scroll', onS); setTimeout(showChat, 1200); } }, { passive: true });
+  // Aviso al intentar salir (solo computador, una vez por visita)
+  var t0 = Date.now();
+  document.addEventListener('mouseout', function(e){
+    if(e.relatedTarget || e.clientY > 8 || Date.now() - t0 < 10000 || seen('bm_exit') || matchMedia('(pointer:coarse)').matches) return;
+    if(document.getElementById('lm').classList.contains('show') || document.getElementById('payfb').classList.contains('show')) return;
+    mark('bm_exit'); hideChat();
+    openLead({ mode: 'wa', from: 'salida', ctx: CTX.salida, msg: MSG.salida, title: '¡Espera! 🎁 Asesoría gratis', sub: 'Antes de irte: déjanos tus datos y un asesor te muestra por WhatsApp cuál plan le sirve a tu negocio. Sin compromiso.' });
+  });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();

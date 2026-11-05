@@ -28,6 +28,7 @@ module.exports = handler({
       kind: KINDS.includes(b.kind) ? b.kind : 'whatsapp',
       status: STATUS.includes(b.status) ? b.status : 'whatsapp',
       src: cleanText(b.src, 20),
+      from: String(b.from || prev.from || '').replace(/[^a-z]/g, '').slice(0, 20),
       cmp: cleanText(b.cmp, 60),
       sid: String(b.sid || '').replace(/[^a-z0-9]/g, '').slice(0, 24),
       ref: cleanText(b.ref, 40),
