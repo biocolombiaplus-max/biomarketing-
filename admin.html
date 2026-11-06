@@ -690,7 +690,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 
   /* ===================== ESTADÍSTICAS ===================== */
   var stats = { visits: [], leads: [] }, range = 7, statsTimer = null;
-  var STEP = { 1: 'Visitó la página', 2: 'Vio los planes', 3: 'Tocó un botón de compra', 4: 'Dejó su WhatsApp', 5: 'Inició el pago', 6: 'Pagó' };
+  var STEP = { 1: 'Visitó la página', 2: 'Vio los planes', 3: 'Tocó un botón de compra', 4: 'Escribió por WhatsApp', 5: 'Inició el pago', 6: 'Pagó' };
   var SRC_COLOR = { 'Meta Ads': '#FF1F8F', 'Facebook': '#3451FF', 'Instagram': '#FF7A1A', 'Google Ads': '#12B85B', 'Google': '#3451FF', 'TikTok': '#1B0B2B', 'WhatsApp': '#12B85B', 'YouTube': '#E5334B', 'Directo': '#9887A9', 'Otro': '#C9B8C9' };
   var nf = function(n){ return Math.round(n).toLocaleString('es-CO'); };
   var money = function(n){ return '$' + nf(n); };
@@ -740,8 +740,8 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     $('kpiMain').innerHTML =
       '<div class="kp hl"><small>Ventas por la página</small><b>' + money(P.sales) + '</b>' + delta(P.sales, Q && Q.sales) + ' <span class="sub2">' + P.paid.length + ' pagos aprobados</span></div>' +
       '<div class="kp"><small>Visitantes</small><b>' + nf(n) + '</b>' + delta(n, Q && Q.V.length) + '</div>' +
-      '<div class="kp"><small>Clientes potenciales</small><b>' + nf(P.people.length) + '</b>' + delta(P.people.length, Q && Q.people.length) + ' <span class="sub2">dejaron su WhatsApp</span></div>' +
-      '<div class="kp y"><small>Conversión a cliente potencial</small><b>' + pctTxt(pct(P.people.length, n)) + '</b><span class="sub2">pago: ' + pctTxt(conv) + '</span></div>';
+      '<div class="kp"><small>Contactos por WhatsApp</small><b>' + nf(cnt(4)) + '</b>' + delta(cnt(4), Q && Q.V.filter(function(v){ return v.st >= 4; }).length) + ' <span class="sub2">' + nf(P.people.length) + ' con datos completos</span></div>' +
+      '<div class="kp y"><small>Conversión a WhatsApp</small><b>' + pctTxt(pct(cnt(4), n)) + '</b><span class="sub2">pago: ' + pctTxt(conv) + '</span></div>';
     $('kpiSm').innerHTML =
       '<div class="kp"><small>Vieron los planes</small><b>' + nf(cnt(2)) + '</b><span class="sub2">' + pctTxt(pct(cnt(2), n)) + ' de las visitas</span></div>' +
       '<div class="kp"><small>Iniciaron el pago</small><b>' + nf(cnt(5)) + '</b><span class="sub2">tocaron "Pagar"</span></div>' +
@@ -757,7 +757,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     drawChart(buckets);
 
     // funnel
-    var steps = [[1, 'Visitantes'], [2, 'Vieron los planes'], [3, 'Tocaron un botón de compra'], [4, 'Dejaron su WhatsApp'], [5, 'Iniciaron el pago'], [6, 'Pagaron']];
+    var steps = [[1, 'Visitantes'], [2, 'Vieron los planes'], [3, 'Tocaron un botón de compra'], [4, 'Escribieron por WhatsApp'], [5, 'Iniciaron el pago'], [6, 'Pagaron']];
     $('funnel').innerHTML = steps.map(function(s){ var c = cnt(s[0]); return '<div><p>' + s[1] + ' <span><b>' + nf(c) + '</b> · ' + pctTxt(pct(c, n)) + '</span></p><div class="bar"><i style="width:' + Math.max(c ? 2 : 0, pct(c, n)) + '%"></i></div></div>'; }).join('');
     $('fnConv').textContent = 'Conversión ' + pctTxt(conv);
 
@@ -770,7 +770,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     // feed
     var evs = V.slice().sort(function(a, b){ return String(b.u).localeCompare(String(a.u)); }).slice(0, 9);
     var ICON = { 1: ['👀', 'var(--bg)'], 2: ['💎', 'var(--pink)'], 3: ['👆', 'var(--yellow2)'], 4: ['💬', '#DCFCE7'], 5: ['💳', 'var(--yellow2)'], 6: ['🎉', 'var(--blue2)'] };
-    $('feed').innerHTML = evs.length ? evs.map(function(v){ var ic = ICON[v.st] || ICON[1]; return '<div class="ev"><span class="ic" style="background:' + ic[1] + '">' + ic[0] + '</span><div><b>' + STEP[v.st] + (v.plan ? ' · ' + esc(v.plan) : '') + '</b><small>' + esc([v.src, v.city, v.dev === 'mobile' ? 'Celular' : v.dev === 'tablet' ? 'Tablet' : 'Computador'].filter(Boolean).join(' · ')) + '</small></div><time>' + ago(v.u || v.t) + '</time></div>'; }).join('') : '<div class="nodata">Cuando lleguen visitas las verás aquí en vivo.</div>';
+    $('feed').innerHTML = evs.length ? evs.map(function(v){ var ic = ICON[v.st] || ICON[1]; return '<div class="ev"><span class="ic" style="background:' + ic[1] + '">' + ic[0] + '</span><div><b>' + STEP[v.st] + (v.plan ? ' · ' + esc(v.plan) : (v.st >= 4 && v.from && FROM[v.from] ? ' · ' + FROM[v.from] : '')) + '</b><small>' + esc([v.src, v.city, v.dev === 'mobile' ? 'Celular' : v.dev === 'tablet' ? 'Tablet' : 'Computador'].filter(Boolean).join(' · ')) + '</small></div><time>' + ago(v.u || v.t) + '</time></div>'; }).join('') : '<div class="nodata">Cuando lleguen visitas las verás aquí en vivo.</div>';
 
     // plans / cities / devices
     function mini(el, obj, total, color){ var ks = Object.keys(obj).sort(function(a, b){ return obj[b] - obj[a]; }).slice(0, 6); $(el).innerHTML = ks.length ? ks.map(function(k){ return '<div>' + esc(k) + ' <span>' + nf(obj[k]) + ' · ' + pctTxt(pct(obj[k], total)) + '</span><div class="bar"><i style="width:' + pct(obj[k], total) + '%;background:' + color + '"></i></div></div>'; }).join('') : '<div class="nodata">Sin datos todavía.</div>'; }
@@ -808,7 +808,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     if(s === 'ok') return 'Hola ' + n + ' 🎉 ¡Gracias por tu pago de ' + plan + '! Para empezar tu tienda virtual envíanos por aquí tu logo, colores y los productos que quieres vender.';
     return 'Hola ' + n + ' 👋 Somos *Bio Marketing*. Nos escribiste por ' + plan + '. ¿Te ayudamos a crear tu tienda virtual esta semana? Todavía tenemos cupos disponibles 🚀';
   }
-  var FROM = { nav: 'Botón del menú', hero: 'Inicio', clientes: 'Nuestros clientes', dolor: 'Sección problemas', beneficios: 'Beneficios', shopify: 'Comparación Shopify', dominio: 'Dominio', panel: 'Panel administrativo', galeria: 'Galería', proceso: '4 pasos', garantia: 'Garantía', resenas: 'Reseñas', faq: 'Preguntas', final: 'Cierre de la página', fab: 'Botón flotante', chat: 'Chat del asesor', mbar: 'Barra del celular', footer: 'Pie de página', salida: 'Aviso de salida', pago: 'Botón de pago' };
+  var FROM = { nav: 'Botón del menú', hero: 'Inicio', clientes: 'Nuestros clientes', dolor: 'Sección problemas', beneficios: 'Beneficios', shopify: 'Comparación Shopify', dominio: 'Dominio', panel: 'Panel administrativo', galeria: 'Galería', proceso: '4 pasos', garantia: 'Garantía', resenas: 'Reseñas', faq: 'Preguntas', final: 'Cierre de la página', fab: 'Botón flotante', chat: 'Chat del asesor', mbar: 'Barra del celular', footer: 'Pie de página', salida: 'Aviso de salida', pago: 'Botón de pago', mensual: 'Plan Mensual', plan: 'Botón de un plan' };
   function renderLeads(){
     var all = bestLead(stats.leads).sort(function(a, b){ return String(b.updated || b.created).localeCompare(String(a.updated || a.created)); });
     var q = ($('lsearch').value || '').toLowerCase().trim(), qd = q.replace(/\D/g, '');

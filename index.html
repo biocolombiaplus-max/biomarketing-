@@ -750,6 +750,30 @@ footer a:hover{color:var(--fuchsia)}
 .cp-typing i:nth-child(2){animation-delay:.15s}.cp-typing i:nth-child(3){animation-delay:.3s}
 @keyframes tp{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
 @media(max-width:760px){.chatpop{right:12px;bottom:156px}}
+/* ===== PLAN MENSUAL ===== */
+.mplan{margin-top:30px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;background:#fff;border:1.5px dashed var(--line2);border-radius:28px;padding:30px;align-items:center}
+.mp-tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:var(--blue2);padding:5px 12px;border-radius:99px;margin-bottom:12px}
+.mplan h3{font-size:1.7rem;margin-bottom:8px}.mplan h3 .it{color:var(--blue)}
+.mp-l>p{color:var(--ink2);font-size:.95rem;margin-bottom:16px}
+.mp-feat{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
+.mp-feat li{position:relative;padding-left:26px;font-size:.88rem;color:var(--ink2)}
+.mp-feat li svg{position:absolute;left:0;top:1px;width:18px;height:18px;padding:3px;border-radius:50%;background:var(--blue2);color:var(--blue)}
+.mp-feat li.off{opacity:.55}.mp-feat li.off svg{background:#F1EAF0;color:var(--ink3)}
+.mp-price{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.mp-price small{display:block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.mp-price b{font-family:var(--display);font-size:2rem;letter-spacing:-.04em}.mp-price em{font-style:normal;color:var(--ink3);font-weight:700;font-size:.9rem}
+.mp-price>span{font-size:1.4rem;color:var(--ink3);font-weight:700}
+.mp-cmp{background:var(--bg);border-radius:18px;padding:12px;display:grid;gap:8px;margin-bottom:16px}
+.mp-cmp div{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.86rem;padding:8px 10px;border-radius:12px;color:var(--ink2)}
+.mp-cmp div b{font-family:var(--display);font-size:1.05rem;color:var(--ink)}
+.mp-cmp div.best{background:#DCFCE7;color:#15803D;font-weight:700}.mp-cmp div.best b{color:#15803D}
+.mp-cmp p{font-size:.8rem;color:var(--ink2);padding:0 4px}
+.mp-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mp-btn{background:#fff;color:#128C4E;box-shadow:inset 0 0 0 2px #12B85B}.mp-btn::after{display:none}
+.mp-btn:hover{background:#F0FDF4}
+.mp-alt{font-weight:800;font-size:.88rem;color:var(--magenta)}
+@media(max-width:900px){.mplan{grid-template-columns:1fr;padding:24px 20px}.mp-feat{grid-template-columns:1fr}.mp-btns{flex-direction:column;align-items:stretch}.mp-btn{width:100%}.mp-alt{text-align:center}}
+.hero-micro{display:flex;flex-wrap:wrap;gap:8px 16px;margin:-18px 0 26px;font-size:.84rem;font-weight:700;color:var(--ink2)}
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -805,6 +829,7 @@ footer a:hover{color:var(--fuchsia)}
         <a href="#planes" class="btn btn-main"><span>Quiero mi tienda online</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn-wa wa" data-msg="hero" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Cotizar gratis por WhatsApp</span></a>
       </div>
+      <p class="hero-micro"><span>⚡ Respuesta en menos de 5 min</span><span>🎁 Asesoría gratis</span><span>🤝 Sin compromiso</span></p>
       <div class="trust">
         <div class="from"><small>Desde</small><strong>$198.000</strong></div>
         <div class="sep"></div>
@@ -1079,6 +1104,28 @@ footer a:hover{color:var(--fuchsia)}
       </article>
     </div>
 
+    <div class="mplan rv" id="plan-mensual">
+      <div class="mp-l">
+        <span class="mp-tag">Nuevo · Plan Mensual</span>
+        <h3>Tu tienda <span class="it">gratis</span>, pagas USD 25 al mes</h3>
+        <p>Para quien prefiere no pagar la creación. Solo pagas el primer mes (USD 25) para iniciar y firmas un contrato de permanencia de 12 meses.</p>
+        <ul class="mp-feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tienda con plantilla profesional</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Hasta 15 productos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Carrito + pago contra entrega</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Dominio genérico incluido</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Soporte en horario hábil</li><li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-x"/></svg>La tienda no es tuya al terminar</li>
+        </ul>
+      </div>
+      <div class="mp-r">
+        <div class="mp-price"><div><small>Creación</small><b>$0</b></div><span>+</span><div><small>Mensualidad</small><b>USD 25</b><em>/mes</em></div></div>
+        <div class="mp-cmp">
+          <div><span>Plan Mensual · 12 meses</span><b>USD 300</b></div>
+          <div class="best"><span>Plan Emprende · pago único</span><b>$198.000</b></div>
+          <p>💡 Con <b>Emprende</b> pagas una sola vez, la tienda es tuya y no tienes mensualidades ni permanencia.</p>
+        </div>
+        <div class="mp-btns"><a class="btn mp-btn wa" data-msg="mensual" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero la tienda gratis</span></a><a href="#planes" class="mp-alt">Mejor un pago único →</a></div>
+      </div>
+    </div>
+
     <div class="after-plans">
       <div class="ap rv"><span class="i" style="background:var(--pink);color:var(--magenta)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" stroke-linecap="round"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span><div><b>50% para iniciar, 50% al entregar</b><p>Pagas la segunda mitad solo cuando recibes tu tienda funcionando.</p></div></div>
       <div class="ap rv"><span class="i" style="background:var(--yellow2);color:#A16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bolt"/></svg></span><div><b>Entrega de 2 a 5 días</b><p>Según el plan y las características de cada tienda o página web.</p></div></div>
@@ -1317,7 +1364,7 @@ footer a:hover{color:var(--fuchsia)}
       <h2>Resolvemos <span class="it fx">tus dudas</span></h2>
     </div>
     <div class="faq">
-      <details class="qa rv"><summary>¿Tengo que pagar mensualidad?</summary><div>No. La creación de tu tienda es un pago único. A diferencia de Shopify, no cobramos mensualidad en dólares ni comisión por tus ventas. Si eliges dominio personalizado, ese tiene un costo de $85.000 al año.</div></details>
+      <details class="qa rv"><summary>¿Tengo que pagar mensualidad?</summary><div>En los planes Emprende, Crece y Pro Empresarial no: la creación es un pago único y la tienda es tuya. Si prefieres no pagar la creación, existe el <b>Plan Mensual</b>: tienda gratis y USD 25 al mes con permanencia de 12 meses. En los planes de pago único, A diferencia de Shopify, no cobramos mensualidad en dólares ni comisión por tus ventas. Si eliges dominio personalizado, ese tiene un costo de $85.000 al año.</div></details>
       <details class="qa rv"><summary>¿Cómo funciona el pago?</summary><div>Pagas el 50% para iniciar la elaboración de tu tienda o página web y el 50% restante cuando te la entregamos funcionando. Puedes pagar con tarjeta de crédito, débito o PSE desde esta página, o coordinar por WhatsApp.</div></details>
       <details class="qa rv"><summary>¿En cuánto tiempo me entregan la tienda?</summary><div>Entre 2 y 5 días hábiles, según el plan y las características de tu página. El tiempo empieza a contar cuando recibimos el anticipo y la información de tu negocio (logo, colores, productos).</div></details>
       <details class="qa rv"><summary>¿Puedo recibir pagos con tarjeta en mi tienda?</summary><div>Sí, desde el plan Crece. Integramos pasarelas como Wompi, ePayco, Mercado Pago, PayU o la que prefieras, para recibir tarjetas de crédito y débito colombianas e internacionales, PSE y billeteras digitales. Todos los planes incluyen pago contra entrega.</div></details>
@@ -1391,7 +1438,7 @@ footer a:hover{color:var(--fuchsia)}
     <div class="lm-perks"><span>⚡ Respuesta rápida</span><span>🎁 Asesoría gratis</span><span>🔒 Sin spam</span></div>
     <label class="lm-f"><span>Tu nombre</span><input class="lm-in" id="lmName" autocomplete="name" placeholder="Ej: Diana Amaya" maxlength="60"></label>
     <label class="lm-f"><span>Tu WhatsApp</span><div class="lm-tel"><span>🇨🇴 +57</span><input class="lm-in" id="lmPhone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="300 123 4567" maxlength="16"></div></label>
-    <label class="lm-f"><span>Tu ciudad</span><input class="lm-in" id="lmCity" list="lmCities" autocomplete="address-level2" placeholder="Ej: Cúcuta" maxlength="40"></label>
+    <label class="lm-f"><span>Tu ciudad <em style="font-style:normal;text-transform:none;letter-spacing:0;color:var(--ink3);font-weight:600">(opcional)</em></span><input class="lm-in" id="lmCity" list="lmCities" autocomplete="address-level2" placeholder="Ej: Cúcuta" maxlength="40"></label>
     <datalist id="lmCities"><option>Bogotá</option><option>Medellín</option><option>Cali</option><option>Barranquilla</option><option>Cartagena</option><option>Cúcuta</option><option>Bucaramanga</option><option>Pereira</option><option>Manizales</option><option>Ibagué</option><option>Santa Marta</option><option>Villavicencio</option><option>Pasto</option><option>Montería</option><option>Neiva</option><option>Armenia</option><option>Valledupar</option><option>Sincelejo</option><option>Popayán</option><option>Tunja</option><option>Riohacha</option><option>Yopal</option><option>Florencia</option><option>Quibdó</option></datalist>
     <div class="lm-prev" id="lmPrevBox"><small>Así llegará tu mensaje</small><div class="lm-bub" id="lmPrev"></div></div>
     <input class="hp" id="lmHp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -1454,7 +1501,8 @@ footer a:hover{color:var(--fuchsia)}
     chat: 'Quiero que me asesoren para elegir el plan ideal',
     mbar: 'Quiero que me asesoren para elegir el plan ideal',
     footer: 'Quiero información sobre su servicio de tiendas online',
-    salida: 'Quiero aprovechar el precio de lanzamiento y la asesoría gratis'
+    salida: 'Quiero aprovechar el precio de lanzamiento y la asesoría gratis',
+    mensual: 'Quiero el *Plan Mensual*: tienda gratis + USD 25 al mes (permanencia de 12 meses)'
   };
   Object.keys(CTX).forEach(function(k){ MSG[k] = 'Hola Bio Marketing 👋 ' + CTX[k] + '. ¿Me pueden asesorar?'; });
   function waLink(text){ return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
@@ -1462,11 +1510,11 @@ footer a:hover{color:var(--fuchsia)}
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a.wa'); if(!a) return;
     e.preventDefault();
-    var key = a.getAttribute('data-msg') || 'general', card = a.closest('.plan'), msg = MSG[key] || MSG.general;
-    if(card && card.querySelector('.dom-chk').checked) msg += ' También quiero *dominio personalizado* ($85.000/año).';
+    var key = a.getAttribute('data-msg') || 'general', card = a.closest('.plan');
     hideChat();
-    openLead({ mode: 'wa', from: key, ctx: CTX[key] || '', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, dom: !!(card && card.querySelector('.dom-chk').checked), msg: msg });
+    waGo({ from: card ? 'plan' : key, ctx: CTX[key] || '', plan: card ? card.dataset.plan : '', amount: card ? +card.dataset.price : 0, dom: !!(card && card.querySelector('.dom-chk').checked) });
   });
+
 
 
 
@@ -1479,7 +1527,7 @@ footer a:hover{color:var(--fuchsia)}
 
   /* ===== Nav / sticky bars ===== */
   var nav = document.getElementById('nav'), mbar = document.getElementById('mbar');
-  function onScroll(){ var y = window.scrollY; nav.classList.toggle('scrolled', y > 20); mbar.classList.toggle('show', y > 600); }
+  function onScroll(){ var y = window.scrollY; nav.classList.toggle('scrolled', y > 20); mbar.classList.toggle('show', y > 120); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   /* ===== Bands duplicate ===== */
@@ -1722,7 +1770,7 @@ footer a:hover{color:var(--fuchsia)}
       if(plan) s.plan = plan;
       if(n <= s.step && !plan) return save();
       s.step = Math.max(s.step, n); save();
-      post('/api/public/track', { sid: s.sid, start: s.start, step: s.step, src: s.src, cmp: s.cmp, dev: s.dev, plan: s.plan });
+      post('/api/public/track', { sid: s.sid, start: s.start, step: s.step, src: s.src, cmp: s.cmp, dev: s.dev, plan: s.plan, from: s.from || '' });
     }
     save();
     return { step: step, get: function(){ return s; } };
@@ -1747,9 +1795,9 @@ footer a:hover{color:var(--fuchsia)}
     L.push(o.plan ? '¡Hola Bio Marketing! 👋 Quiero crear mi *tienda online* con ustedes 🚀' : '¡Hola Bio Marketing! 👋 Quiero información para crear mi *tienda online / página web* 🚀');
     L.push('');
     L.push('📋 *Mis datos*');
-    L.push('👤 Nombre: ' + (c.name || '—'));
-    L.push('📱 WhatsApp: ' + (c.phone ? prettyTel(c.phone) : '—'));
-    L.push('📍 Ciudad: ' + (c.city || '—'));
+    L.push('👤 Nombre: ' + (c.name || ''));
+    if(c.phone) L.push('📱 WhatsApp: ' + prettyTel(c.phone));
+    L.push('📍 Ciudad: ' + (c.city || ''));
     if(o.plan){
       L.push('');
       L.push('🛍️ *Plan que me interesa:* ' + o.plan + ' (' + fmt(o.amount) + ')');
@@ -1762,6 +1810,14 @@ footer a:hover{color:var(--fuchsia)}
       L.push('¿Me asesoran para elegir el plan ideal y empezar esta semana? Quiero vender online lo antes posible 🙌');
     }
     return L.join('\n');
+  }
+  // WhatsApp directo en un toque: sin formularios. El número del cliente llega solo con su mensaje.
+  function waGo(o){
+    var c = contact() || {};
+    VS.get().from = o.from; VS.step(4, o.plan);
+    bmTrack(o.plan ? 'Lead' : 'Contact', { content_name: o.plan ? 'Plan ' + o.plan : 'WhatsApp ' + o.from, value: o.amount || 0, currency: 'COP' });
+    var url = waLink(buildMsg(c, o));
+    if(matchMedia('(pointer:coarse)').matches) location.href = url; else window.open(url, '_blank', 'noopener');
   }
   function go(c, o){
     sendLead(c, o);
@@ -1802,7 +1858,6 @@ footer a:hover{color:var(--fuchsia)}
     var c = formData(), err = document.getElementById('lmErr');
     if(c.name.length < 2){ err.textContent = 'Escribe tu nombre.'; return; }
     if(!/^3\d{9}$/.test(c.phone)){ err.textContent = 'Escribe tu número de celular de 10 dígitos (ej: 300 123 4567).'; return; }
-    if(c.city.length < 3){ err.textContent = 'Escribe tu ciudad.'; return; }
     try{ localStorage.setItem('bm_contact', JSON.stringify(c)); }catch(e){}
     var o = lmCur; closeLead(); go(c, o);
   });
@@ -1871,8 +1926,11 @@ footer a:hover{color:var(--fuchsia)}
   document.addEventListener('mouseout', function(e){
     if(e.relatedTarget || e.clientY > 8 || Date.now() - t0 < 10000 || seen('bm_exit') || matchMedia('(pointer:coarse)').matches) return;
     if(document.getElementById('lm').classList.contains('show') || document.getElementById('payfb').classList.contains('show')) return;
-    mark('bm_exit'); hideChat();
-    openLead({ mode: 'wa', from: 'salida', ctx: CTX.salida, msg: MSG.salida, title: '¡Espera! 🎁 Asesoría gratis', sub: 'Antes de irte: déjanos tus datos y un asesor te muestra por WhatsApp cuál plan le sirve a tu negocio. Sin compromiso.' });
+    mark('bm_exit');
+    document.getElementById('cpMsg').innerHTML = '¡Espera! 🎁 Antes de irte: te asesoramos <b>gratis</b> por WhatsApp para elegir el plan ideal. Hoy con <b>precio de lanzamiento</b>.';
+    document.getElementById('cpTyping').hidden = true; document.getElementById('cpMsg').hidden = false;
+    cp.querySelector('a.wa').setAttribute('data-msg', 'salida');
+    cp.hidden = false; badge.hidden = false;
   });
 
   document.getElementById('yr').textContent = new Date().getFullYear();

@@ -21,6 +21,7 @@ module.exports = handler({
       cmp: cleanText(b.cmp, 60),
       dev: b.dev === 'mobile' ? 'mobile' : b.dev === 'tablet' ? 'tablet' : 'desktop',
       plan: cleanText(b.plan, 30),
+      from: String(b.from || '').replace(/[^a-z]/g, '').slice(0, 20),
       city: cleanText(h('x-vercel-ip-city'), 40),
       ctry: cleanText(h('x-vercel-ip-country'), 4),
     });
