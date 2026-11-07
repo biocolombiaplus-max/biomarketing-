@@ -774,6 +774,42 @@ footer a:hover{color:var(--fuchsia)}
 .mp-alt{font-weight:800;font-size:.88rem;color:var(--magenta)}
 @media(max-width:900px){.mplan{grid-template-columns:1fr;padding:24px 20px}.mp-feat{grid-template-columns:1fr}.mp-btns{flex-direction:column;align-items:stretch}.mp-btn{width:100%}.mp-alt{text-align:center}}
 .hero-micro{display:flex;flex-wrap:wrap;gap:8px 16px;margin:-18px 0 26px;font-size:.84rem;font-weight:700;color:var(--ink2)}
+/* ===== PLANES MÁS LIMPIOS ===== */
+.feat.key{margin-bottom:6px;gap:10px}
+.feat.key li{font-size:.96rem;color:var(--ink)}
+.pop .feat.key li{color:#fff}
+.more{margin-bottom:20px}
+.more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.86rem;color:var(--magenta);padding:6px 0;user-select:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary svg{width:16px;height:16px;transition:transform .3s}
+.more[open] summary svg{transform:rotate(180deg)}
+.more .m-c,.more[open] .m-o{display:none}.more[open] .m-c{display:inline}
+.more .feat{margin:10px 0 0;padding-top:12px;border-top:1px dashed var(--line2);gap:9px}
+.more .feat li{font-size:.88rem}
+.pop .more summary{color:var(--yellow)}.pop .more .feat{border-color:rgba(255,255,255,.3)}
+.plan .for{min-height:0;margin-bottom:2px}
+.plan .meta{margin-bottom:18px}
+.addon{font-size:.84rem;margin-bottom:10px}
+.mp-more{margin:0 0 4px}.mp-more .mp-feat{margin-top:10px}
+/* tabla comparativa */
+.cmpz{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--sh);overflow:hidden}
+.cmpz summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:-.02em}
+.cmpz summary::-webkit-details-marker{display:none}
+.cmpz summary svg{width:20px;height:20px;transition:transform .3s;color:var(--magenta)}
+.cmpz[open] summary svg{transform:rotate(180deg)}
+.cmpz summary:hover{background:var(--bg)}
+.cz-wrap{overflow-x:auto;border-top:1px solid var(--line);-webkit-overflow-scrolling:touch}
+.cz{width:100%;border-collapse:collapse;min-width:560px;font-size:.9rem}
+.cz th,.cz td{padding:13px 12px;text-align:center;border-bottom:1px solid var(--line)}
+.cz tr:last-child th,.cz tr:last-child td{border-bottom:0}
+.cz tbody th{text-align:left;font-weight:700;color:var(--ink2);position:sticky;left:0;background:#fff;z-index:1;white-space:nowrap}
+.cz thead th{font-family:var(--display);font-size:1rem;font-weight:800;padding-top:16px}
+.cz td{font-weight:700}
+.cz .hl{background:#FFF0F7;color:var(--magenta)}
+.cz thead th.hl{background:var(--fuchsia);color:#fff}
+.cz .y{font-style:normal;color:var(--green);font-weight:900;font-size:1.05rem}
+.cz .n{font-style:normal;color:#D5C7D2}
+@media(max-width:620px){.cz{min-width:0;table-layout:fixed;font-size:.68rem}.cz th,.cz td{padding:10px 3px;line-height:1.25;word-break:break-word}.cz tbody th{width:27%;white-space:normal;font-size:.68rem;padding-left:10px}.cz thead th{font-size:.72rem}.cz .y{font-size:.9rem}.cmpz summary{font-size:1rem}.price .per{font-size:.74rem}}
 /* reveal */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -1012,23 +1048,14 @@ footer a:hover{color:var(--fuchsia)}
         <div class="ribbon r-y">Ideal para empezar</div>
         <span class="lvl">Plan 01</span>
         <h3>Emprende</h3>
-        <p class="for">Pequeños comerciantes y emprendedores que quieren vender online ya.</p>
+        <p class="for">Para empezar a vender online ya.</p>
         <div class="price"><span class="cur">$</span><span class="amt">198.000</span><span class="per">COP<br>pago único</span></div>
         <p class="split">Inicias con <b>$99.000</b> · el resto al entregar</p>
         <div class="meta"><div><b>Hasta 30</b>productos o servicios</div><div><b>2 días</b>tiempo de entrega</div></div>
-        <ul class="feat">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tienda funcional con <strong>carrito de compras</strong></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Pago contra entrega</strong> + pedidos a WhatsApp</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Personalizada con tu logo y colores</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Módulo administrativo</strong>: pedidos, guías y seguimiento</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño adaptable a celular + certificado SSL</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Dominio genérico incluido (ej: <em>tutienda.vercel.app</em>)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Capacitación para subir tus productos</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>1 ronda de ajustes</li>
-          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-x"/></svg>Pasarela de pagos con tarjeta / PSE</li>
-        </ul>
+        <ul class="feat key"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Carrito + <strong>pago contra entrega</strong></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tu logo y colores</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Panel</strong> de pedidos y guías</li><li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-x"/></svg>Tarjetas, PSE y Nequi</li></ul>
+        <details class="more"><summary><span class="m-o">Ver todo lo que incluye</span><span class="m-c">Ver menos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño adaptable a celular + certificado SSL</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Dominio genérico incluido (ej: <em>tutienda.vercel.app</em>)</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Capacitación para subir tus productos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>1 ronda de ajustes</li></ul></details>
         <div class="box">
-          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> (ej: calzadohamsa.com) por $85.000/año</span></label>
+          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> · $85.000/año</span></label>
           <div class="paymode"><button type="button" class="on" data-mode="half">Anticipo 50%</button><button type="button" data-mode="full">Pago total</button></div>
           <div class="paysum"><span>Pagas hoy</span><b class="pay-now">$99.000</b></div>
         </div>
@@ -1044,23 +1071,14 @@ footer a:hover{color:var(--fuchsia)}
         <div class="ribbon r-y">★ El más elegido</div>
         <span class="lvl">Plan 02</span>
         <h3>Crece</h3>
-        <p class="for">Negocios que quieren recibir pagos con tarjeta y vender a todo el país.</p>
+        <p class="for">Para cobrar con tarjeta y vender a todo el país.</p>
         <div class="price"><span class="cur">$</span><span class="amt">490.000</span><span class="per">COP<br>pago único</span></div>
         <p class="split">Inicias con <b>$245.000</b> · el resto al entregar</p>
         <div class="meta"><div><b>Hasta 150</b>productos o servicios</div><div><b>3 a 4 días</b>tiempo de entrega</div></div>
-        <ul class="feat">
-          <li class="grp">Todo lo del plan Emprende, más:</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Pasarela de pagos</strong>: Wompi, ePayco, Mercado Pago o la que elijas</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tarjetas <strong>nacionales e internacionales</strong>, PSE y Nequi</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño personalizado premium con banners</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Categorías, filtros y variantes (talla, color)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Cupones de descuento y productos en oferta</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>SEO básico + Google Analytics + Píxel de Meta</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Notificaciones de pedido por correo</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>2 rondas de ajustes + 15 días de soporte</li>
-        </ul>
+        <ul class="feat key"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Todo lo del plan Emprende</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Tarjetas, PSE y Nequi</strong></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño <strong>premium</strong> con banners</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Cupones, filtros y variantes</li></ul>
+        <details class="more"><summary><span class="m-o">Ver todo lo que incluye</span><span class="m-c">Ver menos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Pasarela a elección: Wompi, ePayco, Mercado Pago…</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tarjetas nacionales e internacionales</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>SEO básico + Google Analytics + Píxel de Meta</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Notificaciones de pedido por correo</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>2 rondas de ajustes + 15 días de soporte</li></ul></details>
         <div class="box">
-          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> (ej: tunegocio.com) por $85.000/año</span></label>
+          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> · $85.000/año</span></label>
           <div class="paymode"><button type="button" class="on" data-mode="half">Anticipo 50%</button><button type="button" data-mode="full">Pago total</button></div>
           <div class="paysum"><span>Pagas hoy</span><b class="pay-now">$245.000</b></div>
         </div>
@@ -1076,23 +1094,14 @@ footer a:hover{color:var(--fuchsia)}
         <div class="ribbon r-b">Máxima personalización</div>
         <span class="lvl">Plan 03</span>
         <h3>Pro Empresarial</h3>
-        <p class="for">Empresas y marcas que buscan una tienda a la medida, automatizada y escalable.</p>
+        <p class="for">Para marcas que quieren todo a la medida y automatizado.</p>
         <div class="price"><span class="cur">$</span><span class="amt">890.000</span><span class="per">COP<br>pago único</span></div>
         <p class="split">Inicias con <b>$445.000</b> · el resto al entregar</p>
         <div class="meta"><div><b>Ilimitados</b>productos o servicios</div><div><b>4 a 5 días</b>tiempo de entrega</div></div>
-        <ul class="feat">
-          <li class="grp">Todo lo del plan Crece, más:</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Diseño 100% a la medida</strong> de tu marca</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Varias pasarelas</strong> de pago al mismo tiempo</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Automatización de guías y seguimiento con transportadoras</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Mensajes automáticos de estado del pedido</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Reportes de ventas e inventario</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Varios usuarios en el panel + blog</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>SEO avanzado y velocidad optimizada</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>3 rondas de ajustes + 30 días de soporte prioritario</li>
-        </ul>
+        <ul class="feat key"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Todo lo del plan Crece</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Diseño <strong>100% a la medida</strong></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg><strong>Guías y mensajes automáticos</strong></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Reportes + varios usuarios</li></ul>
+        <details class="more"><summary><span class="m-o">Ver todo lo que incluye</span><span class="m-c">Ver menos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Varias pasarelas de pago al mismo tiempo</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Seguimiento con transportadoras</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Blog para tu marca</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>SEO avanzado y velocidad optimizada</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>3 rondas de ajustes + 30 días de soporte prioritario</li></ul></details>
         <div class="box">
-          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> (ej: tumarca.com) por $85.000/año</span></label>
+          <label class="addon"><input type="checkbox" class="dom-chk"><span><b>+ Dominio propio .com</b> · $85.000/año</span></label>
           <div class="paymode"><button type="button" class="on" data-mode="half">Anticipo 50%</button><button type="button" data-mode="full">Pago total</button></div>
           <div class="paysum"><span>Pagas hoy</span><b class="pay-now">$445.000</b></div>
         </div>
@@ -1104,16 +1113,21 @@ footer a:hover{color:var(--fuchsia)}
       </article>
     </div>
 
+    <details class="cmpz rv">
+      <summary><span>📊</span> Comparar planes lado a lado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="cz-wrap"><table class="cz"><thead><tr><th></th><th>Mensual</th><th>Emprende</th><th class="hl">Crece ★</th><th>Pro</th></tr></thead><tbody><tr><th>Precio</th><td>USD 25/mes</td><td>$198.000</td><td class="hl">$490.000</td><td>$890.000</td></tr><tr><th>Productos</th><td>15</td><td>30</td><td class="hl">150</td><td>Ilimitados</td></tr><tr><th>Entrega</th><td>2–5 días</td><td>2 días</td><td class="hl">3–4 días</td><td>4–5 días</td></tr><tr><th>Carrito + contra entrega</th><td><i class="y">✓</i></td><td><i class="y">✓</i></td><td class="hl"><i class="y">✓</i></td><td><i class="y">✓</i></td></tr><tr><th>Panel de pedidos</th><td><i class="y">✓</i></td><td><i class="y">✓</i></td><td class="hl"><i class="y">✓</i></td><td><i class="y">✓</i></td></tr><tr><th>Tarjetas, PSE y Nequi</th><td><i class="n">—</i></td><td><i class="n">—</i></td><td class="hl"><i class="y">✓</i></td><td><i class="y">✓</i></td></tr><tr><th>Diseño</th><td>Plantilla</td><td>Tu marca</td><td class="hl">Premium</td><td>A la medida</td></tr><tr><th>Cupones y filtros</th><td><i class="n">—</i></td><td><i class="n">—</i></td><td class="hl"><i class="y">✓</i></td><td><i class="y">✓</i></td></tr><tr><th>Envíos automáticos</th><td><i class="n">—</i></td><td><i class="n">—</i></td><td class="hl"><i class="n">—</i></td><td><i class="y">✓</i></td></tr><tr><th>La tienda es tuya</th><td><i class="n">—</i></td><td><i class="y">✓</i></td><td class="hl"><i class="y">✓</i></td><td><i class="y">✓</i></td></tr><tr><th>Soporte</th><td>Horario hábil</td><td>Asesoría</td><td class="hl">15 días</td><td>30 días VIP</td></tr></tbody></table></div>
+    </details>
+
     <div class="mplan rv" id="plan-mensual">
       <div class="mp-l">
         <span class="mp-tag">Nuevo · Plan Mensual</span>
         <h3>Tu tienda <span class="it">gratis</span>, pagas USD 25 al mes</h3>
-        <p>Para quien prefiere no pagar la creación. Solo pagas el primer mes (USD 25) para iniciar y firmas un contrato de permanencia de 12 meses.</p>
-        <ul class="mp-feat">
+        <p>Sin pagar la creación: inicias con el primer mes y firmas permanencia de 12 meses.</p>
+        <details class="more mp-more"><summary><span class="m-o">Ver qué incluye</span><span class="m-c">Ver menos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="mp-feat">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Tienda con plantilla profesional</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Hasta 15 productos</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Carrito + pago contra entrega</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Dominio genérico incluido</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-check"/></svg>Soporte en horario hábil</li><li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><use href="#i-x"/></svg>La tienda no es tuya al terminar</li>
-        </ul>
+        </ul></details>
       </div>
       <div class="mp-r">
         <div class="mp-price"><div><small>Creación</small><b>$0</b></div><span>+</span><div><small>Mensualidad</small><b>USD 25</b><em>/mes</em></div></div>
