@@ -859,6 +859,24 @@ footer a:hover{color:var(--fuchsia)}
 .qz-rec b{font-family:var(--display);font-size:1.9rem;letter-spacing:-.03em}
 .qz-rec span{font-family:var(--display);font-weight:800;font-size:1.4rem;color:var(--yellow)}
 .qz-rec p{grid-column:1/-1;font-size:.9rem;opacity:.95;margin-top:4px}
+.qz-cuotas{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:14px;background:rgba(255,255,255,.16);border-radius:16px;padding:10px 14px}
+.qz-cuotas::before{content:'💳 En 2 pagos';font-weight:800;font-size:.8rem;margin-right:auto;white-space:nowrap}
+.qz-cuotas div{text-align:center}.qz-cuotas small{display:block;font-size:.62rem;letter-spacing:.06em;opacity:.85}
+.qz-cuotas b{font-family:var(--display);font-size:1.15rem;color:#fff}
+.qz-cuotas i{font-style:normal;font-weight:800;opacity:.7}
+.qz-cuotas.mens::before{content:'📅 Mensual'}
+.qz-alt{margin:-8px 0 22px}
+.qz-alt>small{display:block;font-size:.84rem;font-weight:700;color:var(--ink2);margin-bottom:10px}
+.qz-alts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.qz-alts button{position:relative;padding:11px 6px 9px;border-radius:14px;background:var(--bg);box-shadow:inset 0 0 0 1.5px var(--line);text-align:center;transition:.2s}
+.qz-alts button b{display:block;font-size:.88rem}
+.qz-alts button span{font-size:.74rem;font-weight:700;color:var(--ink3)}
+.qz-alts button:hover{box-shadow:inset 0 0 0 2px var(--fuchsia)}
+.qz-alts button.on{background:#FFF0F7;box-shadow:inset 0 0 0 2.5px var(--fuchsia)}.qz-alts button.on span{color:var(--magenta)}
+.qz-alts button.rec::after{content:'Recomendado';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--ink);font-size:.56rem;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.qz-cmp{display:inline-block;margin-top:10px;font-weight:800;font-size:.86rem;color:var(--magenta)}
+@media(max-width:640px){.qz-alts{grid-template-columns:1fr 1fr;row-gap:14px}.qz-cuotas{flex-wrap:wrap}.qz-cuotas::before{width:100%;margin:0 0 4px}}
+@media(max-width:760px){body.mbar-on .fab{opacity:0;pointer-events:none;transform:scale(.6)}.fab{transition:opacity .3s,transform .3s}}
 .qz-f{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px}
 .qz-f label:last-child{grid-column:1/-1}
 .qz-f label>span{display:block;font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:6px}
@@ -1036,7 +1054,18 @@ footer a:hover{color:var(--fuchsia)}
       <div class="qz-s" data-s="2"><h3>¿Cuántos productos o servicios tienes?</h3><div class="qz-opts" data-k="qty"><button type="button" data-v="Menos de 30"><span>🌱</span>Menos de 30</button><button type="button" data-v="De 30 a 150"><span>📦</span>De 30 a 150</button><button type="button" data-v="Más de 150"><span>🏬</span>Más de 150</button></div></div>
       <div class="qz-s" data-s="3"><h3>¿Cómo quieres cobrarle a tus clientes?</h3><div class="qz-opts" data-k="pay"><button type="button" data-v="Pago contra entrega"><span>💵</span>Pago contra entrega</button><button type="button" data-v="Tarjeta, PSE y Nequi"><span>💳</span>Tarjeta, PSE y Nequi</button><button type="button" data-v="Ambas opciones"><span>🔥</span>Ambas opciones</button></div></div>
       <div class="qz-s" data-s="4">
-        <div class="qz-rec"><small>Tu plan ideal</small><b id="qzPlan">Crece</b><span id="qzPrice">$490.000</span><p id="qzWhy"></p></div>
+        <div class="qz-rec"><small id="qzLbl">Tu plan ideal</small><b id="qzPlan">Crece</b><span id="qzPrice">$490.000</span><p id="qzWhy"></p>
+          <div class="qz-cuotas" id="qzCuotas"><div><small>Hoy</small><b id="qzC1">$245.000</b></div><i>+</i><div><small>Al recibir tu tienda</small><b id="qzC2">$245.000</b></div></div>
+        </div>
+        <div class="qz-alt"><small>¿Buscas algo más económico o más completo? Cambia de plan:</small>
+          <div class="qz-alts" id="qzAlts">
+            <button type="button" data-p="Plan Mensual"><b>Mensual</b><span>USD 25/mes</span></button>
+            <button type="button" data-p="Emprende"><b>Emprende</b><span>$198.000</span></button>
+            <button type="button" data-p="Crece"><b>Crece</b><span>$490.000</span></button>
+            <button type="button" data-p="Pro Empresarial"><b>Pro</b><span>$890.000</span></button>
+          </div>
+          <a href="#planes" class="qz-cmp">Ver y comparar todos los planes →</a>
+        </div>
         <h3>¿A dónde te enviamos tu cotización?</h3>
         <div class="qz-f">
           <label><span>Tu nombre</span><input class="lm-in" id="qzName" autocomplete="name" placeholder="Ej: Diana Amaya" maxlength="60"></label>
@@ -1666,7 +1695,7 @@ footer a:hover{color:var(--fuchsia)}
 
   /* ===== Nav / sticky bars ===== */
   var nav = document.getElementById('nav'), mbar = document.getElementById('mbar');
-  function onScroll(){ var y = window.scrollY; nav.classList.toggle('scrolled', y > 20); mbar.classList.toggle('show', y > 120); }
+  function onScroll(){ var y = window.scrollY; nav.classList.toggle('scrolled', y > 20); mbar.classList.toggle('show', y > 120); document.body.classList.toggle('mbar-on', y > 120); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   /* ===== Bands duplicate ===== */
@@ -2050,7 +2079,19 @@ footer a:hover{color:var(--fuchsia)}
   /* ===================== COTIZADOR (4 pasos → WhatsApp) ===================== */
   (function(){
     var qz = document.getElementById('qz'); if(!qz) return;
-    var ans = {}, step = 1, PRICES = { 'Emprende': 198000, 'Crece': 490000, 'Pro Empresarial': 890000 };
+    var ans = {}, step = 1, PRICES = { 'Emprende': 198000, 'Crece': 490000, 'Pro Empresarial': 890000, 'Plan Mensual': 0 };
+    var WHY = { 'Emprende': 'Perfecto para empezar a vender online con pago contra entrega y tu marca.', 'Crece': 'Te permite cobrar con tarjeta, PSE y Nequi y crecer tu catálogo sin límites.', 'Pro Empresarial': 'Diseño a la medida y automatización para manejar muchos productos y pedidos.', 'Plan Mensual': 'Sin pagar la creación: tienda con plantilla profesional y permanencia de 12 meses.' };
+    function priceTxt(p){ return p === 'Plan Mensual' ? 'USD 25/mes' : fmt(PRICES[p]); }
+    function setPlan(p){
+      ans.plan = p;
+      document.getElementById('qzLbl').textContent = p === ans.rec ? 'Tu plan ideal' : 'Plan elegido';
+      document.getElementById('qzPlan').textContent = p; document.getElementById('qzPrice').textContent = priceTxt(p); document.getElementById('qzWhy').textContent = WHY[p];
+      var cu = document.getElementById('qzCuotas');
+      if(p === 'Plan Mensual'){ cu.classList.add('mens'); document.getElementById('qzC1').textContent = 'USD 25'; document.getElementById('qzC2').textContent = '12 meses'; cu.querySelectorAll('small')[0].textContent = 'Para iniciar'; cu.querySelectorAll('small')[1].textContent = 'Permanencia'; }
+      else { cu.classList.remove('mens'); document.getElementById('qzC1').textContent = fmt(PRICES[p] / 2); document.getElementById('qzC2').textContent = fmt(PRICES[p] / 2); cu.querySelectorAll('small')[0].textContent = 'Hoy'; cu.querySelectorAll('small')[1].textContent = 'Al recibir tu tienda'; }
+      [].forEach.call(document.querySelectorAll('#qzAlts button'), function(x){ x.classList.toggle('on', x.dataset.p === p); x.classList.toggle('rec', x.dataset.p === ans.rec); });
+    }
+    document.getElementById('qzAlts').addEventListener('click', function(e){ var b = e.target.closest('button'); if(b) setPlan(b.dataset.p); });
     var steps = qz.querySelectorAll('.qz-s');
     function show(n){
       step = n;
@@ -2062,9 +2103,7 @@ footer a:hover{color:var(--fuchsia)}
         var c = contact() || {};
         document.getElementById('qzName').value = c.name || ''; document.getElementById('qzPhone').value = c.phone ? prettyTel(c.phone) : ''; document.getElementById('qzCity').value = c.city || '';
         var plan = ans.qty === 'Más de 150' ? 'Pro Empresarial' : (ans.pay !== 'Pago contra entrega' || ans.qty === 'De 30 a 150') ? 'Crece' : 'Emprende';
-        var why = { 'Emprende': 'Perfecto para empezar a vender online con pago contra entrega y tu marca.', 'Crece': 'Te permite cobrar con tarjeta, PSE y Nequi y crecer tu catálogo sin límites.', 'Pro Empresarial': 'Diseño a la medida y automatización para manejar muchos productos y pedidos.' }[plan];
-        ans.plan = plan;
-        document.getElementById('qzPlan').textContent = plan; document.getElementById('qzPrice').textContent = fmt(PRICES[plan]); document.getElementById('qzWhy').textContent = why;
+        ans.rec = plan; setPlan(plan);
       }
       VS.step(3);
     }
@@ -2088,7 +2127,8 @@ footer a:hover{color:var(--fuchsia)}
       s.from = 'cotiza'; VS.step(4, ans.plan);
       bmTrack('Lead', { content_name: 'Cotizador · Plan ' + ans.plan, value: PRICES[ans.plan], currency: 'COP' });
       var L = ['¡Hola Bio Marketing! 👋 Hice el *cotizador* de su página y quiero mi cotización 📝', '', '📋 *Mis datos*', '👤 Nombre: ' + c.name, '📱 WhatsApp: ' + prettyTel(c.phone), '📍 Ciudad: ' + (c.city || ''), '',
-        '🏪 *Mi negocio:* ' + (ans.biz || ''), '📦 *Productos:* ' + (ans.qty || ''), '💳 *Quiero cobrar con:* ' + (ans.pay || ''), '', '✅ *Plan recomendado:* ' + ans.plan + ' (' + fmt(PRICES[ans.plan]) + ')', '', '¿Me confirman la cotización y cómo empezamos esta semana? 🙌'];
+        '🏪 *Mi negocio:* ' + (ans.biz || ''), '📦 *Productos:* ' + (ans.qty || ''), '💳 *Quiero cobrar con:* ' + (ans.pay || ''), '', '✅ *Plan elegido:* ' + ans.plan + ' (' + priceTxt(ans.plan) + ')' + (ans.plan !== ans.rec ? ' · me recomendaron ' + ans.rec : ''),
+        ans.plan === 'Plan Mensual' ? '📅 Inicio con USD 25 y permanencia de 12 meses' : '💳 *Quiero pagarlo en 2 cuotas:* ' + fmt(PRICES[ans.plan] / 2) + ' hoy y ' + fmt(PRICES[ans.plan] / 2) + ' al recibir mi tienda', '', '¿Me confirman la cotización y cómo empezamos esta semana? 🙌'];
       var url = waLink(L.join('\n'));
       if(matchMedia('(pointer:coarse)').matches) location.href = url; else window.open(url, '_blank', 'noopener');
     });
