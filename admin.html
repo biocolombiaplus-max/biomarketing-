@@ -808,7 +808,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     if(s === 'ok') return 'Hola ' + n + ' 🎉 ¡Gracias por tu pago de ' + plan + '! Para empezar tu tienda virtual envíanos por aquí tu logo, colores y los productos que quieres vender.';
     return 'Hola ' + n + ' 👋 Somos *Bio Marketing*. Nos escribiste por ' + plan + '. ¿Te ayudamos a crear tu tienda virtual esta semana? Todavía tenemos cupos disponibles 🚀';
   }
-  var FROM = { nav: 'Botón del menú', hero: 'Inicio', clientes: 'Nuestros clientes', dolor: 'Sección problemas', beneficios: 'Beneficios', shopify: 'Comparación Shopify', dominio: 'Dominio', panel: 'Panel administrativo', galeria: 'Galería', proceso: '4 pasos', garantia: 'Garantía', resenas: 'Reseñas', faq: 'Preguntas', final: 'Cierre de la página', fab: 'Botón flotante', chat: 'Chat del asesor', mbar: 'Barra del celular', footer: 'Pie de página', salida: 'Aviso de salida', pago: 'Botón de pago', mensual: 'Plan Mensual', plan: 'Botón de un plan' };
+  var FROM = { nav: 'Botón del menú', hero: 'Inicio', clientes: 'Nuestros clientes', dolor: 'Sección problemas', beneficios: 'Beneficios', shopify: 'Comparación Shopify', dominio: 'Dominio', panel: 'Panel administrativo', galeria: 'Galería', proceso: '4 pasos', garantia: 'Garantía', resenas: 'Reseñas', faq: 'Preguntas', final: 'Cierre de la página', fab: 'Botón flotante', chat: 'Chat del asesor', mbar: 'Barra del celular', footer: 'Pie de página', salida: 'Aviso de salida', pago: 'Botón de pago', mensual: 'Plan Mensual', plan: 'Botón de un plan', cotiza: 'Cotizador', seo: 'Guía vender más' };
   function renderLeads(){
     var all = bestLead(stats.leads).sort(function(a, b){ return String(b.updated || b.created).localeCompare(String(a.updated || a.created)); });
     var q = ($('lsearch').value || '').toLowerCase().trim(), qd = q.replace(/\D/g, '');
@@ -826,7 +826,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
       return '<div class="ld' + (l._s === 'ab' ? ' ab' : '') + (l.contacted ? ' done' : '') + '" data-id="' + esc(l.id) + '">' +
         '<div class="ld-top"><div class="av" style="background:' + COLORS[i % COLORS.length] + '">' + esc(initials(l.name)) + '</div><div><b>' + esc(l.name) + '</b><a href="https://wa.me/' + waNum(l.phone) + '" target="_blank" rel="noopener">' + esc(prettyPhone(l.phone)) + '</a></div><span class="badge ' + b[0] + '">' + b[1] + '</span></div>' +
         '<div class="ld-meta">' + (l.plan ? '<span class="pl">Plan ' + esc(l.plan) + (+l.amount ? ' · ' + money(l.amount) : '') + '</span>' : '') + (l.from && FROM[l.from] ? '<span>👆 ' + FROM[l.from] + '</span>' : '') + (l.src ? '<span>' + esc(l.src) + '</span>' : '') + (l.city ? '<span>📍 ' + esc(l.city) + '</span>' : '') + (l.cmp ? '<span>' + esc(l.cmp) + '</span>' : '') + '</div>' +
-        (l.note ? '<div class="ld-note">📝 ' + esc(l.note) + '</div>' : '') +
+        (l.need ? '<div class="ld-note">🧾 ' + esc(l.need) + '</div>' : '') + (l.note ? '<div class="ld-note">📝 ' + esc(l.note) + '</div>' : '') +
         '<div class="ago">' + ago(l.updated || l.created) + (l.contacted ? ' · <span class="ct">✓ Contactado</span>' : '') + '</div>' +
         '<div class="ld-act"><a class="btn btn-wa btn-sm" data-a="wa" href="https://wa.me/' + waNum(l.phone) + '?text=' + encodeURIComponent(recoveryMsg(l, l._s)) + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.1 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>' + (l._s === 'ab' ? 'Recuperar pago' : 'Contactar') + '</a>' +
         '<button class="icon-btn" data-a="ct" title="' + (l.contacted ? 'Marcar como no contactado' : 'Marcar como contactado') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
@@ -854,8 +854,8 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     }
   };
   $('csv').onclick = function(){
-    var rows = [['Nombre', 'WhatsApp', 'Estado', 'Plan', 'Valor', 'Desde', 'Canal', 'Campaña', 'Ciudad', 'Fecha', 'Contactado', 'Nota']];
-    bestLead(stats.leads).forEach(function(l){ rows.push([l.name, prettyPhone(l.phone), BADGE[leadState(l)][1].replace(/^\W+\s*/, ''), l.plan, l.amount, FROM[l.from] || '', l.src, l.cmp, l.city, new Date(l.created).toLocaleString('es-CO'), l.contacted ? 'Sí' : 'No', l.note]); });
+    var rows = [['Nombre', 'WhatsApp', 'Estado', 'Plan', 'Valor', 'Desde', 'Respuestas cotizador', 'Canal', 'Campaña', 'Ciudad', 'Fecha', 'Contactado', 'Nota']];
+    bestLead(stats.leads).forEach(function(l){ rows.push([l.name, prettyPhone(l.phone), BADGE[leadState(l)][1].replace(/^\W+\s*/, ''), l.plan, l.amount, FROM[l.from] || '', l.need || '', l.src, l.cmp, l.city, new Date(l.created).toLocaleString('es-CO'), l.contacted ? 'Sí' : 'No', l.note]); });
     var csv = '﻿' + rows.map(function(r){ return r.map(function(c){ return '"' + String(c == null ? '' : c).replace(/"/g, '""') + '"'; }).join(';'); }).join('\n');
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'clientes-potenciales-biomarketing.csv'; a.click();
   };

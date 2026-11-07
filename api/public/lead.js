@@ -27,6 +27,7 @@ module.exports = handler({
       amount: Math.max(0, Math.min(1e8, Math.round(Number(b.amount) || 0))),
       kind: KINDS.includes(b.kind) ? b.kind : 'whatsapp',
       status: STATUS.includes(b.status) ? b.status : 'whatsapp',
+      need: cleanText(b.need, 140) || prev.need || '',
       src: cleanText(b.src, 20),
       from: String(b.from || prev.from || '').replace(/[^a-z]/g, '').slice(0, 20),
       cmp: cleanText(b.cmp, 60),
