@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Demo de Tienda Virtual por Sector | Mira cómo quedaría tu tienda online | Bio Marketing</title>
+<meta name="description" content="Elige tu sector (moda, belleza, salud, comida, tecnología, hogar o mascotas) y mira en vivo cómo quedaría tu tienda virtual y su panel administrativo. Tiendas online en Colombia desde $198.000.">
+<link rel="canonical" href="https://biomarketing-casl.vercel.app/demo">
+<meta name="theme-color" content="#FF1F8F">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Mira cómo quedaría tu tienda online · Demo por sector | Bio Marketing">
+<meta property="og:description" content="Demo interactiva: tienda virtual + panel administrativo según tu sector. Desde $198.000, sin mensualidades.">
+<meta property="og:image" content="https://biomarketing-casl.vercel.app/assets/compra-movil.webp">
+<meta property="og:url" content="https://biomarketing-casl.vercel.app/demo">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+(function(id){ window.bmTrack = function(){}; if(!id) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', id); fbq('track', 'PageView');
+  window.bmTrack = function(ev, data){ try{ fbq('track', ev, data || {}); }catch(e){} };
+})('1465788748818366');
+</script>
+<style>
+:root{
+  --bg:#FFF7FB;--ink:#1B0B2B;--ink2:#56466A;--ink3:#9887A9;--line:#F2DDEA;--line2:#E8C8DB;
+  --fuchsia:#FF1F8F;--magenta:#C8007A;--pink:#FFE1F0;--yellow:#FFD233;--blue:#3451FF;--green:#12B85B;--wa:#25D366;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;
+  --sh:0 1px 2px rgba(27,11,43,.04),0 12px 32px -12px rgba(27,11,43,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{display:block;max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.03em;line-height:1.05}
+.it{font-family:var(--serif);font-style:italic;font-weight:400}
+.fx{color:var(--fuchsia)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+/* botones */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;padding:15px 24px;border-radius:999px;white-space:nowrap;overflow:hidden;transition:transform .2s;font-size:.96rem}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:19px;height:19px;flex-shrink:0}
+.btn::after{content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.4s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,55%{left:-120%}100%{left:160%}}
+.btn-main{background:linear-gradient(135deg,#FF3D9E,#FF1F8F 45%,#C8007A);color:#fff;box-shadow:0 12px 28px -10px rgba(255,31,143,.7)}
+.btn-wa{background:linear-gradient(135deg,#2BE070,#12B85B);color:#fff;box-shadow:0 12px 28px -10px rgba(18,184,91,.7);animation:waP 2.4s infinite}
+@keyframes waP{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5),0 12px 28px -10px rgba(18,184,91,.7)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0),0 12px 28px -10px rgba(18,184,91,.7)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 12px 28px -10px rgba(18,184,91,.7)}}
+.btn-line{background:#fff;box-shadow:inset 0 0 0 1.5px var(--line2)}.btn-line::after{display:none}
+.btn-sm{padding:11px 18px;font-size:.88rem}
+
+/* nav */
+.top{position:sticky;top:0;z-index:50;background:rgba(255,247,251,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.03em;white-space:nowrap}
+.brand img{width:38px;height:38px;border-radius:50%}
+.brand small{display:block;font-family:'Plus Jakarta Sans';font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);font-weight:800;line-height:1}
+.top-r{display:flex;gap:10px;align-items:center}
+.back{font-weight:700;font-size:.9rem;color:var(--ink2)}
+@media(max-width:620px){.back{display:none}.top .btn span.l{display:none}}
+
+/* encabezado */
+.head{text-align:center;padding:44px 20px 26px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:12px}
+.head h1{font-size:clamp(2.1rem,5vw,3.6rem);margin-bottom:12px}
+.head p{color:var(--ink2);font-size:1.08rem;max-width:640px;margin:0 auto}
+.sectors{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:26px auto 0;max-width:980px}
+.sec-b{display:flex;align-items:center;gap:9px;padding:11px 18px 11px 12px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line),var(--sh);font-weight:800;font-size:.92rem;transition:transform .2s,box-shadow .2s}
+.sec-b span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:1.15rem;background:var(--bg)}
+.sec-b:hover{transform:translateY(-2px)}
+.sec-b.on{background:var(--ink);color:#fff;box-shadow:0 14px 28px -12px rgba(27,11,43,.6)}
+.sec-b.on span{background:rgba(255,255,255,.14)}
+@media(max-width:620px){.sectors{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:4px 20px 10px;margin:22px -20px 0;scrollbar-width:none}.sectors::-webkit-scrollbar{display:none}.sec-b{flex-shrink:0}}
+
+/* controles */
+.ctrl{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 16px}
+.seg{display:flex;background:#fff;border-radius:99px;padding:4px;box-shadow:inset 0 0 0 1px var(--line),var(--sh)}
+.seg button{padding:10px 18px;border-radius:99px;font-weight:800;font-size:.88rem;color:var(--ink2);display:flex;gap:7px;align-items:center;white-space:nowrap}
+.seg button.on{background:var(--fuchsia);color:#fff;box-shadow:0 8px 18px -8px rgba(255,31,143,.7)}
+.seg.dev button.on{background:var(--ink);box-shadow:none}
+.hint{font-size:.84rem;font-weight:700;color:var(--ink3)}
+@media(max-width:760px){.seg.dev,.hint{display:none}.ctrl{justify-content:center}}
+
+/* marco */
+.stage{display:flex;justify-content:center}
+.frame{width:100%;max-width:1200px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 2px 4px rgba(27,11,43,.04),0 50px 100px -30px rgba(200,0,122,.35),0 0 0 1px var(--line);transition:max-width .5s cubic-bezier(.2,.8,.2,1),border-radius .5s}
+.bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#F4EEF2;border-bottom:1px solid var(--line)}
+.bar>i{width:11px;height:11px;border-radius:50%;background:#ff5f57;flex-shrink:0}.bar>i:nth-child(2){background:#febc2e}.bar>i:nth-child(3){background:#28c840}
+.url{margin:0 auto;background:#fff;border-radius:99px;padding:6px 16px;font-size:.8rem;font-weight:600;color:var(--ink2);display:flex;gap:6px;align-items:center;box-shadow:inset 0 0 0 1px var(--line);max-width:70%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.url svg{width:12px;height:12px;color:var(--green);flex-shrink:0}
+.screen{position:relative;height:760px;overflow:hidden;container-type:inline-size}
+.frame.phone{max-width:400px;border-radius:44px;padding:12px;background:#121214;box-shadow:inset 0 0 0 2px #444,0 50px 90px -30px rgba(27,11,43,.6)}
+.frame.phone .bar{border-radius:32px 32px 0 0;padding-top:30px;position:relative}
+.frame.phone .bar::before{content:'';position:absolute;top:9px;left:50%;transform:translateX(-50%);width:110px;height:24px;border-radius:99px;background:#121214}
+.frame.phone .bar>i{display:none}
+.frame.phone .url{max-width:100%}
+.frame.phone .screen{border-radius:0 0 32px 32px;height:720px}
+@media(max-width:760px){.frame{border-radius:20px}.screen{height:78vh;min-height:560px}}
+.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+
+/* ================= TIENDA (tema por sector) ================= */
+.st{--p:#111;--a:#E85D75;--bgs:#FAF7F2;--tx:#16131f;background:var(--bgs);color:var(--tx);min-height:100%;font-size:15px}
+.st-ann{background:var(--p);color:#fff;text-align:center;font-size:.78rem;font-weight:700;padding:8px 12px;letter-spacing:.02em}
+.st-h{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bgs) 92%,transparent);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 28px;border-bottom:1px solid rgba(0,0,0,.06)}
+.st-logo{font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:-.04em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.st-logo i{width:30px;height:30px;border-radius:9px;background:var(--p);color:#fff;display:grid;place-items:center;font-style:normal;font-size:1rem}
+.st-logo b{color:var(--a)}
+.st-menu{display:flex;gap:22px;font-size:.88rem;font-weight:600;opacity:.75}
+.st-ic{display:flex;gap:8px;align-items:center}
+.st-ic button{position:relative;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(0,0,0,.05)}
+.st-ic button svg{width:19px;height:19px}
+.st-ic .cart{background:var(--p);color:#fff}
+.st-ic .cart b{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;border-radius:99px;background:var(--a);color:#fff;font-size:.7rem;display:grid;place-items:center;border:2px solid var(--bgs)}
+.st-ic .cart b.bump{animation:bump .4s}
+@keyframes bump{50%{transform:scale(1.5)}}
+.st-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;padding:40px 28px 34px}
+.st-hero small{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--a);background:color-mix(in srgb,var(--a) 14%,transparent);padding:6px 12px;border-radius:99px;margin-bottom:14px}
+.st-hero h2{font-size:clamp(2rem,5cqi,3.4rem);margin-bottom:12px;letter-spacing:-.04em}
+.st-hero h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--a)}
+.st-hero p{opacity:.75;font-size:1rem;margin-bottom:22px;max-width:440px}
+.st-cta{display:flex;gap:10px;flex-wrap:wrap}
+.st-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:99px;background:var(--p);color:#fff;font-weight:800;font-size:.92rem;transition:transform .2s}
+.st-btn:hover{transform:translateY(-2px)}
+.st-btn.ghost{background:transparent;color:var(--tx);box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.15)}
+.st-img{position:relative;aspect-ratio:1/1;border-radius:30px;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 35%,#fff),var(--p))}
+.st-img img{width:100%;height:100%;object-fit:cover}
+.st-img .tag{position:absolute;left:14px;bottom:14px;background:#fff;color:var(--tx);border-radius:14px;padding:9px 13px;font-size:.78rem;font-weight:700;box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.st-img .tag b{display:block;font-family:var(--display);font-size:1.05rem;color:var(--a)}
+.fb{display:grid;place-items:center;font-size:3rem}
+.st-perks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 28px 30px}
+.st-perks div{display:flex;gap:10px;align-items:center;background:#fff;border-radius:16px;padding:12px 14px;font-size:.8rem;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.st-perks span{font-size:1.3rem}
+.st-sec{padding:6px 28px 30px}
+.st-sec h3{font-size:1.5rem;margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline}
+.st-sec h3 a{font-family:'Plus Jakarta Sans';font-size:.82rem;font-weight:800;color:var(--a);letter-spacing:0}
+.st-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.st-cat{display:flex;align-items:center;gap:12px;background:#fff;border-radius:18px;padding:14px;font-weight:800;font-size:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.05);transition:transform .2s}
+.st-cat:hover{transform:translateY(-3px)}
+.st-cat span{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:color-mix(in srgb,var(--a) 16%,#fff);flex-shrink:0}
+.st-cat small{display:block;font-size:.7rem;font-weight:600;opacity:.6}
+.st-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pd{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.pd:hover{transform:translateY(-4px);box-shadow:0 18px 34px -18px rgba(0,0,0,.35)}
+.pd-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 22%,#fff),color-mix(in srgb,var(--p) 18%,#fff))}
+.pd-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pd:hover .pd-img img{transform:scale(1.06)}
+.pd-badge{position:absolute;top:10px;left:10px;background:var(--a);color:#fff;font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:99px;letter-spacing:.03em}
+.pd-fav{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:.85rem;color:var(--a)}
+.pd-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.pd-b small{font-size:.68rem;font-weight:700;opacity:.55;text-transform:uppercase;letter-spacing:.06em}
+.pd-b b{font-size:.92rem;line-height:1.3}
+.pd-pr{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.pd-pr span{font-family:var(--display);font-weight:800;font-size:1.08rem}
+.pd-pr s{font-size:.74rem;opacity:.45;margin-left:4px;font-family:'Plus Jakarta Sans';font-weight:600}
+.pd-add{display:inline-flex;align-items:center;gap:6px;background:var(--p);color:#fff;font-weight:800;font-size:.76rem;padding:8px 12px;border-radius:99px;transition:transform .15s,background .2s;white-space:nowrap}
+.pd-add:active{transform:scale(.94)}
+.pd-add.ok{background:#12B85B}
+.st-promo{margin:4px 28px 30px;border-radius:26px;padding:28px;background:var(--p);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;position:relative;overflow:hidden}
+.st-promo::after{content:'';position:absolute;width:220px;height:220px;border-radius:50%;background:var(--a);opacity:.55;right:-60px;top:-80px}
+.st-promo>*{position:relative;z-index:1}
+.st-promo h4{font-size:1.6rem;margin-bottom:4px}
+.st-promo p{opacity:.85;font-size:.9rem}
+.st-promo .st-btn{background:#fff;color:var(--p)}
+.st-foot{padding:24px 28px 90px;border-top:1px solid rgba(0,0,0,.07);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:.78rem;opacity:.8}
+.st-pay{display:flex;gap:6px;flex-wrap:wrap}
+.st-pay span{background:#fff;border-radius:6px;padding:4px 8px;font-weight:800;font-size:.66rem;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.st-wa{position:absolute;right:18px;bottom:18px;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(37,211,102,.8);z-index:6}
+.st-wa svg{width:27px;height:27px}
+/* tienda en ancho de celular */
+@container (max-width:720px){
+  .st-h{padding:12px 16px}.st-menu{display:none}
+  .st-hero{grid-template-columns:1fr;padding:22px 16px 22px;gap:18px}
+  .st-hero .st-img{order:-1;aspect-ratio:4/3;border-radius:24px}
+  .st-perks{grid-template-columns:1fr 1fr;padding:0 16px 22px}
+  .st-sec{padding:4px 16px 24px}.st-sec h3{font-size:1.25rem}
+  .st-cats{grid-template-columns:1fr 1fr;gap:10px}
+  .st-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .pd-b{padding:10px 10px 12px}.pd-b b{font-size:.84rem}.pd-pr{flex-direction:column;align-items:stretch}.pd-add{justify-content:center}
+  .st-promo{margin:4px 16px 24px;flex-direction:column;align-items:flex-start;padding:22px}
+  .st-foot{padding:20px 16px 90px}
+}
+
+/* carrito */
+.drawer{position:absolute;inset:0;z-index:20;display:flex;justify-content:flex-end;background:rgba(10,5,20,.45);opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer.on{opacity:1;pointer-events:auto}
+.dw{width:min(400px,100%);height:100%;background:#fff;display:flex;flex-direction:column;transform:translateX(30px);transition:transform .35s cubic-bezier(.2,.8,.2,1);color:#16131f}
+.drawer.on .dw{transform:none}
+.dw-h{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #eee}
+.dw-h b{font-family:var(--display);font-size:1.3rem}
+.dw-x{width:36px;height:36px;border-radius:50%;background:#f3f3f5;font-size:1.3rem}
+.dw-b{flex:1;overflow:auto;padding:16px 20px}
+.ci{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #f1f1f1}
+.ci .im{width:58px;height:58px;border-radius:14px;overflow:hidden;flex-shrink:0;background:#f4f1ee}
+.ci .im img{width:100%;height:100%;object-fit:cover}
+.ci div{flex:1;min-width:0}
+.ci b{display:block;font-size:.88rem}
+.ci small{font-weight:800;color:var(--p)}
+.qty{display:flex;align-items:center;gap:8px;font-weight:800}
+.qty button{width:28px;height:28px;border-radius:8px;background:#f3f3f5;font-weight:800}
+.dw-f{padding:16px 20px 20px;border-top:1px solid #eee}
+.tot{display:flex;justify-content:space-between;font-weight:700;margin-bottom:4px;font-size:.9rem}
+.tot.big{font-size:1.1rem}.tot.big b{font-family:var(--display);font-size:1.4rem}
+.go{width:100%;margin-top:12px;padding:15px;border-radius:99px;background:var(--p);color:#fff;font-weight:800;font-size:.98rem}
+.empty{text-align:center;padding:50px 10px;color:#888}
+.empty span{font-size:3rem;display:block;margin-bottom:8px}
+.payopt{display:flex;align-items:center;gap:12px;border:1.5px solid #eee;border-radius:14px;padding:13px;margin-bottom:9px;font-weight:700;font-size:.9rem;cursor:pointer}
+.payopt i{width:18px;height:18px;border-radius:50%;border:2px solid #ccc;flex-shrink:0}
+.payopt.on{border-color:var(--p);background:color-mix(in srgb,var(--a) 8%,#fff)}
+.payopt.on i{border:5px solid var(--p)}
+.payopt small{margin-left:auto;font-size:.72rem;color:#999;font-weight:600}
+.fld{width:100%;border:1.5px solid #eee;border-radius:12px;padding:12px 14px;font-family:inherit;font-size:.92rem;margin-bottom:9px;outline:none}
+.fld:focus{border-color:var(--p)}
+.lbl{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#888;margin:12px 0 8px}
+.okk{text-align:center;padding:40px 10px}
+.okk span{width:78px;height:78px;border-radius:50%;background:#DCFCE7;color:#12B85B;display:grid;place-items:center;margin:0 auto 16px;font-size:2.4rem;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(0)}}
+.okk h4{font-size:1.5rem;margin-bottom:6px}
+.okk p{color:#777;font-size:.9rem;margin-bottom:14px}
+
+/* ================= PANEL ADMINISTRATIVO ================= */
+.ad{display:grid;grid-template-columns:220px 1fr;min-height:100%;background:#F7F5FA;color:#1B0B2B;font-size:14px}
+.ad-side{background:#fff;border-right:1px solid #EEE8F0;padding:18px 12px;display:flex;flex-direction:column;gap:3px;position:sticky;top:0;height:760px}
+.ad-brand{display:flex;align-items:center;gap:10px;padding:0 6px 16px}
+.ad-brand i{width:36px;height:36px;border-radius:11px;background:var(--p);color:#fff;display:grid;place-items:center;font-style:normal;font-size:1.05rem}
+.ad-brand b{display:block;font-family:var(--display);font-size:.98rem;line-height:1.1}
+.ad-brand small{font-size:.68rem;color:#9a8fa8}
+.ad-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:11px;font-weight:700;font-size:.85rem;color:#5c5068;cursor:default}
+.ad-nav a.on{background:var(--p);color:#fff}
+.ad-nav a em{margin-left:auto;font-style:normal;font-size:.68rem;font-weight:800;background:var(--a);color:#fff;padding:1px 7px;border-radius:99px}
+.ad-main{padding:22px 24px 40px;min-width:0}
+.ad-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.ad-top h4{font-size:1.5rem}
+.ad-live{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:#15803D;background:#DCFCE7;padding:5px 11px;border-radius:99px}
+.ad-live i{width:8px;height:8px;border-radius:50%;background:#12B85B;animation:lv 1.6s infinite}
+@keyframes lv{0%{box-shadow:0 0 0 0 rgba(18,184,91,.6)}80%,100%{box-shadow:0 0 0 7px rgba(18,184,91,0)}}
+.kp4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.kpi{background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 0 0 1px #EEE8F0}
+.kpi small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9a8fa8}
+.kpi b{display:block;font-family:var(--display);font-size:1.6rem;letter-spacing:-.03em;margin:3px 0}
+.kpi span{font-size:.72rem;font-weight:800;color:#15803D;background:#DCFCE7;padding:2px 8px;border-radius:99px}
+.kpi.hl{background:var(--p);color:#fff;box-shadow:none}.kpi.hl small{color:rgba(255,255,255,.75)}.kpi.hl span{background:rgba(255,255,255,.2);color:#fff}
+.ad-row{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-bottom:12px}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 0 0 1px #EEE8F0;min-width:0}
+.card-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:8px}
+.card-h b{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.card-h span{font-family:var(--display);font-weight:800;color:var(--a)}
+.chart{height:150px;display:flex;align-items:flex-end;gap:8px;padding-top:10px}
+.chart div{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.chart i{width:100%;border-radius:8px 8px 3px 3px;background:color-mix(in srgb,var(--a) 35%,#fff);transform-origin:bottom;animation:gr .9s cubic-bezier(.2,.8,.2,1) both}
+.chart div:nth-last-child(-n+2) i{background:var(--p)}
+.chart small{font-size:.66rem;font-weight:700;color:#9a8fa8}
+@keyframes gr{from{transform:scaleY(0)}}
+.ord{display:grid;gap:7px}
+.or{display:grid;grid-template-columns:34px 1fr auto auto;gap:10px;align-items:center;font-size:.8rem;padding:8px;border-radius:12px;border:1px solid #F1ECF3}
+.or.new{border-color:var(--a);background:color-mix(in srgb,var(--a) 7%,#fff);animation:flash 1.2s 2}
+@keyframes flash{50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--a) 25%,transparent)}}
+.or .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.72rem;background:var(--p)}
+.or b{display:block;font-size:.84rem}
+.or small{color:#9a8fa8;font-size:.72rem}
+.or .amt{font-family:var(--display);font-weight:800}
+.chip{font-size:.68rem;font-weight:800;padding:4px 9px;border-radius:99px;white-space:nowrap}
+.c-n{background:#FFE1F0;color:#C8007A}.c-g{background:#FFF3C4;color:#8A5A00}.c-o{background:#DCFCE7;color:#15803D}.c-b{background:#E4E8FF;color:#3451FF}
+.mod{display:grid;gap:8px}
+.mi{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;background:#FAF8FC;font-size:.8rem}
+.mi .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--a) 15%,#fff);font-size:1.05rem;flex-shrink:0}
+.mi b{display:block;font-size:.84rem}
+.mi small{color:#9a8fa8;font-size:.72rem}
+.mi .chip{margin-left:auto}
+.tp{display:grid;gap:9px}
+.tp div{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;font-size:.8rem}
+.tp .im{width:38px;height:38px;border-radius:10px;overflow:hidden;background:#f4f1ee}
+.tp .im img{width:100%;height:100%;object-fit:cover}
+.tp em{font-style:normal;font-weight:800;color:#9a8fa8;font-size:.74rem}
+.bar2{height:6px;border-radius:9px;background:#F1ECF3;margin-top:4px;overflow:hidden}.bar2 i{display:block;height:100%;background:var(--a);border-radius:9px}
+.ad-mnav{display:none}
+@container (max-width:720px){
+  .ad{grid-template-columns:1fr}.ad-side{display:none}
+  .ad-main{padding:16px 12px 90px}
+  .kp4{grid-template-columns:1fr 1fr;gap:8px}.kpi b{font-size:1.25rem}
+  .ad-row{grid-template-columns:1fr}
+  .or{grid-template-columns:30px 1fr auto}.or .chip{display:none}
+  .ad-mnav{display:flex;justify-content:space-around;position:sticky;bottom:0;background:#fff;border-top:1px solid #EEE8F0;padding:9px 0 12px;font-size:.66rem;font-weight:800;color:#9a8fa8;margin-top:-80px}
+  .ad-mnav span{display:flex;flex-direction:column;align-items:center;gap:2px}.ad-mnav span i{font-style:normal;font-size:1.15rem}.ad-mnav .on{color:var(--p)}
+}
+.toast{position:absolute;left:50%;top:16px;transform:translate(-50%,-30px);opacity:0;background:#1B0B2B;color:#fff;padding:11px 16px;border-radius:14px;font-weight:700;font-size:.84rem;z-index:30;transition:.35s;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast button{margin-left:8px;color:var(--yellow);font-weight:800;text-decoration:underline}
+
+/* debajo del demo */
+.inc{padding:46px 0 120px}
+.inc-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.inc-box{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--sh)}
+.inc-box h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px}
+.inc-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inc-list div{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border-radius:16px;padding:14px}
+.inc-list span{font-size:1.5rem;line-height:1}
+.inc-list b{display:block;font-size:.95rem}
+.inc-list small{color:var(--ink2);font-size:.82rem}
+.inc-cta{background:var(--ink);color:#fff;border-radius:28px;padding:30px;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative;overflow:hidden}
+.inc-cta::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:var(--fuchsia);opacity:.5;right:-120px;top:-120px;filter:blur(10px)}
+.inc-cta>*{position:relative}
+.inc-cta h3{font-size:1.9rem}.inc-cta h3 .it{color:var(--yellow)}
+.inc-cta p{color:rgba(255,255,255,.8)}
+.inc-cta .from{font-family:var(--display);font-weight:800;font-size:2.3rem;letter-spacing:-.04em}
+.inc-cta .from small{font-family:'Plus Jakarta Sans';font-size:.85rem;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:0}
+.inc-cta .btn{width:100%}
+.inc-cta .btn-line{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+@media(max-width:900px){.inc-grid{grid-template-columns:1fr}.inc-list{grid-template-columns:1fr}}
+.mbar{display:none}
+@media(max-width:760px){.mbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-top:1px solid var(--line)}.mbar .btn{padding:13px 8px;font-size:.88rem}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="./" class="brand"><img src="assets/logo.png" alt="Bio Marketing" width="38" height="38"><div>Bio Marketing<small>Demo de tiendas</small></div></a>
+    <div class="top-r">
+      <a href="./#planes" class="back">← Ver planes</a>
+      <a class="btn btn-wa btn-sm wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero <span class="l">una tienda </span>así</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="head wrap">
+    <div class="eyebrow">Demo interactiva</div>
+    <h1>Mira cómo quedaría <span class="it fx">tu tienda online</span></h1>
+    <p>Elige el sector de tu negocio y recorre una tienda real: agrega productos al carrito, haz un pedido de prueba y mira cómo llega a tu panel administrativo.</p>
+    <div class="sectors" id="sectors"></div>
+  </section>
+
+  <section class="wrap">
+    <div class="ctrl">
+      <div class="seg" id="tabs"><button data-v="store" class="on">🛍️ Tienda</button><button data-v="admin">📊 Panel administrativo</button></div>
+      <span class="hint" id="hint">Toca “Agregar” y haz un pedido de prueba 👇</span>
+      <div class="seg dev" id="dev"><button data-v="desk" class="on">💻 Computador</button><button data-v="phone">📱 Celular</button></div>
+    </div>
+    <div class="stage">
+      <div class="frame" id="frame">
+        <div class="bar"><i></i><i></i><i></i><div class="url"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 1 1 6 0v3H9z"/></svg><span id="url">tutienda.com</span></div></div>
+        <div class="screen" id="screen">
+          <div class="view" id="vStore"></div>
+          <div class="view" id="vAdmin" hidden></div>
+          <div class="drawer" id="drawer"><div class="dw" id="dw"></div></div>
+          <div class="toast" id="toast"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inc wrap">
+    <div class="inc-grid">
+      <div class="inc-box">
+        <div class="eyebrow">Incluido para tu sector</div>
+        <h2 id="incT">Lo que tendría tu tienda</h2>
+        <div class="inc-list" id="incL"></div>
+      </div>
+      <div class="inc-cta">
+        <h3>¿Te gustó? La tuya puede estar <span class="it">lista en 2 a 5 días</span></h3>
+        <p>Con tu logo, tus colores, tus productos y tu panel administrativo. Sin mensualidades.</p>
+        <div class="from"><small>Desde </small>$198.000</div>
+        <a class="btn btn-wa wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span id="ctaT">Quiero una tienda así</span></a>
+        <a href="./#cotizar" class="btn btn-line">Cotizar mi página gratis →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="mbar"><a href="./#planes" class="btn btn-main"><span>Ver planes</span></a><a class="btn btn-wa wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero esta</span></a></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.32l-.35-.2-3.57.93.95-3.48-.22-.36a9.42 9.42 0 0 1-1.45-5.03c0-5.2 4.24-9.44 9.46-9.44 2.52 0 4.9.99 6.68 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45zm8.04-17.5A11.3 11.3 0 0 0 12.04.67C5.77.67.67 5.77.67 12.04c0 2 .52 3.96 1.52 5.68L.57 23.33l5.74-1.5a11.33 11.33 0 0 0 5.73 1.46h.01c6.26 0 11.36-5.1 11.37-11.37 0-3.04-1.18-5.89-3.34-8.04z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<script>
+(function(){
+  var WA = '573505457420';
+  var U = function(id, w){ return 'https://images.unsplash.com/photo-' + id + '?w=' + (w || 500) + '&q=70&auto=format&fit=crop'; };
+  var fmt = function(n){ return '$' + Math.round(n).toLocaleString('es-CO'); };
+  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+
+  /* ======== Sectores: cada uno con su tienda y su panel ======== */
+  var S = {
+    moda: { e: '👗', n: 'Moda y calzado', store: 'Hamsa', b: 'Store', url: 'hamsastore.com', p: '#16131F', a: '#E85D75', bg: '#FAF6F2', ic: 'H',
+      ann: '🚚 Envío gratis por compras desde $150.000 · Cambios sin costo',
+      tag: 'Nueva colección 2026', h: 'Estilo que se nota, <em>comodidad</em> que se siente', sub: 'Calzado, ropa y accesorios para todos los días. Elige tu talla y paga contra entrega.',
+      hero: '1441986300917-64674bd600d8', heroTag: ['+2.400', 'clientes felices'], btn: 'Comprar ahora', add: 'Agregar',
+      perks: [['🚚', 'Envío nacional'], ['💵', 'Pago contra entrega'], ['🔁', 'Cambios fáciles'], ['📏', 'Guía de tallas']],
+      cats: [['👟', 'Calzado', '120 productos'], ['👗', 'Mujer', '86 productos'], ['👕', 'Hombre', '64 productos'], ['👜', 'Accesorios', '40 productos']],
+      prods: [['Tenis Urban Red', 189900, 239900, '1542291026-7eec264c27ff', 'Más vendido', '👟'], ['Sneaker Clean White', 169900, 0, '1549298916-b41d501d3772', 'Nuevo', '👟'], ['Reloj Classic Gold', 249000, 299000, '1523275335684-37898b6baf30', '-17%', '⌚'], ['Gafas Sun Retro', 89900, 0, '1572635196237-14b3f281503f', '', '🕶️'], ['Tenis Runner Pro', 219900, 0, '1491553895911-0055eca6402d', '', '👟'], ['Sneaker Street', 179900, 209900, '1560769629-975ec94e6a86', '-14%', '👟'], ['Chaqueta Denim', 159900, 0, '1551028719-00167b16eac5', 'Nuevo', '🧥'], ['Colección Primavera', 129900, 0, '1490481651871-ab68de25d43d', '', '👚']],
+      promo: ['Hasta 40% OFF', 'En la colección de temporada, solo esta semana.'],
+      kpi: [18640000, 214, 87100, 1320], mod: ['Inventario por talla', [['👟', 'Tenis Urban Red · Talla 38', 'Quedan 2 unidades', 'Bajo', 'c-g'], ['👟', 'Sneaker Clean White · Talla 40', 'Quedan 0 unidades', 'Agotado', 'c-n'], ['🕶️', 'Gafas Sun Retro', '34 unidades', 'OK', 'c-o'], ['⌚', 'Reloj Classic Gold', '12 unidades', 'OK', 'c-o']]],
+      inc: [['📏', 'Tallas y colores', 'Cada producto con sus variantes y stock'], ['💵', 'Pago contra entrega', 'El método favorito en Colombia'], ['🔁', 'Cambios y devoluciones', 'Política clara que genera confianza'], ['📦', 'Guías de envío', 'Seguimiento para tus clientes'], ['🏷️', 'Cupones y ofertas', 'Descuentos por temporada'], ['📊', 'Inventario por talla', 'Sabes qué reponer a tiempo']] },
+    belleza: { e: '💄', n: 'Belleza', store: 'Mariangel', b: 'Beauty', url: 'mariangelbeauty.com', p: '#9D174D', a: '#F472B6', bg: '#FFF5F8', ic: 'M',
+      ann: '💝 Muestra gratis en compras desde $120.000 · Agenda tu cita en línea',
+      tag: 'Skincare & makeup', h: 'Tu rutina de belleza, <em>a un clic</em>', sub: 'Cosméticos originales, kits de regalo y agenda de citas para tus tratamientos.',
+      hero: '1596462502278-27bfdc403348', heroTag: ['4,9 ★', '1.800 reseñas'], btn: 'Ver productos', add: 'Agregar',
+      perks: [['✨', 'Productos originales'], ['📅', 'Agenda tu cita'], ['🎁', 'Kits de regalo'], ['💳', 'Tarjeta y PSE']],
+      cats: [['💄', 'Maquillaje', '96 productos'], ['🧴', 'Skincare', '72 productos'], ['🌸', 'Perfumes', '45 productos'], ['💅', 'Uñas', '58 productos']],
+      prods: [['Perfume Rose Elixir', 189000, 229000, '1541643600914-78b084683601', 'Top ventas', '🌸'], ['Kit Skincare Glow', 159000, 0, '1571781926291-c477ebfd024b', 'Nuevo', '🧴'], ['Crema Hidratante 24h', 69900, 0, '1556228578-8c89e6adf883', '', '🧴'], ['Set Labiales Matte', 59900, 79900, '1586495777744-4413f21062fa', '-25%', '💄'], ['Paleta de Sombras', 89900, 0, '1512496015851-a90fb38ba796', '', '🎨'], ['Brochas Profesionales', 74900, 0, '1522335789203-aabd1fc54bc9', '', '🖌️'], ['Esmaltes Gel x6', 49900, 64900, '1604654894610-df63bc536371', '-23%', '💅'], ['Sérum Vitamina C', 79900, 0, '1620916566398-39f1143ab7be', 'Nuevo', '💧']],
+      promo: ['Kit de regalo perfecto', 'Arma tu caja con 3 productos y llévate 15% OFF.'],
+      kpi: [12380000, 176, 70300, 980], mod: ['Reservas de hoy', [['💅', 'Laura M. · Uñas en gel', '10:00 a. m.', 'Confirmada', 'c-o'], ['💆‍♀️', 'Camila R. · Limpieza facial', '11:30 a. m.', 'Confirmada', 'c-o'], ['💄', 'Valentina G. · Maquillaje social', '3:00 p. m.', 'Pendiente', 'c-g'], ['✂️', 'Paola S. · Cejas y pestañas', '5:00 p. m.', 'Nueva', 'c-n']]],
+      inc: [['📅', 'Agenda de citas', 'Tus clientas reservan solas'], ['🎁', 'Kits y combos', 'Aumenta el valor de cada compra'], ['⭐', 'Reseñas con fotos', 'Prueba social que vende'], ['💳', 'Tarjeta, PSE y Nequi', 'Cobra como prefieran'], ['💌', 'Recompra fácil', 'Clientes que vuelven'], ['📊', 'Reportes de ventas', 'Sabes qué producto rinde más']] },
+    salud: { e: '🩺', n: 'Salud y laboratorio', store: 'Laboratorio', b: 'Vida', url: 'laboratoriovida.com', p: '#0E5E78', a: '#14B8A6', bg: '#F1FAFB', ic: '+',
+      ann: '🏠 Toma de muestras a domicilio · Resultados en línea en 24 horas',
+      tag: 'Laboratorio clínico', h: 'Tus exámenes, <em>sin filas</em> y con resultados en línea', sub: 'Agenda tu toma de muestras en sede o a domicilio, paga en línea y recibe tus resultados por WhatsApp.',
+      hero: '1579154204601-01588f351e67', heroTag: ['24 h', 'resultados en línea'], btn: 'Agendar examen', add: 'Agendar',
+      perks: [['📅', 'Agenda en línea'], ['🏠', 'Toma a domicilio'], ['📄', 'Resultados en línea'], ['🔒', 'Datos protegidos']],
+      cats: [['🩸', 'Exámenes de sangre', '48 exámenes'], ['❤️', 'Chequeos', '12 paquetes'], ['🤰', 'Embarazo', '9 exámenes'], ['🏠', 'A domicilio', 'Toda la ciudad']],
+      prods: [['Hemograma completo', 35000, 0, '1579154204601-01588f351e67', 'Más pedido', '🩸'], ['Perfil lipídico', 68000, 82000, '1582719471384-894fbb16e074', '-17%', '🧪'], ['Glicemia en ayunas', 18000, 0, '1576091160399-112ba8d25d1d', '', '🩸'], ['Check-up ejecutivo', 289000, 349000, '1505751172876-fa1923c5c528', 'Paquete', '❤️'], ['Perfil tiroideo', 95000, 0, '1579684385127-1ef15d508118', '', '🧪'], ['Vitamina D', 110000, 0, '1584308666744-24d5c474f2ae', '', '💊'], ['Prueba de embarazo', 32000, 0, '1559757148-5c350d0d3c56', '', '🤰'], ['Toma a domicilio', 25000, 0, '1631815588090-d4bfec5b1ccb', 'Servicio', '🏠']],
+      promo: ['Chequeo preventivo -20%', 'Paquete completo con resultados en 24 horas.'],
+      kpi: [24760000, 342, 72400, 2150], mod: ['Citas de hoy', [['🩸', 'Andrés P. · Hemograma', '7:00 a. m. · Sede', 'Atendido', 'c-o'], ['🏠', 'María L. · Check-up', '8:30 a. m. · Domicilio', 'En camino', 'c-b'], ['🧪', 'Jorge R. · Perfil lipídico', '9:15 a. m. · Sede', 'Confirmada', 'c-o'], ['📄', 'Diana A. · Resultados', 'Listos para enviar', 'Enviar', 'c-n']]],
+      inc: [['📅', 'Agenda de citas', 'Sede o domicilio, sin llamadas'], ['📄', 'Resultados en línea', 'Envío por WhatsApp o correo'], ['📋', 'Preparación del examen', 'Instrucciones claras por examen'], ['💳', 'Pago anticipado', 'Tarjeta, PSE y Nequi'], ['🔒', 'Protección de datos', 'Cumple la Ley 1581'], ['📊', 'Panel de citas', 'Organiza tu día de trabajo']] },
+    comida: { e: '🍔', n: 'Comida y restaurantes', store: 'La Brasa', b: 'Burger', url: 'labrasaburger.com', p: '#B91C1C', a: '#F59E0B', bg: '#FFF8EE', ic: '🔥',
+      ann: '🛵 Domicilio en 30 minutos · Pide en línea y paga al recibir',
+      tag: 'Hamburguesas artesanales', h: 'Antojo resuelto <em>en 30 minutos</em>', sub: 'Pide tu combo favorito, elige tus adiciones y paga en efectivo, tarjeta o Nequi.',
+      hero: '1568901346375-23c9450c58cd', heroTag: ['30 min', 'tiempo de entrega'], btn: 'Pedir ahora', add: 'Pedir',
+      perks: [['🛵', 'Domicilio 30 min'], ['🧀', 'Adiciones a tu gusto'], ['💵', 'Paga al recibir'], ['⭐', '4,8 en reseñas']],
+      cats: [['🍔', 'Hamburguesas', '14 opciones'], ['🍕', 'Pizzas', '10 opciones'], ['🥗', 'Saludable', '8 opciones'], ['🥤', 'Bebidas', '12 opciones']],
+      prods: [['Burger La Brasa', 28900, 0, '1568901346375-23c9450c58cd', 'Favorita', '🍔'], ['Pizza Pepperoni', 42900, 49900, '1565299624946-b28f40a0ae38', '-14%', '🍕'], ['Bowl Saludable', 26900, 0, '1546069901-ba9599a7e63c', 'Nuevo', '🥗'], ['Combo Doble Queso', 35900, 0, '1550547660-d9450f859349', 'Combo', '🍔'], ['Papas Rústicas', 12900, 0, '1573080496219-bb080dd4f877', '', '🍟'], ['Malteada Oreo', 14900, 0, '1572490122747-3968b75cc699', '', '🥤'], ['Helado Artesanal', 11900, 0, '1563805042-7684c019e1cb', '', '🍨'], ['Menú del día', 18900, 0, '1504674900247-0877df9cc836', 'Hoy', '🍽️']],
+      promo: ['Martes 2x1 en burgers', 'Pide en línea y aplica el cupón BRASA2X1.'],
+      kpi: [31240000, 1186, 26300, 3420], mod: ['Pedidos en cocina', [['🍔', '#2041 · 2 Burger La Brasa', 'Hace 4 min', 'Preparando', 'c-g'], ['🍕', '#2040 · Pizza Pepperoni', 'Hace 9 min', 'En camino', 'c-b'], ['🥗', '#2039 · Bowl + Malteada', 'Hace 12 min', 'Entregado', 'c-o'], ['🍔', '#2042 · Combo Doble Queso', 'Ahora', 'Nuevo', 'c-n']]],
+      inc: [['🧀', 'Menú con adiciones', 'Sin cebolla, extra queso… todo claro'], ['🛵', 'Zonas de domicilio', 'Costo según el barrio'], ['👨‍🍳', 'Pedidos a cocina', 'Pantalla de pedidos en orden'], ['🎟️', 'Cupones y combos', 'Promociones que mueven ventas'], ['💵', 'Efectivo, tarjeta o Nequi', 'Pagan como quieran'], ['📊', 'Platos más vendidos', 'Decide tu menú con datos']] },
+    tecno: { e: '📱', n: 'Tecnología', store: 'Nova', b: 'Tech', url: 'novatech.com.co', p: '#312E81', a: '#06B6D4', bg: '#F5F7FF', ic: 'N',
+      ann: '⚡ Garantía oficial de 12 meses · Paga hasta en 36 cuotas con tarjeta',
+      tag: 'Tecnología original', h: 'La tecnología que quieres, <em>con garantía</em>', sub: 'Celulares, computadores y accesorios originales con envío a toda Colombia y pago a cuotas.',
+      hero: '1496181133206-80ce9b88a853', heroTag: ['12 meses', 'de garantía'], btn: 'Ver ofertas', add: 'Agregar',
+      perks: [['🛡️', 'Garantía 12 meses'], ['💳', 'Hasta 36 cuotas'], ['🚚', 'Envío asegurado'], ['🔄', 'Plan retoma']],
+      cats: [['📱', 'Celulares', '58 productos'], ['💻', 'Portátiles', '34 productos'], ['🎧', 'Audio', '41 productos'], ['⌚', 'Wearables', '22 productos']],
+      prods: [['Smartphone Pro 256 GB', 3899000, 4299000, '1511707171634-5f897ff02aa9', '-9%', '📱'], ['Portátil Ultra 14"', 3299000, 0, '1496181133206-80ce9b88a853', 'Nuevo', '💻'], ['Smartwatch Fit', 649000, 0, '1546868871-7041f2a55e12', '', '⌚'], ['Audífonos Studio', 489000, 589000, '1505740420928-5e560c06d30e', '-17%', '🎧'], ['Cámara Mirrorless', 2799000, 0, '1526170375885-4d8ecf77b99f', '', '📷'], ['Audífonos Wireless', 289000, 0, '1583394838336-acd977736f90', 'Top', '🎧'], ['Teclado Mecánico RGB', 259000, 0, '1587829741301-dc798b83add3', '', '⌨️'], ['Parlante Bluetooth', 199000, 249000, '1608043152269-423dbba4e7e1', '-20%', '🔊']],
+      promo: ['Tech Days: hasta 25% OFF', 'En celulares y portátiles seleccionados.'],
+      kpi: [96480000, 128, 753700, 870], mod: ['Garantías y servicio', [['📱', 'Smartphone Pro · Juan C.', 'Revisión de pantalla', 'En proceso', 'c-g'], ['💻', 'Portátil Ultra · Sofía M.', 'Cambio de cargador', 'Resuelto', 'c-o'], ['🎧', 'Audífonos Studio · Luis T.', 'Solicitud nueva', 'Nueva', 'c-n'], ['⌚', 'Smartwatch Fit · Ana P.', 'Garantía vigente hasta 2027', 'Activa', 'c-b']]],
+      inc: [['📋', 'Fichas técnicas', 'Especificaciones claras y comparables'], ['💳', 'Pago a cuotas', 'Tarjeta, PSE y Nequi'], ['🛡️', 'Registro de garantías', 'Seguimiento por cliente'], ['🔢', 'Seriales e inventario', 'Control de cada equipo'], ['🚚', 'Envío asegurado', 'Guías con seguimiento'], ['📊', 'Margen por producto', 'Reportes de rentabilidad']] },
+    hogar: { e: '🏠', n: 'Hogar y decoración', store: 'Casa', b: 'Nórdica', url: 'casanordica.co', p: '#5B4636', a: '#C8A165', bg: '#FAF6F0', ic: 'C',
+      ann: '🛋️ Envío y armado gratis en muebles · Hasta 12 cuotas sin interés',
+      tag: 'Diseño para tu hogar', h: 'Espacios que <em>se sienten</em> como hogar', sub: 'Muebles, iluminación y decoración con envío, armado incluido y pago a cuotas.',
+      hero: '1586023492125-27b2c045efd7', heroTag: ['Armado', 'incluido'], btn: 'Explorar', add: 'Agregar',
+      perks: [['🚚', 'Envío y armado'], ['📐', 'Medidas exactas'], ['💳', 'Pago a cuotas'], ['🌿', 'Materiales nobles']],
+      cats: [['🛋️', 'Sala', '42 productos'], ['💡', 'Iluminación', '28 productos'], ['🪴', 'Decoración', '64 productos'], ['🍽️', 'Cocina', '37 productos']],
+      prods: [['Sofá Nórdico 3 puestos', 2490000, 2890000, '1555041469-a586c61ea9bc', '-14%', '🛋️'], ['Lámpara de Mesa Lino', 189000, 0, '1513506003901-1e6a229e2d15', 'Nuevo', '💡'], ['Silla Eames', 329000, 0, '1567538096630-e0c55bd6374c', '', '🪑'], ['Planta Monstera + Matera', 119000, 0, '1485955900006-10f4d324d411', '', '🪴'], ['Set de Cojines x3', 149000, 189000, '1584100936595-c0654b55a2e2', '-21%', '🛏️'], ['Mesa de Centro Roble', 689000, 0, '1532372320572-cda25653a26d', '', '🪵'], ['Vajilla Artesanal', 259000, 0, '1556909114-f6e7ad7d3136', 'Hecho a mano', '🍽️'], ['Sala Completa', 3990000, 0, '1586023492125-27b2c045efd7', 'Combo', '🏡']],
+      promo: ['Renueva tu sala', 'Combo sofá + mesa + cojines con 18% OFF.'],
+      kpi: [52870000, 96, 550700, 640], mod: ['Entregas programadas', [['🛋️', 'Sofá Nórdico · Calle 45 #12', 'Hoy 2:00 p. m. · con armado', 'En ruta', 'c-b'], ['🪵', 'Mesa de Centro · Cra 7 #80', 'Mañana 10:00 a. m.', 'Programada', 'c-g'], ['💡', 'Lámpara Lino · Av. 4N', 'Entregado ayer', 'Entregado', 'c-o'], ['🏡', 'Sala Completa · Cúcuta', 'Por programar', 'Nueva', 'c-n']]],
+      inc: [['📐', 'Medidas y materiales', 'Fichas completas por producto'], ['🖼️', 'Fotos en ambientes', 'Tus clientes imaginan el espacio'], ['🚚', 'Envío y armado', 'Agenda de entregas'], ['💳', 'Pago a cuotas', 'Tarjeta, PSE y Nequi'], ['❤️', 'Lista de deseos', 'Clientes que vuelven a comprar'], ['📊', 'Reportes de ventas', 'Qué se vende y cuándo']] },
+    mascotas: { e: '🐶', n: 'Mascotas', store: 'Patitas', b: 'Felices', url: 'patitasfelices.co', p: '#C2410C', a: '#FB923C', bg: '#FFF7F0', ic: '🐾',
+      ann: '🐾 Domicilio el mismo día · Suscríbete a su comida y ahorra 10%',
+      tag: 'Todo para tu mascota', h: 'Porque ellos <em>también</em> merecen lo mejor', sub: 'Concentrado, juguetes, accesorios y peluquería con domicilio el mismo día.',
+      hero: '1583337130417-3346a1be7dee', heroTag: ['+3.000', 'mascotas felices'], btn: 'Comprar ahora', add: 'Agregar',
+      perks: [['🛵', 'Domicilio hoy'], ['🔁', 'Suscripción -10%'], ['✂️', 'Peluquería'], ['💵', 'Pago contra entrega']],
+      cats: [['🐶', 'Perros', '140 productos'], ['🐱', 'Gatos', '96 productos'], ['🦴', 'Snacks', '48 productos'], ['✂️', 'Peluquería', 'Agenda en línea']],
+      prods: [['Concentrado Premium 8 kg', 189000, 219000, '1589924691995-400dc9ecc119', '-14%', '🦴'], ['Cama Ortopédica', 159000, 0, '1601758228041-f3b2795255f1', 'Nuevo', '🛏️'], ['Arenero para Gato', 89900, 0, '1514888286974-6c03e2ca1dba', '', '🐱'], ['Kit de Juguetes', 59900, 0, '1576201836106-db1758fd1c97', '', '🧸'], ['Baño y Peluquería', 55000, 0, '1583337130417-3346a1be7dee', 'Servicio', '✂️'], ['Collar + Placa', 39900, 49900, '1601758124510-52d02ddb7cbd', '-20%', '🏷️'], ['Snacks Naturales', 24900, 0, '1568640347023-a616a30bc3bd', '', '🦴'], ['Rascador para Gato', 129000, 0, '1545249390-6bdfa286032f', '', '🐈']],
+      promo: ['Suscripción de comida', 'Recibe su concentrado cada mes y ahorra 10%.'],
+      kpi: [21480000, 412, 52100, 1870], mod: ['Suscripciones activas', [['🐶', 'Max · Concentrado 8 kg', 'Próximo envío: 15 nov', 'Activa', 'c-o'], ['🐱', 'Luna · Arena + snacks', 'Próximo envío: 18 nov', 'Activa', 'c-o'], ['✂️', 'Rocky · Peluquería', 'Hoy 4:00 p. m.', 'Agendada', 'c-b'], ['🐶', 'Toby · Concentrado 15 kg', 'Pago pendiente', 'Revisar', 'c-g']]],
+      inc: [['🔁', 'Suscripciones', 'Ventas que se repiten cada mes'], ['🐾', 'Perfil de mascota', 'Recomendaciones según la raza'], ['✂️', 'Agenda de peluquería', 'Reservas en línea'], ['🛵', 'Domicilio el mismo día', 'Zonas y horarios'], ['💵', 'Contra entrega y Nequi', 'Pagos sin fricción'], ['📊', 'Recompra automática', 'Recordatorios a tus clientes']] }
+  };
+  var ORDER = ['moda', 'belleza', 'salud', 'comida', 'tecno', 'hogar', 'mascotas'];
+  var NAMES = [['Laura Martínez', 'Bogotá'], ['Andrés Pérez', 'Medellín'], ['Camila Rojas', 'Cali'], ['Valentina Gómez', 'Cúcuta'], ['Santiago Ruiz', 'Barranquilla'], ['Daniela Torres', 'Bucaramanga']];
+  var PAYS = ['Contra entrega', 'Tarjeta', 'PSE', 'Nequi'];
+  var STAT = [['Nuevo', 'c-n'], ['Preparando', 'c-g'], ['En camino', 'c-b'], ['Entregado', 'c-o'], ['Entregado', 'c-o']];
+
+  var key = 'moda', cart = [], view = 'store', extra = [];
+  var $ = function(id){ return document.getElementById(id); };
+  var screen = $('screen');
+
+  function img(id, w, emo, alt){ return '<img src="' + U(id, w) + '" alt="' + esc(alt || '') + '" loading="lazy" onerror="this.parentNode.classList.add(\'fb\');this.parentNode.textContent=\'' + emo + '\'">'; }
+  function theme(el, d){ el.style.setProperty('--p', d.p); el.style.setProperty('--a', d.a); el.style.setProperty('--bgs', d.bg); }
+
+  /* ======== TIENDA ======== */
+  function renderStore(){
+    var d = S[key];
+    var h = '<div class="st" id="st">' +
+      '<div class="st-ann">' + d.ann + '</div>' +
+      '<header class="st-h"><div class="st-logo"><i>' + d.ic + '</i>' + d.store + ' <b>' + d.b + '</b></div>' +
+        '<nav class="st-menu">' + d.cats.map(function(c){ return '<span>' + c[1] + '</span>'; }).join('') + '</nav>' +
+        '<div class="st-ic"><button aria-label="Buscar"><svg><use href="#i-search"/></svg></button><button class="cart" id="cartBtn" aria-label="Carrito"><svg><use href="#i-cart"/></svg><b id="cartN">0</b></button></div></header>' +
+      '<section class="st-hero"><div><small>' + d.tag + '</small><h2>' + d.h + '</h2><p>' + d.sub + '</p><div class="st-cta"><a class="st-btn" href="#prods">' + d.btn + ' →</a><a class="st-btn ghost" href="#prods">Ver catálogo</a></div></div>' +
+        '<div class="st-img">' + img(d.hero, 900, d.e, d.tag) + '<div class="tag"><b>' + d.heroTag[0] + '</b>' + d.heroTag[1] + '</div></div></section>' +
+      '<div class="st-perks">' + d.perks.map(function(x){ return '<div><span>' + x[0] + '</span>' + x[1] + '</div>'; }).join('') + '</div>' +
+      '<section class="st-sec"><h3>Categorías <a>Ver todas →</a></h3><div class="st-cats">' + d.cats.map(function(c){ return '<div class="st-cat"><span>' + c[0] + '</span><div>' + c[1] + '<small>' + c[2] + '</small></div></div>'; }).join('') + '</div></section>' +
+      '<section class="st-sec" id="prods"><h3>Lo más vendido <a>Ver todo →</a></h3><div class="st-grid">' + d.prods.map(function(x, i){
+        return '<article class="pd"><div class="pd-img">' + img(x[3], 500, x[5], x[0]) + (x[4] ? '<span class="pd-badge">' + x[4] + '</span>' : '') + '<span class="pd-fav">♥</span></div>' +
+          '<div class="pd-b"><small>' + d.cats[i % 4][1] + '</small><b>' + x[0] + '</b><div class="pd-pr"><span>' + fmt(x[1]) + (x[2] ? '<s>' + fmt(x[2]) + '</s>' : '') + '</span><button class="pd-add" data-i="' + i + '">＋ ' + d.add + '</button></div></div></article>';
+      }).join('') + '</div></section>' +
+      '<div class="st-promo"><div><h4>' + d.promo[0] + '</h4><p>' + d.promo[1] + '</p></div><a class="st-btn" href="#prods">Aprovechar</a></div>' +
+      '<footer class="st-foot"><span>© 2026 ' + d.store + ' ' + d.b + ' · Hecho por Bio Marketing</span><div class="st-pay"><span>VISA</span><span>MC</span><span>PSE</span><span>NEQUI</span><span>CONTRA ENTREGA</span></div></footer>' +
+      '</div><a class="st-wa" aria-label="WhatsApp de la tienda"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>';
+    $('vStore').innerHTML = h;
+    theme($('vStore'), d); theme($('drawer'), d);
+    $('cartBtn').onclick = openCart;
+    updCart();
+  }
+  $('vStore').addEventListener('click', function(e){
+    var a = e.target.closest('a[href="#prods"]'); if(a){ e.preventDefault(); var p = $('prods'); $('vStore').scrollTo({ top: p.offsetTop - 70, behavior: 'smooth' }); return; }
+    var b = e.target.closest('.pd-add'); if(!b) return;
+    var x = S[key].prods[+b.dataset.i], it = cart.find(function(c){ return c.i === +b.dataset.i; });
+    if(it) it.q++; else cart.push({ i: +b.dataset.i, q: 1 });
+    b.classList.add('ok'); b.textContent = '✓ Listo'; setTimeout(function(){ b.classList.remove('ok'); b.textContent = '＋ ' + S[key].add; }, 1200);
+    updCart(true);
+    toast(x[0] + ' agregado · <button data-a="cart">Ver carrito</button>');
+  });
+  function updCart(bump){
+    var n = cart.reduce(function(a, c){ return a + c.q; }, 0), el = $('cartN'); if(!el) return;
+    el.textContent = n; if(bump){ el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+  }
+  function total(){ var d = S[key]; return cart.reduce(function(a, c){ return a + d.prods[c.i][1] * c.q; }, 0); }
+
+  function openCart(){ renderCart(); $('drawer').classList.add('on'); }
+  function closeCart(){ $('drawer').classList.remove('on'); }
+  $('drawer').addEventListener('click', function(e){ if(e.target === $('drawer') || e.target.closest('.dw-x')) closeCart(); });
+  function renderCart(){
+    var d = S[key];
+    var body = cart.length ? cart.map(function(c, k){ var x = d.prods[c.i]; return '<div class="ci"><div class="im">' + img(x[3], 120, x[5], x[0]) + '</div><div><b>' + x[0] + '</b><small>' + fmt(x[1]) + '</small></div><div class="qty"><button data-q="-1" data-k="' + k + '">−</button>' + c.q + '<button data-q="1" data-k="' + k + '">+</button></div></div>'; }).join('')
+      : '<div class="empty"><span>🛒</span>Tu carrito está vacío.<br>Toca “' + d.add + '” en un producto.</div>';
+    $('dw').innerHTML = '<div class="dw-h"><b>Tu carrito</b><button class="dw-x" aria-label="Cerrar">×</button></div><div class="dw-b">' + body + '</div>' +
+      (cart.length ? '<div class="dw-f"><div class="tot"><span>Subtotal</span><b>' + fmt(total()) + '</b></div><div class="tot"><span>Envío</span><b>' + (total() >= 150000 ? 'Gratis' : fmt(9900)) + '</b></div><div class="tot big"><span>Total</span><b>' + fmt(total() + (total() >= 150000 ? 0 : 9900)) + '</b></div><button class="go" id="goCk">Finalizar compra →</button></div>' : '');
+    var g = $('goCk'); if(g) g.onclick = renderCheckout;
+  }
+  $('dw').addEventListener('click', function(e){
+    var b = e.target.closest('[data-q]'); if(!b) return;
+    var c = cart[+b.dataset.k]; c.q += +b.dataset.q; if(c.q <= 0) cart.splice(+b.dataset.k, 1);
+    updCart(); renderCart();
+  });
+  function renderCheckout(){
+    var t = total() + (total() >= 150000 ? 0 : 9900);
+    $('dw').innerHTML = '<div class="dw-h"><b>Finalizar compra</b><button class="dw-x" aria-label="Cerrar">×</button></div><div class="dw-b">' +
+      '<div class="lbl">Tus datos</div><input class="fld" id="ckN" value="Cliente de prueba"><input class="fld" value="300 123 4567"><input class="fld" value="Calle 10 #5-20, Cúcuta">' +
+      '<div class="lbl">Método de pago</div>' + PAYS.map(function(p, i){ return '<div class="payopt' + (i ? '' : ' on') + '" data-p="' + p + '"><i></i>' + p + '<small>' + ['Pagas al recibir', 'Visa · Mastercard', 'Débito bancario', 'Desde tu celular'][i] + '</small></div>'; }).join('') +
+      '</div><div class="dw-f"><div class="tot big"><span>Total</span><b>' + fmt(t) + '</b></div><button class="go" id="goPay">Confirmar pedido</button></div>';
+    $('dw').querySelectorAll('.payopt').forEach(function(o){ o.onclick = function(){ $('dw').querySelectorAll('.payopt').forEach(function(x){ x.classList.remove('on'); }); o.classList.add('on'); }; });
+    $('goPay').onclick = function(){
+      var pay = $('dw').querySelector('.payopt.on').dataset.p, d = S[key], first = d.prods[cart[0].i][0], n = cart.reduce(function(a, c){ return a + c.q; }, 0);
+      extra.unshift({ k: key, name: 'Tú (pedido de prueba)', city: 'Cúcuta', item: first + (n > 1 ? ' + ' + (n - 1) + ' más' : ''), pay: pay, amt: t });
+      cart = []; updCart();
+      $('dw').innerHTML = '<div class="dw-h"><b>¡Listo!</b><button class="dw-x" aria-label="Cerrar">×</button></div><div class="dw-b"><div class="okk"><span>✓</span><h4>¡Pedido confirmado!</h4><p>Así lo vería tu cliente. Ahora mira cómo te llega a ti en el panel administrativo.</p><button class="go" id="goAdm">📊 Ver mi pedido en el panel</button></div></div>';
+      $('goAdm').onclick = function(){ closeCart(); setView('admin'); };
+      bmTrack('ViewContent', { content_name: 'Demo pedido ' + d.n });
+    };
+  }
+
+  /* ======== PANEL ADMINISTRATIVO ======== */
+  function renderAdmin(){
+    var d = S[key], mine = extra.filter(function(o){ return o.k === key; });
+    var sales = d.kpi[0] + mine.reduce(function(a, o){ return a + o.amt; }, 0), orders = d.kpi[1] + mine.length;
+    var days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'], seed = key.length * 7, hs = days.map(function(_, i){ return 35 + ((seed * (i + 3) * 37) % 55) + (i > 4 ? 15 : 0); });
+    var mx = Math.max.apply(null, hs);
+    var base = d.prods.slice(0, 5).map(function(x, i){ var nm = NAMES[(i + key.length) % NAMES.length], st = STAT[i]; return { name: nm[0], city: nm[1], item: x[0], pay: PAYS[(i + 1) % 4], amt: x[1] * (i % 2 + 1), st: st }; });
+    var list = mine.map(function(o){ return { name: o.name, city: o.city, item: o.item, pay: o.pay, amt: o.amt, st: ['Nuevo', 'c-n'], mine: true }; }).concat(base).slice(0, 6);
+    var ini = function(n){ return n.split(' ').slice(0, 2).map(function(w){ return w[0]; }).join(''); };
+    var navs = [['📊', 'Panel', 1], ['🧾', 'Pedidos', 0, orders > 99 ? 12 + mine.length : 0], ['🛍️', 'Productos'], ['👥', 'Clientes'], [d.mod[0].split(' ')[0] === 'Pedidos' ? '👨‍🍳' : '⭐', d.mod[0]], ['🚚', 'Envíos y guías'], ['⚙️', 'Configuración']];
+    $('vAdmin').innerHTML = '<div class="ad"><aside class="ad-side"><div class="ad-brand"><i>' + d.ic + '</i><div><b>' + d.store + ' ' + d.b + '</b><small>Panel administrativo</small></div></div><nav class="ad-nav">' +
+      navs.map(function(n){ return '<a class="' + (n[2] ? 'on' : '') + '">' + n[0] + ' ' + n[1] + (n[3] ? '<em>' + n[3] + '</em>' : '') + '</a>'; }).join('') + '</nav></aside>' +
+      '<div class="ad-main"><div class="ad-top"><h4>Hola, ' + d.store + ' 👋</h4><span class="ad-live"><i></i>' + (12 + key.length) + ' personas en tu tienda ahora</span></div>' +
+      '<div class="kp4"><div class="kpi hl"><small>Ventas del mes</small><b>' + fmt(sales) + '</b><span>▲ 32%</span></div><div class="kpi"><small>Pedidos</small><b>' + orders.toLocaleString('es-CO') + '</b><span>▲ 18%</span></div><div class="kpi"><small>Ticket promedio</small><b>' + fmt(d.kpi[2]) + '</b><span>▲ 6%</span></div><div class="kpi"><small>Clientes</small><b>' + d.kpi[3].toLocaleString('es-CO') + '</b><span>▲ 24%</span></div></div>' +
+      '<div class="ad-row"><div class="card"><div class="card-h"><b>Ventas de la semana</b><span>' + fmt(d.kpi[0] / 4.2) + '</span></div><div class="chart">' + hs.map(function(h, i){ return '<div><i style="height:' + Math.round(h / mx * 100) + '%;animation-delay:' + (i * .07) + 's"></i><small>' + days[i] + '</small></div>'; }).join('') + '</div></div>' +
+        '<div class="card"><div class="card-h"><b>' + d.mod[0] + '</b><span>Hoy</span></div><div class="mod">' + d.mod[1].map(function(m){ return '<div class="mi"><span class="ic">' + m[0] + '</span><div><b>' + m[1] + '</b><small>' + m[2] + '</small></div><span class="chip ' + m[4] + '">' + m[3] + '</span></div>'; }).join('') + '</div></div></div>' +
+      '<div class="ad-row"><div class="card"><div class="card-h"><b>Últimos pedidos</b><span>' + (mine.length ? '+' + mine.length + ' tuyo' : 'En vivo') + '</span></div><div class="ord">' + list.map(function(o){
+          return '<div class="or' + (o.mine ? ' new' : '') + '"><span class="av">' + ini(o.name) + '</span><div><b>' + esc(o.name) + '</b><small>' + esc(o.item) + ' · ' + o.pay + ' · ' + o.city + '</small></div><span class="chip ' + o.st[1] + '">' + o.st[0] + '</span><span class="amt">' + fmt(o.amt) + '</span></div>'; }).join('') + '</div></div>' +
+        '<div class="card"><div class="card-h"><b>Más vendidos</b><span>Mes</span></div><div class="tp">' + d.prods.slice(0, 5).map(function(x, i){ var v = [92, 74, 61, 48, 33][i]; return '<div><span class="im">' + img(x[3], 100, x[5], x[0]) + '</span><span><b style="font-size:.82rem">' + x[0] + '</b><div class="bar2"><i style="width:' + v + '%"></i></div></span><em>' + Math.round(v * 1.7) + ' u.</em></div>'; }).join('') + '</div></div></div>' +
+      '</div></div><nav class="ad-mnav"><span class="on"><i>📊</i>Panel</span><span><i>🧾</i>Pedidos</span><span><i>🛍️</i>Productos</span><span><i>👥</i>Clientes</span><span><i>⚙️</i>Ajustes</span></nav>';
+    theme($('vAdmin'), d);
+    if(mine.length) setTimeout(function(){ toast('🎉 Aquí está tu pedido de prueba, marcado como <b>Nuevo</b>'); }, 300);
+  }
+
+  /* ======== Controles ======== */
+  function toast(h){ var t = $('toast'); t.innerHTML = h; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 3200); }
+  $('toast').addEventListener('click', function(e){ if(e.target.closest('[data-a="cart"]')) openCart(); });
+  function setView(v){
+    view = v; [].forEach.call($('tabs').children, function(b){ b.classList.toggle('on', b.dataset.v === v); });
+    $('vStore').hidden = v !== 'store'; $('vAdmin').hidden = v !== 'admin';
+    $('url').textContent = v === 'admin' ? S[key].url + '/admin' : S[key].url;
+    $('hint').textContent = v === 'admin' ? 'Así controlas ventas, pedidos y clientes 📊' : 'Toca “' + S[key].add + '” y haz un pedido de prueba 👇';
+    if(v === 'admin'){ renderAdmin(); $('vAdmin').scrollTop = 0; }
+  }
+  $('tabs').onclick = function(e){ var b = e.target.closest('button'); if(b) setView(b.dataset.v); };
+  $('dev').onclick = function(e){ var b = e.target.closest('button'); if(!b) return; [].forEach.call(this.children, function(x){ x.classList.toggle('on', x === b); }); $('frame').classList.toggle('phone', b.dataset.v === 'phone'); };
+
+  function waMsg(){ var d = S[key]; return '¡Hola Bio Marketing! 👋 Vi el *demo de tienda de ' + d.n + '* y quiero una así para mi negocio 🚀\n\n📋 *Mis datos*\n👤 Nombre: \n📍 Ciudad: \n\n¿Me cuentan qué plan me sirve y cómo empezamos? 🙌'; }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a.wa'); if(!a) return;
+    e.preventDefault(); bmTrack('Contact', { content_name: 'Demo ' + S[key].n });
+    var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(waMsg());
+    if(matchMedia('(pointer:coarse)').matches) location.href = url; else window.open(url, '_blank', 'noopener');
+  });
+
+  function setSector(k, push){
+    if(!S[k]) k = 'moda';
+    key = k; cart = []; closeCart();
+    $('sectors').querySelectorAll('.sec-b').forEach(function(b){ b.classList.toggle('on', b.dataset.k === k); });
+    renderStore(); $('vStore').scrollTop = 0;
+    setView(view);
+    var d = S[k];
+    $('incT').innerHTML = 'Lo que tendría tu tienda de <span class="it fx">' + d.n.toLowerCase() + '</span>';
+    $('incL').innerHTML = d.inc.map(function(x){ return '<div><span>' + x[0] + '</span><span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></div>'; }).join('');
+    $('ctaT').textContent = 'Quiero una tienda de ' + d.n.toLowerCase();
+    if(push){ try{ history.replaceState(null, '', '?s=' + k); }catch(e){} }
+  }
+  $('sectors').innerHTML = ORDER.map(function(k){ return '<button class="sec-b" data-k="' + k + '"><span>' + S[k].e + '</span>' + S[k].n + '</button>'; }).join('');
+  $('sectors').onclick = function(e){ var b = e.target.closest('.sec-b'); if(!b) return; setSector(b.dataset.k, true); b.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }); };
+  setSector(new URLSearchParams(location.search).get('s') || 'moda');
+})();
+</script>
+</body>
+</html>
