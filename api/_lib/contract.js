@@ -26,8 +26,9 @@ function cleanContract(b, prev = {}) {
     payTerm: PAY_TERMS.includes(b.payTerm) ? b.payTerm : 'al_entregar',
     adjustments: num(b.adjustments, 10),
     notes: cleanText(b.notes, 600),
+    scope: String(b.scope || '').replace(/[\u0000-\u0008\u000b-\u001f<>]/g, ' ').replace(/\n{3,}/g, '\n\n').trim().slice(0, 1500),
     client,
-    provider: { name: cleanText(p.name, 80) || 'Bio Marketing', doc: cleanText(p.doc, 30), city: cleanText(p.city, 50) || 'Cúcuta', phone: cleanText(p.phone, 20) || '350 545 7420', email: cleanText(p.email, 90) },
+    provider: { name: cleanText(p.name, 80) || 'Bio Marketing', doc: cleanText(p.doc, 30), city: cleanText(p.city, 50) || 'Cúcuta', phone: cleanText(p.phone, 20) || '350 545 7420', email: cleanText(p.email, 90), llave: cleanText(p.llave, 40) || '@OTO262', holder: cleanText(p.holder, 60) || 'Juan Cáceres' },
     number: prev.number || '',
     createdAt: prev.createdAt || new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -36,8 +37,8 @@ function cleanContract(b, prev = {}) {
 
 // Lo que ve el cliente (sin datos internos)
 function publicView(c) {
-  const { id, number, plan, items, total, delivery, payTerm, adjustments, notes, client, provider, createdAt, status, signedAt, signature, signer } = c;
-  return { id, number, plan, items, total, delivery, payTerm, adjustments, notes, client, provider, createdAt, status, signedAt, signature, signer };
+  const { id, number, plan, items, total, delivery, payTerm, adjustments, notes, scope, client, provider, createdAt, status, signedAt, signature, signer, deliveredAt, site, paidAt, payment } = c;
+  return { id, number, plan, items, total, delivery, payTerm, adjustments, notes, scope, client, provider, createdAt, status, signedAt, signature, signer, deliveredAt, site: site ? { url: site.url } : undefined, paidAt, payment: payment ? { method: payment.method, date: payment.date } : undefined };
 }
 
 module.exports = { cleanContract, publicView };

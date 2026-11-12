@@ -20,7 +20,7 @@ module.exports = handler({
   async POST(req, res) {
     const b = await readBody(req, 400000);
     const c = await load(b.id);
-    if (c.status === 'firmado') throw new HttpError(409, 'Este documento ya fue firmado.');
+    if (c.signedAt) throw new HttpError(409, 'Este documento ya fue firmado.');
     const sig = String(b.signature || '');
     if (!/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(sig) || sig.length < 800) throw new HttpError(400, 'Dibuja tu firma en el recuadro.');
     if (sig.length > 350000) throw new HttpError(413, 'La firma es muy pesada. Inténtalo de nuevo.');

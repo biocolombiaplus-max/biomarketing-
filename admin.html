@@ -303,6 +303,33 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 .ct-num.f{background:#DCFCE7}
 .top .brand{flex-shrink:0;white-space:nowrap}
 @media(min-width:861px){.tabs button{padding:9px 13px;font-size:.84rem}.top-act .lbl{display:none}}
+.ct-tip{font-size:.8rem;color:var(--ink2);background:var(--yellow2);border-radius:12px;padding:10px 12px;margin-top:-6px}
+.ct-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.ct-k{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:var(--sh)}
+.ct-k small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.ct-k b{display:block;font-family:var(--display);font-size:1.45rem;letter-spacing:-.03em;margin-top:2px}
+.ct-k span{font-size:.74rem;color:var(--ink3);font-weight:600}
+.ct-k.g{background:#ECFDF3;border-color:#BBF7D0}.ct-k.g b{color:#15803D}
+.ct-k.y{background:var(--yellow2);border-color:#F5DE8A}.ct-k.y b{color:#8A5A00}
+@media(max-width:1100px){.ct-kpis{grid-template-columns:1fr 1fr}}
+.ct-flt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.ct-flt button{padding:8px 14px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-weight:700;font-size:.82rem;color:var(--ink2)}
+.ct-flt button.on{background:var(--ink);color:#fff;box-shadow:none}
+.ct-csv{margin-left:auto}
+.ct-st.e{background:#E4E8FF;color:#3451FF}.ct-st.pg{background:#12B85B;color:#fff}
+.ct-num.e{background:#E4E8FF}.ct-num.pg{background:#DCFCE7}
+.ct-go{padding:8px 13px;border-radius:99px;font-weight:800;font-size:.78rem;white-space:nowrap;color:#fff;background:var(--fuchsia);box-shadow:0 8px 16px -8px rgba(255,31,143,.7)}
+.ct-go.pay{background:#12B85B;box-shadow:0 8px 16px -8px rgba(18,184,91,.7)}
+.ct-row .acts{flex-wrap:wrap;justify-content:flex-end}
+.md{position:fixed;inset:0;z-index:95;background:rgba(27,11,43,.5);backdrop-filter:blur(5px);display:grid;place-items:center;padding:16px}
+.md-card{position:relative;width:100%;max-width:480px;background:#fff;border-radius:26px;padding:26px 22px 22px;box-shadow:0 40px 90px -20px rgba(27,11,43,.6);max-height:calc(100vh - 32px);overflow:auto}
+.md-card h3{font-size:1.5rem;margin-bottom:4px}.md-card>div>p{color:var(--ink2);font-size:.9rem;margin-bottom:16px}
+.md-x{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;background:var(--bg);font-size:1.3rem}
+.md-prev{background:#E9F7EE;border-radius:14px;padding:12px;font-size:.8rem;white-space:pre-wrap;max-height:180px;overflow:auto;margin:4px 0 14px;color:#111B21}
+.md-card .btn{width:100%;margin-top:4px}
+.md-pay{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.md-pay button{padding:10px 6px;border-radius:12px;box-shadow:inset 0 0 0 1.5px var(--line);font-weight:700;font-size:.8rem}
+.md-pay button.on{box-shadow:inset 0 0 0 2px #12B85B;background:#ECFDF3;color:#15803D}
 /* save bar */
 .savebar{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);z-index:60;background:var(--ink);color:#fff;border-radius:22px;padding:10px 10px 10px 22px;display:flex;align-items:center;gap:18px;box-shadow:0 24px 50px -12px rgba(27,11,43,.6);transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 24px)}
 .savebar:not(.show){visibility:hidden;transition:transform .35s,visibility 0s .35s}
@@ -460,11 +487,14 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
             <label class="field"><span>Ciudad</span><input class="input" id="cCity" placeholder="Cúcuta" maxlength="50"></label>
             <label class="field"><span>Dirección</span><input class="input" id="cAddr" placeholder="Calle 10 #5-20" maxlength="120"></label>
           </div>
-          <div class="ct-sec">3 · Servicios y valores</div>
+          <div class="ct-sec">3 · Qué vamos a entregar</div>
+          <label class="field"><span>Alcance del desarrollo <b class="count" id="cScopeN">0/1500</b></span><textarea class="input" id="cScope" maxlength="1500" rows="5" placeholder="Ej: Tienda virtual con inicio, catálogo de hasta 30 productos en 4 categorías, carrito con pago contra entrega, botón de WhatsApp, página de contacto y panel de pedidos. No incluye: blog, app móvil ni fotografía de productos."></textarea></label>
+          <div class="ct-tip">💡 Describe lo que se entrega y lo que <b>no</b> incluye. Así el contrato tiene límites claros y lo que pidan de más se cotiza aparte.</div>
+          <div class="ct-sec">4 · Servicios y valores</div>
           <div id="ctItems" class="ct-items"></div>
           <button type="button" class="ct-add" id="ctAdd">＋ Agregar servicio</button>
           <div class="ct-total"><span>Total a pagar</span><b id="ctTotal">$0</b></div>
-          <div class="ct-sec">4 · Entrega y pago</div>
+          <div class="ct-sec">5 · Entrega y pago</div>
           <div class="ct-2">
             <label class="field"><span>Tiempo de entrega</span><input class="input" id="cDel" list="ctDelList" value="el mismo día" maxlength="60"><datalist id="ctDelList"><option>el mismo día</option><option>en 24 horas</option><option>en 3 a 5 días</option></datalist></label>
             <label class="field"><span>Rondas de ajustes</span><input class="input" id="cAdj" type="number" min="0" max="10" value="1"></label>
@@ -475,10 +505,13 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
             <div class="ct-2"><label class="field"><span>Nombre</span><input class="input" id="pName" value="Bio Marketing"></label><label class="field"><span>NIT</span><input class="input" id="pDoc" placeholder="Opcional"></label></div>
             <div class="ct-2"><label class="field"><span>Ciudad</span><input class="input" id="pCity" value="Cúcuta"></label><label class="field"><span>WhatsApp</span><input class="input" id="pPhone" value="350 545 7420"></label></div>
             <label class="field"><span>Correo</span><input class="input" id="pEmail" value="biomarketing.salud@gmail.com"></label>
+            <div class="ct-2"><label class="field"><span>Llave Breve para cobrar</span><input class="input" id="pLlave" value="@OTO262"></label><label class="field"><span>A nombre de</span><input class="input" id="pHolder" value="Juan Cáceres"></label></div>
           </details>
           <div class="form-actions"><button type="button" class="btn btn-line" id="ctCancel" hidden>Cancelar</button><button class="btn btn-main" type="submit" id="ctSubmit"><span>Generar documento</span></button></div>
         </form>
         <div>
+          <div class="ct-kpis" id="ctKpis"></div>
+          <div class="ct-flt" id="ctFlt"><button class="on" data-cf="all">Todos</button><button data-cf="pendiente">Por firmar</button><button data-cf="firmado">Por entregar</button><button data-cf="entregado">Por cobrar</button><button data-cf="pagado">Pagados</button><button class="ct-csv" id="ctCsv">⬇ Excel</button></div>
           <div class="ct-ready" id="ctReady" hidden></div>
           <div class="list" id="ctList"></div>
         </div>
@@ -552,6 +585,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 
   <div class="savebar" id="savebar"><span><i></i>Tienes cambios sin guardar</span><button class="btn btn-line btn-sm" id="discard">Descartar</button><button class="btn btn-main btn-sm" id="save"><span>Guardar y publicar</span></button></div>
 </div>
+<div class="md" id="md" hidden><form class="md-card" id="mdForm"><button type="button" class="md-x" id="mdX">×</button><div id="mdBody"></div></form></div>
 <div class="toast" id="toast"></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -985,20 +1019,20 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     $('cDel').value = P.del; $('cAdj').value = P.adj;
   }
   $('ctPlans').onclick = function(e){ var b = e.target.closest('.chip'); if(b) setPlan(b.dataset.p); };
-  var PROV = ['pName', 'pDoc', 'pCity', 'pPhone', 'pEmail'];
+  var PROV = ['pName', 'pDoc', 'pCity', 'pPhone', 'pEmail', 'pLlave', 'pHolder'];
   try{ var pv = JSON.parse(localStorage.getItem('bm_prov') || 'null'); if(pv) PROV.forEach(function(k){ if(pv[k] != null) $(k).value = pv[k]; }); }catch(e){}
   var CF = { business: 'cBiz', doc: 'cDoc', sector: 'cSector', rep: 'cRep', repDoc: 'cRepDoc', phone: 'cPhone', email: 'cEmail', city: 'cCity', address: 'cAddr' };
   function ctReset(){
-    ctEdit = null; Object.keys(CF).forEach(function(k){ $(CF[k]).value = ''; }); $('cNotes').value = ''; $('cPay').value = 'al_entregar';
+    ctEdit = null; Object.keys(CF).forEach(function(k){ $(CF[k]).value = ''; }); $('cNotes').value = ''; $('cScope').value = ''; $('cScopeN').textContent = '0/1500'; $('cPay').value = 'al_entregar';
     setPlan('Plan Emprende'); $('ctTitle').textContent = 'Nuevo contrato'; $('ctSubmit').firstElementChild.textContent = 'Generar documento'; $('ctCancel').hidden = true; renderCt();
   }
   $('ctCancel').onclick = ctReset;
   $('ctForm').onsubmit = function(e){
     e.preventDefault();
     var client = {}; Object.keys(CF).forEach(function(k){ client[k] = $(CF[k]).value.trim(); });
-    var provider = { name: $('pName').value, doc: $('pDoc').value, city: $('pCity').value, phone: $('pPhone').value, email: $('pEmail').value };
+    var provider = { name: $('pName').value, doc: $('pDoc').value, city: $('pCity').value, phone: $('pPhone').value, email: $('pEmail').value, llave: $('pLlave').value, holder: $('pHolder').value };
     try{ var o = {}; PROV.forEach(function(k){ o[k] = $(k).value; }); localStorage.setItem('bm_prov', JSON.stringify(o)); }catch(x){}
-    var body = { id: ctEdit || undefined, plan: ctPlan, items: ctItems(), delivery: $('cDel').value.trim(), payTerm: $('cPay').value, adjustments: +$('cAdj').value || 0, notes: $('cNotes').value.trim(), client: client, provider: provider };
+    var body = { id: ctEdit || undefined, plan: ctPlan, items: ctItems(), delivery: $('cDel').value.trim(), payTerm: $('cPay').value, adjustments: +$('cAdj').value || 0, notes: $('cNotes').value.trim(), scope: $('cScope').value.trim(), client: client, provider: provider };
     if(client.business.length < 2) return toast('Escribe el nombre del negocio.', 'bad');
     if(client.rep.length < 3) return toast('Escribe quién firma.', 'bad');
     if(!body.items.length) return toast('Agrega al menos un servicio.', 'bad');
@@ -1021,20 +1055,99 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
       '<div class="ct-acts"><a class="btn btn-waa btn-sm" href="' + waClient(c) + '" target="_blank" rel="noopener">Enviar por WhatsApp</a><a class="btn btn-line btn-sm" href="firmar.html?c=' + c.id + '" target="_blank" rel="noopener">Ver documento</a></div>';
     r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
-  function renderCt(){
-    var pend = CT.filter(function(c){ return c.status !== 'firmado'; }).length; $('nCt').textContent = pend;
-    $('ctList').innerHTML = CT.length ? CT.map(function(c){
-      var f = c.status === 'firmado';
-      return '<div class="row ct-row' + (ctEdit === c.id ? ' editing' : '') + '" data-id="' + c.id + '"><div class="ct-num' + (f ? ' f' : '') + '">' + (f ? '✅' : '✍️') + '</div>' +
-        '<div class="info"><b>' + esc(c.client.business) + ' · ' + money(c.total) + '</b><small>' + esc(c.number) + ' · ' + esc(c.plan || 'Personalizado') + ' · ' + new Date(c.createdAt).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }) + '</small>' +
-        '<small>' + (f ? 'Firmado por <b>' + esc(c.signer && c.signer.name) + '</b> el ' + new Date(c.signedAt).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) : 'Esperando la firma de ' + esc(c.client.rep)) + '</small></div>' +
-        '<div class="acts"><span class="ct-st ' + (f ? 'f' : 'p') + '">' + (f ? 'Firmado' : 'Pendiente') + '</span>' +
-        (f ? '' : '<a class="icon-btn" title="Enviar por WhatsApp" href="' + waClient(c) + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#12B85B"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a><button class="icon-btn" data-cp="' + c.id + '" title="Copiar link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button>') +
-        '<a class="icon-btn" href="firmar.html?c=' + c.id + (f ? '&print=1' : '') + '" target="_blank" rel="noopener" title="' + (f ? 'Descargar PDF' : 'Ver documento') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4" stroke-linecap="round"/></svg></a>' +
-        (f ? '' : '<button class="icon-btn" data-ed="' + c.id + '" title="Editar"><svg><use href="#i-edit"/></svg></button>') +
-        '<button class="icon-btn danger" data-del="' + c.id + '" title="Eliminar"><svg><use href="#i-del"/></svg></button></div></div>';
-    }).join('') : '<div class="empty"><b>Aún no hay contratos</b>Llena el formulario y genera el primero. Te damos el link para que tu cliente lo firme desde el celular.</div>';
+  var ctF = 'all';
+  var ST_CT = { pendiente: ['✍️', 'p', 'Por firmar'], firmado: ['🛠️', 'f', 'Firmado · por entregar'], entregado: ['🚀', 'e', 'Entregado · por cobrar'], pagado: ['✅', 'pg', 'Pagado'] };
+  function dShort(iso){ return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }); }
+  function ctKpis(){
+    var now = new Date(), ym = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2);
+    var paid = CT.filter(function(c){ return c.status === 'pagado'; }), month = paid.filter(function(c){ return (c.payment.date || '').slice(0, 7) === ym; });
+    var due = CT.filter(function(c){ return c.status === 'entregado'; }), work = CT.filter(function(c){ return c.status === 'firmado'; });
+    var sum = function(L, f){ return L.reduce(function(a, c){ return a + (f ? f(c) : c.total); }, 0); };
+    $('ctKpis').innerHTML = '<div class="ct-k g"><small>Cobrado este mes</small><b>' + money(sum(month, function(c){ return c.payment.amount; })) + '</b><span>' + month.length + ' pago' + (month.length === 1 ? '' : 's') + '</span></div>' +
+      '<div class="ct-k y"><small>Por cobrar</small><b>' + money(sum(due)) + '</b><span>' + due.length + ' página' + (due.length === 1 ? '' : 's') + ' entregada' + (due.length === 1 ? '' : 's') + '</span></div>' +
+      '<div class="ct-k"><small>En desarrollo</small><b>' + money(sum(work)) + '</b><span>' + work.length + ' firmado' + (work.length === 1 ? '' : 's') + '</span></div>' +
+      '<div class="ct-k"><small>Cobrado total</small><b>' + money(sum(paid, function(c){ return c.payment.amount; })) + '</b><span>' + paid.length + ' servicio' + (paid.length === 1 ? '' : 's') + ' pagado' + (paid.length === 1 ? '' : 's') + '</span></div>';
   }
+  function renderCt(){
+    $('nCt').textContent = CT.filter(function(c){ return c.status !== 'pagado'; }).length;
+    ctKpis();
+    var L = CT.filter(function(c){ return ctF === 'all' || c.status === ctF; });
+    $('ctList').innerHTML = L.length ? L.map(function(c){
+      var st = ST_CT[c.status] || ST_CT.pendiente, f = !!c.signedAt;
+      var sub = c.status === 'pagado' ? 'Pagado el ' + new Date(c.payment.date + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'short' }) + ' · ' + esc(c.payment.method) + (c.payment.ref ? ' · Ref. ' + esc(c.payment.ref) : '')
+        : c.status === 'entregado' ? 'Entregado el ' + dShort(c.deliveredAt) + ' · <a href="' + esc(c.site.url) + '" target="_blank" rel="noopener">' + esc(c.site.url.replace(/^https?:\/\//, '')) + ' ↗</a>'
+        : f ? 'Firmado por <b>' + esc(c.signer && c.signer.name) + '</b> el ' + dShort(c.signedAt) : 'Esperando la firma de ' + esc(c.client.rep);
+      var main = c.status === 'firmado' ? '<button class="ct-go" data-dv="' + c.id + '">🚀 Entregar página</button>'
+        : c.status === 'entregado' ? '<button class="ct-go pay" data-py="' + c.id + '">💰 Marcar pagado</button><a class="icon-btn" title="Reenviar mensaje de entrega" href="' + waDeliver(c) + '" target="_blank" rel="noopener">💬</a>'
+        : c.status === 'pagado' ? '<a class="icon-btn" title="Enviar recibo por WhatsApp" href="' + waPaid(c) + '" target="_blank" rel="noopener">🧾</a><button class="icon-btn" data-up="' + c.id + '" title="Deshacer pago">↩</button>'
+        : '<a class="icon-btn" title="Enviar para firmar" href="' + waClient(c) + '" target="_blank" rel="noopener">💬</a><button class="icon-btn" data-cp="' + c.id + '" title="Copiar link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button><button class="icon-btn" data-ed="' + c.id + '" title="Editar"><svg><use href="#i-edit"/></svg></button>';
+      return '<div class="row ct-row' + (ctEdit === c.id ? ' editing' : '') + '" data-id="' + c.id + '"><div class="ct-num ' + st[1] + '">' + st[0] + '</div>' +
+        '<div class="info"><b>' + esc(c.client.business) + ' · ' + money(c.total) + '</b><small>' + esc(c.number) + ' · ' + esc(c.plan || 'Personalizado') + ' · ' + dShort(c.createdAt) + '</small><small>' + sub + '</small></div>' +
+        '<div class="acts"><span class="ct-st ' + st[1] + '">' + st[2] + '</span>' + main +
+        '<a class="icon-btn" href="firmar.html?c=' + c.id + (f ? '&print=1' : '') + '" target="_blank" rel="noopener" title="' + (f ? 'Descargar PDF' : 'Ver documento') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4" stroke-linecap="round"/></svg></a>' +
+        '<button class="icon-btn danger" data-del="' + c.id + '" title="Eliminar"><svg><use href="#i-del"/></svg></button></div></div>';
+    }).join('') : '<div class="empty"><b>' + (CT.length ? 'Nada en este filtro' : 'Aún no hay contratos') + '</b>' + (CT.length ? 'Prueba con otro filtro.' : 'Llena el formulario y genera el primero. Te damos el link para que tu cliente lo firme desde el celular.') + '</div>';
+  }
+  $('ctFlt').addEventListener('click', function(e){ var b = e.target.closest('[data-cf]'); if(!b) return; ctF = b.dataset.cf; [].forEach.call(this.querySelectorAll('[data-cf]'), function(x){ x.classList.toggle('on', x === b); }); renderCt(); });
+  $('cScope').addEventListener('input', function(){ $('cScopeN').textContent = this.value.length + '/1500'; });
+  function waTo(c, msg){ var ph = String(c.client.phone || '').replace(/\D/g, ''); if(ph.length === 10) ph = '57' + ph; return 'https://wa.me/' + ph + '?text=' + encodeURIComponent(msg); }
+  function deliverMsg(c, site){
+    var pv = c.provider || {}, n = (c.client.rep || '').split(' ')[0];
+    return '¡Hola ' + n + '! 🎉 La página web de *' + c.client.business + '* ya está *lista y funcionando* 🚀\n\n🌐 *Tu página:*\n' + site.url +
+      '\n\n⚙️ *Tu panel administrativo* (ahí editas productos, precios, fotos, textos y pedidos cuando quieras):\n' + site.admin + '\n🔑 Clave: *' + site.pass + '*\n_Te recomendamos cambiarla la primera vez que ingreses._' +
+      '\n\n💳 *Valor a pagar:* ' + money(c.total) + ' (acuerdo ' + c.number + ')\nPuedes pagar por *Llave Breve ' + (pv.llave || '@OTO262') + '* a nombre de *' + (pv.holder || 'Juan Cáceres') + '*.\nCuando pagues, envíanos el comprobante por aquí y queda todo activo ✅\n\n¡Gracias por confiar en Bio Marketing! 🙌';
+  }
+  function waDeliver(c){ return waTo(c, deliverMsg(c, c.site)); }
+  function waPaid(c){ return waTo(c, '✅ ¡Hola ' + (c.client.rep || '').split(' ')[0] + '! Confirmamos que recibimos tu pago de *' + money(c.payment.amount) + '* por la página web de *' + c.client.business + '* (acuerdo ' + c.number + ', ' + c.payment.method + ').\n\n📄 Tu documento firmado: ' + link(c) + '\n\n¡Gracias por confiar en Bio Marketing! Si necesitas algo, aquí estamos 🚀'); }
+  /* ---- ventana: entregar / marcar pagado ---- */
+  var mdDo = null;
+  function md(html, onSubmit){ $('mdBody').innerHTML = html; mdDo = onSubmit; $('md').hidden = false; }
+  function mdClose(){ $('md').hidden = true; mdDo = null; }
+  $('mdX').onclick = mdClose; $('md').addEventListener('click', function(e){ if(e.target === $('md')) mdClose(); });
+  $('mdForm').onsubmit = function(e){ e.preventDefault(); if(mdDo) mdDo(); };
+  function ctSave(body, ok){ return api('POST', '/api/admin/contracts', body).then(function(d){ var i = CT.findIndex(function(x){ return x.id === d.contract.id; }); CT[i] = d.contract; renderCt(); if(ok) ok(d.contract); }).catch(onErr); }
+  function openDeliver(c){
+    var s0 = c.site || {};
+    md('<h3>🚀 Entregar página</h3><p>' + esc(c.client.business) + ' · ' + money(c.total) + '. Al confirmar se abre WhatsApp con el mensaje listo para el cliente.</p>' +
+      '<label class="field"><span>Link de la página</span><input class="input" id="dUrl" placeholder="https://calzadohamsa.vercel.app" value="' + esc(s0.url || '') + '"></label>' +
+      '<label class="field"><span>Link del panel administrativo</span><input class="input" id="dAdm" placeholder="Se llena solo: link + /admin" value="' + esc(s0.admin || '') + '"></label>' +
+      '<label class="field"><span>Clave del panel del cliente</span><input class="input" id="dPass" value="' + esc(s0.pass || '123456') + '"></label>' +
+      '<div class="lbl" style="font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin:6px 0">Así le llega el mensaje</div><div class="md-prev" id="dPrev"></div>' +
+      '<button class="btn btn-main" type="submit"><span>Marcar entregada y enviar por WhatsApp</span></button>', function(){
+        var url = $('dUrl').value.trim(); if(!url) return toast('Escribe el link de la página.', 'bad');
+        var w = window.open('', '_blank');
+        ctSave({ id: c.id, action: 'deliver', url: url, adminUrl: $('dAdm').value.trim(), pass: $('dPass').value.trim() }, function(nc){ mdClose(); toast('Página marcada como entregada ✓', 'ok'); var u = waDeliver(nc); if(w) w.location = u; else location.href = u; });
+      });
+    function prev(){ var u = $('dUrl').value.trim() || '[link de la página]'; if(u.indexOf('[') && !/^https?:/i.test(u)) u = 'https://' + u; $('dPrev').textContent = deliverMsg(c, { url: u, admin: $('dAdm').value.trim() || u.replace(/\/$/, '') + '/admin', pass: $('dPass').value.trim() || '123456' }); }
+    ['dUrl', 'dAdm', 'dPass'].forEach(function(k){ $(k).addEventListener('input', prev); }); prev(); setTimeout(function(){ $('dUrl').focus(); }, 60);
+  }
+  function openPay(c){
+    var today = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10), method = 'Llave Breve';
+    md('<h3>💰 Marcar como pagado</h3><p>' + esc(c.client.business) + ' · acuerdo ' + esc(c.number) + '</p>' +
+      '<div class="md-pay" id="pM">' + ['Llave Breve', 'Nequi', 'Transferencia', 'Efectivo', 'Tarjeta / PSE'].map(function(m, i){ return '<button type="button" data-m="' + m + '" class="' + (i ? '' : 'on') + '">' + m + '</button>'; }).join('') + '</div>' +
+      '<div class="ct-2"><label class="field"><span>Valor recibido</span><input class="input" id="pAmt" inputmode="numeric" value="' + money(c.total) + '"></label><label class="field"><span>Fecha del pago</span><input class="input" id="pDate" type="date" value="' + today + '"></label></div>' +
+      '<label class="field"><span>Referencia o comprobante <em>(opcional)</em></span><input class="input" id="pRef" placeholder="Ej: M123456"></label>' +
+      '<button class="btn btn-main" type="submit" style="background:linear-gradient(135deg,#2BE070,#12B85B)"><span>Confirmar pago recibido</span></button>', function(){
+        ctSave({ id: c.id, action: 'pay', method: method, amount: digits($('pAmt').value), date: $('pDate').value, ref: $('pRef').value.trim() }, function(nc){
+          md('<h3>✅ ¡Pago registrado!</h3><p>' + esc(nc.client.business) + ' pagó ' + money(nc.payment.amount) + ' por ' + esc(nc.payment.method) + '. Ya quedó en tu contabilidad.</p><a class="btn btn-main" style="background:linear-gradient(135deg,#2BE070,#12B85B)" href="' + waPaid(nc) + '" target="_blank" rel="noopener"><span>Enviar recibo al cliente por WhatsApp</span></a>', mdClose);
+        });
+      });
+    $('pM').onclick = function(e){ var b = e.target.closest('button'); if(!b) return; method = b.dataset.m; [].forEach.call(this.children, function(x){ x.classList.toggle('on', x === b); }); };
+    $('pAmt').addEventListener('input', function(){ var v = digits(this.value); this.value = v ? money(v) : ''; });
+  }
+  document.addEventListener('click', function(e){
+    var dv = e.target.closest('[data-dv]'), py = e.target.closest('[data-py]'), up = e.target.closest('[data-up]');
+    var find = function(id){ return CT.find(function(x){ return x.id === id; }); };
+    if(dv) openDeliver(find(dv.dataset.dv));
+    if(py) openPay(find(py.dataset.py));
+    if(up && confirm('¿Deshacer el pago registrado?')) ctSave({ id: up.dataset.up, action: 'unpay' }, function(){ toast('Pago deshecho', 'ok'); });
+  });
+  $('ctCsv').onclick = function(){
+    var rows = [['N.º', 'Fecha', 'Negocio', 'NIT/C.C.', 'Representante', 'Celular', 'Ciudad', 'Plan', 'Total', 'Estado', 'Firmado', 'Entregado', 'Pagado', 'Método', 'Valor pagado', 'Referencia', 'Página']];
+    CT.forEach(function(c){ rows.push([c.number, dShort(c.createdAt), c.client.business, c.client.doc, c.client.rep, c.client.phone, c.client.city, c.plan, c.total, (ST_CT[c.status] || [])[2], c.signedAt ? dShort(c.signedAt) : '', c.deliveredAt ? dShort(c.deliveredAt) : '', c.payment ? c.payment.date : '', c.payment ? c.payment.method : '', c.payment ? c.payment.amount : '', c.payment ? c.payment.ref : '', c.site ? c.site.url : '']); });
+    var csv = '﻿' + rows.map(function(r){ return r.map(function(v){ return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; }).join(';'); }).join('\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'contabilidad-contratos-biomarketing.csv'; a.click();
+  };
   document.addEventListener('click', function(e){
     var cp = e.target.closest('[data-cp]');
     if(cp){ var u = link({ id: cp.dataset.cp }); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(function(){ toast('Link copiado ✓', 'ok'); }).catch(function(){ prompt('Copia el link:', u); }); return; }
@@ -1042,7 +1155,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     if(ed){ var c = CT.find(function(x){ return x.id === ed.dataset.ed; }); if(!c) return;
       ctEdit = c.id; Object.keys(CF).forEach(function(k){ $(CF[k]).value = c.client[k] || ''; });
       setPlan(c.plan, true); $('ctItems').innerHTML = ''; c.items.forEach(ctItem);
-      $('cDel').value = c.delivery; $('cAdj').value = c.adjustments; $('cPay').value = c.payTerm; $('cNotes').value = c.notes || '';
+      $('cDel').value = c.delivery; $('cAdj').value = c.adjustments; $('cPay').value = c.payTerm; $('cNotes').value = c.notes || ''; $('cScope').value = c.scope || ''; $('cScopeN').textContent = (c.scope || '').length + '/1500';
       $('ctTitle').textContent = 'Editar ' + c.number; $('ctSubmit').firstElementChild.textContent = 'Guardar cambios'; $('ctCancel').hidden = false; renderCt();
       $('ctForm').scrollIntoView({ behavior: 'smooth' }); return; }
     var dl = e.target.closest('[data-del]');

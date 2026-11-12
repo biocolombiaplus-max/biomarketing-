@@ -64,6 +64,11 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .sg .ln b{display:block}
 .sg .ln small{color:var(--ink3)}
 .sg .wait{margin:auto;color:var(--ink3);font-size:.84rem;font-weight:700;text-align:center}
+.scope{background:#FBF8FA;border-left:4px solid var(--fuchsia);border-radius:0 14px 14px 0;padding:12px 16px;font-size:.92rem;color:var(--ink)}
+.lim{font-size:.8rem!important;color:var(--ink3)!important;margin-top:8px}
+.paid{position:absolute;right:28px;top:26px;transform:rotate(8deg);border:3px solid #4ADE80;color:#4ADE80;border-radius:12px;padding:6px 14px;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:.1em;text-align:center;line-height:1.1}
+.paid small{display:block;font-family:'Plus Jakarta Sans';font-size:.6rem;letter-spacing:0;font-weight:700}
+@media(max-width:620px){.paid{position:static;display:inline-block;margin-top:12px;transform:rotate(-3deg)}}
 .d-foot{padding:16px 34px 26px;font-size:.72rem;color:var(--ink3);border-top:1px solid var(--line);margin-top:10px}
 @media(max-width:620px){body{padding:12px 10px 40px}.d-head{padding:24px 20px 20px}.d-body{padding:22px 18px 6px}.d-foot{padding:14px 18px 22px}.parties,.sigs{grid-template-columns:1fr}}
 
@@ -156,36 +161,39 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 
   function show(html){ $('spin').hidden = true; $('msg').hidden = false; $('msg').innerHTML = html; }
   function render(){
-    var c = C, cl = c.client, pv = c.provider, signed = c.status === 'firmado';
-    $('st').textContent = signed ? '✓ Firmado' : 'Pendiente de firma'; $('st').className = 'st' + (signed ? ' ok' : '');
+    var c = C, cl = c.client, pv = c.provider, signed = !!c.signedAt, paid = c.status === 'pagado', N = 0, n = function(){ return ++N; };
+    $('st').textContent = paid ? '✓ Pagado' : c.status === 'entregado' ? '✓ Firmado · Entregado' : signed ? '✓ Firmado' : 'Pendiente de firma'; $('st').className = 'st' + (signed ? ' ok' : '');
     var line = function(lbl, v){ return v ? '<div>' + lbl + ': ' + esc(v) + '</div>' : ''; };
     $('doc').innerHTML =
       '<header class="d-head"><div class="d-brand"><img src="assets/logo.png" alt=""><div><b>' + esc(pv.name) + '</b><small>Tiendas virtuales y páginas web</small></div></div>' +
-        '<h1>Acuerdo de servicio y compromiso de pago</h1>' +
+        '<h1>Acuerdo de servicio y compromiso de pago</h1>' + (paid ? '<div class="paid">PAGADO<small>' + esc(c.payment.method) + ' · ' + new Date(c.payment.date + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }) + '</small></div>' : '') +
         '<div class="d-meta"><span>N.º <b>' + esc(c.number) + '</b></span><span>Fecha: <b>' + dLong(c.createdAt) + '</b></span><span>Ciudad: <b>' + esc(pv.city) + '</b></span></div></header>' +
       '<div class="d-body">' +
-        '<div class="blk"><h2><span>1</span>Partes</h2><div class="parties">' +
+        '<div class="blk"><h2><span>' + n() + '</span>Partes</h2><div class="parties">' +
           '<div class="party"><small>Prestador del servicio</small><b>' + esc(pv.name) + '</b>' + line('NIT', pv.doc) + line('WhatsApp', pv.phone) + line('Correo', pv.email) + line('Ciudad', pv.city) + '</div>' +
           '<div class="party"><small>Cliente</small><b>' + esc(cl.business) + '</b>' + line('NIT / C.C.', cl.doc) + line('Representante', cl.rep + (cl.repDoc ? ' · C.C. ' + cl.repDoc : '')) + line('Celular', cl.phone) + line('Correo', cl.email) + line('Dirección', [cl.address, cl.city].filter(Boolean).join(', ')) + line('Sector', cl.sector) + '</div>' +
         '</div></div>' +
-        '<div class="blk"><h2><span>2</span>Objeto</h2><p>' + esc(pv.name) + ' se compromete a diseñar, desarrollar y publicar la página web' + (c.plan ? ' correspondiente al <b>' + esc(c.plan) + '</b>' : '') + ' para <b>' + esc(cl.business) + '</b>, con su marca, adaptada a celulares y lista para recibir clientes, según los servicios descritos a continuación.</p></div>' +
-        '<div class="blk"><h2><span>3</span>Servicios y valores</h2><table class="items"><thead><tr><th>Servicio</th><th>Valor</th></tr></thead><tbody>' +
+        '<div class="blk"><h2><span>' + n() + '</span>Objeto</h2><p>' + esc(pv.name) + ' se compromete a diseñar, desarrollar y publicar la página web' + (c.plan ? ' correspondiente al <b>' + esc(c.plan) + '</b>' : '') + ' para <b>' + esc(cl.business) + '</b>, con su marca, adaptada a celulares y lista para recibir clientes, según los servicios descritos a continuación.</p></div>' +
+        (c.scope ? '<div class="blk"><h2><span>' + n() + '</span>Alcance del desarrollo</h2><div class="scope">' + esc(c.scope).replace(/\n/g, '<br>') + '</div><p class="lim">Cualquier función, sección o cambio que no esté descrito en este alcance se cotiza por aparte.</p></div>' : '') +
+        '<div class="blk"><h2><span>' + n() + '</span>Servicios y valores</h2><table class="items"><thead><tr><th>Servicio</th><th>Valor</th></tr></thead><tbody>' +
           c.items.map(function(it){ return '<tr><td><b>' + esc(it.name) + '</b>' + (it.detail ? '<small>' + esc(it.detail) + '</small>' : '') + '</td><td>' + fmt(it.price) + '</td></tr>'; }).join('') +
         '</tbody></table><div class="tot"><span>Total a pagar</span><b>' + fmt(c.total) + '</b></div></div>' +
-        '<div class="blk"><h2><span>4</span>Tiempo de entrega</h2><p>La página web se entregará <b>' + esc(c.delivery) + '</b>, contado desde que el cliente envíe la información necesaria (logo, fotos, textos y precios).' + (c.adjustments ? ' Incluye <b>' + c.adjustments + ' ronda' + (c.adjustments > 1 ? 's' : '') + ' de ajustes</b> sin costo adicional.' : '') + '</p></div>' +
-        '<div class="blk"><h2><span>5</span>Compromiso de pago</h2><p>El cliente <b>no paga ningún anticipo</b>. Se compromete a pagar el valor total de <b>' + fmt(c.total) + '</b> ' + PAY[c.payTerm] + ', mediante transferencia, Nequi, tarjeta o PSE.</p>' +
+        '<div class="blk"><h2><span>' + n() + '</span>Tiempo de entrega</h2><p>La página web se entregará <b>' + esc(c.delivery) + '</b>, contado desde que el cliente envíe la información necesaria (logo, fotos, textos y precios).' + (c.adjustments ? ' Incluye <b>' + c.adjustments + ' ronda' + (c.adjustments > 1 ? 's' : '') + ' de ajustes</b> sin costo adicional.' : '') + '</p></div>' +
+        '<div class="blk"><h2><span>' + n() + '</span>Compromiso de pago</h2><p>El cliente <b>no paga ningún anticipo</b>. Se compromete a pagar el valor total de <b>' + fmt(c.total) + '</b> ' + PAY[c.payTerm] + ', mediante <b>Llave Breve ' + esc(pv.llave || '@OTO262') + '</b> a nombre de <b>' + esc(pv.holder || 'Juan Cáceres') + '</b>, transferencia, Nequi, tarjeta o PSE.</p>' +
           '<div class="hl">🛡️ <span>Si la página no cumple lo descrito en este documento, el cliente puede solicitar los ajustes incluidos antes de pagar.</span></div></div>' +
-        '<div class="blk"><h2><span>6</span>Entrega, renovación y propiedad</h2><p>Hasta recibir el pago total, la página permanece publicada en una dirección de prueba. Una vez pagada, se activa en el dominio del cliente y el contenido le pertenece. Los servicios marcados como anuales (diseño y alojamiento, dominio) cubren 12 meses desde la entrega y pueden renovarse.</p></div>' +
-        (c.notes ? '<div class="blk"><h2><span>7</span>Condiciones adicionales</h2><p>' + esc(c.notes) + '</p></div>' : '') +
-        '<div class="blk"><h2><span>' + (c.notes ? 8 : 7) + '</span>Datos personales y firma electrónica</h2><p>Los datos del cliente se usan solo para prestar este servicio (Ley 1581 de 2012). Las partes aceptan que este documento se firme por medios electrónicos, con plena validez (Ley 527 de 1999).</p></div>' +
+        '<div class="blk"><h2><span>' + n() + '</span>Entrega, renovación y propiedad</h2><p>Hasta recibir el pago total, la página permanece publicada en una dirección de prueba. Una vez pagada, se activa en el dominio del cliente y el contenido le pertenece. Los servicios marcados como anuales (diseño y alojamiento, dominio) cubren 12 meses desde la entrega y pueden renovarse.</p></div>' +
+        (c.notes ? '<div class="blk"><h2><span>' + n() + '</span>Condiciones adicionales</h2><p>' + esc(c.notes) + '</p></div>' : '') +
+        '<div class="blk"><h2><span>' + n() + '</span>Datos personales y firma electrónica</h2><p>Los datos del cliente se usan solo para prestar este servicio (Ley 1581 de 2012). Las partes aceptan que este documento se firme por medios electrónicos, con plena validez (Ley 527 de 1999).</p></div>' +
         '<div class="blk"><h2><span>✍</span>Firmas</h2><div class="sigs">' +
           '<div class="sg"><div class="stamp">' + esc(pv.name) + '<small>Aprobado · ' + dLong(c.createdAt) + '</small></div><div class="ln"><b>' + esc(pv.name) + '</b><small>Prestador del servicio</small></div></div>' +
           '<div class="sg">' + (signed ? '<img src="' + c.signature + '" alt="Firma del cliente">' : '<div class="wait">Esperando la firma del cliente</div>') +
             '<div class="ln"><b>' + esc(signed ? c.signer.name : cl.rep) + '</b><small>' + (signed ? 'C.C./NIT ' + esc(c.signer.doc) + ' · Firmado el ' + dTime(c.signedAt) : 'Cliente · ' + esc(cl.business)) + '</small></div></div>' +
         '</div></div>' +
       '</div>' +
-      '<footer class="d-foot">Documento ' + esc(c.number) + ' generado el ' + dTime(c.createdAt) + ' · ' + esc(pv.name) + ' · ' + esc(pv.phone) + (signed ? ' · Firmado electrónicamente el ' + dTime(c.signedAt) : '') + '</footer>';
+      '<footer class="d-foot">Documento ' + esc(c.number) + ' generado el ' + dTime(c.createdAt) + ' · ' + esc(pv.name) + ' · ' + esc(pv.phone) + (signed ? ' · Firmado electrónicamente el ' + dTime(c.signedAt) : '') + (c.deliveredAt ? ' · Entregado el ' + dLong(c.deliveredAt) : '') + (paid ? ' · Pagado el ' + new Date(c.payment.date + 'T12:00:00').toLocaleDateString('es-CO') : '') + '</footer>';
     $('signbox').hidden = signed; $('done').hidden = !signed;
+    .hidden = paid;
+    if(signed && c.site && c.site.url){ $('doneP').innerHTML = paid ? '¡Pago recibido! Gracias por confiar en nosotros. Tu página ya es tuya.' : 'Tu página ya está lista. Revísala aquí: <a href="' + esc(c.site.url) + '" target="_blank" rel="noopener">' + esc(c.site.url.replace(/^https?:\/\//, '')) + '</a>'; }
     if(!signed){ $('sName').value = $('sName').value || cl.rep || ''; $('sDoc').value = $('sDoc').value || cl.repDoc || cl.doc || ''; setTimeout(sizePad, 50); }
     else {
       $('doneWa').href = 'https://wa.me/573505457420?text=' + encodeURIComponent('✅ Hola Bio Marketing, ya firmé el acuerdo de servicio *' + c.number + '* de *' + cl.business + '* por ' + fmt(c.total) + '. ¡Quedo atento para empezar! 🚀');
