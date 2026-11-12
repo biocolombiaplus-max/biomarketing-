@@ -11,6 +11,10 @@
     {
       "source": "/demo",
       "destination": "/demo.html"
+    },
+    {
+      "source": "/firmar",
+      "destination": "/firmar.html"
     }
   ],
   "headers": [

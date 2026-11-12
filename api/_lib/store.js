@@ -3,7 +3,7 @@
    Sin dependencias: solo Node 20+ y la API REST de Upstash. */
 const crypto = require('crypto');
 
-const K = { data: 'bm:data', visits: 'bm:visits', leads: 'bm:leads', img: 'bm:img:' };
+const K = { data: 'bm:data', visits: 'bm:visits', leads: 'bm:leads', img: 'bm:img:', contracts: 'bm:contracts' };
 
 // Vercel crea KV_REST_API_URL / KV_REST_API_TOKEN al conectar Upstash; también se aceptan las de Upstash.
 // Si al conectar se usó otro prefijo (por ejemplo STORAGE_), se busca cualquier par *_REST_API_URL / *_REST_API_TOKEN.

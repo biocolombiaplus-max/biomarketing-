@@ -274,6 +274,35 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 .ld .ct{font-size:.74rem;color:var(--green);font-weight:800}
 
 .icon-btn.spinning svg{animation:rot .8s linear infinite}
+.ct-sec{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin:22px 0 10px;padding-top:16px;border-top:1px dashed var(--line2)}
+.ct-sec:first-of-type{border-top:0;padding-top:0;margin-top:4px}
+.ct-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.ct-2{grid-template-columns:1fr}}
+.ct-items{display:grid;gap:10px}
+.ct-it{display:grid;grid-template-columns:1fr 118px 36px;gap:8px;align-items:start;background:var(--bg);border-radius:16px;padding:10px}
+.ct-it .input{padding:10px 12px;font-size:.9rem}
+.ct-it .n{grid-column:1/3;grid-row:1}.ct-it .d{grid-column:1/2;grid-row:2}.ct-it .pr{grid-column:2/3;grid-row:2;text-align:right;font-weight:800}
+.ct-it .icon-btn{grid-row:1/3;grid-column:3;align-self:center}
+.ct-add{margin-top:10px;font-weight:800;font-size:.86rem;color:var(--magenta)}
+.ct-total{display:flex;justify-content:space-between;align-items:center;margin-top:14px;background:var(--ink);color:#fff;border-radius:16px;padding:14px 16px}
+.ct-total b{font-family:var(--display);font-size:1.5rem;color:var(--yellow)}
+.ct-prov{margin-top:16px;background:var(--bg);border-radius:14px;padding:12px 14px}
+.ct-prov summary{cursor:pointer;font-weight:800;font-size:.86rem;color:var(--ink2)}
+.ct-prov[open] summary{margin-bottom:12px}
+.ct-ready{background:#ECFDF3;border:1.5px solid #86EFAC;border-radius:22px;padding:18px;margin-bottom:16px}
+.ct-ready b{display:block;font-family:var(--display);font-size:1.15rem;margin-bottom:4px}
+.ct-ready p{color:#14532D;font-size:.88rem;margin-bottom:12px}
+.ct-link{display:flex;gap:8px;align-items:center;background:#fff;border-radius:12px;padding:6px 6px 6px 12px;margin-bottom:12px;box-shadow:inset 0 0 0 1px #BBF7D0}
+.ct-link code{flex:1;font-size:.8rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink2)}
+.ct-acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn-waa{background:linear-gradient(135deg,#2BE070,#12B85B);color:#fff;box-shadow:0 10px 20px -10px rgba(18,184,91,.8)}
+.ct-row .info small b{color:var(--ink)}
+.ct-st{font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.ct-st.p{background:#FFF3C4;color:#8A5A00}.ct-st.f{background:#DCFCE7;color:#15803D}
+.ct-num{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:var(--pink)}
+.ct-num.f{background:#DCFCE7}
+.top .brand{flex-shrink:0;white-space:nowrap}
+@media(min-width:861px){.tabs button{padding:9px 13px;font-size:.84rem}.top-act .lbl{display:none}}
 /* save bar */
 .savebar{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);z-index:60;background:var(--ink);color:#fff;border-radius:22px;padding:10px 10px 10px 22px;display:flex;align-items:center;gap:18px;box-shadow:0 24px 50px -12px rgba(27,11,43,.6);transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 24px)}
 .savebar:not(.show){visibility:hidden;transition:transform .35s,visibility 0s .35s}
@@ -333,6 +362,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
       <nav class="tabs" id="tabs">
         <button data-tab="stats" class="on">📊 Estadísticas</button>
         <button data-tab="leads">Clientes potenciales <b id="nLd">0</b></button>
+        <button data-tab="contracts">✍️ Contratos <b id="nCt">0</b></button>
         <button data-tab="clients">Nuestros clientes <b id="nCl">0</b></button>
         <button data-tab="reviews">Reseñas <b id="nRv">0</b></button>
         <button data-tab="settings">Ajustes</button>
@@ -395,6 +425,64 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
         <label class="search"><input class="input" id="lsearch" placeholder="Buscar nombre o número…"></label>
       </div>
       <div class="leads" id="leads"></div>
+    </section>
+
+    <!-- CONTRATOS -->
+    <section data-view="contracts" hidden>
+      <div class="head"><div><h1>Contratos <span class="it fx">para firmar</span></h1><p>Genera el acuerdo de servicio y compromiso de pago, envíalo por WhatsApp y el cliente lo firma con el dedo en su celular.</p></div></div>
+      <div class="grid">
+        <form class="card form-card" id="ctForm" autocomplete="off">
+          <h3><span class="n">+</span><span id="ctTitle">Nuevo contrato</span></h3>
+          <p class="sub">La fecha del documento es la del día en que lo generas.</p>
+          <div class="ct-sec">1 · Plan</div>
+          <div class="chips" id="ctPlans">
+            <button type="button" class="chip on" data-p="Plan Emprende">Emprende</button>
+            <button type="button" class="chip" data-p="Plan Crece">Crece</button>
+            <button type="button" class="chip" data-p="Plan Pro Empresarial">Pro</button>
+            <button type="button" class="chip" data-p="Plan Mensual">Mensual</button>
+            <button type="button" class="chip" data-p="">Personalizado</button>
+          </div>
+          <div class="ct-sec">2 · Datos del negocio</div>
+          <label class="field"><span>Nombre del negocio o empresa *</span><input class="input" id="cBiz" placeholder="Calzado Hamsa" maxlength="90"></label>
+          <div class="ct-2">
+            <label class="field"><span>NIT o C.C.</span><input class="input" id="cDoc" placeholder="901.234.567-8" maxlength="30"></label>
+            <label class="field"><span>Sector</span><input class="input" id="cSector" placeholder="Calzado" maxlength="50"></label>
+          </div>
+          <div class="ct-2">
+            <label class="field"><span>Quién firma *</span><input class="input" id="cRep" placeholder="Diana Amaya" maxlength="70"></label>
+            <label class="field"><span>C.C. de quien firma</span><input class="input" id="cRepDoc" inputmode="numeric" placeholder="1.090.123.456" maxlength="30"></label>
+          </div>
+          <div class="ct-2">
+            <label class="field"><span>Celular (WhatsApp)</span><input class="input" id="cPhone" inputmode="numeric" placeholder="300 123 4567" maxlength="16"></label>
+            <label class="field"><span>Correo</span><input class="input" id="cEmail" type="email" placeholder="correo@negocio.com" maxlength="90"></label>
+          </div>
+          <div class="ct-2">
+            <label class="field"><span>Ciudad</span><input class="input" id="cCity" placeholder="Cúcuta" maxlength="50"></label>
+            <label class="field"><span>Dirección</span><input class="input" id="cAddr" placeholder="Calle 10 #5-20" maxlength="120"></label>
+          </div>
+          <div class="ct-sec">3 · Servicios y valores</div>
+          <div id="ctItems" class="ct-items"></div>
+          <button type="button" class="ct-add" id="ctAdd">＋ Agregar servicio</button>
+          <div class="ct-total"><span>Total a pagar</span><b id="ctTotal">$0</b></div>
+          <div class="ct-sec">4 · Entrega y pago</div>
+          <div class="ct-2">
+            <label class="field"><span>Tiempo de entrega</span><input class="input" id="cDel" list="ctDelList" value="el mismo día" maxlength="60"><datalist id="ctDelList"><option>el mismo día</option><option>en 24 horas</option><option>en 3 a 5 días</option></datalist></label>
+            <label class="field"><span>Rondas de ajustes</span><input class="input" id="cAdj" type="number" min="0" max="10" value="1"></label>
+          </div>
+          <label class="field"><span>Pago</span><select class="input" id="cPay"><option value="al_entregar">Al entregar, a satisfacción</option><option value="1_dia">24 horas después de entregar</option><option value="3_dias">3 días después de entregar</option><option value="5_dias">5 días después de entregar</option></select></label>
+          <label class="field"><span>Condiciones adicionales <em>(opcional)</em></span><textarea class="input" id="cNotes" maxlength="600" placeholder="Ej: incluye carga de 30 productos."></textarea></label>
+          <details class="ct-prov"><summary>Datos de Bio Marketing en el documento</summary>
+            <div class="ct-2"><label class="field"><span>Nombre</span><input class="input" id="pName" value="Bio Marketing"></label><label class="field"><span>NIT</span><input class="input" id="pDoc" placeholder="Opcional"></label></div>
+            <div class="ct-2"><label class="field"><span>Ciudad</span><input class="input" id="pCity" value="Cúcuta"></label><label class="field"><span>WhatsApp</span><input class="input" id="pPhone" value="350 545 7420"></label></div>
+            <label class="field"><span>Correo</span><input class="input" id="pEmail" value="biomarketing.salud@gmail.com"></label>
+          </details>
+          <div class="form-actions"><button type="button" class="btn btn-line" id="ctCancel" hidden>Cancelar</button><button class="btn btn-main" type="submit" id="ctSubmit"><span>Generar documento</span></button></div>
+        </form>
+        <div>
+          <div class="ct-ready" id="ctReady" hidden></div>
+          <div class="list" id="ctList"></div>
+        </div>
+      </div>
     </section>
 
     <!-- CLIENTES -->
@@ -510,7 +598,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   function load(){
     show('app');
     $('noStorage').hidden = storageOk !== false;
-    loadStats(false);
+    loadStats(false); loadContracts();
     if(storageOk === false){ render(); return; }
     api('GET', '/api/admin/data').then(function(d){
       state = { clients: d.clients || [], reviews: d.reviews || [], config: Object.assign({ speed: 'normal', showReviews: true }, d.config || {}) };
@@ -862,6 +950,107 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 
   setInterval(function(){ if(token && !$('app').hidden && !document.hidden) loadStats(false); }, 60000);
   setInterval(function(){ if(token && !$('app').hidden) renderStats(); }, 30000);
+
+
+  /* ===================== CONTRATOS ===================== */
+  var CT = [], ctEdit = null, ctPlan = 'Plan Emprende';
+  var CT_PLANS = {
+    'Plan Emprende': { price: 198000, del: 'el mismo día', adj: 1, detail: 'Tienda con carrito, pago contra entrega, panel de pedidos, alojamiento y certificado SSL. Hasta 30 productos.' },
+    'Plan Crece': { price: 490000, del: 'en 24 horas', adj: 2, detail: 'Todo lo del plan Emprende + pasarela de pagos (tarjetas, PSE, Nequi), cupones y filtros. Hasta 150 productos.' },
+    'Plan Pro Empresarial': { price: 890000, del: 'en 3 a 5 días', adj: 3, detail: 'Diseño 100% a la medida, varias pasarelas, automatización de envíos y reportes. Productos ilimitados.' },
+    'Plan Mensual': { price: 0, del: 'el mismo día', adj: 1, detail: 'Tienda con plantilla profesional, hasta 15 productos. USD 25 al mes con permanencia de 12 meses.' },
+    '': { price: 0, del: 'el mismo día', adj: 1, detail: '' }
+  };
+  var money = function(n){ return '$' + Math.round(n || 0).toLocaleString('es-CO'); };
+  var digits = function(v){ return parseInt(String(v || '').replace(/\D/g, ''), 10) || 0; };
+  var link = function(c){ return location.origin + '/firmar.html?c=' + c.id; };
+  function ctItem(it){
+    var d = document.createElement('div'); d.className = 'ct-it';
+    d.innerHTML = '<input class="input n" placeholder="Servicio" maxlength="90"><input class="input pr" inputmode="numeric" placeholder="$0"><button type="button" class="icon-btn danger" title="Quitar"><svg><use href="#i-del"/></svg></button><input class="input d" placeholder="Detalle (opcional)" maxlength="160">';
+    d.querySelector('.n').value = it.name || ''; d.querySelector('.d').value = it.detail || ''; d.querySelector('.pr').value = it.price ? money(it.price) : '';
+    $('ctItems').appendChild(d); ctTotal();
+  }
+  function ctItems(){ return [].map.call($('ctItems').children, function(r){ return { name: r.querySelector('.n').value.trim(), detail: r.querySelector('.d').value.trim(), price: digits(r.querySelector('.pr').value) }; }).filter(function(i){ return i.name; }); }
+  function ctTotal(){ $('ctTotal').textContent = money(ctItems().reduce(function(a, i){ return a + i.price; }, 0)); }
+  $('ctItems').addEventListener('input', function(e){ if(e.target.classList.contains('pr')){ var v = digits(e.target.value); e.target.value = v ? money(v) : ''; } ctTotal(); });
+  $('ctItems').addEventListener('click', function(e){ var b = e.target.closest('.icon-btn'); if(b){ b.closest('.ct-it').remove(); ctTotal(); } });
+  $('ctAdd').onclick = function(){ ctItem({}); $('ctItems').lastChild.querySelector('.n').focus(); };
+  function setPlan(p, keep){
+    ctPlan = p; [].forEach.call($('ctPlans').children, function(b){ b.classList.toggle('on', b.dataset.p === p); });
+    if(keep) return;
+    var P = CT_PLANS[p] || CT_PLANS[''];
+    $('ctItems').innerHTML = '';
+    ctItem({ name: p === 'Plan Mensual' ? 'Tienda virtual · Plan Mensual (primer mes)' : 'Diseño y desarrollo de página web' + (p ? ' · ' + p.replace('Plan ', 'plan ') : '') + ' (1 año)', detail: P.detail, price: p === 'Plan Mensual' ? 100000 : P.price });
+    ctItem({ name: 'Dominio personalizado .com (1 año)', detail: 'Ej: tunegocio.com · incluye configuración y certificado de seguridad', price: 85000 });
+    $('cDel').value = P.del; $('cAdj').value = P.adj;
+  }
+  $('ctPlans').onclick = function(e){ var b = e.target.closest('.chip'); if(b) setPlan(b.dataset.p); };
+  var PROV = ['pName', 'pDoc', 'pCity', 'pPhone', 'pEmail'];
+  try{ var pv = JSON.parse(localStorage.getItem('bm_prov') || 'null'); if(pv) PROV.forEach(function(k){ if(pv[k] != null) $(k).value = pv[k]; }); }catch(e){}
+  var CF = { business: 'cBiz', doc: 'cDoc', sector: 'cSector', rep: 'cRep', repDoc: 'cRepDoc', phone: 'cPhone', email: 'cEmail', city: 'cCity', address: 'cAddr' };
+  function ctReset(){
+    ctEdit = null; Object.keys(CF).forEach(function(k){ $(CF[k]).value = ''; }); $('cNotes').value = ''; $('cPay').value = 'al_entregar';
+    setPlan('Plan Emprende'); $('ctTitle').textContent = 'Nuevo contrato'; $('ctSubmit').firstElementChild.textContent = 'Generar documento'; $('ctCancel').hidden = true; renderCt();
+  }
+  $('ctCancel').onclick = ctReset;
+  $('ctForm').onsubmit = function(e){
+    e.preventDefault();
+    var client = {}; Object.keys(CF).forEach(function(k){ client[k] = $(CF[k]).value.trim(); });
+    var provider = { name: $('pName').value, doc: $('pDoc').value, city: $('pCity').value, phone: $('pPhone').value, email: $('pEmail').value };
+    try{ var o = {}; PROV.forEach(function(k){ o[k] = $(k).value; }); localStorage.setItem('bm_prov', JSON.stringify(o)); }catch(x){}
+    var body = { id: ctEdit || undefined, plan: ctPlan, items: ctItems(), delivery: $('cDel').value.trim(), payTerm: $('cPay').value, adjustments: +$('cAdj').value || 0, notes: $('cNotes').value.trim(), client: client, provider: provider };
+    if(client.business.length < 2) return toast('Escribe el nombre del negocio.', 'bad');
+    if(client.rep.length < 3) return toast('Escribe quién firma.', 'bad');
+    if(!body.items.length) return toast('Agrega al menos un servicio.', 'bad');
+    var b = $('ctSubmit'), wasEdit = !!ctEdit; b.disabled = true;
+    api('POST', '/api/admin/contracts', body).then(function(d){
+      var c = d.contract, i = CT.findIndex(function(x){ return x.id === c.id; });
+      if(i >= 0) CT[i] = c; else CT.unshift(c);
+      showReady(c); ctReset(); toast(wasEdit ? 'Contrato actualizado ✓' : 'Documento generado ✓', 'ok');
+    }).catch(onErr).then(function(){ b.disabled = false; });
+  };
+  function waClient(c){
+    var ph = String(c.client.phone || '').replace(/\D/g, ''); if(ph.length === 10) ph = '57' + ph;
+    var msg = 'Hola ' + (c.client.rep || '').split(' ')[0] + ' 👋 Te comparto el *acuerdo de servicio* de la página web de *' + c.client.business + '* (' + money(c.total) + ').\n\n✍️ Revísalo y fírmalo con tu dedo aquí:\n' + link(c) + '\n\nRecuerda: no pagas nada hasta recibir tu página funcionando a tu satisfacción 🚀';
+    return 'https://wa.me/' + ph + '?text=' + encodeURIComponent(msg);
+  }
+  function showReady(c){
+    var r = $('ctReady'); r.hidden = false;
+    r.innerHTML = '<b>✅ Documento ' + esc(c.number) + ' listo para firmar</b><p>Envíale este link a ' + esc(c.client.rep) + '. Lo abre en el celular y firma con el dedo.</p>' +
+      '<div class="ct-link"><code>' + esc(link(c)) + '</code><button type="button" class="btn btn-ink btn-sm" data-cp="' + c.id + '">Copiar</button></div>' +
+      '<div class="ct-acts"><a class="btn btn-waa btn-sm" href="' + waClient(c) + '" target="_blank" rel="noopener">Enviar por WhatsApp</a><a class="btn btn-line btn-sm" href="firmar.html?c=' + c.id + '" target="_blank" rel="noopener">Ver documento</a></div>';
+    r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function renderCt(){
+    var pend = CT.filter(function(c){ return c.status !== 'firmado'; }).length; $('nCt').textContent = pend;
+    $('ctList').innerHTML = CT.length ? CT.map(function(c){
+      var f = c.status === 'firmado';
+      return '<div class="row ct-row' + (ctEdit === c.id ? ' editing' : '') + '" data-id="' + c.id + '"><div class="ct-num' + (f ? ' f' : '') + '">' + (f ? '✅' : '✍️') + '</div>' +
+        '<div class="info"><b>' + esc(c.client.business) + ' · ' + money(c.total) + '</b><small>' + esc(c.number) + ' · ' + esc(c.plan || 'Personalizado') + ' · ' + new Date(c.createdAt).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }) + '</small>' +
+        '<small>' + (f ? 'Firmado por <b>' + esc(c.signer && c.signer.name) + '</b> el ' + new Date(c.signedAt).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) : 'Esperando la firma de ' + esc(c.client.rep)) + '</small></div>' +
+        '<div class="acts"><span class="ct-st ' + (f ? 'f' : 'p') + '">' + (f ? 'Firmado' : 'Pendiente') + '</span>' +
+        (f ? '' : '<a class="icon-btn" title="Enviar por WhatsApp" href="' + waClient(c) + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#12B85B"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a><button class="icon-btn" data-cp="' + c.id + '" title="Copiar link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button>') +
+        '<a class="icon-btn" href="firmar.html?c=' + c.id + (f ? '&print=1' : '') + '" target="_blank" rel="noopener" title="' + (f ? 'Descargar PDF' : 'Ver documento') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4" stroke-linecap="round"/></svg></a>' +
+        (f ? '' : '<button class="icon-btn" data-ed="' + c.id + '" title="Editar"><svg><use href="#i-edit"/></svg></button>') +
+        '<button class="icon-btn danger" data-del="' + c.id + '" title="Eliminar"><svg><use href="#i-del"/></svg></button></div></div>';
+    }).join('') : '<div class="empty"><b>Aún no hay contratos</b>Llena el formulario y genera el primero. Te damos el link para que tu cliente lo firme desde el celular.</div>';
+  }
+  document.addEventListener('click', function(e){
+    var cp = e.target.closest('[data-cp]');
+    if(cp){ var u = link({ id: cp.dataset.cp }); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(function(){ toast('Link copiado ✓', 'ok'); }).catch(function(){ prompt('Copia el link:', u); }); return; }
+    var ed = e.target.closest('[data-ed]');
+    if(ed){ var c = CT.find(function(x){ return x.id === ed.dataset.ed; }); if(!c) return;
+      ctEdit = c.id; Object.keys(CF).forEach(function(k){ $(CF[k]).value = c.client[k] || ''; });
+      setPlan(c.plan, true); $('ctItems').innerHTML = ''; c.items.forEach(ctItem);
+      $('cDel').value = c.delivery; $('cAdj').value = c.adjustments; $('cPay').value = c.payTerm; $('cNotes').value = c.notes || '';
+      $('ctTitle').textContent = 'Editar ' + c.number; $('ctSubmit').firstElementChild.textContent = 'Guardar cambios'; $('ctCancel').hidden = false; renderCt();
+      $('ctForm').scrollIntoView({ behavior: 'smooth' }); return; }
+    var dl = e.target.closest('[data-del]');
+    if(dl){ var c2 = CT.find(function(x){ return x.id === dl.dataset.del; }); if(!c2 || !confirm('¿Eliminar el contrato ' + c2.number + ' de ' + c2.client.business + '? El link dejará de funcionar.')) return;
+      api('DELETE', '/api/admin/contracts?id=' + c2.id).then(function(){ CT = CT.filter(function(x){ return x.id !== c2.id; }); if(ctEdit === c2.id) ctReset(); renderCt(); $('ctReady').hidden = true; toast('Contrato eliminado', 'ok'); }).catch(onErr); }
+  });
+  function loadContracts(){ if(storageOk === false) return renderCt(); api('GET', '/api/admin/contracts').then(function(d){ CT = d.contracts || []; renderCt(); }).catch(onErr); }
+  setPlan('Plan Emprende');
 
   stars();
   if(token) load(); else show('login');

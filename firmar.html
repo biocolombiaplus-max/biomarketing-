@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Firma de documento | Bio Marketing</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1B0B2B">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1B0B2B;--ink2:#56466A;--ink3:#9887A9;--line:#ECE3EA;--fuchsia:#FF1F8F;--magenta:#C8007A;--pink:#FFE1F0;--yellow:#FFD233;--green:#12B85B;--bg:#F6F1F5;--display:'Bricolage Grotesque',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;padding:20px 14px 60px}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+[hidden]{display:none!important}
+.top{max-width:820px;margin:0 auto 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.top .st{font-size:.8rem;font-weight:800;padding:7px 12px;border-radius:99px;background:#FFF3C4;color:#8A5A00}
+.top .st.ok{background:#DCFCE7;color:#15803D}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800}
+.brand img{width:32px;height:32px;border-radius:50%}
+
+/* documento */
+.doc{max-width:820px;margin:0 auto;background:#fff;border-radius:22px;box-shadow:0 2px 4px rgba(27,11,43,.04),0 30px 70px -30px rgba(27,11,43,.35);overflow:hidden}
+.d-head{position:relative;background:var(--ink);color:#fff;padding:30px 34px 26px;overflow:hidden}
+.d-head::after{content:'';position:absolute;width:280px;height:280px;border-radius:50%;background:var(--fuchsia);opacity:.4;filter:blur(30px);right:-90px;top:-120px}
+.d-head>*{position:relative}
+.d-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.d-brand img{width:46px;height:46px;border-radius:50%;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+.d-brand b{display:block;font-family:var(--display);font-size:1.2rem}
+.d-brand small{color:rgba(255,255,255,.7);font-size:.78rem}
+.d-head h1{font-family:var(--display);font-size:clamp(1.5rem,4.5vw,2.1rem);letter-spacing:-.03em;line-height:1.1}
+.d-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:.84rem;color:rgba(255,255,255,.8)}
+.d-meta b{color:var(--yellow)}
+.d-body{padding:28px 34px 10px}
+.blk{margin-bottom:24px}
+.blk h2{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:1.08rem;letter-spacing:-.02em;margin-bottom:10px}
+.blk h2 span{width:26px;height:26px;border-radius:8px;background:var(--pink);color:var(--magenta);display:grid;place-items:center;font-size:.8rem;flex-shrink:0}
+.blk p,.blk li{font-size:.92rem;color:var(--ink2)}
+.blk p+p{margin-top:8px}
+.blk b{color:var(--ink)}
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.party{background:var(--bg);border-radius:16px;padding:14px 16px;font-size:.86rem}
+.party small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin-bottom:6px}
+.party b{display:block;font-size:1rem;margin-bottom:4px}
+.party div{color:var(--ink2)}
+.items{width:100%;border-collapse:collapse;font-size:.9rem}
+.items th{text-align:left;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);padding:0 0 8px}
+.items th:last-child,.items td:last-child{text-align:right}
+.items td{padding:12px 0;border-top:1px solid var(--line);vertical-align:top}
+.items td small{display:block;color:var(--ink3);font-size:.78rem}
+.items td:last-child{font-weight:800;white-space:nowrap;padding-left:12px}
+.tot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;background:var(--ink);color:#fff;border-radius:14px;padding:14px 18px}
+.tot b{font-family:var(--display);font-size:1.5rem;color:var(--yellow)}
+.hl{display:flex;gap:12px;align-items:flex-start;background:#ECFDF3;border:1px solid #BBF7D0;border-radius:14px;padding:13px 15px;font-size:.88rem;color:#14532D;margin-top:10px}
+.sigs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+.sg{border:1.5px dashed #DCCFD8;border-radius:16px;padding:14px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.sg img{max-height:90px;max-width:100%;object-fit:contain;margin:0 auto 6px}
+.sg .stamp{margin:auto;text-align:center;font-family:var(--display);font-weight:800;color:var(--magenta);border:2px solid var(--magenta);border-radius:12px;padding:8px 12px;transform:rotate(-4deg);font-size:.86rem;line-height:1.2}
+.sg .stamp small{display:block;font-family:'Plus Jakarta Sans';font-weight:700;font-size:.66rem;color:var(--ink3)}
+.sg .ln{border-top:1.5px solid var(--ink);padding-top:6px;font-size:.8rem}
+.sg .ln b{display:block}
+.sg .ln small{color:var(--ink3)}
+.sg .wait{margin:auto;color:var(--ink3);font-size:.84rem;font-weight:700;text-align:center}
+.d-foot{padding:16px 34px 26px;font-size:.72rem;color:var(--ink3);border-top:1px solid var(--line);margin-top:10px}
+@media(max-width:620px){body{padding:12px 10px 40px}.d-head{padding:24px 20px 20px}.d-body{padding:22px 18px 6px}.d-foot{padding:14px 18px 22px}.parties,.sigs{grid-template-columns:1fr}}
+
+/* firma */
+.signbox{max-width:820px;margin:16px auto 0;background:#fff;border-radius:22px;padding:24px;box-shadow:0 30px 70px -30px rgba(200,0,122,.4);border:2px solid var(--fuchsia)}
+.signbox h3{font-family:var(--display);font-size:1.4rem;letter-spacing:-.02em;margin-bottom:4px}
+.signbox>p{color:var(--ink2);font-size:.9rem;margin-bottom:16px}
+.pad{position:relative;height:200px;border-radius:16px;background:#FBF8FA;border:1.5px solid var(--line);touch-action:none;overflow:hidden}
+.pad canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.pad .ph{position:absolute;inset:0;display:grid;place-items:center;color:#C9BBC5;font-weight:700;pointer-events:none;font-size:1rem}
+.pad .base{position:absolute;left:20px;right:20px;bottom:44px;border-top:1.5px dashed #DCCFD8;pointer-events:none}
+.pad-act{display:flex;justify-content:space-between;align-items:center;margin:8px 2px 16px;font-size:.8rem;color:var(--ink3)}
+.pad-act button{font-weight:800;color:var(--magenta)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f2 label span{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:6px}
+.in{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:1rem;outline:none}
+.in:focus{border-color:var(--fuchsia);box-shadow:0 0 0 4px rgba(255,31,143,.12)}
+.acc{display:flex;gap:12px;align-items:flex-start;margin:16px 0;font-size:.86rem;color:var(--ink2);cursor:pointer}
+.acc input{width:22px;height:22px;accent-color:var(--fuchsia);flex-shrink:0;margin-top:1px}
+.err{color:#E5334B;font-weight:700;font-size:.88rem;min-height:20px;margin-bottom:8px}
+.btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:99px;font-weight:800;font-size:1rem;color:#fff;background:linear-gradient(135deg,#FF3D9E,#FF1F8F 45%,#C8007A);box-shadow:0 14px 30px -12px rgba(255,31,143,.7)}
+.btn:disabled{opacity:.6}
+.btn.wa{background:linear-gradient(135deg,#2BE070,#12B85B);box-shadow:0 14px 30px -12px rgba(18,184,91,.7)}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.legal{font-size:.74rem;color:var(--ink3);text-align:center;margin-top:12px}
+@media(max-width:620px){.signbox{padding:20px 16px;border-radius:20px}.f2{grid-template-columns:1fr}}
+.done{max-width:820px;margin:16px auto 0;background:#fff;border-radius:22px;padding:26px 22px;text-align:center;box-shadow:0 30px 70px -30px rgba(18,184,91,.5);border:2px solid var(--green)}
+.done .ic{width:74px;height:74px;border-radius:50%;background:#DCFCE7;color:var(--green);display:grid;place-items:center;font-size:2.2rem;margin:0 auto 12px}
+.done h3{font-family:var(--display);font-size:1.5rem;margin-bottom:6px}
+.done p{color:var(--ink2);margin-bottom:16px}
+.done .btns{display:grid;gap:10px;max-width:420px;margin:0 auto}
+.msg{max-width:520px;margin:60px auto;background:#fff;border-radius:22px;padding:34px 24px;text-align:center;box-shadow:0 20px 50px -24px rgba(27,11,43,.3)}
+.msg b{display:block;font-family:var(--display);font-size:1.4rem;margin-bottom:8px}
+.spin{width:40px;height:40px;border-radius:50%;border:4px solid var(--pink);border-top-color:var(--fuchsia);animation:r .8s linear infinite;margin:80px auto}
+@keyframes r{to{transform:rotate(360deg)}}
+@media print{
+  body{background:#fff;padding:0}
+  .top,.signbox,.done,.noprint{display:none!important}
+  .doc{box-shadow:none;border-radius:0;max-width:none}
+  .d-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tot,.party,.hl,.blk h2 span{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .blk{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="spin" id="spin"></div>
+<div class="msg" id="msg" hidden></div>
+
+<div id="wrap" hidden>
+  <div class="top"><div class="brand"><img src="assets/logo.png" alt="">Bio Marketing</div><span class="st" id="st">Pendiente de firma</span></div>
+  <article class="doc" id="doc"></article>
+
+  <section class="signbox" id="signbox" hidden>
+    <h3>✍️ Firma aquí con tu dedo</h3>
+    <p>Revisa el documento y firma dentro del recuadro. Tu firma electrónica tiene la misma validez que una firma en papel (Ley 527 de 1999).</p>
+    <div class="pad" id="pad"><canvas id="cv"></canvas><div class="base"></div><div class="ph" id="ph">Firma aquí</div></div>
+    <div class="pad-act"><span>Usa el dedo o el mouse</span><button type="button" id="clear">Borrar y repetir</button></div>
+    <div class="f2">
+      <label><span>Nombre completo</span><input class="in" id="sName" autocomplete="name"></label>
+      <label><span>Cédula o NIT</span><input class="in" id="sDoc" inputmode="numeric"></label>
+    </div>
+    <label class="acc"><input type="checkbox" id="sAcc"><span>Leí y acepto este acuerdo. Me comprometo a pagar el valor total una vez Bio Marketing me entregue la página web funcionando a mi satisfacción.</span></label>
+    <div class="err" id="err"></div>
+    <button class="btn" id="sign">Firmar documento</button>
+    <p class="legal">🔒 Se registran la fecha, la hora y el dispositivo de la firma. Tus datos se tratan según la Ley 1581 de 2012.</p>
+  </section>
+
+  <section class="done" id="done" hidden>
+    <div class="ic">✓</div>
+    <h3>¡Documento firmado!</h3>
+    <p id="doneP">Gracias. Ya tenemos tu firma y empezamos a crear tu página web.</p>
+    <div class="btns">
+      <a class="btn wa" id="doneWa" href="#" target="_blank" rel="noopener">Avisar por WhatsApp</a>
+      <button class="btn ghost" id="pdf">Descargar PDF</button>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+  var fmt = function(n){ return '$' + Math.round(n || 0).toLocaleString('es-CO'); };
+  var dLong = function(iso){ return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }); };
+  var dTime = function(iso){ return new Date(iso).toLocaleString('es-CO', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: '2-digit' }); };
+  var PAY = { al_entregar: 'en el momento de la entrega, una vez verifique que la página web funciona a su satisfacción', '1_dia': 'dentro de las 24 horas siguientes a la entrega a satisfacción', '3_dias': 'dentro de los 3 días calendario siguientes a la entrega a satisfacción', '5_dias': 'dentro de los 5 días calendario siguientes a la entrega a satisfacción' };
+  var id = new URLSearchParams(location.search).get('c') || '';
+  var C = null;
+
+  function show(html){ $('spin').hidden = true; $('msg').hidden = false; $('msg').innerHTML = html; }
+  function render(){
+    var c = C, cl = c.client, pv = c.provider, signed = c.status === 'firmado';
+    $('st').textContent = signed ? '✓ Firmado' : 'Pendiente de firma'; $('st').className = 'st' + (signed ? ' ok' : '');
+    var line = function(lbl, v){ return v ? '<div>' + lbl + ': ' + esc(v) + '</div>' : ''; };
+    $('doc').innerHTML =
+      '<header class="d-head"><div class="d-brand"><img src="assets/logo.png" alt=""><div><b>' + esc(pv.name) + '</b><small>Tiendas virtuales y páginas web</small></div></div>' +
+        '<h1>Acuerdo de servicio y compromiso de pago</h1>' +
+        '<div class="d-meta"><span>N.º <b>' + esc(c.number) + '</b></span><span>Fecha: <b>' + dLong(c.createdAt) + '</b></span><span>Ciudad: <b>' + esc(pv.city) + '</b></span></div></header>' +
+      '<div class="d-body">' +
+        '<div class="blk"><h2><span>1</span>Partes</h2><div class="parties">' +
+          '<div class="party"><small>Prestador del servicio</small><b>' + esc(pv.name) + '</b>' + line('NIT', pv.doc) + line('WhatsApp', pv.phone) + line('Correo', pv.email) + line('Ciudad', pv.city) + '</div>' +
+          '<div class="party"><small>Cliente</small><b>' + esc(cl.business) + '</b>' + line('NIT / C.C.', cl.doc) + line('Representante', cl.rep + (cl.repDoc ? ' · C.C. ' + cl.repDoc : '')) + line('Celular', cl.phone) + line('Correo', cl.email) + line('Dirección', [cl.address, cl.city].filter(Boolean).join(', ')) + line('Sector', cl.sector) + '</div>' +
+        '</div></div>' +
+        '<div class="blk"><h2><span>2</span>Objeto</h2><p>' + esc(pv.name) + ' se compromete a diseñar, desarrollar y publicar la página web' + (c.plan ? ' correspondiente al <b>' + esc(c.plan) + '</b>' : '') + ' para <b>' + esc(cl.business) + '</b>, con su marca, adaptada a celulares y lista para recibir clientes, según los servicios descritos a continuación.</p></div>' +
+        '<div class="blk"><h2><span>3</span>Servicios y valores</h2><table class="items"><thead><tr><th>Servicio</th><th>Valor</th></tr></thead><tbody>' +
+          c.items.map(function(it){ return '<tr><td><b>' + esc(it.name) + '</b>' + (it.detail ? '<small>' + esc(it.detail) + '</small>' : '') + '</td><td>' + fmt(it.price) + '</td></tr>'; }).join('') +
+        '</tbody></table><div class="tot"><span>Total a pagar</span><b>' + fmt(c.total) + '</b></div></div>' +
+        '<div class="blk"><h2><span>4</span>Tiempo de entrega</h2><p>La página web se entregará <b>' + esc(c.delivery) + '</b>, contado desde que el cliente envíe la información necesaria (logo, fotos, textos y precios).' + (c.adjustments ? ' Incluye <b>' + c.adjustments + ' ronda' + (c.adjustments > 1 ? 's' : '') + ' de ajustes</b> sin costo adicional.' : '') + '</p></div>' +
+        '<div class="blk"><h2><span>5</span>Compromiso de pago</h2><p>El cliente <b>no paga ningún anticipo</b>. Se compromete a pagar el valor total de <b>' + fmt(c.total) + '</b> ' + PAY[c.payTerm] + ', mediante transferencia, Nequi, tarjeta o PSE.</p>' +
+          '<div class="hl">🛡️ <span>Si la página no cumple lo descrito en este documento, el cliente puede solicitar los ajustes incluidos antes de pagar.</span></div></div>' +
+        '<div class="blk"><h2><span>6</span>Entrega, renovación y propiedad</h2><p>Hasta recibir el pago total, la página permanece publicada en una dirección de prueba. Una vez pagada, se activa en el dominio del cliente y el contenido le pertenece. Los servicios marcados como anuales (diseño y alojamiento, dominio) cubren 12 meses desde la entrega y pueden renovarse.</p></div>' +
+        (c.notes ? '<div class="blk"><h2><span>7</span>Condiciones adicionales</h2><p>' + esc(c.notes) + '</p></div>' : '') +
+        '<div class="blk"><h2><span>' + (c.notes ? 8 : 7) + '</span>Datos personales y firma electrónica</h2><p>Los datos del cliente se usan solo para prestar este servicio (Ley 1581 de 2012). Las partes aceptan que este documento se firme por medios electrónicos, con plena validez (Ley 527 de 1999).</p></div>' +
+        '<div class="blk"><h2><span>✍</span>Firmas</h2><div class="sigs">' +
+          '<div class="sg"><div class="stamp">' + esc(pv.name) + '<small>Aprobado · ' + dLong(c.createdAt) + '</small></div><div class="ln"><b>' + esc(pv.name) + '</b><small>Prestador del servicio</small></div></div>' +
+          '<div class="sg">' + (signed ? '<img src="' + c.signature + '" alt="Firma del cliente">' : '<div class="wait">Esperando la firma del cliente</div>') +
+            '<div class="ln"><b>' + esc(signed ? c.signer.name : cl.rep) + '</b><small>' + (signed ? 'C.C./NIT ' + esc(c.signer.doc) + ' · Firmado el ' + dTime(c.signedAt) : 'Cliente · ' + esc(cl.business)) + '</small></div></div>' +
+        '</div></div>' +
+      '</div>' +
+      '<footer class="d-foot">Documento ' + esc(c.number) + ' generado el ' + dTime(c.createdAt) + ' · ' + esc(pv.name) + ' · ' + esc(pv.phone) + (signed ? ' · Firmado electrónicamente el ' + dTime(c.signedAt) : '') + '</footer>';
+    $('signbox').hidden = signed; $('done').hidden = !signed;
+    if(!signed){ $('sName').value = $('sName').value || cl.rep || ''; $('sDoc').value = $('sDoc').value || cl.repDoc || cl.doc || ''; setTimeout(sizePad, 50); }
+    else {
+      $('doneWa').href = 'https://wa.me/573505457420?text=' + encodeURIComponent('✅ Hola Bio Marketing, ya firmé el acuerdo de servicio *' + c.number + '* de *' + cl.business + '* por ' + fmt(c.total) + '. ¡Quedo atento para empezar! 🚀');
+    }
+    $('spin').hidden = true; $('wrap').hidden = false;
+  }
+
+  /* ===== Firma con el dedo ===== */
+  var cv = $('cv'), ctx = cv.getContext('2d'), drawing = false, has = false, last = null;
+  function sizePad(){
+    var r = $('pad').getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    var img = has ? cv.toDataURL() : null;
+    cv.width = r.width * dpr; cv.height = r.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1B0B2B';
+    if(img){ var im = new Image(); im.onload = function(){ ctx.drawImage(im, 0, 0, r.width, r.height); }; im.src = img; }
+  }
+  window.addEventListener('resize', function(){ if(!$('signbox').hidden) sizePad(); });
+  function pos(e){ var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top, p: e.pressure || .5 }; }
+  cv.addEventListener('pointerdown', function(e){ e.preventDefault(); drawing = true; last = pos(e); cv.setPointerCapture(e.pointerId); $('ph').hidden = true; });
+  cv.addEventListener('pointermove', function(e){
+    if(!drawing) return; e.preventDefault(); var p = pos(e);
+    ctx.lineWidth = 1.6 + (e.pointerType === 'pen' ? p.p * 2.5 : 1.4);
+    ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.quadraticCurveTo(last.x, last.y, (last.x + p.x) / 2, (last.y + p.y) / 2); ctx.lineTo(p.x, p.y); ctx.stroke();
+    last = p; has = true;
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(function(t){ cv.addEventListener(t, function(){ drawing = false; }); });
+  $('clear').onclick = function(){ ctx.clearRect(0, 0, cv.width, cv.height); has = false; $('ph').hidden = false; };
+  function sigData(){
+    // recorta y reduce la firma para que pese poco
+    var w = cv.width, h = cv.height, d = ctx.getImageData(0, 0, w, h).data, x0 = w, y0 = h, x1 = 0, y1 = 0;
+    for(var y = 0; y < h; y += 2) for(var x = 0; x < w; x += 2){ if(d[(y * w + x) * 4 + 3] > 10){ if(x < x0) x0 = x; if(x > x1) x1 = x; if(y < y0) y0 = y; if(y > y1) y1 = y; } }
+    if(x1 <= x0) return '';
+    var pad = 12, sw = Math.min(w, x1 - x0 + pad * 2), sh = Math.min(h, y1 - y0 + pad * 2), k = Math.min(1, 700 / sw);
+    var o = document.createElement('canvas'); o.width = Math.round(sw * k); o.height = Math.round(sh * k);
+    o.getContext('2d').drawImage(cv, Math.max(0, x0 - pad), Math.max(0, y0 - pad), sw, sh, 0, 0, o.width, o.height);
+    return o.toDataURL('image/png');
+  }
+  $('sign').onclick = function(){
+    var err = $('err'); err.textContent = '';
+    if(!has){ err.textContent = 'Dibuja tu firma en el recuadro.'; $('pad').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    if($('sName').value.trim().length < 3){ err.textContent = 'Escribe tu nombre completo.'; return; }
+    if($('sDoc').value.replace(/\D/g, '').length < 5){ err.textContent = 'Escribe tu número de cédula o NIT.'; return; }
+    if(!$('sAcc').checked){ err.textContent = 'Marca la casilla para aceptar el documento.'; return; }
+    var b = $('sign'); b.disabled = true; b.textContent = 'Firmando…';
+    fetch('/api/public/contract', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id, signature: sigData(), name: $('sName').value.trim(), doc: $('sDoc').value.trim(), accept: true }) })
+      .then(function(r){ return r.json().then(function(d){ if(!r.ok) throw new Error(d.error || 'No se pudo firmar.'); return d; }); })
+      .then(function(d){ C = d.contract; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(function(){ $('done').scrollIntoView({ behavior: 'smooth' }); }, 400); })
+      .catch(function(e){ err.textContent = e.message; b.disabled = false; b.textContent = 'Firmar documento'; });
+  };
+  $('pdf').onclick = function(){ window.print(); };
+
+  if(!/^[a-f0-9]{24}$/.test(id)){ show('<b>Link incompleto</b>Revisa que hayas abierto el link completo que te enviamos por WhatsApp.'); return; }
+  fetch('/api/public/contract?id=' + id).then(function(r){ return r.json().then(function(d){ if(!r.ok) throw new Error(d.error || 'No se pudo abrir el documento.'); return d; }); })
+    .then(function(d){ C = d.contract; render(); if(new URLSearchParams(location.search).get('print') === '1') setTimeout(function(){ window.print(); }, 600); })
+    .catch(function(e){ show('<b>No pudimos abrir el documento</b>' + esc(e.message)); });
+})();
+</script>
+</body>
+</html>
