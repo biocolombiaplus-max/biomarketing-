@@ -2,7 +2,7 @@
 const crypto = require('crypto');
 const { K, HttpError, requireAdmin, redis, readRecords, saveRecord, readBody, send, handler, cleanText } = require('../_lib/store');
 const linkUrl = (u) => { u = String(u || '').trim(); if (u && !/^[a-z]+:/i.test(u)) u = 'https://' + u; return /^https?:\/\/[^\s"'<>]+$/i.test(u) ? u.slice(0, 300) : ''; };
-const { cleanContract } = require('../_lib/contract');
+const { cleanContract, addCycle, nextOf } = require('../_lib/contract');
 
 const okId = (id) => /^[a-f0-9]{24}$/.test(String(id || ''));
 
@@ -28,12 +28,34 @@ module.exports = handler({
         c.site = { url, admin: linkUrl(b.adminUrl) || url.replace(/\/$/, '') + '/admin', pass: cleanText(b.pass, 40) || '123456' };
         c.deliveredAt = c.deliveredAt || new Date().toISOString();
         if (c.status !== 'pagado') c.status = 'entregado';
+        c.next = c.next || {};
+        ['anual', 'mensual'].forEach((cy) => { if (!c.next[cy] && c.items.some((it) => it.cycle === cy)) c.next[cy] = addCycle(c.deliveredAt, cy); });
       } else if (b.action === 'pay') {
         if (!c.signedAt) throw new HttpError(409, 'El contrato aún no está firmado.');
         const METHODS = ['Llave Breve', 'Nequi', 'Transferencia', 'Efectivo', 'Tarjeta / PSE'];
         const d = /^\d{4}-\d{2}-\d{2}$/.test(String(b.date || '')) ? b.date : new Date().toISOString().slice(0, 10);
         c.payment = { method: METHODS.includes(b.method) ? b.method : 'Llave Breve', ref: cleanText(b.ref, 60), amount: Math.max(0, Math.round(Number(b.amount) || c.total)), date: d };
         c.paidAt = new Date().toISOString(); c.status = 'pagado';
+      } else if (b.action === 'renew' || b.action === 'remind' || b.action === 'setnext') {
+        const cy = b.cycle === 'mensual' ? 'mensual' : 'anual';
+        if (!c.signedAt) throw new HttpError(409, 'El contrato aún no está firmado.');
+        c.next = c.next || {};
+        if (b.action === 'remind') { c.reminded = { ...(c.reminded || {}), [cy]: new Date().toISOString() }; }
+        else if (b.action === 'setnext') {
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(String(b.date || ''))) throw new HttpError(400, 'Fecha inválida.');
+          c.next[cy] = b.date;
+        } else {
+          const METHODS = ['Llave Breve', 'Nequi', 'Transferencia', 'Efectivo', 'Tarjeta / PSE'];
+          const items = (Array.isArray(b.items) ? b.items : []).slice(0, 12).map((it) => ({ name: cleanText(it.name, 90), price: Math.max(0, Math.round(Number(it.price) || 0)) })).filter((it) => it.name);
+          const period = nextOf(c, cy);
+          const d = /^\d{4}-\d{2}-\d{2}$/.test(String(b.date || '')) ? b.date : new Date().toISOString().slice(0, 10);
+          const amount = Math.max(0, Math.round(Number(b.amount) || items.reduce((a, it) => a + it.price, 0)));
+          c.renewals = (c.renewals || []).concat({ cycle: cy, period, items, amount, method: METHODS.includes(b.method) ? b.method : 'Llave Breve', ref: cleanText(b.ref, 60), date: d, at: new Date().toISOString() }).slice(-60);
+          c.next[cy] = addCycle(period, cy);
+          if (c.reminded) delete c.reminded[cy];
+          // los nuevos valores quedan como precio de la próxima renovación
+          items.forEach((it) => { const o = c.items.find((x) => x.cycle === cy && x.name === it.name); if (o) o.renewPrice = it.price; });
+        }
       } else if (b.action === 'unpay') {
         delete c.payment; delete c.paidAt; c.status = c.deliveredAt ? 'entregado' : 'firmado';
       } else throw new HttpError(400, 'Acción inválida.');

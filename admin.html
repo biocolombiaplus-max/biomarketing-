@@ -281,7 +281,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 .ct-items{display:grid;gap:10px}
 .ct-it{display:grid;grid-template-columns:1fr 118px 36px;gap:8px;align-items:start;background:var(--bg);border-radius:16px;padding:10px}
 .ct-it .input{padding:10px 12px;font-size:.9rem}
-.ct-it .n{grid-column:1/3;grid-row:1}.ct-it .d{grid-column:1/2;grid-row:2}.ct-it .pr{grid-column:2/3;grid-row:2;text-align:right;font-weight:800}
+.ct-it .n{grid-column:1/2;grid-row:1}.ct-it .cy{grid-column:2/3;grid-row:1;padding:10px 8px;font-size:.8rem;font-weight:700}.ct-it .d{grid-column:1/2;grid-row:2}.ct-it .pr{grid-column:2/3;grid-row:2;text-align:right;font-weight:800}
 .ct-it .icon-btn{grid-row:1/3;grid-column:3;align-self:center}
 .ct-add{margin-top:10px;font-weight:800;font-size:.86rem;color:var(--magenta)}
 .ct-total{display:flex;justify-content:space-between;align-items:center;margin-top:14px;background:var(--ink);color:#fff;border-radius:16px;padding:14px 16px}
@@ -330,6 +330,20 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 .md-pay{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
 .md-pay button{padding:10px 6px;border-radius:12px;box-shadow:inset 0 0 0 1.5px var(--line);font-weight:700;font-size:.8rem}
 .md-pay button.on{box-shadow:inset 0 0 0 2px #12B85B;background:#ECFDF3;color:#15803D}
+.ct-alert{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#FFF3C4,#FFE1F0);border:1.5px solid #F5C451;border-radius:18px;padding:12px 14px;margin-bottom:12px;box-shadow:0 14px 30px -18px rgba(217,168,0,.8)}
+.ct-alert .bell{font-size:1.6rem;animation:bell 1.6s ease-in-out infinite;transform-origin:50% 10%}
+@keyframes bell{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(16deg)}20%{transform:rotate(-14deg)}30%{transform:rotate(10deg)}40%{transform:rotate(-6deg)}}
+.ct-alert div{flex:1;min-width:0}.ct-alert b{display:block;font-family:var(--display);font-size:1.05rem}
+.ct-alert small{color:var(--ink2);font-size:.8rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct-alert button{background:var(--ink);color:#fff;font-weight:800;font-size:.82rem;padding:9px 16px;border-radius:99px}
+.ct-rens{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ct-ren{font-size:.74rem;font-weight:800;padding:6px 11px;border-radius:99px;background:var(--bg);color:var(--ink2);box-shadow:inset 0 0 0 1px var(--line)}
+.ct-ren.on{background:#FFD233;color:#1B0B2B;box-shadow:0 0 0 0 rgba(255,210,51,.8);animation:renP 1.8s infinite}
+.ct-ren.late{background:#E5334B;color:#fff;animation:renL 1.8s infinite}
+@keyframes renP{0%{box-shadow:0 0 0 0 rgba(255,210,51,.8)}80%,100%{box-shadow:0 0 0 9px rgba(255,210,51,0)}}
+@keyframes renL{0%{box-shadow:0 0 0 0 rgba(229,51,75,.7)}80%,100%{box-shadow:0 0 0 9px rgba(229,51,75,0)}}
+.ct-row.due{border-color:#F5C451;box-shadow:0 0 0 3px rgba(255,210,51,.25)}
+#nCt.ring{background:#FFD233!important;color:#1B0B2B!important;animation:renP 1.8s infinite}
 /* save bar */
 .savebar{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);z-index:60;background:var(--ink);color:#fff;border-radius:22px;padding:10px 10px 10px 22px;display:flex;align-items:center;gap:18px;box-shadow:0 24px 50px -12px rgba(27,11,43,.6);transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 24px)}
 .savebar:not(.show){visibility:hidden;transition:transform .35s,visibility 0s .35s}
@@ -510,8 +524,9 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
           <div class="form-actions"><button type="button" class="btn btn-line" id="ctCancel" hidden>Cancelar</button><button class="btn btn-main" type="submit" id="ctSubmit"><span>Generar documento</span></button></div>
         </form>
         <div>
+          <div class="ct-alert" id="ctAlert" hidden></div>
           <div class="ct-kpis" id="ctKpis"></div>
-          <div class="ct-flt" id="ctFlt"><button class="on" data-cf="all">Todos</button><button data-cf="pendiente">Por firmar</button><button data-cf="firmado">Por entregar</button><button data-cf="entregado">Por cobrar</button><button data-cf="pagado">Pagados</button><button class="ct-csv" id="ctCsv">⬇ Excel</button></div>
+          <div class="ct-flt" id="ctFlt"><button class="on" data-cf="all">Todos</button><button data-cf="pendiente">Por firmar</button><button data-cf="firmado">Por entregar</button><button data-cf="entregado">Por cobrar</button><button data-cf="pagado">Pagados</button><button data-cf="renov">🔔 Renovaciones</button><button class="ct-csv" id="ctCsv">⬇ Excel</button></div>
           <div class="ct-ready" id="ctReady" hidden></div>
           <div class="list" id="ctList"></div>
         </div>
@@ -1000,11 +1015,11 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   var link = function(c){ return location.origin + '/firmar.html?c=' + c.id; };
   function ctItem(it){
     var d = document.createElement('div'); d.className = 'ct-it';
-    d.innerHTML = '<input class="input n" placeholder="Servicio" maxlength="90"><input class="input pr" inputmode="numeric" placeholder="$0"><button type="button" class="icon-btn danger" title="Quitar"><svg><use href="#i-del"/></svg></button><input class="input d" placeholder="Detalle (opcional)" maxlength="160">';
-    d.querySelector('.n').value = it.name || ''; d.querySelector('.d').value = it.detail || ''; d.querySelector('.pr').value = it.price ? money(it.price) : '';
+    d.innerHTML = '<input class="input n" placeholder="Servicio" maxlength="90"><select class="input cy" title="Cobro"><option value="unico">Pago único</option><option value="anual">Anual</option><option value="mensual">Mensual</option></select><input class="input pr" inputmode="numeric" placeholder="$0"><button type="button" class="icon-btn danger" title="Quitar"><svg><use href="#i-del"/></svg></button><input class="input d" placeholder="Detalle (opcional)" maxlength="160">';
+    d.querySelector('.n').value = it.name || ''; d.querySelector('.cy').value = it.cycle || 'unico'; d.querySelector('.d').value = it.detail || ''; d.querySelector('.pr').value = it.price ? money(it.price) : '';
     $('ctItems').appendChild(d); ctTotal();
   }
-  function ctItems(){ return [].map.call($('ctItems').children, function(r){ return { name: r.querySelector('.n').value.trim(), detail: r.querySelector('.d').value.trim(), price: digits(r.querySelector('.pr').value) }; }).filter(function(i){ return i.name; }); }
+  function ctItems(){ return [].map.call($('ctItems').children, function(r){ return { name: r.querySelector('.n').value.trim(), detail: r.querySelector('.d').value.trim(), price: digits(r.querySelector('.pr').value), cycle: r.querySelector('.cy').value }; }).filter(function(i){ return i.name; }); }
   function ctTotal(){ $('ctTotal').textContent = money(ctItems().reduce(function(a, i){ return a + i.price; }, 0)); }
   $('ctItems').addEventListener('input', function(e){ if(e.target.classList.contains('pr')){ var v = digits(e.target.value); e.target.value = v ? money(v) : ''; } ctTotal(); });
   $('ctItems').addEventListener('click', function(e){ var b = e.target.closest('.icon-btn'); if(b){ b.closest('.ct-it').remove(); ctTotal(); } });
@@ -1014,8 +1029,8 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     if(keep) return;
     var P = CT_PLANS[p] || CT_PLANS[''];
     $('ctItems').innerHTML = '';
-    ctItem({ name: p === 'Plan Mensual' ? 'Tienda virtual · Plan Mensual (primer mes)' : 'Diseño y desarrollo de página web' + (p ? ' · ' + p.replace('Plan ', 'plan ') : '') + ' (1 año)', detail: P.detail, price: p === 'Plan Mensual' ? 100000 : P.price });
-    ctItem({ name: 'Dominio personalizado .com (1 año)', detail: 'Ej: tunegocio.com · incluye configuración y certificado de seguridad', price: 85000 });
+    ctItem({ name: p === 'Plan Mensual' ? 'Tienda virtual · Plan Mensual (primer mes)' : 'Diseño y desarrollo de página web' + (p ? ' · ' + p.replace('Plan ', 'plan ') : '') + ' (1 año)', detail: P.detail, price: p === 'Plan Mensual' ? 100000 : P.price, cycle: p === 'Plan Mensual' ? 'mensual' : 'anual' });
+    ctItem({ name: 'Dominio personalizado .com (1 año)', detail: 'Ej: tunegocio.com · incluye configuración y certificado de seguridad', price: 85000, cycle: 'anual' });
     $('cDel').value = P.del; $('cAdj').value = P.adj;
   }
   $('ctPlans').onclick = function(e){ var b = e.target.closest('.chip'); if(b) setPlan(b.dataset.p); };
@@ -1056,22 +1071,84 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
   var ctF = 'all';
+  var REN_DAYS = { anual: 8, mensual: 3 };
+  function addCy(d, cy){ var p = d.slice(0, 10).split('-').map(Number), t; if(cy === 'mensual'){ var last = new Date(Date.UTC(p[0], p[1] + 1, 0)).getUTCDate(); t = new Date(Date.UTC(p[0], p[1], Math.min(p[2], last))); } else t = new Date(Date.UTC(p[0] + 1, p[1] - 1, p[2])); return t.toISOString().slice(0, 10); }
+  function nextOf(c, cy){ return (c.next && c.next[cy]) || addCy(String(c.deliveredAt || c.paidAt || c.signedAt || c.createdAt), cy); }
+  function todayStr(){ return new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10); }
+  function daysTo(d){ return Math.round((Date.parse(d + 'T00:00:00Z') - Date.parse(todayStr() + 'T00:00:00Z')) / 864e5); }
+  function dLongS(d){ return new Date(d + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  // Renovaciones de un contrato: una por ciclo (anual / mensual)
+  function rens(c){
+    if(!c.signedAt || !(c.deliveredAt || c.status === 'pagado')) return [];
+    return ['anual', 'mensual'].map(function(cy){
+      var items = (c.items || []).filter(function(i){ return i.cycle === cy; }); if(!items.length) return null;
+      var due = nextOf(c, cy), d = daysTo(due);
+      return { cy: cy, due: due, days: d, items: items, total: items.reduce(function(a, i){ return a + (i.renewPrice != null ? i.renewPrice : i.price); }, 0), alert: d <= REN_DAYS[cy], reminded: c.reminded && c.reminded[cy] };
+    }).filter(Boolean);
+  }
+  function renLabel(r){ var w = r.cy === 'mensual' ? 'Mensualidad' : 'Renovación anual'; return r.days < 0 ? w + ' vencida hace ' + (-r.days) + ' día' + (r.days === -1 ? '' : 's') : r.days === 0 ? w + ' vence HOY' : w + ' en ' + r.days + ' día' + (r.days === 1 ? '' : 's'); }
+  function renMsg(c, r, items, total){
+    var pv = c.provider || {}, n = (c.client.rep || '').split(' ')[0], late = r.days < 0, mens = r.cy === 'mensual';
+    return '¡Hola ' + n + '! 👋 Te escribimos de *Bio Marketing*.\n\n' +
+      (late ? '⚠️ La ' + (mens ? 'mensualidad' : 'renovación anual') + ' de la página web de *' + c.client.business + '* venció el *' + dLongS(r.due) + '*.' : '📅 Te recordamos que la ' + (mens ? 'mensualidad del servicio' : 'renovación anual') + ' de la página web de *' + c.client.business + '* vence el *' + dLongS(r.due) + '*.') +
+      '\n\nIncluye:\n' + items.map(function(i){ return '• ' + i.name + ': ' + money(i.price); }).join('\n') +
+      '\n\n💳 *Total: ' + money(total) + '*\nPuedes pagar por *Llave Breve ' + (pv.llave || '@OTO262') + '* a nombre de *' + (pv.holder || 'Juan Cáceres') + '*.\n\n' +
+      (late ? 'Para que tu página' + (mens ? '' : ' y tu dominio') + ' sigan activos, te agradecemos realizar el pago lo antes posible y enviarnos el comprobante por aquí ✅' : 'Renuévala a tiempo para que tu página' + (mens ? '' : ' y tu dominio') + ' sigan activos sin interrupciones. Cuando pagues, envíanos el comprobante por aquí ✅') +
+      '\n\n¡Gracias por seguir creciendo con nosotros! 🚀';
+  }
+  function allRens(){ var L = []; CT.forEach(function(c){ rens(c).forEach(function(r){ L.push({ c: c, r: r }); }); }); return L.sort(function(a, b){ return a.r.days - b.r.days; }); }
+  function openRenew(c, cy){
+    var r = rens(c).find(function(x){ return x.cy === cy; }); if(!r) return;
+    var mens = cy === 'mensual';
+    md('<h3>🔄 ' + (mens ? 'Mensualidad' : 'Renovación anual') + '</h3><p>' + esc(c.client.business) + ' · período que vence el <b>' + dLongS(r.due) + '</b> (' + renLabel(r).toLowerCase() + ').</p>' +
+      '<div id="rnItems">' + r.items.map(function(i, k){ return '<div class="ct-2"><label class="field"><span>Servicio</span><input class="input rn-n" value="' + esc(i.name) + '"></label><label class="field"><span>Valor</span><input class="input rn-p" inputmode="numeric" value="' + money(i.renewPrice != null ? i.renewPrice : i.price) + '"></label></div>'; }).join('') + '</div>' +
+      '<div class="ct-total" style="margin:0 0 12px"><span>Total</span><b id="rnTot"></b></div>' +
+      '<div class="lbl" style="font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin:6px 0">Recordatorio por WhatsApp</div><div class="md-prev" id="rnPrev"></div>' +
+      '<a class="btn btn-waa" id="rnWa" href="#" target="_blank" rel="noopener"><span>💬 Enviar recordatorio por WhatsApp</span></a>' +
+      (r.reminded ? '<p style="font-size:.78rem;color:var(--ink3);margin:6px 0 0;text-align:center">Último recordatorio: ' + new Date(r.reminded).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + '</p>' : '') +
+      '<details class="ct-prov" style="margin-top:14px"><summary>💰 Ya pagó · registrar renovación</summary>' +
+        '<div class="md-pay" id="rnM">' + ['Llave Breve', 'Nequi', 'Transferencia', 'Efectivo', 'Tarjeta / PSE'].map(function(m, i){ return '<button type="button" data-m="' + m + '" class="' + (i ? '' : 'on') + '">' + m + '</button>'; }).join('') + '</div>' +
+        '<div class="ct-2"><label class="field"><span>Fecha del pago</span><input class="input" id="rnDate" type="date" value="' + todayStr() + '"></label><label class="field"><span>Referencia</span><input class="input" id="rnRef" placeholder="Opcional"></label></div>' +
+        '<button class="btn btn-main" type="submit" style="background:linear-gradient(135deg,#2BE070,#12B85B)"><span>Confirmar renovación pagada</span></button>' +
+        '<p style="font-size:.78rem;color:var(--ink3);margin-top:8px">La próxima ' + (mens ? 'mensualidad' : 'renovación') + ' quedará para el ' + dLongS(addCy(r.due, cy)) + '.</p></details>' +
+      '<details class="ct-prov" style="margin-top:10px"><summary>📅 Cambiar fecha de vencimiento</summary><div class="ct-2" style="align-items:end"><label class="field"><span>Vence el</span><input class="input" id="rnNext" type="date" value="' + r.due + '"></label><button type="button" class="btn btn-line btn-sm" id="rnSetNext" style="margin-bottom:16px">Guardar fecha</button></div></details>', function(){
+        var it = items(), tot = it.reduce(function(a, i){ return a + i.price; }, 0);
+        ctSave({ id: c.id, action: 'renew', cycle: cy, items: it, amount: tot, method: method, date: $('rnDate').value, ref: $('rnRef').value.trim() }, function(nc){
+          var rr = rens(nc).find(function(x){ return x.cy === cy; });
+          md('<h3>✅ ¡Renovación registrada!</h3><p>' + esc(nc.client.business) + ' pagó ' + money(tot) + '. Quedó en tu contabilidad y la próxima ' + (mens ? 'mensualidad' : 'renovación') + ' es el <b>' + dLongS(rr.due) + '</b>.</p><a class="btn btn-main" style="background:linear-gradient(135deg,#2BE070,#12B85B)" target="_blank" rel="noopener" href="' + waTo(nc, '✅ ¡Hola ' + (nc.client.rep || '').split(' ')[0] + '! Recibimos tu pago de *' + money(tot) + '* por la ' + (mens ? 'mensualidad' : 'renovación anual') + ' de la página de *' + nc.client.business + '*. Tu servicio queda activo hasta el *' + dLongS(rr.due) + '*. ¡Gracias! 🚀') + '"><span>Enviar confirmación por WhatsApp</span></a>', mdClose);
+        });
+      });
+    var method = 'Llave Breve';
+    function items(){ var N = document.querySelectorAll('.rn-n'), Pp = document.querySelectorAll('.rn-p'); return [].map.call(N, function(n, k){ return { name: n.value.trim(), price: digits(Pp[k].value) }; }).filter(function(i){ return i.name; }); }
+    function upd(){ var it = items(), tot = it.reduce(function(a, i){ return a + i.price; }, 0); $('rnTot').textContent = money(tot); var m = renMsg(c, r, it, tot); $('rnPrev').textContent = m; $('rnWa').href = waTo(c, m); }
+    $('rnItems').addEventListener('input', function(e){ if(e.target.classList.contains('rn-p')){ var v = digits(e.target.value); e.target.value = v ? money(v) : ''; } upd(); });
+    $('rnM').onclick = function(e){ var b = e.target.closest('button'); if(!b) return; method = b.dataset.m; [].forEach.call(this.children, function(x){ x.classList.toggle('on', x === b); }); };
+    $('rnWa').addEventListener('click', function(){ api('POST', '/api/admin/contracts', { id: c.id, action: 'remind', cycle: cy }).then(function(d){ var i = CT.findIndex(function(x){ return x.id === d.contract.id; }); CT[i] = d.contract; renderCt(); }).catch(function(){}); });
+    $('rnSetNext').onclick = function(){ ctSave({ id: c.id, action: 'setnext', cycle: cy, date: $('rnNext').value }, function(nc){ mdClose(); toast('Fecha actualizada ✓', 'ok'); }); };
+    upd();
+  }
   var ST_CT = { pendiente: ['✍️', 'p', 'Por firmar'], firmado: ['🛠️', 'f', 'Firmado · por entregar'], entregado: ['🚀', 'e', 'Entregado · por cobrar'], pagado: ['✅', 'pg', 'Pagado'] };
   function dShort(iso){ return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }); }
   function ctKpis(){
     var now = new Date(), ym = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2);
     var paid = CT.filter(function(c){ return c.status === 'pagado'; }), month = paid.filter(function(c){ return (c.payment.date || '').slice(0, 7) === ym; });
+    var renAll = []; CT.forEach(function(c){ (c.renewals || []).forEach(function(r){ renAll.push(r); }); });
+    var renMonth = renAll.filter(function(r){ return (r.date || '').slice(0, 7) === ym; }), sumR = function(L){ return L.reduce(function(a, r){ return a + r.amount; }, 0); };
+    var due8 = allRens().filter(function(x){ return x.r.alert; });
+    var al = $('ctAlert'); al.hidden = !due8.length;
+    if(due8.length) al.innerHTML = '<span class="bell">🔔</span><div><b>' + due8.length + ' renovaci' + (due8.length === 1 ? 'ón' : 'ones') + ' por cobrar</b><small>' + due8.slice(0, 3).map(function(x){ return esc(x.c.client.business) + ' · ' + renLabel(x.r).toLowerCase(); }).join(' · ') + '</small></div><button type="button" data-cf2="renov">Ver</button>';
+    var nb = $('nCt'); nb.classList.toggle('ring', !!due8.length); if(due8.length) nb.textContent = '🔔 ' + due8.length;
     var due = CT.filter(function(c){ return c.status === 'entregado'; }), work = CT.filter(function(c){ return c.status === 'firmado'; });
     var sum = function(L, f){ return L.reduce(function(a, c){ return a + (f ? f(c) : c.total); }, 0); };
-    $('ctKpis').innerHTML = '<div class="ct-k g"><small>Cobrado este mes</small><b>' + money(sum(month, function(c){ return c.payment.amount; })) + '</b><span>' + month.length + ' pago' + (month.length === 1 ? '' : 's') + '</span></div>' +
-      '<div class="ct-k y"><small>Por cobrar</small><b>' + money(sum(due)) + '</b><span>' + due.length + ' página' + (due.length === 1 ? '' : 's') + ' entregada' + (due.length === 1 ? '' : 's') + '</span></div>' +
+    $('ctKpis').innerHTML = '<div class="ct-k g"><small>Cobrado este mes</small><b>' + money(sum(month, function(c){ return c.payment.amount; }) + sumR(renMonth)) + '</b><span>' + (month.length + renMonth.length) + ' pago' + (month.length + renMonth.length === 1 ? '' : 's') + (renMonth.length ? ' · ' + renMonth.length + ' renov.' : '') + '</span></div>' +
+      '<div class="ct-k y"><small>Por cobrar</small><b>' + money(sum(due) + due8.reduce(function(a, x){ return a + x.r.total; }, 0)) + '</b><span>' + due.length + ' entrega' + (due.length === 1 ? '' : 's') + ' · ' + due8.length + ' renovaci' + (due8.length === 1 ? 'ón' : 'ones') + '</span></div>' +
       '<div class="ct-k"><small>En desarrollo</small><b>' + money(sum(work)) + '</b><span>' + work.length + ' firmado' + (work.length === 1 ? '' : 's') + '</span></div>' +
-      '<div class="ct-k"><small>Cobrado total</small><b>' + money(sum(paid, function(c){ return c.payment.amount; })) + '</b><span>' + paid.length + ' servicio' + (paid.length === 1 ? '' : 's') + ' pagado' + (paid.length === 1 ? '' : 's') + '</span></div>';
+      '<div class="ct-k"><small>Cobrado total</small><b>' + money(sum(paid, function(c){ return c.payment.amount; }) + sumR(renAll)) + '</b><span>' + paid.length + ' servicio' + (paid.length === 1 ? '' : 's') + ' · ' + renAll.length + ' renovaci' + (renAll.length === 1 ? 'ón' : 'ones') + '</span></div>';
   }
   function renderCt(){
     $('nCt').textContent = CT.filter(function(c){ return c.status !== 'pagado'; }).length;
     ctKpis();
-    var L = CT.filter(function(c){ return ctF === 'all' || c.status === ctF; });
+    var L = ctF === 'renov' ? allRens().map(function(x){ return x.c; }).filter(function(c, i, a){ return a.indexOf(c) === i; }) : CT.filter(function(c){ return ctF === 'all' || c.status === ctF; });
     $('ctList').innerHTML = L.length ? L.map(function(c){
       var st = ST_CT[c.status] || ST_CT.pendiente, f = !!c.signedAt;
       var sub = c.status === 'pagado' ? 'Pagado el ' + new Date(c.payment.date + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'short' }) + ' · ' + esc(c.payment.method) + (c.payment.ref ? ' · Ref. ' + esc(c.payment.ref) : '')
@@ -1081,8 +1158,9 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
         : c.status === 'entregado' ? '<button class="ct-go pay" data-py="' + c.id + '">💰 Marcar pagado</button><a class="icon-btn" title="Reenviar mensaje de entrega" href="' + waDeliver(c) + '" target="_blank" rel="noopener">💬</a>'
         : c.status === 'pagado' ? '<a class="icon-btn" title="Enviar recibo por WhatsApp" href="' + waPaid(c) + '" target="_blank" rel="noopener">🧾</a><button class="icon-btn" data-up="' + c.id + '" title="Deshacer pago">↩</button>'
         : '<a class="icon-btn" title="Enviar para firmar" href="' + waClient(c) + '" target="_blank" rel="noopener">💬</a><button class="icon-btn" data-cp="' + c.id + '" title="Copiar link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button><button class="icon-btn" data-ed="' + c.id + '" title="Editar"><svg><use href="#i-edit"/></svg></button>';
-      return '<div class="row ct-row' + (ctEdit === c.id ? ' editing' : '') + '" data-id="' + c.id + '"><div class="ct-num ' + st[1] + '">' + st[0] + '</div>' +
-        '<div class="info"><b>' + esc(c.client.business) + ' · ' + money(c.total) + '</b><small>' + esc(c.number) + ' · ' + esc(c.plan || 'Personalizado') + ' · ' + dShort(c.createdAt) + '</small><small>' + sub + '</small></div>' +
+      var rr = rens(c), renHtml = rr.map(function(r){ return '<button class="ct-ren' + (r.alert ? ' on' : '') + (r.days < 0 ? ' late' : '') + '" data-rn="' + c.id + '" data-cy="' + r.cy + '">' + (r.alert ? '🔔 ' : '🔄 ') + renLabel(r) + ' · ' + money(r.total) + '</button>'; }).join('');
+      return '<div class="row ct-row' + (ctEdit === c.id ? ' editing' : '') + (rr.some(function(r){ return r.alert; }) ? ' due' : '') + '" data-id="' + c.id + '"><div class="ct-num ' + st[1] + '">' + st[0] + '</div>' +
+        '<div class="info"><b>' + esc(c.client.business) + ' · ' + money(c.total) + '</b><small>' + esc(c.number) + ' · ' + esc(c.plan || 'Personalizado') + ' · ' + dShort(c.createdAt) + '</small><small>' + sub + '</small>' + (renHtml ? '<div class="ct-rens">' + renHtml + '</div>' : '') + '</div>' +
         '<div class="acts"><span class="ct-st ' + st[1] + '">' + st[2] + '</span>' + main +
         '<a class="icon-btn" href="firmar.html?c=' + c.id + (f ? '&print=1' : '') + '" target="_blank" rel="noopener" title="' + (f ? 'Descargar PDF' : 'Ver documento') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4" stroke-linecap="round"/></svg></a>' +
         '<button class="icon-btn danger" data-del="' + c.id + '" title="Eliminar"><svg><use href="#i-del"/></svg></button></div></div>';
@@ -1140,11 +1218,13 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     var find = function(id){ return CT.find(function(x){ return x.id === id; }); };
     if(dv) openDeliver(find(dv.dataset.dv));
     if(py) openPay(find(py.dataset.py));
+    var rn = e.target.closest('[data-rn]'); if(rn) openRenew(find(rn.dataset.rn), rn.dataset.cy);
+    var cf2 = e.target.closest('[data-cf2]'); if(cf2){ var fb = $('ctFlt').querySelector('[data-cf="' + cf2.dataset.cf2 + '"]'); if(fb) fb.click(); }
     if(up && confirm('¿Deshacer el pago registrado?')) ctSave({ id: up.dataset.up, action: 'unpay' }, function(){ toast('Pago deshecho', 'ok'); });
   });
   $('ctCsv').onclick = function(){
-    var rows = [['N.º', 'Fecha', 'Negocio', 'NIT/C.C.', 'Representante', 'Celular', 'Ciudad', 'Plan', 'Total', 'Estado', 'Firmado', 'Entregado', 'Pagado', 'Método', 'Valor pagado', 'Referencia', 'Página']];
-    CT.forEach(function(c){ rows.push([c.number, dShort(c.createdAt), c.client.business, c.client.doc, c.client.rep, c.client.phone, c.client.city, c.plan, c.total, (ST_CT[c.status] || [])[2], c.signedAt ? dShort(c.signedAt) : '', c.deliveredAt ? dShort(c.deliveredAt) : '', c.payment ? c.payment.date : '', c.payment ? c.payment.method : '', c.payment ? c.payment.amount : '', c.payment ? c.payment.ref : '', c.site ? c.site.url : '']); });
+    var rows = [['N.º', 'Fecha', 'Negocio', 'NIT/C.C.', 'Representante', 'Celular', 'Ciudad', 'Plan', 'Total', 'Estado', 'Firmado', 'Entregado', 'Pagado', 'Método', 'Valor pagado', 'Referencia', 'Página', 'Próx. renovación anual', 'Próx. mensualidad', 'Renovaciones cobradas']];
+    CT.forEach(function(c){ rows.push([c.number, dShort(c.createdAt), c.client.business, c.client.doc, c.client.rep, c.client.phone, c.client.city, c.plan, c.total, (ST_CT[c.status] || [])[2], c.signedAt ? dShort(c.signedAt) : '', c.deliveredAt ? dShort(c.deliveredAt) : '', c.payment ? c.payment.date : '', c.payment ? c.payment.method : '', c.payment ? c.payment.amount : '', c.payment ? c.payment.ref : '', c.site ? c.site.url : '', (rens(c).find(function(r){ return r.cy === 'anual'; }) || {}).due || '', (rens(c).find(function(r){ return r.cy === 'mensual'; }) || {}).due || '', (c.renewals || []).reduce(function(a, r){ return a + r.amount; }, 0)]); });
     var csv = '﻿' + rows.map(function(r){ return r.map(function(v){ return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; }).join(';'); }).join('\n');
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'contabilidad-contratos-biomarketing.csv'; a.click();
   };
@@ -1162,7 +1242,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     if(dl){ var c2 = CT.find(function(x){ return x.id === dl.dataset.del; }); if(!c2 || !confirm('¿Eliminar el contrato ' + c2.number + ' de ' + c2.client.business + '? El link dejará de funcionar.')) return;
       api('DELETE', '/api/admin/contracts?id=' + c2.id).then(function(){ CT = CT.filter(function(x){ return x.id !== c2.id; }); if(ctEdit === c2.id) ctReset(); renderCt(); $('ctReady').hidden = true; toast('Contrato eliminado', 'ok'); }).catch(onErr); }
   });
-  function loadContracts(){ if(storageOk === false) return renderCt(); api('GET', '/api/admin/contracts').then(function(d){ CT = d.contracts || []; renderCt(); }).catch(onErr); }
+  function loadContracts(){ if(storageOk === false) return renderCt(); api('GET', '/api/admin/contracts').then(function(d){ CT = d.contracts || []; renderCt(); var n = allRens().filter(function(x){ return x.r.alert; }).length; if(n) setTimeout(function(){ toast('🔔 Tienes ' + n + ' renovaci' + (n === 1 ? 'ón' : 'ones') + ' por cobrar en Contratos'); }, 1200); }).catch(onErr); }
   setPlan('Plan Emprende');
 
   stars();
