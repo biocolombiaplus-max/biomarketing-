@@ -192,7 +192,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
       '</div>' +
       '<footer class="d-foot">Documento ' + esc(c.number) + ' generado el ' + dTime(c.createdAt) + ' · ' + esc(pv.name) + ' · ' + esc(pv.phone) + (signed ? ' · Firmado electrónicamente el ' + dTime(c.signedAt) : '') + (c.deliveredAt ? ' · Entregado el ' + dLong(c.deliveredAt) : '') + (paid ? ' · Pagado el ' + new Date(c.payment.date + 'T12:00:00').toLocaleDateString('es-CO') : '') + '</footer>';
     $('signbox').hidden = signed; $('done').hidden = !signed;
-    .hidden = paid;
+    $('doneWa').hidden = paid;
     if(signed && c.site && c.site.url){ $('doneP').innerHTML = paid ? '¡Pago recibido! Gracias por confiar en nosotros. Tu página ya es tuya.' : 'Tu página ya está lista. Revísala aquí: <a href="' + esc(c.site.url) + '" target="_blank" rel="noopener">' + esc(c.site.url.replace(/^https?:\/\//, '')) + '</a>'; }
     if(!signed){ $('sName').value = $('sName').value || cl.rep || ''; $('sDoc').value = $('sDoc').value || cl.repDoc || cl.doc || ''; setTimeout(sizePad, 50); }
     else {
