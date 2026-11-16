@@ -3,7 +3,7 @@
 // (bloqueadores de anuncios o restricciones por dominio). El contenido es el original de ePayco, sin cambios.
 const FILES = { 'checkout-v2': 'https://checkout.epayco.co/checkout-v2.js', 'checkout': 'https://checkout.epayco.co/checkout.js' };
 
-module.exports = async (req, res) => {
+module.exports = async function serveEpaycoJs(req, res) {
   const f = new URL(req.url, 'http://x').searchParams.get('f');
   const src = FILES[f];
   const fail = (status, error) => { res.statusCode = status; res.setHeader('Content-Type', 'application/json; charset=utf-8'); res.setHeader('Cache-Control', 'no-store'); res.end(JSON.stringify({ error })); };

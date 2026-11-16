@@ -2,6 +2,8 @@
 // login con las claves pública + privada (solo en el servidor) → sesión de pago → la landing abre el checkout.
 // Variables en Vercel: EPAYCO_PUBLIC_KEY, EPAYCO_PRIVATE_KEY (obligatoria), EPAYCO_TEST (opcional, "true" para pruebas).
 const { HttpError, readBody, send, handler, cleanText } = require('../_lib/store');
+const serveEpaycoJs = require('../_lib/epayco-js');
+// GET /api/public/epayco?f=checkout-v2 · respaldo del script oficial de ePayco (antes /api/public/epayco-js)
 
 // Los precios se calculan aquí (no se confía en el valor que manda el navegador).
 const PLANS = { 'Emprende': 198000, 'Crece': 490000, 'Pro Empresarial': 890000 };
@@ -28,6 +30,7 @@ async function login(k) {
 }
 
 module.exports = handler({
+  async GET(req, res) { return serveEpaycoJs(req, res); },
   async POST(req, res) {
     const k = keys();
     if (!k.priv) throw Object.assign(new HttpError(503, 'Falta la variable EPAYCO_PRIVATE_KEY en Vercel.'), {});

@@ -1935,7 +1935,7 @@ footer a:hover{color:var(--fuchsia)}
   }
   // Carga el script de ePayco: primero directo; si el navegador lo bloquea, desde este mismo dominio (función de Vercel)
   function loadEpayco(name){
-    var direct = 'https://checkout.epayco.co/' + name + '.js', proxy = '/api/public/epayco-js?f=' + name;
+    var direct = 'https://checkout.epayco.co/' + name + '.js', proxy = '/api/public/epayco?f=' + name;
     return loadScript(direct).then(function(){ return waitEpayco(6000); }).catch(function(e1){
       console.warn('ePayco directo falló, uso respaldo:', e1.message);
       return loadScript(proxy).then(function(){ return waitEpayco(6000); }).catch(function(e2){
@@ -1961,7 +1961,7 @@ footer a:hover{color:var(--fuchsia)}
   }
   // 2) Respaldo: checkout clásico con la llave pública (el mismo de juridicosweb)
   function payLegacy(s, desc){
-    if(window.ePayco && window.ePayco.checkout && !loaded['https://checkout.epayco.co/checkout.js'] && !loaded['/api/public/epayco-js?f=checkout']){ try{ delete window.ePayco; }catch(e){ window.ePayco = undefined; } }
+    if(window.ePayco && window.ePayco.checkout && !loaded['https://checkout.epayco.co/checkout.js'] && !loaded['/api/public/epayco?f=checkout']){ try{ delete window.ePayco; }catch(e){ window.ePayco = undefined; } }
     return loadEpayco('checkout').then(function(){ lanzarEpayco(s, desc); });
   }
   var lastPay = null;

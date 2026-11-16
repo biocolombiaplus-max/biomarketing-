@@ -15,6 +15,14 @@
     {
       "source": "/firmar",
       "destination": "/firmar.html"
+    },
+    {
+      "source": "/api/public/img",
+      "destination": "/api/public/data"
+    },
+    {
+      "source": "/api/public/epayco-js",
+      "destination": "/api/public/epayco"
     }
   ],
   "headers": [

@@ -1,9 +1,7 @@
-// GET /api/public/img?id=… · logos y fotos subidos desde el panel (guardados en Redis).
-// Cada imagen tiene un id único y nunca cambia, así que el CDN de Vercel la guarda por un año.
-const { K, creds, redis, send, handler } = require('../_lib/store');
+// Sirve logos y fotos subidos desde el panel (guardados en Redis). Lo usa /api/public/data?id=…
+const { K, creds, redis, send } = require('./store');
 
-module.exports = handler({
-  async GET(req, res) {
+module.exports = async function serveImg(req, res) {
     const id = new URL(req.url, 'http://x').searchParams.get('id') || '';
     if (!/^[a-z0-9]{8,32}$/.test(id) || !creds()) return send(res, 404, { error: 'No encontrada.' });
     const raw = await redis('GET', K.img + id);
@@ -15,5 +13,4 @@ module.exports = handler({
     res.setHeader('X-Content-Type-Options', 'nosniff');
     if (m[1] === 'image/svg+xml') res.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'");
     res.end(Buffer.from(m[2], 'base64'));
-  },
-});
+};
