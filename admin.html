@@ -344,6 +344,10 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 @keyframes renL{0%{box-shadow:0 0 0 0 rgba(229,51,75,.7)}80%,100%{box-shadow:0 0 0 9px rgba(229,51,75,0)}}
 .ct-row.due{border-color:#F5C451;box-shadow:0 0 0 3px rgba(255,210,51,.25)}
 #nCt.ring{background:#FFD233!important;color:#1B0B2B!important;animation:renP 1.8s infinite}
+.ct-exc{display:flex;gap:12px;align-items:flex-start;margin-top:4px;padding:12px 14px;border-radius:16px;border:1.5px dashed var(--line2);background:var(--bg);cursor:pointer;transition:.2s}
+.ct-exc input{width:20px;height:20px;accent-color:var(--fuchsia);flex-shrink:0;margin-top:2px}
+.ct-exc b{display:block;font-size:.88rem}.ct-exc small{display:block;color:var(--ink2);font-size:.78rem;margin-top:2px}
+.ct-exc.on{border:1.5px solid var(--fuchsia);background:#FFF0F7}
 /* save bar */
 .savebar{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);z-index:60;background:var(--ink);color:#fff;border-radius:22px;padding:10px 10px 10px 22px;display:flex;align-items:center;gap:18px;box-shadow:0 24px 50px -12px rgba(27,11,43,.6);transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 24px)}
 .savebar:not(.show){visibility:hidden;transition:transform .35s,visibility 0s .35s}
@@ -470,7 +474,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
 
     <!-- CONTRATOS -->
     <section data-view="contracts" hidden>
-      <div class="head"><div><h1>Contratos <span class="it fx">para firmar</span></h1><p>Genera el acuerdo de servicio y compromiso de pago, envíalo por WhatsApp y el cliente lo firma con el dedo en su celular.</p></div></div>
+      <div class="head"><div><h1>Contratos <span class="it fx">para firmar</span></h1><p>Genera el acuerdo comercial y compromiso de pago, envíalo por WhatsApp y el cliente lo firma con el dedo en su celular.</p></div></div>
       <div class="grid">
         <form class="card form-card" id="ctForm" autocomplete="off">
           <h3><span class="n">+</span><span id="ctTitle">Nuevo contrato</span></h3>
@@ -501,6 +505,8 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
             <label class="field"><span>Ciudad</span><input class="input" id="cCity" placeholder="Cúcuta" maxlength="50"></label>
             <label class="field"><span>Dirección</span><input class="input" id="cAddr" placeholder="Calle 10 #5-20" maxlength="120"></label>
           </div>
+          <label class="field" style="margin-top:12px"><span>Productos o servicios incluidos</span><input class="input" id="cProd" value="hasta 30" maxlength="40"></label>
+          <label class="ct-exc" id="ctExcBox"><input type="checkbox" id="cExc"><span><b>⭐ Condición especial: incluir funciones del plan Crece</b><small>Botones y pasarela de pagos (tarjetas, PSE, Nequi), cupones, filtros y variantes, por el mismo valor del plan Emprende. Solo cambia el número de productos.</small></span></label>
           <div class="ct-sec">3 · Qué vamos a entregar</div>
           <label class="field"><span>Alcance del desarrollo <b class="count" id="cScopeN">0/1500</b></span><textarea class="input" id="cScope" maxlength="1500" rows="5" placeholder="Ej: Tienda virtual con inicio, catálogo de hasta 30 productos en 4 categorías, carrito con pago contra entrega, botón de WhatsApp, página de contacto y panel de pedidos. No incluye: blog, app móvil ni fotografía de productos."></textarea></label>
           <div class="ct-tip">💡 Describe lo que se entrega y lo que <b>no</b> incluye. Así el contrato tiene límites claros y lo que pidan de más se cotiza aparte.</div>
@@ -1004,11 +1010,11 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   /* ===================== CONTRATOS ===================== */
   var CT = [], ctEdit = null, ctPlan = 'Plan Emprende';
   var CT_PLANS = {
-    'Plan Emprende': { price: 198000, del: 'el mismo día', adj: 1, detail: 'Tienda con carrito, pago contra entrega, panel de pedidos, alojamiento y certificado SSL. Hasta 30 productos.' },
-    'Plan Crece': { price: 490000, del: 'en 24 horas', adj: 2, detail: 'Todo lo del plan Emprende + pasarela de pagos (tarjetas, PSE, Nequi), cupones y filtros. Hasta 150 productos.' },
-    'Plan Pro Empresarial': { price: 890000, del: 'en 3 a 5 días', adj: 3, detail: 'Diseño 100% a la medida, varias pasarelas, automatización de envíos y reportes. Productos ilimitados.' },
-    'Plan Mensual': { price: 0, del: 'el mismo día', adj: 1, detail: 'Tienda con plantilla profesional, hasta 15 productos. USD 25 al mes con permanencia de 12 meses.' },
-    '': { price: 0, del: 'el mismo día', adj: 1, detail: '' }
+    'Plan Emprende': { price: 198000, del: 'el mismo día', adj: 1, prod: 'hasta 30', detail: 'Tienda con carrito, pago contra entrega, panel de pedidos, alojamiento y certificado SSL. Hasta 30 productos.' },
+    'Plan Crece': { price: 490000, del: 'en 24 horas', adj: 2, prod: 'hasta 150', detail: 'Todo lo del plan Emprende + pasarela de pagos (tarjetas, PSE, Nequi), cupones y filtros. Hasta 150 productos.' },
+    'Plan Pro Empresarial': { price: 890000, del: 'en 3 a 5 días', adj: 3, prod: 'ilimitados', detail: 'Diseño 100% a la medida, varias pasarelas, automatización de envíos y reportes. Productos ilimitados.' },
+    'Plan Mensual': { price: 0, del: 'el mismo día', adj: 1, prod: 'hasta 15', detail: 'Tienda con plantilla profesional, hasta 15 productos. USD 25 al mes con permanencia de 12 meses.' },
+    '': { price: 0, del: 'el mismo día', adj: 1, prod: '', detail: '' }
   };
   var money = function(n){ return '$' + Math.round(n || 0).toLocaleString('es-CO'); };
   var digits = function(v){ return parseInt(String(v || '').replace(/\D/g, ''), 10) || 0; };
@@ -1026,13 +1032,16 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   $('ctAdd').onclick = function(){ ctItem({}); $('ctItems').lastChild.querySelector('.n').focus(); };
   function setPlan(p, keep){
     ctPlan = p; [].forEach.call($('ctPlans').children, function(b){ b.classList.toggle('on', b.dataset.p === p); });
-    if(keep) return;
+    if(keep){ excBox(); return; }
     var P = CT_PLANS[p] || CT_PLANS[''];
     $('ctItems').innerHTML = '';
-    ctItem({ name: p === 'Plan Mensual' ? 'Tienda virtual · Plan Mensual (primer mes)' : 'Diseño y desarrollo de página web' + (p ? ' · ' + p.replace('Plan ', 'plan ') : '') + ' (1 año)', detail: P.detail, price: p === 'Plan Mensual' ? 100000 : P.price, cycle: p === 'Plan Mensual' ? 'mensual' : 'anual' });
+    ctItem({ name: p === 'Plan Mensual' ? 'Tienda virtual · Plan Mensual (primer mes)' : 'Diseño y desarrollo de página web' + (p ? ' · ' + p.replace('Plan ', 'plan ') : '') + ' (pago único)', detail: designDetail(p), price: p === 'Plan Mensual' ? 100000 : P.price, cycle: p === 'Plan Mensual' ? 'mensual' : 'unico' });
     ctItem({ name: 'Dominio personalizado .com (1 año)', detail: 'Ej: tunegocio.com · incluye configuración y certificado de seguridad', price: 85000, cycle: 'anual' });
-    $('cDel').value = P.del; $('cAdj').value = P.adj;
+    $('cDel').value = P.del; $('cAdj').value = P.adj; $('cProd').value = P.prod; $('cExc').checked = false; excBox();
   }
+  function designDetail(p){ var P = CT_PLANS[p] || CT_PLANS['']; return p === 'Plan Emprende' && $('cExc').checked ? 'Tienda con carrito, pago contra entrega, panel de pedidos, alojamiento y certificado SSL + funciones del plan Crece: pasarela de pagos (tarjetas, PSE, Nequi), cupones, filtros y variantes. ' + ($('cProd').value ? 'Productos: ' + $('cProd').value + '.' : '') : P.detail; }
+  function excBox(){ $('ctExcBox').hidden = ctPlan !== 'Plan Emprende'; $('ctExcBox').classList.toggle('on', $('cExc').checked); }
+  $('cExc').addEventListener('change', function(){ excBox(); var first = $('ctItems').firstElementChild; if(first && /^Diseño y desarrollo/.test(first.querySelector('.n').value)) first.querySelector('.d').value = designDetail(ctPlan); });
   $('ctPlans').onclick = function(e){ var b = e.target.closest('.chip'); if(b) setPlan(b.dataset.p); };
   var PROV = ['pName', 'pDoc', 'pCity', 'pPhone', 'pEmail', 'pLlave', 'pHolder'];
   try{ var pv = JSON.parse(localStorage.getItem('bm_prov') || 'null'); if(pv) PROV.forEach(function(k){ if(pv[k] != null) $(k).value = pv[k]; }); }catch(e){}
@@ -1047,7 +1056,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     var client = {}; Object.keys(CF).forEach(function(k){ client[k] = $(CF[k]).value.trim(); });
     var provider = { name: $('pName').value, doc: $('pDoc').value, city: $('pCity').value, phone: $('pPhone').value, email: $('pEmail').value, llave: $('pLlave').value, holder: $('pHolder').value };
     try{ var o = {}; PROV.forEach(function(k){ o[k] = $(k).value; }); localStorage.setItem('bm_prov', JSON.stringify(o)); }catch(x){}
-    var body = { id: ctEdit || undefined, plan: ctPlan, items: ctItems(), delivery: $('cDel').value.trim(), payTerm: $('cPay').value, adjustments: +$('cAdj').value || 0, notes: $('cNotes').value.trim(), scope: $('cScope').value.trim(), client: client, provider: provider };
+    var body = { id: ctEdit || undefined, plan: ctPlan, items: ctItems(), delivery: $('cDel').value.trim(), payTerm: $('cPay').value, adjustments: +$('cAdj').value || 0, notes: $('cNotes').value.trim(), scope: $('cScope').value.trim(), products: $('cProd').value.trim(), exception: ctPlan === 'Plan Emprende' && $('cExc').checked, client: client, provider: provider };
     if(client.business.length < 2) return toast('Escribe el nombre del negocio.', 'bad');
     if(client.rep.length < 3) return toast('Escribe quién firma.', 'bad');
     if(!body.items.length) return toast('Agrega al menos un servicio.', 'bad');
@@ -1060,7 +1069,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
   };
   function waClient(c){
     var ph = String(c.client.phone || '').replace(/\D/g, ''); if(ph.length === 10) ph = '57' + ph;
-    var msg = 'Hola ' + (c.client.rep || '').split(' ')[0] + ' 👋 Te comparto el *acuerdo de servicio* de la página web de *' + c.client.business + '* (' + money(c.total) + ').\n\n✍️ Revísalo y fírmalo con tu dedo aquí:\n' + link(c) + '\n\nRecuerda: no pagas nada hasta recibir tu página funcionando a tu satisfacción 🚀';
+    var msg = 'Hola ' + (c.client.rep || '').split(' ')[0] + ' 👋 Te comparto el *acuerdo comercial* de la página web de *' + c.client.business + '* (' + money(c.total) + ').\n\n✍️ Revísalo y fírmalo con tu dedo aquí:\n' + link(c) + '\n\nRecuerda: no pagas nada hasta recibir tu página funcionando a tu satisfacción 🚀';
     return 'https://wa.me/' + ph + '?text=' + encodeURIComponent(msg);
   }
   function showReady(c){
@@ -1235,7 +1244,7 @@ textarea.input{resize:vertical;min-height:110px;line-height:1.5}
     if(ed){ var c = CT.find(function(x){ return x.id === ed.dataset.ed; }); if(!c) return;
       ctEdit = c.id; Object.keys(CF).forEach(function(k){ $(CF[k]).value = c.client[k] || ''; });
       setPlan(c.plan, true); $('ctItems').innerHTML = ''; c.items.forEach(ctItem);
-      $('cDel').value = c.delivery; $('cAdj').value = c.adjustments; $('cPay').value = c.payTerm; $('cNotes').value = c.notes || ''; $('cScope').value = c.scope || ''; $('cScopeN').textContent = (c.scope || '').length + '/1500';
+      $('cDel').value = c.delivery; $('cAdj').value = c.adjustments; $('cPay').value = c.payTerm; $('cNotes').value = c.notes || ''; $('cProd').value = c.products || ''; $('cExc').checked = !!c.exception; excBox(); $('cScope').value = c.scope || ''; $('cScopeN').textContent = (c.scope || '').length + '/1500';
       $('ctTitle').textContent = 'Editar ' + c.number; $('ctSubmit').firstElementChild.textContent = 'Guardar cambios'; $('ctCancel').hidden = false; renderCt();
       $('ctForm').scrollIntoView({ behavior: 'smooth' }); return; }
     var dl = e.target.closest('[data-del]');
