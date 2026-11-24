@@ -601,7 +601,15 @@ h2 + .lead{margin-top:16px}
 
 /* ===== FOOTER ===== */
 footer{padding:0 0 120px;color:var(--ink2);font-size:.88rem}
-footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:36px}
+footer .ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;border-top:1px solid var(--line);padding-top:44px}
+.ft-b p{margin:14px 0 18px;max-width:340px;line-height:1.55}
+.ft-col{display:flex;flex-direction:column;gap:10px}.ft-col b{color:var(--ink);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+footer .ft-bot{border-top:1px solid var(--line);margin-top:32px;padding-top:20px;font-size:.8rem;color:var(--ink3)}
+@media(max-width:860px){footer .ft-top{grid-template-columns:1fr 1fr}.ft-b{grid-column:1/-1}}
+.guar-l{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;text-align:left}
+.guar-l li{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.55);border-radius:14px;padding:10px 14px;color:#4A3A1A;font-size:.95rem}
+.xmas-chip{font-weight:800;color:#0B7A3B;white-space:nowrap}.badge-row b{white-space:nowrap}
+@media(max-width:760px){body .fab{display:none}}
 footer a:hover{color:var(--fuchsia)}
 
 /* ===== FLOATING ===== */
@@ -1001,7 +1009,7 @@ footer a:hover{color:var(--fuchsia)}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a href="#" class="brand"><img src="assets/logo.png" alt="Bio Marketing" width="40" height="40"><div>Bio Marketing<small>Tiendas virtuales</small></div></a>
+    <a href="#" class="brand"><img src="assets/logo-96.webp" alt="Bio Marketing" width="40" height="40"><div>Bio Marketing<small>Tiendas virtuales</small></div></a>
     <nav class="nav-links">
       <a href="demo.html" class="nav-demo">Demo ✨</a>
       <a href="#beneficios">Beneficios</a>
@@ -1108,6 +1116,21 @@ footer a:hover{color:var(--fuchsia)}
   <div class="wrap"><div class="cl-foot" id="clFoot"></div></div>
 </section>
 
+<!-- ================= RESEÑAS ================= -->
+<section id="resenas" hidden style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Reseñas</div>
+      <h2>Lo que dicen <span class="it fx">nuestros clientes</span></h2>
+      <div class="rv-sum" id="rvSum"></div>
+    </div>
+    <div class="rv-wrap">
+      <div class="rv-track" id="rvTrack"></div>
+      <div class="rv-nav"><button type="button" id="rvPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="rvNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= PAIN ================= -->
 <section>
   <div class="wrap">
@@ -1128,7 +1151,7 @@ footer a:hover{color:var(--fuchsia)}
     <p class="turn rv">Por eso creamos tiendas <span class="mark">profesionales, propias</span><br>y <span class="it fx">sin mensualidades.</span></p>
   </div>
 <div class="wrap"><div class="sec-cta rv">
-    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>¿Vendes por WhatsApp y se te pierden pedidos?</b><small><span class="sc-on">En línea</span> · te mostramos cómo organizarlo con tu tienda</small></div></div>
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo-96.webp" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>¿Vendes por WhatsApp y se te pierden pedidos?</b><small><span class="sc-on">En línea</span> · te mostramos cómo organizarlo con tu tienda</small></div></div>
     <div class="sc-act"><a class="btn btn-wa wa" data-msg="dolor" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Quiero organizar mis ventas</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
   </div></div>
 </section>
@@ -1246,6 +1269,22 @@ footer a:hover{color:var(--fuchsia)}
       <div class="bx c-w sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-phone"/></svg></div><h3>Perfecta en celular</h3><p>Se ve espectacular en celular, tablet y computador.</p></div>
       <div class="bx c-p sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></div><h3>Conectada a WhatsApp</h3><p>Botón de compra y atención directa en cada producto.</p></div>
       <div class="bx c-w sp4 rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><use href="#i-bolt"/></svg></div><h3>Rápida y segura</h3><p>Certificado SSL, carga veloz y lista para Google.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="eyebrow">Así de fácil</div>
+      <h2>Tu tienda lista en <span class="mark it">4 pasos</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="num">1</div><h3>Separas tu cupo</h3><p>Escríbenos por WhatsApp. Solo tomamos 2 negocios por día.</p><span class="pill">Solo 2 cupos diarios</span></div>
+      <div class="step rv"><div class="num">2</div><h3>Nos envías tu info</h3><p>Logo, fotos y precios por WhatsApp. Sin pagar nada por adelantado.</p><span class="pill">$0 hoy</span></div>
+      <div class="step rv"><div class="num">3</div><h3>La creamos hoy</h3><p>Diseñamos tu página con tu marca y te la mostramos el mismo día.</p><span class="pill">Mismo día</span></div>
+      <div class="step rv"><div class="num">4</div><h3>La recibes y pagas</h3><p>Si te gusta y funciona, la pagas. Te capacitamos para empezar a vender.</p><span class="pill">A satisfacción</span></div>
     </div>
   </div>
 </section>
@@ -1380,6 +1419,31 @@ footer a:hover{color:var(--fuchsia)}
   </div>
 </section>
 
+<!-- ================= GUARANTEE ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="guar rv">
+      <div class="seal">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" letter-spacing="4" fill="#1B0B2B"><textPath href="#circ">CERO RIESGO ✦ CERO RIESGO ✦ CERO RIESGO ✦</textPath></text></svg>
+        <div><span>$0</span>hasta que<br>la recibes</div>
+      </div>
+      <div>
+        <h2>Solo la pagas <span class="it">cuando la recibes a satisfacción</span></h2>
+        <p>No te pedimos anticipos. Te entregamos tu página funcionando el mismo día, con tus ajustes y la capacitación incluidos, y solo entonces la pagas. Así de seguros estamos de nuestro trabajo. Por eso atendemos solo 2 negocios por día.</p>
+        <ul class="guar-l">
+          <li>✍️ <span><b>Todo por escrito:</b> firmas un acuerdo comercial desde tu celular, sin papeles.</span></li>
+          <li>💎 <span><b>Pago único</b> por el diseño: sin mensualidades por tu página.</span></li>
+          <li>🔧 <span><b>Cambios sin costo</b> después de entregada, si no afectan el código base.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<div class="wrap"><div class="sec-cta rv">
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo-96.webp" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>Cero riesgo: pagas al recibirla</b><small><span class="sc-on">En línea</span> · solo 2 cupos por día</small></div></div>
+    <div class="sc-act"><a class="btn btn-wa wa" data-msg="garantia" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Separar mi cupo</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
+  </div></div>
+</section>
+
 <!-- ================= COMPARE ================= -->
 <section id="comparar">
   <div class="wrap">
@@ -1413,7 +1477,7 @@ footer a:hover{color:var(--fuchsia)}
     </div>
   </div>
 <div class="wrap"><div class="sec-cta rv">
-    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>Deja de pagar mensualidades en dólares</b><small><span class="sc-on">En línea</span> · calculamos tu ahorro real en 2 minutos</small></div></div>
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo-96.webp" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>Deja de pagar mensualidades en dólares</b><small><span class="sc-on">En línea</span> · calculamos tu ahorro real en 2 minutos</small></div></div>
     <div class="sc-act"><a class="btn btn-wa wa" data-msg="shopify" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Calcular mi ahorro</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
   </div></div>
 </section>
@@ -1443,7 +1507,7 @@ footer a:hover{color:var(--fuchsia)}
     </div>
   </div>
 <div class="wrap"><div class="sec-cta dark rv">
-    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>¿Ya tienes el nombre para tu marca?</b><small><span class="sc-on">En línea</span> · verificamos gratis si tu dominio está disponible</small></div></div>
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo-96.webp" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>¿Ya tienes el nombre para tu marca?</b><small><span class="sc-on">En línea</span> · verificamos gratis si tu dominio está disponible</small></div></div>
     <div class="sc-act"><a class="btn btn-wa wa" data-msg="dominio" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Verificar mi dominio</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
   </div></div>
 </section>
@@ -1574,57 +1638,6 @@ footer a:hover{color:var(--fuchsia)}
   </div>
 </section>
 
-<!-- ================= PROCESS ================= -->
-<section>
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <div class="eyebrow">Así de fácil</div>
-      <h2>Tu tienda lista en <span class="mark it">4 pasos</span></h2>
-    </div>
-    <div class="steps">
-      <div class="step rv"><div class="num">1</div><h3>Separas tu cupo</h3><p>Escríbenos por WhatsApp. Solo tomamos 2 negocios por día.</p><span class="pill">Solo 2 cupos diarios</span></div>
-      <div class="step rv"><div class="num">2</div><h3>Nos envías tu info</h3><p>Logo, fotos y precios por WhatsApp. Sin pagar nada por adelantado.</p><span class="pill">$0 hoy</span></div>
-      <div class="step rv"><div class="num">3</div><h3>La creamos hoy</h3><p>Diseñamos tu página con tu marca y te la mostramos el mismo día.</p><span class="pill">Mismo día</span></div>
-      <div class="step rv"><div class="num">4</div><h3>La recibes y pagas</h3><p>Si te gusta y funciona, la pagas. Te capacitamos para empezar a vender.</p><span class="pill">A satisfacción</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= GUARANTEE ================= -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="guar rv">
-      <div class="seal">
-        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" letter-spacing="4" fill="#1B0B2B"><textPath href="#circ">CERO RIESGO ✦ CERO RIESGO ✦ CERO RIESGO ✦</textPath></text></svg>
-        <div><span>$0</span>hasta que<br>la recibes</div>
-      </div>
-      <div>
-        <h2>Solo la pagas <span class="it">cuando la recibes a satisfacción</span></h2>
-        <p>No te pedimos anticipos. Te entregamos tu página funcionando el mismo día, con tus ajustes y la capacitación incluidos, y solo entonces la pagas. Así de seguros estamos de nuestro trabajo. Por eso atendemos solo 2 negocios por día.</p>
-      </div>
-    </div>
-  </div>
-<div class="wrap"><div class="sec-cta rv">
-    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>Cero riesgo: pagas al recibirla</b><small><span class="sc-on">En línea</span> · solo 2 cupos por día</small></div></div>
-    <div class="sc-act"><a class="btn btn-wa wa" data-msg="garantia" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Separar mi cupo</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
-  </div></div>
-</section>
-
-<!-- ================= RESEÑAS ================= -->
-<section id="resenas" hidden style="padding-top:20px">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <div class="eyebrow">Reseñas</div>
-      <h2>Lo que dicen <span class="it fx">nuestros clientes</span></h2>
-      <div class="rv-sum" id="rvSum"></div>
-    </div>
-    <div class="rv-wrap">
-      <div class="rv-track" id="rvTrack"></div>
-      <div class="rv-nav"><button type="button" id="rvPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="rvNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= VENDER MÁS ================= -->
 <section id="vender-mas" style="padding-top:20px">
   <div class="wrap">
@@ -1665,7 +1678,7 @@ footer a:hover{color:var(--fuchsia)}
     </div>
   </div>
 <div class="wrap"><div class="sec-cta rv">
-    <div class="sc-who"><span class="sc-av"><img src="assets/logo.png" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>¿No encontraste tu respuesta?</b><small><span class="sc-on">En línea</span> · un asesor real te responde en minutos</small></div></div>
+    <div class="sc-who"><span class="sc-av"><img src="assets/logo-96.webp" alt="Asesor de Bio Marketing" width="48" height="48"><i></i></span><div><b>¿No encontraste tu respuesta?</b><small><span class="sc-on">En línea</span> · un asesor real te responde en minutos</small></div></div>
     <div class="sc-act"><a class="btn btn-wa wa" data-msg="faq" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Preguntarle a un asesor</span></a><a href="#planes" class="sc-link">Ver planes →</a></div>
   </div></div>
 </section>
@@ -1701,16 +1714,23 @@ footer a:hover{color:var(--fuchsia)}
 </main>
 
 <footer>
-  <div class="wrap">
-    <a href="#" class="brand"><img src="assets/logo.png" alt="" width="36" height="36"><div>Bio Marketing<small>Tiendas virtuales y páginas web</small></div></a>
-    <div>© <span id="yr"></span> Bio Marketing · Colombia · <a href="mailto:biomarketing.salud@gmail.com">biomarketing.salud@gmail.com</a> · <a class="wa" data-msg="footer" href="#" target="_blank" rel="noopener">WhatsApp 350 545 7420</a></div>
+  <div class="wrap ft-top">
+    <div class="ft-b">
+      <a href="#" class="brand"><img src="assets/logo-96.webp" alt="" width="36" height="36"><div>Bio Marketing<small>Tiendas virtuales y páginas web</small></div></a>
+      <p>Tiendas virtuales y páginas web profesionales para emprendedores, empresas y profesionales de la salud en toda Colombia.</p>
+      <a class="btn btn-wa btn-sm wa" data-msg="footer" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>WhatsApp 350 545 7420</span></a>
+    </div>
+    <nav class="ft-col" aria-label="Servicios"><b>Servicios</b><a href="#planes">Planes y precios</a><a href="demo.html">Demo por sector</a><a href="#cotizar">Cotizador gratis</a><a href="#dominio">Dominio propio</a></nav>
+    <nav class="ft-col" aria-label="Ayuda"><b>Ayuda</b><a href="#faq">Preguntas frecuentes</a><a href="#comparar">Comparar planes</a><a href="mailto:biomarketing.salud@gmail.com">biomarketing.salud@gmail.com</a></nav>
+    <div class="ft-col"><b>Compra segura</b><span>🛡️ $0 por adelantado</span><span>✍️ Acuerdo comercial firmado</span><span>🔒 Pagos con ePayco</span></div>
   </div>
+  <div class="wrap ft-bot">© <span id="yr"></span> Bio Marketing · Colombia · Tratamos tus datos según la Ley 1581 de 2012.</div>
 </footer>
 
 <a class="fab wa" data-msg="fab" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><span class="fab-badge" id="fabBadge" hidden>1</span><span class="bub" id="bub">¿Dudas? Escríbenos</span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg></a>
 <div class="chatpop" id="chatpop" role="dialog" aria-label="Mensaje del asesor" hidden>
   <button type="button" class="cp-x" id="cpX" aria-label="Cerrar">×</button>
-  <div class="cp-h"><span class="sc-av"><img src="assets/logo.png" alt="" width="44" height="44"><i></i></span><div><b>Asesor Bio Marketing</b><small><span class="sc-on">En línea</span> · responde en minutos</small></div></div>
+  <div class="cp-h"><span class="sc-av"><img src="assets/logo-96.webp" alt="" width="44" height="44"><i></i></span><div><b>Asesor Bio Marketing</b><small><span class="sc-on">En línea</span> · responde en minutos</small></div></div>
   <div class="cp-body"><div class="cp-typing" id="cpTyping"><i></i><i></i><i></i></div><div class="cp-msg" id="cpMsg" hidden>Hola 👋 ¿Te ayudo a elegir el plan ideal para tu negocio? Hoy tenemos <b>precio de lanzamiento</b> y te asesoramos gratis 🔥</div></div>
   <a class="btn btn-wa btn-block wa" data-msg="chat" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg><span>Responder por WhatsApp</span></a>
 </div>
@@ -2283,6 +2303,16 @@ footer a:hover{color:var(--fuchsia)}
     cp.querySelector('a.wa').setAttribute('data-msg', 'salida');
     cp.hidden = false; badge.hidden = false;
   });
+
+  /* ===================== TEMPORADA NAVIDAD (automática) ===================== */
+  (function(){
+    var d = new Date(), y = d.getFullYear(), start = new Date(y, 10, 15), xmas = new Date(y, 11, 24, 23, 59);
+    if(d < start || d > xmas) return;
+    var days = Math.ceil((new Date(y, 11, 24) - new Date(y, d.getMonth(), d.getDate())) / 864e5);
+    var tag = document.querySelector('.tb-tag'); if(tag) tag.innerHTML = '<i></i>🎄 Especial Navidad';
+    var br = document.querySelector('.badge-row');
+    if(br) br.innerHTML = '<b>🎄 Navidad</b><span>Vende más antes del 24' + (days > 0 ? ' · <span class="xmas-chip">faltan ' + days + ' día' + (days === 1 ? '' : 's') + '</span>' : '') + '</span>';
+  })();
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();

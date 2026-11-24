@@ -121,7 +121,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 <div class="msg" id="msg" hidden></div>
 
 <div id="wrap" hidden>
-  <div class="top"><div class="brand"><img src="assets/logo.png" alt="">Bio Marketing</div><span class="st" id="st">Pendiente de firma</span></div>
+  <div class="top"><div class="brand"><img src="assets/logo-96.webp" alt="">Bio Marketing</div><span class="st" id="st">Pendiente de firma</span></div>
   <article class="doc" id="doc"></article>
 
   <section class="signbox" id="signbox" hidden>
@@ -167,7 +167,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
     $('st').textContent = paid ? '✓ Pagado' : c.status === 'entregado' ? '✓ Firmado · Entregado' : signed ? '✓ Firmado' : 'Pendiente de firma'; $('st').className = 'st' + (signed ? ' ok' : '');
     var line = function(lbl, v){ return v ? '<div>' + lbl + ': ' + esc(v) + '</div>' : ''; };
     $('doc').innerHTML =
-      '<header class="d-head"><div class="d-brand"><img src="assets/logo.png" alt=""><div><b>' + esc(pv.name) + '</b><small>Tiendas virtuales y páginas web</small></div></div>' +
+      '<header class="d-head"><div class="d-brand"><img src="assets/logo-96.webp" alt=""><div><b>' + esc(pv.name) + '</b><small>Tiendas virtuales y páginas web</small></div></div>' +
         '<h1>Acuerdo comercial de desarrollo web y compromiso de pago</h1>' + (paid ? '<div class="paid">PAGADO<small>' + esc(c.payment.method) + ' · ' + new Date(c.payment.date + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }) + '</small></div>' : '') +
         '<div class="d-meta"><span>N.º <b>' + esc(c.number) + '</b></span><span>Fecha: <b>' + dLong(c.createdAt) + '</b></span><span>Ciudad: <b>' + esc(pv.city) + '</b></span></div></header>' +
       '<div class="d-body">' +
